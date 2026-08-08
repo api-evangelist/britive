@@ -1,0 +1,67 @@
+generated: '2026-08-08'
+method: searched
+source: >-
+  https://docs.britive.com/docs/release-notes.md, https://docs.britive.com/docs/current-release.md,
+  https://status.britive.com/api/v2/summary.json,
+  https://github.com/britive/python-sdk/blob/main/DEPRECATION.md,
+  openapi/britive-services-api-openapi.yml
+versioning:
+  api:
+    scheme: path prefix, inconsistently applied
+    detail: >-
+      The Services API is served unversioned at /api/...; the Secret Manager, notification
+      service and policy-administration surfaces are served at /api/v1/.... Both published
+      OpenAPI documents declare info.version "v1". Britive does not publish an API version
+      header, a date-based version pin, or a policy for how a caller pins to a version.
+  platform:
+    scheme: '<year>.<month>.<count>[.<hotfix_number>]'
+    example: 2026.07.02
+    cadence: incremental platform release approximately every two weeks
+    rings: [EA, GA]
+    ga_lag: approximately two weeks after EA
+    current: 2026.07.02 (EA, GA scheduled 2026-08-10)
+    source: https://docs.britive.com/docs/release-notes
+deprecation:
+  api_policy:
+    published: false
+    note: >-
+      Britive publishes no deprecation or sunset policy for its REST API. No Deprecation or
+      Sunset header (RFC 8594) is documented or declared, no notice period is stated, and no
+      operation in either OpenAPI carries `deprecated: true` across all 443 operations.
+  client_library_policy:
+    published: true
+    scope: Python SDK only
+    url: https://github.com/britive/python-sdk/blob/main/DEPRECATION.md
+    mechanism: >-
+      A dedicated DEPRECATION.md, maintained per major release, that names moved and removed
+      methods, states the release in which each was deprecated, and states the major release in
+      which it retires. Backwards-compatible shims are kept until the next major.
+    examples:
+    - 'v4.0.0 moved my_access.approve_request to my_approvals.approve_request (and ~30 similar moves)'
+    - 'v3.0.0 removed policies.py and the from_time / to_time policy condition attributes'
+    note: >-
+      This is a genuinely good deprecation practice — but it governs the Python client, not the
+      HTTP API. A caller writing against the REST API directly gets none of it.
+  deprecated_operations: []
+status_page:
+  url: https://status.britive.com/
+  provider: Atlassian Statuspage
+  api: https://status.britive.com/api/v2/summary.json
+  components:
+  - Core Britive Service
+  x-evidence:
+    fetched: '2026-08-08'
+    url: https://status.britive.com/api/v2/status.json
+    http_status: 200
+    indicator: none
+    description: All Systems Operational
+  note: >-
+    A machine-readable Statuspage v2 API is available, but the page tracks a single component,
+    "Core Britive Service" — there is no per-tenant, per-region or per-surface (API vs console
+    vs MCP) breakdown, so status cannot be correlated to a specific API surface.
+sla:
+  published: false
+  note: No public uptime SLA, availability target or incident-response commitment was found on the public site or in the docs.
+support:
+  url: https://www.britive.com/contact
+  note: Release notes direct customers to their assigned customer success manager for questions.

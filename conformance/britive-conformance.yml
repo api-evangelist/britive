@@ -1,0 +1,184 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  openapi/britive-services-api-openapi.yml, openapi/britive-secrets-manager-api-openapi.yml,
+  well-known/britive-openid-configuration.json, well-known/britive-oauth-authorization-server.json,
+  https://docs.britive.com/docs/shared-signals-framework.md, https://docs.britive.com/docs/group-sync-with-scim.md,
+  https://docs.britive.com/apidocs/api-error-codes.md, mcp/britive-mcp.yml
+scope: >-
+  Cross-cutting and industry standards Britive's public API surface does or does not conform to.
+  Every entry records the evidence it was decided on. Absence is recorded as honestly as presence.
+
+standards:
+- id: openapi
+  name: OpenAPI 3.0.1
+  conforms: true
+  evidence: >-
+    Both published contracts declare "openapi": "3.0.1" with info, servers, tags, paths and
+    components. 443 operations across 280 paths, every one carrying an operationId and tags.
+  caveat: >-
+    The contract is not published as a downloadable document. Britive's Document360 API reference
+    emits it only as one scoped fragment per operation page. openapi/_original/ holds the faithful
+    union assembled from those 443 fragments. In the source fragments, booleans and numeric
+    defaults are serialized as JSON strings ("required": "true", "default": "0"), which is invalid
+    against the OpenAPI schema; the working copies in openapi/ normalize those types and record
+    the change in overlays/.
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: >-
+    Per-tenant authorization server metadata at /.well-known/oauth-authorization-server (200)
+    advertising authorization_code, refresh_token and client_credentials grants, plus token,
+    introspection, revocation and registration endpoints.
+- id: oauth2-pkce
+  name: PKCE (RFC 7636)
+  conforms: true
+  evidence: code_challenge_methods_supported = ["S256"].
+- id: oauth2-dcr
+  name: Dynamic Client Registration (RFC 7591)
+  conforms: true
+  evidence: registration_endpoint published in discovery; required by the MCP remote-server flow.
+- id: oauth2-introspection
+  name: Token Introspection (RFC 7662)
+  conforms: true
+  evidence: introspection_endpoint published in discovery.
+- id: oauth2-revocation
+  name: Token Revocation (RFC 7009)
+  conforms: true
+  evidence: revocation_endpoint published in discovery.
+- id: oauth2-as-metadata
+  name: Authorization Server Metadata (RFC 8414)
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 application/json; control path 404s.
+- id: oauth2-protected-resource-metadata
+  name: Protected Resource Metadata (RFC 9728)
+  conforms: false
+  evidence: >-
+    The MCP endpoint issues a correct WWW-Authenticate challenge naming
+    resource_metadata=".../.well-known/oauth-protected-resource/mcp", but that document returns
+    404 and the alternate path form returns the tenant SPA HTML. The advertised metadata is not
+    served.
+- id: oidc
+  name: OpenID Connect Discovery 1.0
+  conforms: partial
+  evidence: >-
+    /.well-known/openid-configuration returns 200 with issuer, authorization_endpoint,
+    token_endpoint, jwks_uri, response_types_supported, subject_types_supported and
+    claims_supported.
+  deviations:
+  - 'id_token_signing_alg_values_supported is ["S256"] — not a JWA signing algorithm (RS256/ES256 etc.).'
+  - 'subject_types_supported is ["subject"] — the spec defines only "public" and "pairwise".'
+  - 'userinfo_endpoint is absent.'
+- id: scim
+  name: SCIM 2.0
+  conforms: true
+  evidence: >-
+    SCIM provisioning is a documented, first-class feature — SCIM token creation and expiry
+    operations, SCIM attribute mappings, per-identity-provider SCIM association, and documented
+    Okta/Entra group sync (docs/group-sync-with-scim, docs/okta-scim-provisioning). Britive is
+    the SCIM service provider (inbound provisioning of users and groups).
+- id: ssf
+  name: OpenID Shared Signals Framework (SSF)
+  conforms: true
+  evidence: >-
+    Britive implements SSF in both directions — issuers (inbound transmitters) and receivers
+    (outbound) — with a published event/action catalog and a documented 90-day retention of
+    processed event results. 16 SSF operations are published in the Services API under the
+    Shared Signals - Catalog / Issuers / Receivers / Results tags.
+- id: caep
+  name: CAEP (Continuous Access Evaluation Profile)
+  conforms: true
+  evidence: Named explicitly in docs/shared-signals-framework as a standard Britive implements — session revocation, credential change and authentication assurance change events.
+- id: risc
+  name: RISC (Risk Incident Sharing and Coordination)
+  conforms: true
+  evidence: Named explicitly in docs/shared-signals-framework — account lifecycle events (disabled, enabled, deleted).
+- id: set
+  name: Security Event Token (RFC 8417)
+  conforms: true
+  evidence: Named in docs/shared-signals-framework as the JWT-based format carrying SSF events.
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    First-party MCP server, remote (streamable-http, OAuth-protected, live and answering
+    JSON-RPC) and local (open source, fastmcp). 53 tools. See mcp/britive-mcp.yml.
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json return 404 on www.britive.com and
+    docs.britive.com. No agent card is published.
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: >-
+    Errors use a proprietary application/json envelope {status, message, errorCode, details}.
+    No application/problem+json is declared anywhere. Note the envelope carries 118 stable,
+    documented, namespaced error codes — better prose discipline than most, in a non-standard shape.
+- id: rfc8594
+  name: Sunset header (RFC 8594)
+  conforms: false
+  evidence: No Sunset or Deprecation header is documented or declared; no operation is marked deprecated.
+- id: idempotency
+  name: Idempotency keys (draft-ietf-httpapi-idempotency-key-header)
+  conforms: false
+  evidence: >-
+    Zero matches for "idempoten" across all 800 documentation pages in llms.txt; no
+    Idempotency-Key header anywhere in either OpenAPI.
+- id: pagination
+  name: Consistent pagination
+  conforms: partial
+  evidence: >-
+    Shared page/size/sort query parameters are declared as reusable components, but no response
+    envelope, total count, page count or next-link is declared on any list operation.
+- id: rate-limit-headers
+  name: RateLimit header fields (draft-ietf-httpapi-ratelimit-headers)
+  conforms: false
+  evidence: No rate limit policy, 429 response or RateLimit-* header is published.
+- id: json-schema
+  name: JSON Schema components
+  conforms: partial
+  evidence: >-
+    268 component schemas are published across the two documents, but a large share of list and
+    detail responses are typed only as `{type: object}` with no properties, so the response side
+    of the contract is substantially weaker than the request side.
+- id: llmstxt
+  name: llms.txt
+  conforms: true
+  evidence: >-
+    https://docs.britive.com/llms.txt returns 200 text/plain, 84 KB, indexing 800 documentation
+    pages including all 450 API reference pages. Every page also has a .md twin.
+- id: security-txt
+  name: security.txt (RFC 9116)
+  conforms: false
+  evidence: 404 on www.britive.com, britive.com and demo.britive-app.com.
+- id: hsts
+  name: HTTP Strict Transport Security
+  conforms: true
+  evidence: HSTS present on all three probed hosts (max-age 63072000 on www.britive.com, 31536000 on docs and tenant).
+- id: dnssec
+  name: DNSSEC
+  conforms: false
+  evidence: No DNSKEY for britive.com or britive-app.com. See security/britive-domain-security.yml.
+- id: caa
+  name: CAA records
+  conforms: false
+  evidence: No CAA records on britive.com or britive-app.com.
+- id: dmarc
+  name: DMARC
+  conforms: true
+  evidence: DMARC present with policy p=reject on both britive.com and britive-app.com; SPF present on both.
+compliance_program:
+  published: false
+  note: >-
+    No trust center, no public certification page and no named certification (SOC 2, ISO 27001,
+    PCI DSS, HIPAA, FedRAMP) was found on www.britive.com or docs.britive.com. trust.britive.com
+    does not resolve. Britive may well hold certifications — it does not publish them where a
+    machine, or a prospect, can find them.
+  probes:
+  - {url: 'https://trust.britive.com/', status: 'DNS NXDOMAIN'}
+  - {url: 'https://www.britive.com/trust', status: 404}
+  - {url: 'https://www.britive.com/security', status: 404}
+  - {url: 'https://www.britive.com/compliance', status: 404}
+  - {url: 'https://www.britive.com/trust-center/', status: 404}

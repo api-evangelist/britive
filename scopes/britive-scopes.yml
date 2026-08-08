@@ -1,0 +1,54 @@
+generated: '2026-08-08'
+method: probed
+source: https://demo.britive-app.com/.well-known/openid-configuration
+docs: https://docs.britive.com/apidocs/api-prerequisites
+x-evidence:
+  fetched: '2026-08-08'
+  url: https://demo.britive-app.com/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json
+  control: 'https://demo.britive-app.com/.well-known/zzz-control-not-real.json -> 404 (not an SPA catch-all)'
+summary: >-
+  Britive's REST API is documented as bearer-token only and its OpenAPI declares a single
+  http/bearer security scheme with no oauth2 flows and no scopes. A real OAuth 2.0 /
+  OpenID Connect authorization server does exist on every tenant — it backs SSO and the
+  OAuth-protected MCP endpoint — and it advertises three coarse scopes. Those scopes are
+  recorded here verbatim from discovery. They are NOT per-operation API scopes: nothing in
+  either OpenAPI maps an operation to a scope.
+authorization_server:
+  issuer: https://{tenant}.britive-app.com/api/auth/sso/oauth2
+  authorization_endpoint: https://{tenant}.britive-app.com/api/auth/sso/oauth2/authorize
+  token_endpoint: https://{tenant}.britive-app.com/api/auth/sso/oauth2/token
+  introspection_endpoint: https://{tenant}.britive-app.com/api/auth/sso/oauth2/introspect
+  revocation_endpoint: https://{tenant}.britive-app.com/api/auth/sso/oauth2/revoke
+  registration_endpoint: https://{tenant}.britive-app.com/api/auth/sso/oauth2/register
+  jwks_uri: https://{tenant}.britive-app.com/api/auth/sso/oauth2/keys
+  grant_types_supported: [authorization_code, refresh_token, client_credentials]
+  response_types_supported: [code, token]
+  code_challenge_methods_supported: [S256]
+  token_endpoint_auth_methods_supported: [client_secret_basic, client_secret_post]
+  dynamic_client_registration: true
+scopes:
+- name: read
+  description: Read access. Britive publishes no per-resource breakdown of what `read` grants.
+  source: openid-configuration scopes_supported
+- name: write
+  description: Write access. Britive publishes no per-resource breakdown of what `write` grants.
+  source: openid-configuration scopes_supported
+- name: profile
+  description: Access to the authenticated subject's profile claims.
+  source: openid-configuration scopes_supported
+claims_supported: [sub, aud, iss, exp, iat, scope]
+gaps:
+- >-
+  No scope is bound to any of the 443 published REST operations. `security: [{bearerAuth: []}]`
+  is declared globally and never refined per operation, so a client cannot compute least
+  privilege from the contract.
+- >-
+  The three scopes (read/write/profile) are coarse for a privileged-access product whose own
+  value proposition is least privilege — there is no scope granularity matching the platform's
+  own resource model (profiles, secrets, policies, identities, audit).
+- >-
+  id_token_signing_alg_values_supported is advertised as ["S256"]. S256 is a PKCE code-challenge
+  method, not a JWS signing algorithm (JWA names are RS256, ES256, etc.). This value is not a
+  valid `id_token_signing_alg_values_supported` entry under OpenID Connect Discovery 1.0.

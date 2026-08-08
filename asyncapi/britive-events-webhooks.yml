@@ -1,0 +1,133 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  openapi/britive-services-api-openapi.yml (Audit Log Webhooks + Shared Signals tags),
+  https://docs.britive.com/docs/shared-signals-framework.md,
+  https://docs.britive.com/docs/managing-shared-signals.md,
+  https://docs.britive.com/docs/notification-medium.md
+asyncapi_published: false
+asyncapi_note: >-
+  Britive publishes no AsyncAPI document. It does have a real, two-directional event surface —
+  outbound audit-log webhooks and a full Shared Signals Framework implementation — so this is a
+  genuine gap rather than an absent surface. The event catalogue below is derived from the
+  published REST operations and the SSF documentation; it is not fabricated and it is not an
+  AsyncAPI substitute.
+
+surfaces:
+
+- name: Audit log webhooks
+  direction: outbound
+  kind: webhook
+  transport: HTTPS POST to a configured notification medium
+  description: >-
+    A tenant can register webhooks that deliver audit-log events matching a filter expression.
+    The webhook is bound to a notification medium rather than to a raw URL, so the delivery
+    channel (Teams incoming webhook, Slack, email) is configured separately.
+  configuration:
+    operations:
+    - {operationId: getAuditLogWebhooks, method: GET, path: /api/logs/webhooks}
+    - {operationId: saveAuditLogWebhook, method: POST, path: /api/logs/webhooks}
+    - {operationId: getAuditLogWebhookByNotificationMediumId, method: GET, path: '/api/logs/webhooks/{notificationMediumId}'}
+    - {operationId: deleteAuditLogWebhookByNotificationMediumId, method: DELETE, path: '/api/logs/webhooks/{notificationMediumId}'}
+    schema: AuditLogWebhook {notificationMediumId, filter, description}
+  event_vocabulary:
+    discoverable: true
+    how: >-
+      The filterable field vocabulary is returned by GET /api/logs/fields (getFields) and the
+      operator vocabulary by GET /api/logs/operators (getOperators). The event types themselves
+      are therefore discoverable at runtime rather than enumerated in a static catalog.
+    example_event_types_seen_in_docs: [ADMIN_ACCESS_CHECKIN]
+  payload_schema:
+    published: false
+    note: >-
+      No schema is published for what Britive actually POSTs to a webhook. A consumer cannot
+      code against the delivery payload without observing it live.
+  delivery_semantics:
+    published: false
+    note: No retry policy, delivery guarantee, ordering guarantee, signature/HMAC verification scheme or replay-protection mechanism is documented.
+
+- name: Shared Signals Framework — receivers (Britive as transmitter)
+  direction: outbound
+  kind: SSF / SET
+  standards: [SSF, CAEP, RISC, 'SET (RFC 8417)']
+  description: >-
+    Britive transmits security events to registered external receivers (a SIEM, an IdP). An admin
+    registers a receiver URL with optional custom headers, then maps Britive event types to
+    standard CAEP/RISC event URIs.
+  configuration:
+    operations:
+    - {operationId: listSsfReceivers, method: GET, path: /api/ssf/admin/receivers}
+    - {operationId: createSsfReceiver, method: POST, path: /api/ssf/admin/receivers}
+    - {operationId: getSsfReceiver, method: GET, path: '/api/ssf/admin/receivers/{receiverId}'}
+    - {operationId: updateSsfReceiver, method: PATCH, path: '/api/ssf/admin/receivers/{receiverId}'}
+    - {operationId: deleteSsfReceiver, method: DELETE, path: '/api/ssf/admin/receivers/{receiverId}'}
+    - {operationId: getReceiverMappings, method: GET, path: '/api/ssf/admin/receivers/{receiverId}/mappings'}
+    - {operationId: putReceiverMappings, method: PUT, path: '/api/ssf/admin/receivers/{receiverId}/mappings'}
+    schemas: [Receiver, ReceiverMappings, 'ReceiverEventMapping {britiveEventType, eventUri}']
+  event_catalog:
+    discoverable: true
+    operation: {operationId: getSsfCatalog, method: GET, path: /api/ssf/admin/catalog}
+    schemas: ['SsfEventDefinition {type, uri, name, description}', 'BritiveEventTypeDefinition {type, displayName, description}']
+    note: >-
+      The supported event and action vocabulary is served by the API itself rather than published
+      as a static document — good runtime discoverability, invisible to anyone reading the docs.
+  documented_examples:
+  - 'Britive "Disable User" mapped to the RISC account-disabled signal, delivered to a SIEM.'
+
+- name: Shared Signals Framework — issuers (Britive as receiver)
+  direction: inbound
+  kind: SSF / SET
+  standards: [SSF, CAEP, RISC, 'SET (RFC 8417)']
+  description: >-
+    Britive consumes security events from a registered external transmitter (Okta, Entra ID) and
+    maps each external event URI to a Britive action taken on the affected identity.
+  configuration:
+    operations:
+    - {operationId: listSsfIssuers, method: GET, path: /api/ssf/admin/issuers}
+    - {operationId: createSsfIssuer, method: POST, path: /api/ssf/admin/issuers}
+    - {operationId: getSsfIssuer, method: GET, path: '/api/ssf/admin/issuers/{issuerId}'}
+    - {operationId: updateSsfIssuer, method: PATCH, path: '/api/ssf/admin/issuers/{issuerId}'}
+    - {operationId: deleteSsfIssuer, method: DELETE, path: '/api/ssf/admin/issuers/{issuerId}'}
+    - {operationId: getIssuerMappings, method: GET, path: '/api/ssf/admin/issuers/{issuerId}/mappings'}
+    - {operationId: putIssuerMappings, method: PUT, path: '/api/ssf/admin/issuers/{issuerId}/mappings'}
+    schemas: [Issuer, IssuerMappings, 'EventActionMapping {eventUri, action}']
+  actions:
+  - {name: Force Checkin, severity: least, effect: 'Revokes all of the identity''s active privileged access sessions; the identity can re-authenticate and check out again.'}
+  - {name: Force Logout, severity: moderate, effect: 'Force Checkin plus invalidation of all active authentication sessions; full re-authentication required.'}
+  - {name: Disable User, severity: most, effect: 'Force Logout plus disabling the account until an administrator re-enables it.'}
+  note: Actions are cumulative — each more severe action includes everything the less severe one does.
+  timing_caveat: >-
+    Britive's own documentation warns that because of caching in the API layer an identity may
+    retain access briefly after a Force Logout or Disable User action.
+
+- name: Shared Signals results
+  direction: query
+  description: >-
+    Every processed event, inbound and outbound, is logged with event type, subject, action taken,
+    outcome, timestamp and direction.
+  operations:
+  - {operationId: querySsfResults, method: GET, path: /api/ssf/results}
+  retention: 90 days
+
+- name: Notification mediums
+  direction: outbound
+  kind: notification
+  description: >-
+    The delivery channels used for approval requests, secret-rotation notices and audit-log
+    webhooks — email, email with a one-time magic link, Slack (app or bot token), Microsoft Teams
+    (app or channel incoming webhook).
+  configuration:
+    operations:
+    - {operationId: getNotificationMediums, method: GET, path: /api/v1/notification-service/notificationmediums}
+    - {operationId: createNotificationMedium, method: POST, path: /api/v1/notification-service/notificationmediums}
+    - {operationId: getNotificationMedium, method: GET, path: '/api/v1/notification-service/notificationmediums/{id}'}
+    - {operationId: updateNotificationMedium, method: PATCH, path: '/api/v1/notification-service/notificationmediums/{id}'}
+    - {operationId: deleteNotificationMedium, method: DELETE, path: '/api/v1/notification-service/notificationmediums/{id}'}
+    - {operationId: getChannelsForNotificationMediumId, method: GET, path: '/api/v1/notification-service/notificationmediums/{id}/channels'}
+
+gaps:
+- No AsyncAPI document for any of the three event surfaces.
+- No published payload schema for the audit-log webhook delivery.
+- No webhook signature or HMAC verification scheme documented — a receiver cannot verify that a delivery came from Britive.
+- No retry, ordering or delivery-guarantee statement for webhooks or SSF transmission.
+- No streaming surface (no SSE, WebSocket or message-queue integration) is published.

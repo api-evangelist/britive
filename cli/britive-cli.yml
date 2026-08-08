@@ -1,0 +1,67 @@
+generated: '2026-08-08'
+method: searched
+source: https://britive.github.io/python-cli/ + https://docs.britive.com/docs/britive-cli + https://pypi.org/project/pybritive/
+name: PyBritive
+official: true
+description: >-
+  PyBritive is Britive's first-party command line interface, a pure-Python CLI that wraps the
+  Britive Python SDK. It is the recommended way to authenticate to a Britive tenant from a
+  terminal or CI job, and it is also the recommended authentication path for Britive's local
+  MCP server.
+package: pybritive
+package_pointer: packages/britive-packages.yml
+repository: https://github.com/britive/python-cli
+documentation: https://britive.github.io/python-cli/
+release_notes: https://docs.britive.com/docs/pybritive-releases
+requires: Python >= 3.9
+install:
+- method: pip
+  command: pip install pybritive
+- method: github-release
+  note: install the latest release artifact directly from the GitHub releases API
+commands:
+- name: login
+  description: Authenticate interactively and obtain temporary credentials.
+- name: logout
+  description: End an authenticated session.
+- name: checkout
+  description: Check out a profile and retrieve access (optionally programmatic credentials).
+- name: checkin
+  description: Check a profile back in and release access.
+- name: ls
+  description: List applications, environments, profiles, secrets, approvals and resources.
+- name: configure
+  description: Configure tenants and global settings.
+  subcommands: [tenant, global]
+- name: cache
+  description: Manage local caches used for shell completion and kubeconfig.
+  subcommands: [profiles, kubeconfig]
+- name: clear
+  description: Remove cached data, credentials or configuration.
+- name: secret
+  description: View or download a secret from the Britive vault.
+- name: request
+  description: Submit, approve, reject or withdraw profile access requests.
+- name: ssh
+  description: Connect to private cloud servers over SSH (AWS EC2, GCP Compute).
+- name: aws
+  description: AWS-specific operations, including console federation.
+- name: user
+  description: Display the authenticated identity.
+- name: api
+  description: Direct pass-through to Britive Python SDK methods.
+global_flags:
+- flag: --tenant/-t
+  description: Tenant name.
+- flag: --token/-T
+  description: Britive API token.
+- flag: --federation-provider/-P
+  description: Use a workload identity provider to obtain a token automatically (AWS, Azure, GCP, GitHub, GitLab, Bitbucket, Spacelift).
+- flag: --passphrase/-p
+  description: Passphrase used to encrypt cached credentials.
+- flag: --silent/-s
+  description: Suppress output.
+- flag: --format/-f
+  description: Output format — json, yaml, csv and table variants.
+shell_completion: [bash, zsh, fish, powershell]
+release_cadence: ad hoc — CLI releases do not follow the platform's two-week cadence

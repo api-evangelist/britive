@@ -1,0 +1,164 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  openapi/britive-services-api-openapi.yml, openapi/britive-secrets-manager-api-openapi.yml,
+  https://docs.britive.com/apidocs/api-prerequisites.md,
+  https://docs.britive.com/apidocs/api-response-parameters.md,
+  https://docs.britive.com/apidocs/api-status-codes.md,
+  https://github.com/britive/python-sdk
+scope: >-
+  Cross-cutting runtime semantics of the Britive tenant REST API. Britive publishes these as
+  prose in its API reference introduction plus the shared parameter components in its OpenAPI;
+  this file collects them in one place and records honestly where a convention is absent.
+
+base_url:
+  template: https://{tenant}.britive-app.com/api
+  note: >-
+    Every customer gets their own tenant host. There is no shared production host and no public
+    sandbox tenant. Britive's own docs use https://demo.britive-app.com as the worked example.
+  secrets_manager_prefix: /api/v1
+  source: https://docs.britive.com/apidocs/api-prerequisites.md
+
+auth:
+  style: bearer
+  scheme: 'Authorization: Bearer <token>'
+  securityScheme: bearerAuth (http/bearer) — the only scheme declared in either OpenAPI
+  token_types:
+  - name: API token
+    issued: Admin -> Security -> API Tokens in the Britive console
+    note: >-
+      Inherits the privileges of the user who created it. Britive's own documentation warns to
+      be careful which users can mint them.
+  - name: Interactive bearer token
+    issued: PyBritive CLI login (`pybritive login`); temporary
+  - name: Workload federation token
+    issued: OIDC federation from AWS, Azure, GCP, GitHub, GitLab, Bitbucket or Spacelift
+  oauth2:
+    present: true
+    note: >-
+      A tenant also publishes OIDC/OAuth 2.0 discovery (see well-known/), used for SSO and for
+      the MCP server. The REST API itself is documented as bearer-token only.
+  detail: authentication/britive-authentication.yml
+
+pagination:
+  style: page-number
+  params:
+  - name: page
+    in: query
+    type: integer
+    default: 0
+    description: Page number of the records to retrieve.
+  - name: size
+    in: query
+    type: integer
+    default: 20
+    description: Number of records to retrieve per page.
+  - name: sort
+    in: query
+    type: string
+    description: Sort parameter and direction.
+  declared_as: components.parameters Page / Size / PageSize / Sort in the Services API OpenAPI
+  response_fields:
+    published: false
+    note: >-
+      Britive documents the request side of pagination but not the response side — no
+      total-count, page-count, next-link or cursor field is declared in any response schema, and
+      most list responses are typed only as `type: object`. A client cannot tell from the
+      contract when it has reached the last page.
+  defect: >-
+    The Services API declares two identical size parameters, `Size` and `PageSize`, with the same
+    name/in/default and near-identical descriptions.
+
+filtering_and_search:
+  params:
+  - name: searchText
+    in: query
+    description: Free-text filter.
+  - name: filter
+    in: query
+    description: Used on some collections, e.g. /api/user-tags/{tagId}/users?filter=available.
+  - name: type
+    in: query
+    description: Filter by type, e.g. frequentlyUsed.
+  audit_log_filter_expression:
+    description: >-
+      Audit-log query uses a dedicated expression language. The field vocabulary is discoverable
+      at GET /api/logs/fields and the operator vocabulary at GET /api/logs/operators.
+    discovery_operations: [getFields, getOperators]
+
+field_expansion:
+  supported: partial
+  params:
+  - name: view
+    in: query
+    default: summary
+    description: 'Controls response verbosity on profile collections, e.g. view=summary.'
+  - name: extended
+    in: query
+    description: Requests the extended representation of applications.
+  - name: includeTags
+    in: query
+    description: Includes tag membership when listing users and service identities.
+
+idempotency:
+  key_header: none
+  supported: false
+  note: >-
+    Britive publishes NO idempotency-key mechanism. There is no Idempotency-Key header, no
+    idempotent-replay window and no request-fingerprint deduplication anywhere in the docs or
+    either OpenAPI. One operation is described as naturally idempotent —
+    checkInProfileForTransaction, where checking in an already checked-in session succeeds
+    without effect — but that is a property of that single operation, not a platform contract.
+    A client that retries a failed profile check-out or secret write has no published guarantee.
+  evidence:
+  - openapi/britive-services-api-openapi.yml (single prose mention, operationId checkInProfileForTransaction)
+  - 'https://docs.britive.com/llms.txt — zero matches for "idempoten" across 800 documentation pages'
+
+request_id:
+  header: none
+  note: >-
+    No correlation/trace/request-id header is documented, and none appears in either OpenAPI.
+    Support conversations cannot be anchored to a request identifier the caller can capture.
+
+rate_limits:
+  published: false
+  note: >-
+    No rate limit, quota or throttling policy is published, no 429 response is declared on any
+    of the 443 operations, and no RateLimit-* or Retry-After headers are documented.
+
+versioning:
+  api:
+    style: 'path prefix, inconsistently applied'
+    detail: >-
+      The Services API is unversioned (/api/...). The Secret Manager, notification and
+      policy-administration surfaces sit under /api/v1/.... Both OpenAPI documents carry
+      info.version "v1".
+  platform:
+    scheme: '<year>.<month>.<count>[.<hotfix>]'
+    cadence: incremental release approximately every two weeks, EA then GA
+    detail: lifecycle/britive-lifecycle.yml
+
+errors:
+  envelope: '{status, message, errorCode, details}'
+  media_type: application/json
+  rfc9457: false
+  stable_codes: true
+  catalog: errors/britive-problem-types.yml
+  note: >-
+    118 documented, namespaced error codes (A-, AT-, AU-, MA-, P-, PP-, RM-, U-, UT- and others).
+    Strong prose contract, but the envelope is not modelled as a schema in either OpenAPI, so it
+    does not reach generated clients.
+
+media_types:
+  request: application/json
+  response: [application/json, text/csv]
+  csv_note: >-
+    Audit-log export and report execution have dedicated CSV variants
+    (GET /api/logs/csv, GET /api/reports/{reportId}/csv) rather than content negotiation.
+
+cross_links:
+  errors: errors/britive-problem-types.yml
+  lifecycle: lifecycle/britive-lifecycle.yml
+  authentication: authentication/britive-authentication.yml
+  scopes: scopes/britive-scopes.yml
+  conformance: conformance/britive-conformance.yml

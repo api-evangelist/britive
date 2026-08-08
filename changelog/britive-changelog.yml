@@ -1,0 +1,71 @@
+generated: '2026-08-08'
+method: searched
+source: https://docs.britive.com/docs/release-notes.md, https://docs.britive.com/docs/current-release.md, https://docs.britive.com/docs/july-2026.md
+docs: https://docs.britive.com/docs/release-notes
+streams:
+- name: Platform
+  url: https://docs.britive.com/docs/current-release
+  archive: https://docs.britive.com/docs/past-releases
+  cadence: incremental, approximately every two weeks
+  scheme: '<year>.<month>.<count>[.<hotfix_number>]'
+  example: 2026.07.02
+  rings:
+  - name: EA
+    description: Early Access ring; GA typically follows about two weeks later.
+  - name: GA
+    description: General Availability.
+  archive_depth: monthly pages back to March 2022
+- name: PyBritive CLI
+  url: https://docs.britive.com/docs/pybritive-releases
+  cadence: ad hoc
+- name: Terraform provider
+  url: https://docs.britive.com/docs/terraform-releases
+  cadence: ad hoc
+- name: Python SDK
+  url: https://github.com/britive/python-sdk/blob/main/CHANGELOG.md
+  cadence: ad hoc
+  deprecations: https://github.com/britive/python-sdk/blob/main/DEPRECATION.md
+current:
+  version: 2026.07.02
+  ring: EA
+  ga_scheduled: '2026-08-10'
+  previous_ga:
+    version: 2026.07.01
+    released: '2026-07-27'
+entries:
+- version: 2026.07.02
+  ring: EA
+  date: '2026-08-06'
+  ga_scheduled: '2026-08-10'
+  breaking: false
+  additions:
+  - Tenant-configurable secret rotation schedules.
+  - User-defined passwords during resource checkout.
+  highlights:
+  - My Devices page shows the device serial number for CrowdStrike EPM.
+  - GCP WIF application scans folders and projects for delegated folder-level permissions instead of requiring org-level access.
+  - Application administrators can be restricted to specific catalog application types.
+  - Fixed backend parsing of special and reserved characters that caused Terraform plan/apply to fail.
+- version: 2026.07.01
+  ring: GA
+  date: '2026-07-27'
+  breaking: false
+  additions: []
+  highlights:
+  - Fixed profile list refresh while searching for profiles.
+  - Fixed policies incorrectly applied due to partial folder name matching.
+- version: 2026.06.02
+  ring: GA
+  date: '2026-07-13'
+  breaking: false
+  additions:
+  - Azure and Oracle Cloud Workload Identity Federation (WIF), removing static credentials and keys.
+  highlights:
+  - Enhanced dynamic user account mapping for the Britive connector.
+  - Exclusive use of resource profiles, to protect shared secrets.
+  - Fixed repeated step-up authentication prompts during access profile checkouts.
+notes: >-
+  Release notes are prose per release, dated, and archived monthly. They are not published as a
+  machine-readable feed — there is no RSS/Atom, JSON changelog or per-release API. There is also
+  no API-level changelog: the notes cover the platform, not the REST contract, so an API consumer
+  cannot tell from them whether an endpoint, field or error code changed.

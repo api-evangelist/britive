@@ -1,0 +1,99 @@
+generated: '2026-08-08'
+method: searched
+source: >-
+  https://docs.britive.com/apidocs/api-prerequisites.md,
+  https://docs.britive.com/docs/api-tokens-1.md,
+  https://demo.britive-app.com/.well-known/openid-configuration (200),
+  https://demo.britive-app.com/mcp (401, RFC 9728 challenge),
+  openapi/britive-services-api-openapi.yml, openapi/britive-secrets-manager-api-openapi.yml,
+  https://github.com/britive/python-sdk
+summary:
+  types:
+  - http
+  - oauth2
+  - openIdConnect
+  primary: bearer token
+  note: >-
+    Two distinct authentication surfaces. (1) The REST API accepts a bearer token and declares
+    exactly one security scheme, `bearerAuth` (http/bearer), applied globally to all 443
+    operations. (2) A per-tenant OAuth 2.0 / OpenID Connect authorization server backs SSO and
+    protects the MCP endpoint; it is discoverable anonymously but is not what the REST API
+    documents.
+
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  applies_to: all operations in both OpenAPI documents (global `security` block)
+  sources:
+  - openapi/britive-services-api-openapi.yml
+  - openapi/britive-secrets-manager-api-openapi.yml
+- name: tenant-oauth2
+  type: oauth2
+  flows: [authorization_code, refresh_token, client_credentials]
+  pkce: S256
+  dynamic_client_registration: true
+  applies_to: SSO login and the MCP endpoint (https://{tenant}.britive-app.com/mcp)
+  discovery: well-known/britive-oauth-authorization-server.json
+  declared_in_openapi: false
+- name: tenant-oidc
+  type: openIdConnect
+  openIdConnectUrl: https://{tenant}.britive-app.com/.well-known/openid-configuration
+  discovery: well-known/britive-openid-configuration.json
+  declared_in_openapi: false
+
+credential_types:
+- name: API token
+  how_issued: Britive console -> Admin -> Security -> API Tokens -> CREATE TOKEN
+  presented_as: 'Authorization: Bearer <token>'
+  expiry: configurable expiration in days; can be updated and revoked via the API
+    (updateApiTokenExpirationDays, revokeToken)
+  scoping: >-
+    None. Britive's own documentation states an API token "inherits the same privileges as the
+    user who created" it, and warns to exercise caution over which users may create tokens.
+    There is no way to mint a token narrower than its creator.
+  docs: https://docs.britive.com/apidocs/api-prerequisites
+- name: Interactive bearer token
+  how_issued: PyBritive CLI `pybritive login` (SSO or username/password); short-lived
+  presented_as: 'Authorization: Bearer <token>'
+  note: Supported by the Python SDK from v2.5.0 onward, and the recommended path for the local MCP server.
+- name: Workload federation token
+  how_issued: >-
+    OIDC federation from AWS, AWS STS JWT, Azure system- and user-assigned managed identity,
+    GCP, GitHub, GitLab, Bitbucket or Spacelift — no static secret stored in the pipeline
+  presented_as: exchanged for a Britive bearer token by the SDK/CLI
+  source: https://github.com/britive/python-sdk (src/britive/federation_providers/)
+- name: SCIM token
+  how_issued: per identity provider, via the SCIM token operations
+  used_for: SCIM 2.0 user and group provisioning into Britive
+
+mfa_and_step_up:
+  mfa: supported (TOTP enrolment and admin reset operations are published)
+  step_up_auth: supported (security.step_up_auth in the SDK; OTP accepted on profile and secret checkout)
+  note: >-
+    Sensitive operations (profile checkout, secret access) accept an `otp` parameter for
+    step-up authentication, and MCP tools carry the same parameter through.
+
+tenancy:
+  model: per-customer tenant host
+  host_template: https://{tenant}.britive-app.com
+  implication: >-
+    There is no shared base URL, no public sandbox tenant and no anonymous surface on the API.
+    Every credential is scoped to a single tenant, and a caller must know its tenant name
+    before it can authenticate at all.
+
+gaps:
+- >-
+  The OAuth 2.0 authorization server is real, discoverable and used in production for MCP, but it
+  is not declared as a securityScheme in either OpenAPI. A generated client sees only "bearer".
+- >-
+  No scope is bound to any operation. `security: [{bearerAuth: []}]` is global and never refined,
+  so least privilege cannot be computed from the contract.
+- >-
+  API tokens cannot be scoped below the creating user's privileges — the strongest reason a PAM
+  vendor's own token model deserves the granularity it sells to customers.
+- >-
+  The MCP endpoint returns a well-formed RFC 9728 WWW-Authenticate challenge but the
+  `resource_metadata` document it advertises 404s. See well-known/britive-well-known.yml.
+- >-
+  No security.txt is served on any Britive host.

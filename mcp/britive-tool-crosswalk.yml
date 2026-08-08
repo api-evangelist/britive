@@ -1,0 +1,371 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  mcp/britive-mcp.yml (tool names + params read from https://github.com/britive/mcp-server),
+  https://github.com/britive/python-sdk (the SDK call each tool makes, and the REST path that
+  SDK method builds), openapi/britive-services-api-openapi.yml and
+  openapi/britive-secrets-manager-api-openapi.yml (operationIds)
+note: >-
+  Britive's MCP server is a thin wrapper over its own Python SDK: every @mcp.tool function
+  calls exactly one `client.<module>.<method>()`. That makes the binding unusually traceable —
+  the SDK method's base_url + path resolves directly onto a path in the published OpenAPI, so
+  most rows are high confidence and inherit the REST operation's real parameters as the tool's
+  effective inputSchema. Rows are medium confidence where the SDK method assembles the path
+  dynamically or fans out over more than one operation. Nothing here is invented: no row is
+  emitted for a tool whose backing call could not be traced to a published operation.
+
+surfaces:
+  openapi:
+  - file: openapi/britive-services-api-openapi.yml
+    operations: 372
+    gated: false
+  - file: openapi/britive-secrets-manager-api-openapi.yml
+    operations: 71
+    gated: false
+  mcp:
+    url_template: https://{tenant}.britive-app.com/mcp
+    probed: https://demo.britive-app.com/mcp
+    gated: true
+    gate: 'OAuth 2.0 tenant login; tools/list returns 401 invalid_token anonymously'
+  graphql: none
+
+coverage:
+  mcp_tools: 53
+  crosswalked: 51
+  mcp_only: 2
+  rest_operations_total: 443
+  rest_operations_bound: 27
+  rest_only: 416
+  note: >-
+    The MCP surface is deliberately narrow. 53 tools reach 27 of 443 published REST operations
+    (6.1%) — and 19 of the 53 tools are one-per-report wrappers over a single operation. The
+    agent surface covers self-service access (check-out/check-in), identity read + enable/disable,
+    audit-log query, reporting and session termination. Everything administrative — profile,
+    policy, permission, application, environment, identity-provider, SCIM, secret-template and
+    Shared Signals configuration — is REST-only.
+
+crosswalk:
+- tool: my_access_checkout
+  category: access
+  rest: [checkoutProfile, getTokens, url, profileApprovalRequest]
+  binding: >-
+    POST /api/access/{profileId}/environments/{environmentId} (checkoutProfile); when
+    include_credentials is set the SDK follows with GET /api/access/{transactionId}/tokens
+    (getTokens) for programmatic access or GET /api/access/{id}/url (url) for a console URL;
+    when a justification is supplied the approval path
+    POST /api/access/{profileId}/environments/{environmentId}/approvalRequest
+    (profileApprovalRequest) is used.
+  confidence: high
+  note: >-
+    Composite. The tool's profile_id / environment_id / programmatic / include_credentials /
+    justification / ticket_id / ticket_type / otp parameters map onto these four operations; the
+    tool inherits their path parameters and request bodies as its real inputSchema.
+- tool: my_access_checkin
+  category: access
+  rest: [checkinProfile]
+  binding: 'PUT /api/access/{transactionId}'
+  confidence: high
+  note: >-
+    Britive assigns the operationId `checkinProfile` to two different operations —
+    PUT /api/access/{transactionId} (My Access) and PUT /api/access/devices/{transactionId}
+    (My Devices). This tool binds to the first. See defects[] below.
+- tool: my_access_list_profiles
+  category: access
+  rest: [getMyAccess, myAccessUI]
+  binding: 'GET /api/access, GET /api/access/frequently-used'
+  confidence: high
+- tool: my_access_whoami
+  category: access
+  rest: []
+  binding: 'POST {base}/access/whoami (SDK my_access.whoami)'
+  confidence: low
+  note: whoami is not present in the published OpenAPI. Recorded under mcp_only[].
+- tool: my_resources_list
+  category: resources
+  rest: [getMyResources]
+  binding: 'GET /api/resource-manager/my-resources'
+  confidence: high
+- tool: my_resources_checkout
+  category: resources
+  rest: [resourceProfileCheckout]
+  binding: 'POST /api/resource-manager/my-resources/profiles/{profileId}/resources/{resourceId}/checkout'
+  confidence: high
+- tool: my_resources_checkin
+  category: resources
+  rest: [resourceProfileCheckIn]
+  binding: 'POST /api/resource-manager/my-resources/{transactionId}/check-in'
+  confidence: high
+- tool: my_resources_list_checked_out_profiles
+  category: resources
+  rest: [getMyResources]
+  binding: 'GET /api/resource-manager/my-resources (list_type=checked-out)'
+  confidence: medium
+- tool: my_secrets_list
+  category: secrets
+  rest: [getVaults, getOneLevelSecretData]
+  binding: 'GET /api/v1/secretmanager/vault then GET /api/v1/secretmanager/vault/{vaultId}/secrets'
+  confidence: high
+  note: composite — the SDK resolves the vault id first, then lists secrets.
+- tool: my_secrets_view
+  category: secrets
+  rest: [getSecretDataPost]
+  binding: 'POST /api/v1/secretmanager/vault/{vaultId}/accesssecrets'
+  confidence: high
+- tool: identity_management_users_list
+  category: identity
+  rest: [get_1]
+  binding: 'GET /api/users'
+  confidence: high
+- tool: identity_management_users_get
+  category: identity
+  rest: [get]
+  binding: 'GET /api/users/{targetUserId}'
+  confidence: high
+- tool: identity_management_users_search
+  category: identity
+  rest: [get_1]
+  binding: 'GET /api/users?searchText='
+  confidence: high
+- tool: identity_management_users_enable
+  category: identity
+  rest: [enabledStatuses, disabledStatusesBulk]
+  binding: 'POST /api/users/{targetUserId}/enabled-statuses (single) or POST /api/users/disabled-statuses (bulk)'
+  confidence: medium
+- tool: identity_management_users_disable
+  category: identity
+  rest: [disabledStatuses, disabledStatusesBulk]
+  binding: 'POST /api/users/{targetUserId}/disabled-statuses (single) or POST /api/users/disabled-statuses (bulk)'
+  confidence: high
+- tool: identity_management_tags_list
+  category: identity
+  rest: [userTags]
+  binding: 'GET /api/user-tags'
+  confidence: high
+- tool: identity_management_tags_get
+  category: identity
+  rest: [userTag_1]
+  binding: 'GET /api/user-tags/{userTagId}'
+  confidence: high
+- tool: identity_management_tags_search
+  category: identity
+  rest: [userTags]
+  binding: 'GET /api/user-tags?searchText='
+  confidence: high
+- tool: identity_management_tags_enable
+  category: identity
+  rest: [enabledStatuses_1]
+  binding: 'POST /api/user-tags/{userTagId}/enabled-statuses'
+  confidence: high
+- tool: identity_management_tags_disable
+  category: identity
+  rest: [disabledStatuses_1]
+  binding: 'POST /api/user-tags/{userTagId}/disabled-statuses'
+  confidence: high
+- tool: identity_management_service_identities_list
+  category: identity
+  rest: [get_1]
+  binding: 'GET /api/users (type=ServiceIdentity)'
+  confidence: medium
+  note: >-
+    Service identities share the /api/users collection in the SDK (base_url is `{base}/users`);
+    the published OpenAPI does not document a distinct service-identity list operation.
+- tool: identity_management_service_identities_get
+  category: identity
+  rest: [get]
+  binding: 'GET /api/users/{targetUserId}'
+  confidence: medium
+- tool: identity_management_service_identities_search
+  category: identity
+  rest: [get_1]
+  binding: 'GET /api/users?searchText='
+  confidence: medium
+- tool: identity_management_service_identities_enable
+  category: identity
+  rest: [enabledStatuses]
+  binding: 'POST /api/users/{targetUserId}/enabled-statuses'
+  confidence: medium
+- tool: identity_management_service_identities_disable
+  category: identity
+  rest: [disabledStatuses, disabledStatusesBulk]
+  binding: 'POST /api/users/{targetUserId}/disabled-statuses'
+  confidence: medium
+- tool: application_management_applications_list
+  category: applications
+  rest: [getAllAppContainers]
+  binding: 'GET /api/apps'
+  confidence: high
+- tool: application_management_applications_get
+  category: applications
+  rest: [getAppContainer_1]
+  binding: 'GET /api/apps/{id}'
+  confidence: high
+- tool: audit_logs_logs_fields
+  category: audit
+  rest: [getFields]
+  binding: 'GET /api/logs/fields'
+  confidence: high
+- tool: audit_logs_logs_operators
+  category: audit
+  rest: [getOperators]
+  binding: 'GET /api/logs/operators'
+  confidence: high
+- tool: audit_logs_logs_query
+  category: audit
+  rest: [getAuditLogs, getAuditLogsCsv]
+  binding: 'GET /api/logs (csv=false) or GET /api/logs/csv (csv=true)'
+  confidence: high
+- tool: security_active_sessions_list_users
+  category: sessions
+  rest: [getCheckedOutProfilesForAdmin_1]
+  binding: 'GET /api/paps/sessions (plus GET /api/resource-manager/sessions, undocumented)'
+  confidence: high
+- tool: security_active_sessions_list_user_sessions
+  category: sessions
+  rest: [getCheckedOutProfilesForUser]
+  binding: 'GET /api/paps/sessions/{id}'
+  confidence: high
+- tool: security_active_sessions_checkin
+  category: sessions
+  rest: [checkInProfileForTransaction]
+  binding: 'DELETE /api/paps/sessions/{id}'
+  confidence: high
+- tool: security_active_sessions_checkin_all
+  category: sessions
+  rest: [checkInAllProfilesForUser]
+  binding: 'DELETE /api/paps/sessions/user/{userId}'
+  confidence: high
+- tool: reports_list
+  category: reporting
+  rest: [getReports]
+  binding: 'GET /api/reports'
+  confidence: high
+- tool: all_reports_run
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId} or GET /api/reports/{reportId}/csv'
+  confidence: high
+- tool: report_run_profile_historical_access
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_permissions_in_profile
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_permission_details
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_tag_membership
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_service_identities_details
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_user_secret_access
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_secret_last_access
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_profiles_assigned_to_service_identities
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_profile_accessed_tags
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_AI_identities_secret_last_access
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_resource_historical_access
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_resource_last_access
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_resources_assigned_to_ai_identities
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_resources_assigned_to_all_identities
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_resources_assigned_to_service_identities
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_resources_assigned_to_tags
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+- tool: report_run_resources_assigned_to_users
+  category: reporting
+  rest: [runReport_1, runReportAsCsv]
+  binding: 'GET /api/reports/{reportId}[/csv] — report-specific wrapper'
+  confidence: high
+
+mcp_only:
+- tool: my_access_whoami
+  reason: >-
+    Backed by POST {base}/access/whoami in the SDK, which is not documented in Britive's
+    published OpenAPI.
+- tool: my_resources_list_checked_out_profiles
+  reason: >-
+    A client-side filter over GET /api/resource-manager/my-resources; there is no dedicated
+    published operation for checked-out resource profiles.
+
+rest_only_summary:
+  count: 419
+  families:
+  - Application Profiles (PAPs), their permissions, policies, scopes, session attributes
+  - Applications, environments, environment groups, scans, managed permissions
+  - Access Builder settings, approvers groups, association approvers
+  - Identity providers, SAML, SCIM tokens and mappings, workload identity providers
+  - Policy administration (policies, roles, permissions, actions, consumers)
+  - Secrets Manager administration (vaults, templates, password policies, rotation)
+  - Shared Signals Framework issuers, receivers, catalog and results
+  - Audit-log webhooks, notification mediums, workflow notifications
+  - API tokens, step-up authentication, security policies, tenant settings
+  note: >-
+    Not a defect on its own — a PAM vendor exposing only self-service access and read
+    operations to agents, and keeping policy administration REST-only, is a defensible
+    design choice for this category.
+
+defects:
+- kind: duplicate-operationId
+  detail: >-
+    Eight operationIds are used twice across Britive's published contracts, so they are not
+    unique and cannot be used as a key by a generated client or an agent toolchain.
+  ids: [checkinProfile, checkoutProfile, createPermission, deletePermission, updatePermission,
+    getPasswordPolicy, deletePolicy, getResourceById]
+  source: openapi/britive-services-api-openapi.yml, openapi/britive-secrets-manager-api-openapi.yml
+- kind: undocumented-operation
+  detail: >-
+    Two operations the MCP server and SDK depend on are not in either published OpenAPI:
+    POST {base}/access/whoami and GET {base}/resource-manager/sessions.

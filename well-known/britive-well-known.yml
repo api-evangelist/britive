@@ -1,0 +1,68 @@
+generated: '2026-08-08'
+method: probed
+source: live /.well-known/ probes of every Britive host
+note: >-
+  Britive is a multi-tenant SaaS; the API and the OAuth 2.0 / OIDC metadata are served per
+  tenant at https://{tenant}.britive-app.com. demo.britive-app.com is the tenant used as the
+  worked example throughout Britive's own API documentation
+  (https://docs.britive.com/apidocs/api-prerequisites) and is the host probed here. The
+  marketing host www.britive.com and the docs host docs.britive.com serve nothing under
+  /.well-known/.
+control_check:
+  url: https://demo.britive-app.com/.well-known/zzz-control-not-real.json
+  status: 404
+  note: control path 404s, so the 200s below are real documents and not an SPA catch-all
+probes:
+- host: demo.britive-app.com
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: application/json
+  file: britive-openid-configuration.json
+- host: demo.britive-app.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: application/json
+  file: britive-oauth-authorization-server.json
+- host: demo.britive-app.com
+  path: /.well-known/oauth-protected-resource/mcp
+  status: 404
+  file: null
+  note: >-
+    DEFECT. The MCP endpoint's 401 response carries a correct RFC 9728 WWW-Authenticate
+    challenge advertising resource_metadata="https://demo.britive-app.com/.well-known/oauth-protected-resource/mcp",
+    but that document 404s. The sibling form /mcp/.well-known/oauth-protected-resource
+    answers 200 with the tenant SPA HTML, not JSON. No protected-resource metadata is
+    actually served.
+- host: demo.britive-app.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: www.britive.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: www.britive.com
+  path: /.well-known/openid-configuration
+  status: 404
+  file: null
+- host: www.britive.com
+  path: /.well-known/agent-card.json
+  status: 404
+  file: null
+- host: www.britive.com
+  path: /.well-known/agent.json
+  status: 404
+  file: null
+- host: docs.britive.com
+  path: /.well-known/agent-card.json
+  status: 404
+  file: null
+- host: www.britive.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+  file: null
+- host: www.britive.com
+  path: /.well-known/api-catalog
+  status: 404
+  file: null
+security_txt: none

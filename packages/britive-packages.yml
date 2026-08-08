@@ -1,0 +1,84 @@
+generated: '2026-08-08'
+method: searched
+source: PyPI, Terraform Registry, GitHub (github.com/britive), https://docs.britive.com/docs/britive-cli
+summary:
+  official: 4
+  third_party: 0
+  registries: [pypi, terraform-registry, github]
+  languages: [Python, Go, HCL]
+  note: >-
+    Britive publishes first-party client tooling for Python and Terraform only. There is no
+    official JavaScript/TypeScript, Java, .NET, Go, Ruby or PHP client library — `britive` is
+    unregistered on npm (404). For every other language, callers work against the REST API
+    directly.
+packages:
+- name: britive
+  registry: pypi
+  url: https://pypi.org/project/britive/
+  language: Python
+  version: 4.6.1
+  requires: '>=3.10'
+  license: MIT
+  official: true
+  role: SDK
+  description: A pure Python SDK for the Britive API.
+  repository: https://github.com/britive/python-sdk
+  changelog: https://github.com/britive/python-sdk/blob/main/CHANGELOG.md
+  issues: https://github.com/britive/python-sdk/issues
+  x-evidence:
+    fetched: '2026-08-08'
+    url: https://pypi.org/pypi/britive/json
+    http_status: 200
+- name: pybritive
+  registry: pypi
+  url: https://pypi.org/project/pybritive/
+  language: Python
+  version: 2.3.2
+  requires: '>=3.9'
+  license: MIT
+  official: true
+  role: CLI
+  description: A pure Python CLI for Britive (PyBritive). Depends on the `britive` SDK.
+  repository: https://github.com/britive/python-cli
+  documentation: https://britive.github.io/python-cli/
+  changelog: https://github.com/britive/python-cli/blob/main/CHANGELOG.md
+  x-evidence:
+    fetched: '2026-08-08'
+    url: https://pypi.org/pypi/pybritive/json
+    http_status: 200
+- name: britive/britive
+  registry: terraform-registry
+  url: https://registry.terraform.io/providers/britive/britive/latest
+  language: Go / HCL
+  version: 2.3.6
+  published: '2026-07-22'
+  downloads: 202191
+  tier: partner
+  license: MPL-2.0
+  official: true
+  role: IaC provider
+  description: Britive provider for Terraform — infrastructure-as-code management of Britive resources.
+  repository: https://github.com/britive/terraform-provider-britive
+  release_notes: https://docs.britive.com/docs/terraform-releases
+  x-evidence:
+    fetched: '2026-08-08'
+    url: https://registry.terraform.io/v1/providers/britive/britive
+    http_status: 200
+- name: mcp-server
+  registry: github
+  url: https://github.com/britive/mcp-server
+  language: Python
+  requires: '>=3.10'
+  official: true
+  role: MCP server
+  description: >-
+    Britive's open-source local MCP server (fastmcp). Not published to PyPI — installed by
+    cloning the repository and installing requirements.txt, or via the provided Dockerfile.
+  x-evidence:
+    fetched: '2026-08-08'
+    url: https://github.com/britive/mcp-server
+    http_status: 200
+negative_probes:
+- registry: npm
+  name: britive
+  http_status: 404

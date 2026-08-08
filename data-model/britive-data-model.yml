@@ -1,0 +1,193 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  openapi/britive-services-api-openapi.yml (246 component schemas, 238 paths),
+  openapi/britive-secrets-manager-api-openapi.yml (22 component schemas, 42 paths),
+  path hierarchy and id-reference fields
+scope: >-
+  The entity graph of the Britive platform as it is expressed in the published REST contract.
+  Relationships are derived from two signals: nesting in the URL hierarchy (an authoritative
+  containment signal) and id-suffixed reference fields in component schemas. Where Britive types
+  a response as a bare `{type: object}` the entity is still listed if the path proves it exists.
+
+identifiers:
+  style: opaque string ids, no type prefix
+  example: "62hnp3zkv5jx1p8k74zj"
+  note: >-
+    Britive ids carry no type prefix, so an id alone does not tell a caller (or an agent) what
+    kind of object it points at. The reference field name is the only type signal —
+    appContainerId, papId, userTagId, transactionId and so on.
+  common_reference_fields:
+  - {field: appContainerId, points_to: Application, occurrences: 11}
+  - {field: userId, points_to: User, occurrences: 11}
+  - {field: profileId, points_to: Profile, occurrences: 9}
+  - {field: environmentId, points_to: Environment, occurrences: 8}
+  - {field: papId, points_to: Profile (PAP), occurrences: 8}
+  - {field: resourceId, points_to: Resource, occurrences: 7}
+  - {field: tenantId, points_to: Tenant, occurrences: 6}
+  - {field: permissionId, points_to: Permission, occurrences: 5}
+  - {field: transactionId, points_to: Checkout (session), occurrences: 4}
+  - {field: userTagId, points_to: Tag, occurrences: 4}
+  - {field: identityProviderId, points_to: IdentityProvider, occurrences: 3}
+  - {field: issuerId, points_to: SharedSignalsIssuer, occurrences: 3}
+  - {field: resourceTypeId, points_to: ResourceType, occurrences: 3}
+
+entities:
+- name: Tenant
+  description: The customer's isolated Britive instance; the root of every other object and of the base URL.
+  root_path: https://{tenant}.britive-app.com
+- name: Application
+  aka: AppContainer
+  description: An onboarded cloud or SaaS target (AWS, Azure, GCP, Oracle, Okta, Snowflake, Salesforce, ServiceNow, ...).
+  path: /api/apps
+  key_schemas: [AppContainerBean, ApplicationSummary, CatalogApplication]
+- name: Environment
+  description: A scanned scope inside an application (an AWS account, a GCP project, an Azure subscription).
+  path: /api/apps/{appContainerId}/environments
+  key_schemas: [Environment, DefaultEnvironment]
+- name: EnvironmentGroup
+  description: A hierarchical grouping of environments within an application.
+  path: /api/apps/{appContainerId}/environment-groups
+  key_schemas: [EnvironmentGroup, DefaultEnvironmentGroup]
+- name: Profile
+  aka: PAP (Privileged Access Profile)
+  description: The central object — a bundle of permissions in an application that an identity may check out for a bounded time.
+  path: /api/apps/{appContainerId}/paps
+  key_schemas: [AppContainerPapPermission, DefaultPapScope, AccessProfileSettings, AccessPeriod]
+- name: ProfilePermission
+  description: A permission attached to a profile, optionally narrowed by constraints.
+  path: /api/paps/{papId}/permissions
+- name: ProfilePolicy
+  description: An ordered policy governing who may check a profile out and under what conditions.
+  path: /api/paps/{papId}/policies
+- name: Account
+  description: A native account discovered in an environment by a scan.
+  path: /api/apps/{appContainerId}/environments/{environmentId}/accounts
+- name: Permission
+  description: A native permission discovered in an environment.
+  path: /api/apps/{appContainerId}/environments/{environmentId}/permissions
+  key_schemas: [ApplicationPermission, ApplicationPermissionDefinition]
+- name: Scan
+  description: A discovery run over an application or environment; produces accounts, groups and permissions and a membership delta.
+  path: /api/apps/{appContainerId}/environments/{environmentId}/scans
+- name: User
+  description: A human identity.
+  path: /api/users
+- name: ServiceIdentity
+  description: A non-human identity (workload, service account, AI identity), sharing the /api/users collection.
+  path: /api/users
+- name: Tag
+  aka: UserTag
+  description: A group of identities, static or dynamically matched by attribute criteria; the usual subject of a policy.
+  path: /api/user-tags
+- name: IdentityProvider
+  description: An external IdP federated into Britive, optionally with SCIM provisioning.
+  path: /api/identity-providers
+- name: ApiToken
+  description: A bearer credential minted by a user, inheriting that user's privileges.
+  path: /api/users/{targetUserId}/tokens
+  key_schemas: [ApiToken, ApiTokenBean]
+- name: Checkout
+  aka: Session / Transaction
+  description: An active grant of a profile to an identity, identified by transactionId, ended by check-in.
+  path: /api/paps/sessions
+- name: Resource
+  description: An Access Broker target that is not a cloud/SaaS application — Linux hosts, GKE, Google Workspace, databases.
+  path: /api/resource-manager
+- name: ResourceType
+  description: The template describing a class of resource and the permissions it supports.
+  path: /api/resource-manager/resource-types
+- name: ResourceProfile
+  description: A checkout-able bundle of resource permissions, the resource-side analogue of a Profile.
+  path: /api/resource-manager/profiles
+- name: Vault
+  description: The tenant's secret store.
+  path: /api/v1/secretmanager/vault
+- name: Secret
+  description: A static or file secret in a vault, versioned, optionally rotated on a schedule.
+  path: /api/v1/secretmanager/vault/{vaultId}/secrets
+- name: PasswordPolicy
+  description: A policy governing generated secret values.
+  path: /api/v1/secretmanager/pwdpolicies
+- name: Policy
+  description: The shared policy-administration object used by system, secret and resource surfaces.
+  path: /api/v1/policy-admin/policies
+- name: Role
+  description: A named bundle of permissions, referenced by policies.
+  path: /api/v1/policy-admin/roles
+- name: ApprovalRequest
+  description: A pending request for access requiring approver action.
+  path: /api/v1/approvals
+  key_schemas: [ApprovalRequestData, AutoApprovalSettings, ApproversGroupDto]
+- name: AuditLog
+  description: The immutable event log, queried with a field/operator expression language.
+  path: /api/logs
+- name: AuditLogWebhook
+  description: A webhook that pushes audit events matching a filter expression to a notification medium.
+  path: /api/logs/webhooks
+  key_schemas: [AuditLogWebhook]
+- name: NotificationMedium
+  description: A delivery channel — email, email with magic link, Slack, Microsoft Teams, or a Teams webhook URL.
+  path: /api/v1/notification-service/notificationmediums
+- name: SharedSignalsIssuer
+  aka: Transmitter
+  description: An external IdP whose SSF security events Britive consumes, with event-to-action mappings.
+  path: /api/shared-signals/issuers
+  key_schemas: [CreateIssuerRequest, BritiveActionDefinition]
+- name: SharedSignalsReceiver
+  description: An external system Britive transmits SSF events to, with Britive-event-to-standard-event mappings.
+  path: /api/shared-signals/receivers
+  key_schemas: [CreateReceiverRequest, BritiveEventTypeDefinition]
+- name: Report
+  description: A canned analytics report, runnable as JSON or CSV with a filter expression.
+  path: /api/reports
+
+relationships:
+- {from: Tenant, to: Application, kind: has_many, via: tenantId}
+- {from: Application, to: Environment, kind: has_many, via: appContainerId (path)}
+- {from: Application, to: EnvironmentGroup, kind: has_many, via: appContainerId (path)}
+- {from: EnvironmentGroup, to: Environment, kind: has_many, via: parentGroupId}
+- {from: Application, to: Profile, kind: has_many, via: appContainerId (path)}
+- {from: Environment, to: Account, kind: has_many, via: environmentId (path)}
+- {from: Environment, to: Permission, kind: has_many, via: environmentId (path)}
+- {from: Environment, to: Scan, kind: has_many, via: environmentId (path)}
+- {from: Account, to: User, kind: has_many, via: accountId + userId (account-user mapping)}
+- {from: Profile, to: ProfilePermission, kind: has_many, via: papId (path)}
+- {from: Profile, to: ProfilePolicy, kind: has_many, via: papId (path)}
+- {from: Profile, to: Environment, kind: has_many, via: scope (DefaultPapScope)}
+- {from: ProfilePermission, to: Permission, kind: belongs_to, via: appPermissionId}
+- {from: ProfilePolicy, to: Tag, kind: has_many, via: members}
+- {from: ProfilePolicy, to: User, kind: has_many, via: members}
+- {from: ProfilePolicy, to: ServiceIdentity, kind: has_many, via: members}
+- {from: Tag, to: User, kind: has_many, via: userTagId + userId}
+- {from: Tag, to: ServiceIdentity, kind: has_many, via: userTagId + userId}
+- {from: User, to: ApiToken, kind: has_many, via: targetUserId (path)}
+- {from: ServiceIdentity, to: ApiToken, kind: has_many, via: targetUserId (path)}
+- {from: User, to: IdentityProvider, kind: belongs_to, via: identityProviderId}
+- {from: ServiceIdentity, to: IdentityProvider, kind: belongs_to, via: identityProviderId}
+- {from: User, to: Checkout, kind: has_many, via: userId}
+- {from: Checkout, to: Profile, kind: belongs_to, via: profileId}
+- {from: Checkout, to: Environment, kind: belongs_to, via: environmentId}
+- {from: Checkout, to: ApprovalRequest, kind: has_one, via: approval flow (justification, ticketId)}
+- {from: ResourceProfile, to: Resource, kind: has_many, via: resourceId}
+- {from: Resource, to: ResourceType, kind: belongs_to, via: resourceTypeId}
+- {from: ResourceProfile, to: ProfilePolicy, kind: has_many, via: profileId}
+- {from: Vault, to: Secret, kind: has_many, via: vaultId (path)}
+- {from: Secret, to: PasswordPolicy, kind: belongs_to, via: password policy reference}
+- {from: Secret, to: Policy, kind: has_many, via: policy-admin resource policies}
+- {from: Policy, to: Role, kind: has_many, via: roles}
+- {from: ApprovalRequest, to: NotificationMedium, kind: has_many, via: notification delivery}
+- {from: AuditLogWebhook, to: NotificationMedium, kind: belongs_to, via: notificationMediumId}
+- {from: SharedSignalsIssuer, to: User, kind: has_many, via: subject of an inbound event}
+- {from: SharedSignalsReceiver, to: AuditLog, kind: has_many, via: outbound event stream}
+
+gaps:
+- >-
+  Ids carry no type prefix, so an agent holding an id cannot tell what it refers to without the
+  field name that produced it.
+- >-
+  Many list and detail responses are declared as bare `{type: object}`, so the relationships
+  above are read from path structure and request bodies more than from response schemas.
+- >-
+  There is no object-reference page in the documentation — no per-entity field dictionary — so
+  the data model must be inferred from the API reference rather than read.

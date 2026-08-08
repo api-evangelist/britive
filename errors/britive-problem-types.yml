@@ -1,0 +1,370 @@
+generated: '2026-08-08'
+method: searched
+source: https://docs.britive.com/apidocs/api-error-codes.md + https://docs.britive.com/apidocs/api-status-codes.md
+format: proprietary
+rfc9457: false
+note: Britive does not use RFC 9457 application/problem+json. It returns a proprietary JSON error envelope on application/json,
+  carrying a stable, documented, namespaced error code. The envelope and the full code list below are published
+  verbatim by Britive; the HTTP status distribution under `observed_in_spec` is derived from the two OpenAPI documents
+  in openapi/.
+envelope:
+  media_type: application/json
+  fields:
+  - name: status
+    type: integer
+    description: HTTP status code, repeated in the body
+  - name: message
+    type: string
+    description: Human-readable error message
+  - name: errorCode
+    type: string
+    description: Stable namespaced Britive error code, e.g. A-0003
+  - name: details
+    type: string|null
+    description: Additional detail, null when not applicable
+  example:
+    status: 400
+    message: App id '62hnp3zkv5jx1p8k74zj' does not exist.
+    errorCode: A-0003
+    details: null
+  example_source: https://docs.britive.com/apidocs/api-status-codes.md
+code_namespaces:
+  A: Applications
+  AS: Advanced Settings
+  AT: API tokens
+  CI: Application-specific profile check-in
+  CO: Application-specific profile check-out
+  MA: Profile check-in/check-out
+  P: Profile management
+  PF: Profile favorites
+  PP: Profile policy
+  RM: Access Broker / resource manager
+  TA: Custom application templates
+  U: Users
+  UT: User tags
+  R: Reports
+  IDP: Identity providers
+  G: Generic
+  AU: Authentication
+status_codes:
+- code: 201
+  meaning: Created — the requested resource was successfully created
+- code: 204
+  meaning: No Content
+- code: 207
+  meaning: Multi-Status — status for multiple processes
+- code: 400
+  meaning: Bad Request — incorrect input parameter
+- code: 401
+  meaning: Unauthorized — invalid credentials or session timeout
+- code: 403
+  meaning: Forbidden — access is denied
+- code: 404
+  meaning: Not Found
+- code: 405
+  meaning: Method Not Allowed
+- code: 422
+  meaning: Unprocessable Entity
+- code: 500
+  meaning: Internal Server Error
+- code: 503
+  meaning: Service Unavailable
+observed_in_spec:
+  source: openapi/britive-services-api-openapi.yml, openapi/britive-secrets-manager-api-openapi.yml
+  counts:
+    '400': 19
+    '401': 3
+    '403': 17
+    '404': 123
+    '405': 1
+    '409': 1
+    '422': 1
+  gap: Britive documents 11 HTTP status codes and 118 error codes in prose, but its OpenAPI declares an error response
+    on only a minority of its 443 operations, and never declares 500 or 503. No operation declares a schema for
+    the error envelope — the documented errorCode contract is invisible to a generated client.
+problem_types:
+- http_status: 400
+  category: Application related
+  codes:
+  - code: A-0001
+    description: An error occurred when creating an application.
+  - code: A-0002
+    description: An error occurred when reading properties for an application.
+  - code: A-0003
+    description: An error occurred when updating an application.
+  - code: A-0004
+    description: An error occurred when deleting an application.
+  - code: A-0005
+    description: An error occurred when saving properties for an application.
+- http_status: 400
+  category: Advanced Settings related
+  codes:
+  - code: AS-0001
+    description: An error occurred when the justification was missing in the check-out request.
+  - code: AS-0002
+    description: An error occurred when the justification did not match the regular expression.
+  - code: AS-0003
+    description: An error occurred when the ITSM ticket type and ID were both missing.
+  - code: AS-0004
+    description: An error occurred when the ITSM ticket type was missing.
+  - code: AS-0005
+    description: An error occurred when the ITSM ticket ID was missing.
+  - code: AS-0006
+    description: An error occurred when the ITSM ticket type was invalid.
+  - code: AS-0007
+    description: An error occurred when the ITSM ticket ID was invalid.
+- http_status: 400
+  category: API token related
+  codes:
+  - code: AT-0001
+    description: An error occurred when creating an API token.
+  - code: AT-0002
+    description: An error occurred updating an API token.
+  - code: AT-0003
+    description: An error occurred while deleting an API token.
+- http_status: 400
+  category: Application-specific profile check-in related
+  codes:
+  - code: CI-0001
+    description: An error occurred when checking in a profile for an AWS application.
+  - code: CI-0002
+    description: An error occurred when checking in a profile for the Azure application.
+  - code: CI-0003
+    description: An error occurred when checking in a profile for the GCP application.
+  - code: CI-0004
+    description: An error occurred when checking in a profile for the Oracle application.
+  - code: CI-0005
+    description: An error occurred when checking in a profile for the SalesForce application.
+  - code: CI-0006
+    description: An error occurred when checking in a profile for the ServiceNow application.
+- http_status: 400
+  category: Application-specific profile checkout related
+  codes:
+  - code: CO-0001
+    description: An error occurred when checking out a profile for the AWS application.
+  - code: CO-0002
+    description: An error occurred when checking out a profile for the Azure application.
+  - code: CO-0003
+    description: An error occurred when checking out a profile for the GCP application.
+  - code: CO-0004
+    description: An error occurred when checking out a profile for the Oracle application.
+  - code: CO-0005
+    description: An error occurred when checking out a profile for the SalesForce application.
+  - code: CO-0006
+    description: An error occurred when checking out a profile for the ServiceNow application.
+- http_status: 400
+  category: Profile checking in/out related
+  codes:
+  - code: MA-0001
+    description: An error occurred when checking in a profile.
+  - code: MA-0002
+    description: An error occurred when checking out a profile.
+  - code: MA-0003
+    description: An error occurred when reading the status of a checked-out profile.
+  - code: MA-0004
+    description: An error occurred when updating the status of a checked-out profile.
+  - code: MA-0005
+    description: An error occurred when getting information on shared accounts for a profile.
+  - code: MA-0006
+    description: An error occurred when deleting a snapshot for a checked-out profile.
+  - code: MA-0007
+    description: An error occurred when creating a snapshot for a checked-out profile.
+  - code: MA-0008
+    description: An error occurred in getting tokens or the console URL because the profile was already checked
+      in.
+  - code: MA-0009
+    description: An error occurred when the justification was missing for an approval request.
+- http_status: 400
+  category: Profile management related
+  codes:
+  - code: P-0001
+    description: An error occurred when creating a profile.
+  - code: P-0002
+    description: An error occurred when reading a profile.
+  - code: P-0003
+    description: An error occurred when updating the properties of a profile.
+  - code: P-0004
+    description: An error occurred when deleting a profile.
+  - code: P-0005
+    description: An error occurred while validating the properties of a profile.
+- http_status: 400
+  category: Profile access related
+  codes:
+  - code: PF-0001
+    description: An error occurred when saving a profile as one of the favorites.
+  - code: PF-0002
+    description: An error occurred in deleting profiles marked as favorites.
+  - code: PF-0003
+    description: An error occurred in reading profiles marked as favorites.
+- http_status: 400
+  category: Profile Policy related
+  codes:
+  - code: PP-001
+    description: An error occurred when permissions were not allowed for policy.
+  - code: PP-002
+    description: An error occurred when a token is invalid input for policy members.
+  - code: PP-003
+    description: An error occurred when creating a profile policy.
+  - code: PP-004
+    description: An error occurred when updating the properties of a profile.
+  - code: PP-005
+    description: A generic error occurred, error message is dynamic based on the scenario.
+  - code: PP-006
+    description: An error occurred when the policy cannot be created or updated for all users (*).
+- http_status: 400
+  category: Access Broker related
+  codes:
+  - code: RM-0001
+    description: An error occurred while removing a favorite resource.
+  - code: RM-0002
+    description: An error occurred when checking out an existing resource profile.
+  - code: RM-0003
+    description: An error occurred when check-in of a profile is not allowed.
+  - code: RM-0004
+    description: An error occurred when an invalid transaction is provided in the request.
+  - code: RM-0005
+    description: An error occurred when a user is not authorized to perform the check-in.
+  - code: RM-0006
+    description: An error occurred when associations are not added to profiles before permissions.
+  - code: RM-0007
+    description: An error occurred when a given variable does not exist in the associated permission.
+  - code: RM-0008
+    description: An error occurred when a resource permission does not exist for a given ID.
+  - code: RM-0009
+    description: An error occurred when a resource label key does not exist.
+  - code: RM-0010
+    description: An error occurred when a resource profile does not exist for a given ID.
+  - code: RM-0011
+    description: An error occurred when a resource type does not exist for a given ID.
+  - code: RM-0012
+    description: An error occurred when a response template does not exist for a given name.
+  - code: RM-0013
+    description: An error occurred when variable values are not permitted because the permission does not include
+      any variables.
+  - code: RM-0014
+    description: An error occurred when a profile already has permission for the specified resource type.
+  - code: RM-0015
+    description: An error occurred when a resource type ID does not match the permission's resource type.
+  - code: RM-0016
+    description: An error occurred when profile permissions do not support adding a specified permission.
+- http_status: 400
+  category: Custom application related
+  codes:
+  - code: TA-0001
+    description: An app template internal error occurred.
+  - code: TA-0002
+    description: An error occurred due to an unsupported file type.
+  - code: TA-0003
+    description: An error occurred because the file size exceeds the specified limit.
+  - code: TA-0004
+    description: An error occurred because the template name already exists.
+  - code: TA-0005
+    description: An error occurred while uploading the template file.
+  - code: TA-0006
+    description: An error occurred while scanning/parsing the template file.
+  - code: TA-0007
+    description: An error occurred while validating the template file against the schema.
+  - code: TA-0008
+    description: An error occurred while validating the template file for Jinja expression.
+  - code: TA-0009
+    description: An error occurred while validating the SVG icon in the template file.
+- http_status: 400
+  category: Users related
+  codes:
+  - code: U-0001
+    description: An error occurred during the validation of the username format when creating or updating a user.
+  - code: U-0002
+    description: An error occurred reading properties for a user.
+  - code: U-0003
+    description: An error occurred when modifying properties for a provisioned user from an external system.
+  - code: U-0004
+    description: An error occurred when creating a user.
+  - code: U-0005
+    description: An error occurred when updating a user.
+  - code: U-0006
+    description: An error occurred when deleting a user.
+  - code: U-0007
+    description: An error occurred when disabling a user.
+  - code: U-0008
+    description: An error occurred when enabling a user.
+  - code: U-0009
+    description: An error occurred when trying to create a user that already exists.
+  - code: U-0010
+    description: An error occurred when trying to reset a password for a user.
+  - code: U-0011
+    description: An error occurred when trying to reset the MFA device for a user.
+- http_status: 400
+  category: User tags related
+  codes:
+  - code: UT-0001
+    description: An error occurred when creating a user tag.
+  - code: UT-0002
+    description: An error occurred when modifying a provisioned user tag from an external system.
+  - code: UT-0003
+    description: An error occurred reading the properties of a user tag.
+  - code: UT-0004
+    description: An error occurred when adding a user to a tag.
+  - code: UT-0005
+    description: An error occurred when adding a user to a tag that is already associated with a profile via the
+      same tag.
+  - code: UT-0006
+    description: An error occurred when removing a user from a tag.
+  - code: UT-0007
+    description: An error occurred when disabling a user tag.
+  - code: UT-0008
+    description: An error occurred when enabling a user tag.
+  - code: UT-0009
+    description: An error occurred when deleting a user tag.
+  - code: UT-0010
+    description: An error occurred when updating a user tag.
+- http_status: 400
+  category: Miscellaneous
+  codes:
+  - code: R-0001
+    description: An error occurred while loading the contents of a report.
+  - code: IDP-0001
+    description: An error occurred disabling MFA for all users.
+  - code: G-0001
+    description: A generic error code when no specific error code is defined.
+- http_status: 401
+  category: General
+  codes:
+  - code: AU-0000
+    description: A generic error during authentication failure.
+  - code: AU-0001
+    description: An error occurred during authentication when an invalid challenge parameter was passed.
+  - code: AU-0002
+    description: An error occurred during authentication when an invalid SSO provider was passed.
+  - code: AU-0003
+    description: The user not found error during authentication.
+  - code: AU-0004
+    description: User is disabled
+  - code: AU-0005
+    description: The user is a service identity.
+  - code: AU-0006
+    description: An error occurred validating the user.
+  - code: AU-0007
+    description: An invalid OAuth token was passed during authentication.
+  - code: AU-0008
+    description: An error occurred when users try to change the password on their own.
+  - code: AU-0009
+    description: An error occurred when validating the OTP provided for MFA.
+  - code: AU-0010
+    description: An error occurred enrolling a user during MFA.
+  - code: AU-0011
+    description: An error occurred when changing a temporary password upon authentication
+  - code: AU-0012
+    description: An error occurred when recovering a forgotten password.
+  - code: AU-0013
+    description: An error occurred validating the user during SSO login.
+  - code: AU-0014
+    description: An invalid tenant error.
+  - code: AU-0015
+    description: API token not found error.
+  - code: AU-0016
+    description: API token has been revoked.
+  - code: AU-0017
+    description: API token has expired.
+  - code: AU-0018
+    description: The API token is invalid.
+total_codes: 118

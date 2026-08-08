@@ -1,18 +1,104 @@
 aid: britive
 name: Britive
-description: 'Britive is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Britive is a runtime privileged access management (PAM) platform that
+  issues just-in-time, ephemeral privileges to human users, non-human identities and
+  AI agents across AWS, Azure, GCP, Oracle Cloud, Kubernetes, Snowflake, Okta, Salesforce,
+  ServiceNow and on-premises systems, so organizations can operate with zero standing
+  privileges. The platform is API-first and agentless: a tenant-scoped REST API at
+  https://{tenant}.britive-app.com/api covers applications, environments, profiles
+  (PAPs), policies, identities, tags, secrets, approvals, audit logs and reporting,
+  and is complemented by an open-source Python SDK, the PyBritive CLI, a Terraform
+  provider, SCIM provisioning, Shared Signals Framework (CAEP/RISC/SET) issuers and
+  receivers, audit-log webhooks, and a first-party MCP server for AI agents.'
 url: https://raw.githubusercontent.com/api-evangelist/britive/refs/heads/main/apis.yml
+image: https://images.prismic.io/britive/ajXRGI1P9HI4UwTa_BritiveRuntimePrivilegedAccessManagementforforAgenticAI%2CNHI%26Humans.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-08'
 modified: '2026-08-08'
 tags:
 - Company
-apis: []
+- Privileged Access Management
+- Identity and Access Management
+- Cloud Security
+- Zero Standing Privileges
+- Just-in-Time Access
+- Non-Human Identity
+- Secrets Management
+- Agentic AI
+- Cybersecurity
+apis:
+- aid: britive:britive-services-api
+  name: Britive Services API
+  description: 'The Britive Services API is the tenant-scoped administrative REST API
+    for the Britive platform: applications and environments, application profiles (PAPs)
+    with their permissions, policies, scopes and session attributes, users, tags and
+    service identities, identity providers and SCIM provisioning, API tokens, access
+    requests and approvals, my-access and my-resources check-out/check-in, active sessions,
+    audit logs and audit-log webhooks, reports, notification mediums, and Shared Signals
+    Framework issuers, receivers and results.'
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Privileged Access Management
+  - Identity
+  - Access Control
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-services-api-openapi.yml
+  - type: Overlay
+    url: overlays/britive-services-api-overlay.yaml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-secrets-manager-api
+  name: Britive Secrets Manager API
+  description: 'The Britive Secret Manager API covers the Britive vault and secrets
+    lifecycle — vault initialization, static and file secrets, secret versions, secret
+    metadata, password policies, secret templates and secret rotation history — plus
+    the shared policy-administration surface (policies, roles, permissions, actions,
+    consumers), the approvals workflow and the notification-medium/notification service.'
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api/v1
+  tags:
+  - Secrets Management
+  - Vault
+  - Policy
+  - Approvals
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-secrets-manager-api-openapi.yml
+  - type: Overlay
+    url: overlays/britive-secrets-manager-api-overlay.yaml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-mcp-server
+  name: Britive MCP Server
+  description: 'Britive''s first-party Model Context Protocol server, available both
+    as a remote server on the tenant (https://{tenant}.britive-app.com/mcp, OAuth-protected)
+    and as an open-source local server (github.com/britive/mcp-server). It exposes
+    Britive dynamic access, identity management, reporting, audit-log query and active-session
+    tools to MCP clients such as Claude Desktop and VS Code Copilot.'
+  humanURL: https://docs.britive.com/docs/setting-up-mcp-server
+  baseURL: https://demo.britive-app.com/mcp
+  tags:
+  - MCP
+  - Agentic AI
+  - Access Control
+  properties:
+  - type: MCPServer
+    url: mcp/britive-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/britive-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.britive.com/docs/setting-up-mcp-server
+  - type: SourceCode
+    url: https://github.com/britive/mcp-server
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +106,67 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.britive.com/
+- type: DeveloperPortal
+  url: https://docs.britive.com/
+- type: Documentation
+  url: https://docs.britive.com/
+- type: APIReference
+  url: https://docs.britive.com/apidocs
+- type: GettingStarted
+  url: https://docs.britive.com/apidocs/api-prerequisites
+- type: Blog
+  url: https://www.britive.com/resources/blog
+- type: GitHubOrganization
+  url: https://github.com/britive
+- type: Support
+  url: https://www.britive.com/contact
+- type: SignUp
+  url: https://www.britive.com/contact
+- type: PrivacyPolicy
+  url: https://www.britive.com/privacy-policy
+- type: StatusPage
+  url: https://status.britive.com/
+- type: LLMsTxt
+  url: llms/britive-llms.txt
+- type: Packages
+  url: packages/britive-packages.yml
+- type: SDKs
+  url: packages/britive-packages.yml
+- type: CLI
+  url: cli/britive-cli.yml
+- type: WellKnown
+  url: well-known/britive-well-known.yml
+- type: Authentication
+  url: authentication/britive-authentication.yml
+- type: OAuthScopes
+  url: scopes/britive-scopes.yml
+- type: Conventions
+  url: conventions/britive-conventions.yml
+- type: ErrorCatalog
+  url: errors/britive-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/britive-lifecycle.yml
+- type: ChangeLog
+  url: changelog/britive-changelog.yml
+- type: Conformance
+  url: conformance/britive-conformance.yml
+- type: DomainSecurity
+  url: security/britive-domain-security.yml
+- type: DataModel
+  url: data-model/britive-data-model.yml
+- type: Webhooks
+  url: asyncapi/britive-events-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/britive-services-api-overlay.yaml
+- type: SourceCode
+  url: https://github.com/britive
+- type: TerraformProvider
+  url: https://registry.terraform.io/providers/britive/britive/latest
+x-enrichment:
+  date: '2026-08-08'
+  status: enriched
+  artifacts_added: 30
+  pass: local-v1
