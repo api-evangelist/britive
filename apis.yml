@@ -29,38 +29,13 @@ tags:
 - Agentic AI
 - Cybersecurity
 apis:
-- aid: britive:britive-services-api
-  name: Britive Services API
-  description: 'The Britive Services API is the tenant-scoped administrative REST API
-    for the Britive platform: applications and environments, application profiles (PAPs)
-    with their permissions, policies, scopes and session attributes, users, tags and
-    service identities, identity providers and SCIM provisioning, API tokens, access
-    requests and approvals, my-access and my-resources check-out/check-in, active sessions,
-    audit logs and audit-log webhooks, reports, notification mediums, and Shared Signals
-    Framework issuers, receivers and results.'
-  humanURL: https://docs.britive.com/apidocs
-  baseURL: https://demo.britive-app.com/api
-  tags:
-  - Privileged Access Management
-  - Identity
-  - Access Control
-  - Audit
-  properties:
-  - type: OpenAPI
-    url: openapi/britive-services-api-openapi.yml
-  - type: Overlay
-    url: overlays/britive-services-api-overlay.yaml
-  - type: Documentation
-    url: https://docs.britive.com/apidocs
-  - type: APIReference
-    url: https://docs.britive.com/apidocs
 - aid: britive:britive-secrets-manager-api
   name: Britive Secrets Manager API
-  description: 'The Britive Secret Manager API covers the Britive vault and secrets
-    lifecycle — vault initialization, static and file secrets, secret versions, secret
-    metadata, password policies, secret templates and secret rotation history — plus
-    the shared policy-administration surface (policies, roles, permissions, actions,
-    consumers), the approvals workflow and the notification-medium/notification service.'
+  description: >-
+    The Britive Secret Manager API covers the Britive vault and secrets lifecycle — vault initialization,
+    static and file secrets, secret versions, secret metadata, password policies, secret templates and
+    secret rotation history — plus the shared policy-administration surface (policies, roles, permissions,
+    actions, consumers), the approvals workflow and the notification-medium/notification service.
   humanURL: https://docs.britive.com/apidocs
   baseURL: https://demo.britive-app.com/api/v1
   tags:
@@ -79,11 +54,11 @@ apis:
     url: https://docs.britive.com/apidocs
 - aid: britive:britive-mcp-server
   name: Britive MCP Server
-  description: 'Britive''s first-party Model Context Protocol server, available both
-    as a remote server on the tenant (https://{tenant}.britive-app.com/mcp, OAuth-protected)
-    and as an open-source local server (github.com/britive/mcp-server). It exposes
-    Britive dynamic access, identity management, reporting, audit-log query and active-session
-    tools to MCP clients such as Claude Desktop and VS Code Copilot.'
+  description: >-
+    Britive's first-party Model Context Protocol server, available both as a remote server on the tenant
+    (https://{tenant}.britive-app.com/mcp, OAuth-protected) and as an open-source local server (github.com/britive/mcp-server).
+    It exposes Britive dynamic access, identity management, reporting, audit-log query and active-session
+    tools to MCP clients such as Claude Desktop and VS Code Copilot.
   humanURL: https://docs.britive.com/docs/setting-up-mcp-server
   baseURL: https://demo.britive-app.com/mcp
   tags:
@@ -99,12 +74,1093 @@ apis:
     url: https://docs.britive.com/docs/setting-up-mcp-server
   - type: SourceCode
     url: https://github.com/britive/mcp-server
+- aid: britive:britive-access-request-tag-membership-api
+  name: Britive Access Request Tag Membership API
+  description: Manage tag memberships granted via access requests
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Access Request Tag Membership
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-access-request-tag-membership-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-api-tokens-api
+  name: Britive API Tokens API
+  description: Manage API Tokens
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - API Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-api-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-environments-accounts-api
+  name: Britive Application Environments - Accounts API
+  description: Manage Application Environments Accounts
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Environments - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-environments-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-environments-api
+  name: Britive Application Environments API
+  description: Manage Application Environments
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Environments
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-environments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-advanced-settings-api
+  name: Britive Application Profiles - Advanced Settings API
+  description: Manage Application Profiles Advanced Settings
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Advanced Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-advanced-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-api
+  name: Britive Application Profiles API
+  description: Manage Application Profiles
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-permission-constraint-manager-api
+  name: Britive Application Profiles - Permission Constraint Manager API
+  description: >-
+    Manage Profile Permission Constraints for the permissions that support to define constraints.
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Permission Constraint Manager
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-permission-constraint-manager-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-permissions-api
+  name: Britive Application Profiles - Permissions API
+  description: Manage Application Profiles Permissions
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-policies-api
+  name: Britive Application Profiles - Policies API
+  description: Manage Application Profiles Policies
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-scopes-api
+  name: Britive Application Profiles - Scopes API
+  description: Manage Application Profiles Scopes
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Scopes
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-scopes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-session-attributes-api
+  name: Britive Application Profiles - Session Attributes API
+  description: Manage Application Profiles Session Attributes
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Session Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-session-attributes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-sessions-api
+  name: Britive Application Profiles - Sessions API
+  description: Manage Application Profiles Sessions
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-application-profiles-users-and-tags-api
+  name: Britive Application Profiles - Users and Tags API
+  description: Manage Application Profiles
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Application Profiles - Users and Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-application-profiles-users-and-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-access-builder-settings-api
+  name: Britive Applications - Access Builder Settings API
+  description: Manage access builder settings for an application
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Access Builder Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-access-builder-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-advanced-settings-api
+  name: Britive Applications - Advanced Settings API
+  description: Manage Applications Advanced Settings
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Advanced Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-advanced-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-api
+  name: Britive Applications API
+  description: Manage Applications
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-approvers-groups-api
+  name: Britive Applications - Approvers Groups API
+  description: Manage approvers groups for association approvers
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Approvers Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-approvers-groups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-association-approvers-api
+  name: Britive Applications - Association Approvers API
+  description: Manage association approvers for an application
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Association Approvers
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-association-approvers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-managed-permissions-api
+  name: Britive Applications - Managed Permissions API
+  description: Manage Britive Permissions
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Managed Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-managed-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-permissions-api
+  name: Britive Applications - Permissions API
+  description: Manage Application Permissions
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-root-environment-groups-api
+  name: Britive Applications - Root Environment Groups API
+  description: Manage Application Root Environment Groups
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Root Environment Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-root-environment-groups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-applications-scans-api
+  name: Britive Applications - Scans API
+  description: Manage Application Scans
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Applications - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-applications-scans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-approvals-api
+  name: Britive Approvals API
+  description: The Approvals API from Britive — 3 operation(s) for approvals.
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Approvals
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-approvals-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-audit-log-webhooks-api
+  name: Britive Audit Log Webhooks API
+  description: Manage Audit Log Webhooks
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Audit Log Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-audit-log-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-audit-logs-api
+  name: Britive Audit Logs API
+  description: Manage Audit Logs
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-audit-logs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-custom-app-manager-api
+  name: Britive Custom App Manager API
+  description: Creates an app using custom template and other operations for managing the template.
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Custom App Manager
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-custom-app-manager-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-custom-app-template-uploader-api
+  name: Britive Custom App Template Uploader API
+  description: Uploads custom app template.
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Custom App Template Uploader
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-custom-app-template-uploader-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-global-landing-page-api
+  name: Britive Global Landing Page API
+  description: Manage global landing page
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Global Landing Page
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-global-landing-page-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-identity-providers-api
+  name: Britive Identity Providers API
+  description: Manage identity providers and settings
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Identity Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-identity-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-im-connection-metadata-api
+  name: Britive IM Connection Metadata API
+  description: Manage IM Connection Metadata
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - IM Connection Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-im-connection-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-im-connections-api
+  name: Britive IM Connections API
+  description: Manage IM Connections
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - IM Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-im-connections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-im-integration-api
+  name: Britive IM Integration API
+  description: Manage IM Connections
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - IM Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-im-integration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-ip-restrictions-api
+  name: Britive IP Restrictions API
+  description: Manage firewall rules/settings
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - IP Restrictions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-ip-restrictions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-itsm-connection-metadata-api
+  name: Britive ITSM Connection Metadata API
+  description: Manage ITSM Connection Metadata
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - ITSM Connection Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-itsm-connection-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-itsm-connections-api
+  name: Britive ITSM Connections API
+  description: Manage ITSM Connections
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - ITSM Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-itsm-connections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-itsm-integration-api
+  name: Britive ITSM Integration API
+  description: Manage ITSM Connections
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - ITSM Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-itsm-integration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-multi-factor-authentication-api
+  name: Britive Multi Factor Authentication API
+  description: Manage MFA authentication settings
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Multi Factor Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-multi-factor-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-my-access-api
+  name: Britive My Access API
+  description: Manage My Access
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - My Access
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-my-access-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-my-devices-api
+  name: Britive My Devices API
+  description: Manage My Devices
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - My Devices
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-my-devices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-my-resources-api
+  name: Britive My Resources API
+  description: Manage My Resources
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - My Resources
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-my-resources-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-my-resources-integration-api
+  name: Britive My Resources - Integration API
+  description: Manage My Resource Integration
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - My Resources - Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-my-resources-integration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-my-resources-profiles-api
+  name: Britive My Resources - Profiles API
+  description: Manage My Resource Profiles
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - My Resources - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-my-resources-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-notification-service-api
+  name: Britive Notification Service API
+  description: The Notification Service API from Britive — 9 operation(s) for notification service.
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Notification Service
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-notification-service-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-notifications-api
+  name: Britive Notifications API
+  description: Manage notifications
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-policy-administration-api
+  name: Britive Policy Administration API
+  description: The Policy Administration API from Britive — 11 operation(s) for policy administration.
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Policy Administration
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-policy-administration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-profile-requests-managed-permissions-api
+  name: Britive Profile Requests - Managed Permissions API
+  description: Manage Profile Requests Britive Permissions
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Profile Requests - Managed Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-profile-requests-managed-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-reports-api
+  name: Britive Reports API
+  description: Manage Reports
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-reports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-manager-api
+  name: Britive Resource Manager API
+  description: Manage Resources
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Manager
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-manager-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-manager-labels-api
+  name: Britive Resource Manager - Labels API
+  description: Manage Resource Labels
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Manager - Labels
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-manager-labels-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-manager-permissions-api
+  name: Britive Resource Manager - Permissions API
+  description: Manage Resource Permissions
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Manager - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-manager-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-manager-policies-api
+  name: Britive Resource Manager - Policies API
+  description: Manage Resource Policies
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Manager - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-manager-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-manager-response-templates-api
+  name: Britive Resource Manager - Response Templates API
+  description: Manage Resource Response Templates
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Manager - Response Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-manager-response-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-manager-types-api
+  name: Britive Resource Manager - Types API
+  description: Manage Resource Types
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Manager - Types
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-manager-types-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-profiles-advanced-settings-api
+  name: Britive Resource Profiles - Advanced Settings API
+  description: Manage Resource Profiles Advanced Settings
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Profiles - Advanced Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-profiles-advanced-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-profiles-api
+  name: Britive Resource Profiles API
+  description: Manage Resource Profiles
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-profiles-associations-api
+  name: Britive Resource Profiles - Associations API
+  description: Manage Resource Profiles Associations
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Profiles - Associations
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-profiles-associations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-profiles-permissions-api
+  name: Britive Resource Profiles - Permissions API
+  description: Manage Resource Profiles Permissions
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Profiles - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-profiles-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-resource-profiles-policies-api
+  name: Britive Resource Profiles - Policies API
+  description: Manage Resource Profiles Policies
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Resource Profiles - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-resource-profiles-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-saml-configuration-api
+  name: Britive SAML Configuration API
+  description: Manage SAML Configuration
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - SAML Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-saml-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-secret-rotation-api
+  name: Britive Secret Rotation API
+  description: The Secret Rotation API from Britive — 2 operation(s) for secret rotation.
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Secret Rotation
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-secret-rotation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-shared-signals-catalog-api
+  name: Britive Shared Signals - Catalog API
+  description: Manage shared signals catalog data
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Shared Signals - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-shared-signals-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-shared-signals-issuers-api
+  name: Britive Shared Signals - Issuers API
+  description: Manage shared signals issuers
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Shared Signals - Issuers
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-shared-signals-issuers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-shared-signals-receivers-api
+  name: Britive Shared Signals - Receivers API
+  description: Manage shared signals receivers
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Shared Signals - Receivers
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-shared-signals-receivers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-shared-signals-results-api
+  name: Britive Shared Signals - Results API
+  description: Query shared signals processing results
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Shared Signals - Results
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-shared-signals-results-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-step-up-authentication-api
+  name: Britive Step Up Authentication API
+  description: Manage service identity association to identity provider
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Step Up Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-step-up-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-system-announcements-api
+  name: Britive System Announcements API
+  description: Manage the system announcements
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - System Announcements
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-system-announcements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-tag-access-request-settings-api
+  name: Britive Tag Access Request Settings API
+  description: Manage access request settings for a user tag
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Tag Access Request Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-tag-access-request-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-tag-access-requests-api
+  name: Britive Tag Access Requests API
+  description: Browse tags available for access request
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Tag Access Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-tag-access-requests-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-task-scheduler-api
+  name: Britive Task Scheduler API
+  description: Manage Tasks
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Task Scheduler
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-task-scheduler-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-user-identity-attributes-api
+  name: Britive User Identity Attributes API
+  description: Manage User Identity Attributes
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - User Identity Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-user-identity-attributes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-user-resources-api
+  name: Britive User Resources API
+  description: Manage User Built Resources
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - User Resources
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-user-resources-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-user-tag-owner-api
+  name: Britive User Tag Owner API
+  description: Tag Owners manage the tag memberships of their owned tags
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - User Tag Owner
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-user-tag-owner-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-user-tags-api
+  name: Britive User Tags API
+  description: Manage User Tags
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - User Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-user-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-users-service-identities-and-ai-identities-api
+  name: Britive Users, Service Identities and AI Identities API
+  description: Manage Users, Service Identities and AI Identities
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Users, Service Identities and AI Identities
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-users-service-identities-and-ai-identities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-workload-identity-providers-api
+  name: Britive Workload Identity Providers API
+  description: Manage workload identity providers
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Workload Identity Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-workload-identity-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-workload-scim-identity-providers-api
+  name: Britive Workload SCIM Identity Providers API
+  description: Manage service identity association to SCIM provisioning for identity provider
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Workload SCIM Identity Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-workload-scim-identity-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
+- aid: britive:britive-workload-service-identity-providers-api
+  name: Britive Workload Service Identity Providers API
+  description: Manage service identity association to identity provider
+  humanURL: https://docs.britive.com/apidocs
+  baseURL: https://demo.britive-app.com/api
+  tags:
+  - Workload Service Identity Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/britive-workload-service-identity-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.britive.com/apidocs
+  - type: APIReference
+    url: https://docs.britive.com/apidocs
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: IssueTracker
+  url: https://github.com/britive/mcp-server/issues
 - type: Website
   url: https://www.britive.com/
 - type: DeveloperPortal
