@@ -1,0 +1,616 @@
+{
+  "item": [
+    {
+      "id": "eef67254-28ee-49ed-87fa-7338aaa888c4",
+      "name": "My Resources - Integration",
+      "description": {
+        "content": "Manage My Resource Integration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6e42307-829a-4408-a99e-9ce24e911379",
+          "name": "Search tickets using search text and the ITSM integration setting available for the profile",
+          "request": {
+            "name": "Search tickets using search text and the ITSM integration setting available for the profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "my-resources",
+                "profiles",
+                ":profileId",
+                "itsm",
+                ":ticketType",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "The text for searching"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile ID to get the effective ITSM settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketType",
+                  "description": "(Required) Ticket type for ITSM ticket searching"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6907004b-2416-4dc0-a962-a1c51082a6fb",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources",
+                    "profiles",
+                    ":profileId",
+                    "itsm",
+                    ":ticketType",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for ITSM ticket searching"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 714,\n  \"maxResults\": 9193,\n  \"tickets\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ebb3596-0bb0-4625-ab07-4bbbb990a96a",
+              "name": "profile or ticketType not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources",
+                    "profiles",
+                    ":profileId",
+                    "itsm",
+                    ":ticketType",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for ITSM ticket searching"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "099d9c8b-b69d-4b5e-a4c1-148d5f36f0e9",
+          "name": "Validate ITSM ticket using the ITSM integration setting available for the profile",
+          "request": {
+            "name": "Validate ITSM ticket using the ITSM integration setting available for the profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "my-resources",
+                "profiles",
+                ":profileId",
+                "itsm",
+                ":ticketType",
+                "validate",
+                ":ticketId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile ID to get the effective ITSM settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketType",
+                  "description": "(Required) Ticket type for the validation"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) Ticket Id for the validation"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0444ac8f-00c3-4659-9e12-a02be8cec4a2",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources",
+                    "profiles",
+                    ":profileId",
+                    "itsm",
+                    ":ticketType",
+                    "validate",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for the validation"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) Ticket Id for the validation"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\",\n  \"ticketDetails\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b755680b-fc2e-4e9e-8537-da95bb8f9734",
+              "name": "profile or ticketType not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources",
+                    "profiles",
+                    ":profileId",
+                    "itsm",
+                    ":ticketType",
+                    "validate",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for the validation"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) Ticket Id for the validation"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f669d70-2183-410c-b305-f6ead9cc3ab5",
+          "name": "Get resource profile setting for given Profile ID",
+          "request": {
+            "name": "Get resource profile setting for given Profile ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "my-resources",
+                ":profileId",
+                "resources",
+                ":resourceId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile ID to get Resource Profile Setting"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceId",
+                  "description": "(Required) Resource ID to get Resource Profile Setting"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed2a156b-1010-4c7c-8d12-fb930cd153fb",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources",
+                    ":profileId",
+                    "resources",
+                    ":resourceId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get Resource Profile Setting"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) Resource ID to get Resource Profile Setting"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"profileId\": \"string\",\n  \"justificationSetting\": {\n    \"settingsType\": \"string\",\n    \"isJustificationRequired\": false,\n    \"isJustificationRequiredAtCheckout\": false,\n    \"justificationRegex\": \"string\",\n    \"id\": \"string\",\n    \"entityId\": \"string\",\n    \"entityType\": \"string\",\n    \"isInherited\": false\n  },\n  \"itsmSetting\": {\n    \"settingsType\": \"string\",\n    \"connectionId\": \"string\",\n    \"connectionType\": \"string\",\n    \"isCommentRequired\": true,\n    \"isITSMEnabled\": false,\n    \"supportedTicketTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"itsmFilterCriteria\": [\n      {\n        \"supportedTicketType\": \"string\",\n        \"filter\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"supportedTicketType\": \"string\",\n        \"filter\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    ],\n    \"id\": \"string\",\n    \"entityId\": \"string\",\n    \"entityType\": \"string\",\n    \"isInherited\": true\n  },\n  \"onCallSettings\": {\n    \"isAutoApproved\": false,\n    \"autoApprovalEndDate\": \"string\"\n  },\n  \"approvalRequestData\": {\n    \"justification\": \"string\",\n    \"ticketId\": \"string\",\n    \"ticketType\": \"string\"\n  },\n  \"checkoutVariablePrompts\": [\n    {\n      \"variableName\": \"string\",\n      \"type\": \"String\",\n      \"regexPattern\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"variableName\": \"string\",\n      \"type\": \"password\",\n      \"regexPattern\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c18d03d0-dbd4-4896-b03c-29a3b58f7370",
+    "name": "Britive Services API Documentation My Resources - Integration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation My Resources - Profiles API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "My Resources - Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates resource access approval request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/profiles/:profileId/resources/:resourceId/approvalRequest",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to perform checkout"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "Id of resource to perform checkout"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates resource access approval request"
+        },
+        {
+          "info": {
+            "name": "Perform resource profile checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/profiles/:profileId/resources/:resourceId/checkout",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to perform checkout"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "Id of resource to perform checkout"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform resource profile checkout"
+        },
+        {
+          "info": {
+            "name": "Get approval details for a resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/profiles/:profileId/resources/:resourceId/getApprovers",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to perform checkout"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "Id of resource to perform checkout"
+              }
+            ]
+          },
+          "docs": "Get approval details for a resource"
+        },
+        {
+          "info": {
+            "name": "Perform resource profile check-in",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/:transactionId/check-in",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "transactionId of checkedout profile"
+              }
+            ]
+          },
+          "docs": "Perform resource profile check-in"
+        },
+        {
+          "info": {
+            "name": "Get credentials of checkedout profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/:transactionId/credentials",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "transactionId of checkedout profile"
+              },
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the template used to render the response"
+              }
+            ]
+          },
+          "docs": "Get credentials of checkedout profile"
+        },
+        {
+          "info": {
+            "name": "Extend resource session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/:transactionId/extend",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "transactionId of checkedout profile"
+              }
+            ]
+          },
+          "docs": "Extend resource session"
+        },
+        {
+          "info": {
+            "name": "Get available response templates for profile checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/:transactionId/templates",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "transactionId of checkedout profile"
+              },
+              {
+                "name": "isConsoleEnabled",
+                "value": "",
+                "type": "query",
+                "description": "flag to filter out the console enabled templates"
+              },
+              {
+                "name": "showOnUI",
+                "value": "",
+                "type": "query",
+                "description": "flag to filter out the show_on_ui enabled templates"
+              }
+            ]
+          },
+          "docs": "Get available response templates for profile checkout"
+        },
+        {
+          "info": {
+            "name": "Check in all active sessions for given user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/sessions/checkin-all/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user Id of the profiles"
+              }
+            ]
+          },
+          "docs": "Check in all active sessions for given user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

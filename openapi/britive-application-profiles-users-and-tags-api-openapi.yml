@@ -1,0 +1,116 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Users and Tags API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Users and Tags
+  description: Manage Application Profiles
+paths:
+  /api/paps/{papId}/user-tags:
+    get:
+      tags:
+      - Application Profiles - Users and Tags
+      summary: Get details of all tags
+      operationId: papTags_1
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/paps/{papId}/user-tags/{userTagId}:
+    get:
+      tags:
+      - Application Profiles - Users and Tags
+      summary: Get the details of a tag for a specific tag ID
+      operationId: papTags
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: period
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/AccessPeriod'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: false
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+  schemas:
+    AccessPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

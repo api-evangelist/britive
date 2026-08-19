@@ -1,0 +1,279 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation My Resources - Integration API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: My Resources - Integration
+  description: Manage My Resource Integration
+paths:
+  /api/resource-manager/my-resources/profiles/{profileId}/itsm/{ticketType}/search:
+    get:
+      tags:
+      - My Resources - Integration
+      summary: Search tickets using search text and the ITSM integration setting available for the profile
+      operationId: searchITSMTickets
+      parameters:
+      - name: profileId
+        in: path
+        description: Profile ID to get the effective ITSM settings
+        required: true
+        schema:
+          type: string
+      - name: ticketType
+        in: path
+        description: Ticket type for ITSM ticket searching
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: searchText
+        required: false
+        schema:
+          type: string
+        description: The text for searching
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ITSMTicketSearchResult'
+        '404':
+          description: profile or ticketType not found
+  /api/resource-manager/my-resources/profiles/{profileId}/itsm/{ticketType}/validate/{ticketId}:
+    get:
+      tags:
+      - My Resources - Integration
+      summary: Validate ITSM ticket using the ITSM integration setting available for the profile
+      operationId: validateITSMTicket
+      parameters:
+      - name: profileId
+        in: path
+        description: Profile ID to get the effective ITSM settings
+        required: true
+        schema:
+          type: string
+      - name: ticketType
+        in: path
+        description: Ticket type for the validation
+        required: true
+        schema:
+          type: string
+      - name: ticketId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Ticket Id for the validation
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ITSMTicketValidationResult'
+        '404':
+          description: profile or ticketType not found
+  /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings:
+    get:
+      tags:
+      - My Resources - Integration
+      summary: Get resource profile setting for given Profile ID
+      operationId: getResourceProfileSetting
+      parameters:
+      - name: profileId
+        in: path
+        description: Profile ID to get Resource Profile Setting
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: Resource ID to get Resource Profile Setting
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceProfileSettings'
+components:
+  schemas:
+    ItsmSettingsDto:
+      allOf:
+      - $ref: '#/components/schemas/SettingsDto'
+      - type: object
+      properties:
+        connectionId:
+          type: string
+        connectionType:
+          type: string
+        isCommentRequired:
+          type: boolean
+        isITSMEnabled:
+          type: boolean
+        supportedTicketTypes:
+          type: array
+          items:
+            type: string
+        itsmFilterCriteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmFilterCriteriaDto'
+        settingsType:
+          type: string
+    ApprovalRequestData:
+      type: object
+      properties:
+        justification:
+          type: string
+          description: Existing Justification
+        ticketId:
+          type: string
+          description: Existing Ticket ID
+        ticketType:
+          type: string
+          description: Existing Ticket Type
+    ITSMTicketSearchResult:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total count of search result
+        maxResults:
+          type: integer
+          description: Maximum result count
+        tickets:
+          type: object
+          description: List of the tickets with the details like id, number, title, assignee, priority, etc.
+    ResourceProfileSettings:
+      type: object
+      properties:
+        profileId:
+          type: string
+        justificationSetting:
+          $ref: '#/components/schemas/JustificationSettingsDto'
+        itsmSetting:
+          $ref: '#/components/schemas/ItsmSettingsDto'
+        onCallSettings:
+          $ref: '#/components/schemas/AutoApprovalSettings'
+        approvalRequestData:
+          $ref: '#/components/schemas/ApprovalRequestData'
+        checkoutVariablePrompts:
+          type: array
+          description: 'Checkout-only — independent of the approval/justification/ITSM settings. For each variable on the resolved profile-permission flagged promptAtCheckout=true, one entry telling the UI to prompt the end user for a value at checkout. Each carries the variable''s type and, when configured, the regexPattern to validate the typed value. Submitted via Settings.checkoutVariableValues on checkout. Not used by the approval-request flow.
+
+            '
+          items:
+            $ref: '#/components/schemas/CheckoutVariablePrompt'
+    CheckoutVariablePrompt:
+      type: object
+      description: 'Signal to the UI that checkout will prompt the end user for the named variable''s value. The variable''s type discriminates the rendered control and the server-side validation rule applied to the submitted value.
+
+        '
+      properties:
+        variableName:
+          type: string
+          description: Name of the variable declared on the resolved permission.
+        type:
+          type: string
+          enum:
+          - String
+          - password
+          description: 'String -> text input. password -> masked input. Either way the value must match regexPattern when one is present; the server re-validates at checkout.
+
+            '
+        regexPattern:
+          type: string
+          description: 'Present iff a regex pattern is configured for this variable on the profile-permission binding (any type). UI validates live; server enforces at checkout (400 RM-0025 on mismatch).
+
+            '
+        description:
+          type: string
+          description: 'Optional human-readable explanation of regexPattern, surfaced next to the input so the end user understands what a valid value looks like. Present iff a description is configured on the profile-permission binding (which itself requires regexPattern).
+
+            '
+    ItsmFilterCriteriaDto:
+      type: object
+      properties:
+        supportedTicketType:
+          type: string
+        filter:
+          $ref: '#/components/schemas/ITSMFilter'
+    ITSMTicketValidationResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Validation result
+        message:
+          type: string
+          description: Validation message
+        ticketDetails:
+          type: object
+          description: Ticket details like id, number, title, assignee, priority, etc.
+    SettingsDto:
+      type: object
+      required:
+      - settingsType
+      properties:
+        settingsType:
+          type: string
+        id:
+          type: string
+        entityId:
+          type: string
+        entityType:
+          type: string
+        isInherited:
+          type: boolean
+      discriminator:
+        propertyName: settingsType
+        mapping:
+          ITSM: ItsmSettingsDto
+          JUSTIFICATION: JustificationSettingsDto
+    JustificationSettingsDto:
+      allOf:
+      - $ref: '#/components/schemas/SettingsDto'
+      - type: object
+      properties:
+        isJustificationRequired:
+          type: boolean
+        isJustificationRequiredAtCheckout:
+          type: boolean
+        justificationRegex:
+          type: string
+    AutoApprovalSettings:
+      type: object
+      properties:
+        isAutoApproved:
+          type: boolean
+          default: false
+        autoApprovalEndDate:
+          type: string
+    ITSMFilter:
+      type: object
+      additionalProperties:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

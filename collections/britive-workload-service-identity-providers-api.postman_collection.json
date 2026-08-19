@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "60c346d3-3cad-4ff2-bc22-df11745bb219",
+      "name": "Workload Service Identity Providers",
+      "description": {
+        "content": "Manage service identity association to identity provider",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b5b0ba4-b824-4989-9328-ab4707825c0f",
+          "name": "Assign service identity's authenticating identity provider",
+          "request": {
+            "name": "Assign service identity's authenticating identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "users",
+                ":targetUserId",
+                "identity-provider"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetUserId",
+                  "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idpId\": \"<integer>\",\n  \"mappingAttributes\": [\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"tokenDuration\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "339fcffd-8390-4b88-8c71-077bda418114",
+              "name": "Successfully assigned identity provider to service identity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "users",
+                    ":targetUserId",
+                    "identity-provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetUserId",
+                      "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"idpId\": \"<integer>\",\n  \"mappingAttributes\": [\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"tokenDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"idp\": {\n    \"idpType\": \"string\",\n    \"name\": \"string\",\n    \"id\": 6338,\n    \"description\": \"string\",\n    \"attributesMap\": [\n      {\n        \"idpAttr\": \"string\",\n        \"userAttr\": \"string\"\n      },\n      {\n        \"idpAttr\": \"string\",\n        \"userAttr\": \"string\"\n      }\n    ],\n    \"validationWindow\": 5920\n  },\n  \"mappingAttributes\": [\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"tokenDuration\": 7694\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5502ea8-860a-4ed8-aaa4-fffc5ad38017",
+          "name": "Delete service identity's assigned identity provider for authentication",
+          "request": {
+            "name": "Delete service identity's assigned identity provider for authentication",
+            "description": {
+              "content": "Revert service identity back to use a static API token for authentication by deleting the user identity provider assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "users",
+                ":targetUserId",
+                "identity-provider"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetUserId",
+                  "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb950f53-8af1-49dc-8e40-5aacd1355f02",
+              "name": "user identity provider assignment deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "users",
+                    ":targetUserId",
+                    "identity-provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetUserId",
+                      "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b07005cf-e4ef-4c49-838d-db9252a944c5",
+          "name": "Get service identity's identity provider for authentication",
+          "request": {
+            "name": "Get service identity's identity provider for authentication",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "users",
+                ":targetUserId",
+                "identity-provider"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetUserId",
+                  "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6ccb9a8-efa0-45bc-9f02-2ebcafc29766",
+              "name": "Success retrieving the service identity's authenticating identity provider.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "users",
+                    ":targetUserId",
+                    "identity-provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetUserId",
+                      "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"idp\": {\n    \"idpType\": \"string\",\n    \"name\": \"string\",\n    \"id\": 7472,\n    \"description\": \"string\",\n    \"attributesMap\": [\n      {\n        \"idpAttr\": \"string\",\n        \"userAttr\": \"string\"\n      },\n      {\n        \"idpAttr\": \"string\",\n        \"userAttr\": \"string\"\n      }\n    ],\n    \"validationWindow\": 7523\n  },\n  \"mappingAttributes\": [\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"attrId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"tokenDuration\": 5820\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1dc790f2-7386-4537-b315-d5cc1be909d6",
+    "name": "Britive Services API Documentation Workload Service Identity Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

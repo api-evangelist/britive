@@ -1,0 +1,883 @@
+{
+  "item": [
+    {
+      "id": "6de6a20c-096a-4419-8e87-228b6c7642af",
+      "name": "Multi Factor Authentication",
+      "description": {
+        "content": "Manage MFA authentication settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c990eeaf-8848-4fef-a24b-cfcb6f651042",
+          "name": "Delete MFA factor registration details",
+          "request": {
+            "name": "Delete MFA factor registration details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "mfa",
+                "admin",
+                "registrations",
+                ":factor",
+                "users",
+                ":targetUserId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "factor",
+                  "description": "(Required) the mfa factor used"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetUserId",
+                  "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84fc02a8-4626-4716-af88-f5ce2c835c1c",
+              "name": "Given user's MFA factor registration is successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "admin",
+                    "registrations",
+                    ":factor",
+                    "users",
+                    ":targetUserId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) the mfa factor used"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetUserId",
+                      "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4309e93-5b91-4aa2-a944-31538461bd4e",
+          "name": "Get given user's MFA factor registration details.",
+          "request": {
+            "name": "Get given user's MFA factor registration details.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "mfa",
+                "admin",
+                "registrations",
+                ":factor",
+                "users",
+                ":targetUserId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "factor",
+                  "description": "(Required) the mfa factor used"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetUserId",
+                  "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ceb390df-38d0-4919-9aee-8d59fc2c70b9",
+              "name": "The user's MFA factor registration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "admin",
+                    "registrations",
+                    ":factor",
+                    "users",
+                    ":targetUserId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) the mfa factor used"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetUserId",
+                      "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"CHALLENGE_FAILED\",\n  \"factor\": \"TOTP\",\n  \"additionalDetails\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fec8d3b-3de1-4404-b43c-17cf138f9c50",
+              "name": "the user not registered for the MFA factor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "admin",
+                    "registrations",
+                    ":factor",
+                    "users",
+                    ":targetUserId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) the mfa factor used"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetUserId",
+                      "description": "(Required) The random 20 alphanumeric string id of the service identity user."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cfba933-138a-4d3a-adee-887a0f3e0262",
+          "name": "Get current authenticated user's MFA factor registration details.",
+          "request": {
+            "name": "Get current authenticated user's MFA factor registration details.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "mfa",
+                "register",
+                ":factor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "factor",
+                  "description": "(Required) MFA factor used"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba875ef5-640d-4ef6-9600-3b4336ee4d6d",
+              "name": "The user's MFA factor registration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "register",
+                    ":factor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) MFA factor used"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"CHALLENGE_FAILED\",\n  \"factor\": \"TOTP\",\n  \"additionalDetails\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df442420-c20b-44b7-852e-daf97aaa2f1f",
+              "name": "the user not registered for the MFA factor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "register",
+                    ":factor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) MFA factor used"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e68d78c8-cc31-427a-b984-8842a5c64197",
+          "name": "Register current authenticated user for the MFA factor.",
+          "request": {
+            "name": "Register current authenticated user for the MFA factor.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "mfa",
+                "register",
+                ":factor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "factor",
+                  "description": "(Required) the mfa factor used"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f6e607c-c393-4af9-bd75-4d5f2c859379",
+              "name": "The registration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "register",
+                    ":factor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) the mfa factor used"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"CHALLENGE_FAILED\",\n  \"factor\": \"TOTP\",\n  \"additionalDetails\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2eeecb17-3c8e-439b-9e76-4a9e0cb192fc",
+              "name": "The authenticated user has either started or completed registration for the MFA factor.  To re-register for a new TOTP secret key, first delete the existing registration using DELETE /api/mfa/register/{factor}.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "register",
+                    ":factor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) the mfa factor used"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "280706ad-49c5-4513-883f-dc60013f826e",
+          "name": "Delete current authenticated user's MFA factor registration.",
+          "request": {
+            "name": "Delete current authenticated user's MFA factor registration.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "mfa",
+                "register",
+                ":factor",
+                ":credential"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "factor",
+                  "description": "(Required) the mfa factor used"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "credential",
+                  "description": "(Required) The MFA factor credential to confirm deletion of the MFA factor registration"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea8e3216-8217-4090-ad23-e47a3b997e92",
+              "name": "user MFA factor registration successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "register",
+                    ":factor",
+                    ":credential"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) the mfa factor used"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credential",
+                      "description": "(Required) The MFA factor credential to confirm deletion of the MFA factor registration"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aef0995f-b437-4d67-85f5-4868a40b5f92",
+              "name": "registration deletion failed because of invalid MFA factor credential",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "mfa",
+                    "register",
+                    ":factor",
+                    ":credential"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factor",
+                      "description": "(Required) the mfa factor used"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credential",
+                      "description": "(Required) The MFA factor credential to confirm deletion of the MFA factor registration"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3363d466-1e87-4ae1-8436-2b9d19e5b418",
+    "name": "Britive Services API Documentation Multi Factor Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

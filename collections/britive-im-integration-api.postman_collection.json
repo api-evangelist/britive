@@ -1,0 +1,607 @@
+{
+  "item": [
+    {
+      "id": "3166f548-b15c-44a9-b977-777c247c2b2e",
+      "name": "IM Integration",
+      "description": {
+        "content": "Manage IM Connections",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff74b694-27d7-4eae-bb85-fbd9502f758d",
+          "name": "Get Escalation Policies (paginated)",
+          "request": {
+            "name": "Get Escalation Policies (paginated)",
+            "description": {
+              "content": "Get Escalation Policies by search text with pagination (fixed limit = 25)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "im-integration",
+                ":connectionId",
+                "escalation-policies",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "The text for searching escalation policies"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (0-based index)"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "25",
+                  "description": "Number of records per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) Connection ID of an IM Connection"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "423ea789-70c1-4d9e-8a11-b2c277ce0873",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-integration",
+                    ":connectionId",
+                    "escalation-policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection ID of an IM Connection"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"escalationPolicies\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"summary\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"summary\": \"string\"\n    }\n  ],\n  \"page\": 1527,\n  \"size\": 4654,\n  \"count\": 8145,\n  \"more\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db300802-2664-4de2-8c3b-c8ccce63fca5",
+              "name": "Escalation Policies not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-integration",
+                    ":connectionId",
+                    "escalation-policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection ID of an IM Connection"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ec6e439-f034-4734-9e91-fb34ae742ed1",
+          "name": "Validate Escalation Policy IDs",
+          "request": {
+            "name": "Validate Escalation Policy IDs",
+            "description": {
+              "content": "Validates that all provided Escalation Policy IDs exist for the given connection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "im-integration",
+                ":connectionId",
+                "escalation-policies",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) Connection ID of an IM Connection"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc1dcf79-37af-4158-9730-41b110a263dd",
+              "name": "All IDs are valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-integration",
+                    ":connectionId",
+                    "escalation-policies",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection ID of an IM Connection"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"C06T5C8UT08\",\n  \"asdsfsdf\",\n  \"ereafc\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"escalationPolicies\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"summary\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"summary\": \"string\"\n    }\n  ],\n  \"errorMsg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0abc565a-a592-433c-a369-12af90ded167",
+              "name": "One or more IDs are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-integration",
+                    ":connectionId",
+                    "escalation-policies",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection ID of an IM Connection"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"C06T5C8UT08\",\n  \"asdsfsdf\",\n  \"ereafc\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Escalation policy does not exist: asdsfsdf,ereafc\",\n  \"errorCode\": \"NM-0075\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8c0e074-1535-4e5b-ba64-3334c1acab1d",
+          "name": "Check Escalation Policies by Names",
+          "request": {
+            "name": "Check Escalation Policies by Names",
+            "description": {
+              "content": "Takes an array of escalation policy names and returns names not found along with mappings of found names to their IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "im-integration",
+                ":connectionId",
+                "escalation-policies",
+                "validate",
+                "names"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) Connection ID of an IM Connection"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a142a23-8bea-409e-b4e3-708a776a1996",
+              "name": "Escalation policy lookup result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-integration",
+                    ":connectionId",
+                    "escalation-policies",
+                    "validate",
+                    "names"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection ID of an IM Connection"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"policy-A\",\n  \"test-1\",\n  \"policy-B\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policies_not_found\": [\n    \"test-1\"\n  ],\n  \"policies_found\": {\n    \"policy-A\": \"C06T5C8UT08\",\n    \"policy-B\": \"X09Z8K4PQ12\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3fc53171-53ed-4a9e-97a5-c7459a0ef22e",
+    "name": "Britive Services API Documentation IM Integration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

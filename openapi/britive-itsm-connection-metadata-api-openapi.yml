@@ -1,0 +1,133 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation ITSM Connection Metadata API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: ITSM Connection Metadata
+  description: Manage ITSM Connection Metadata
+paths:
+  /api/itsm-manager/connection-templates:
+    get:
+      tags:
+      - ITSM Connection Metadata
+      summary: Get list of ITSM connection Metadata
+      operationId: listItsmConnectionMetadata
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItsmConnectionTemplate'
+  /api/itsm-manager/connection-templates/supported-types:
+    get:
+      tags:
+      - ITSM Connection Metadata
+      summary: Get list of supported ITSM connections
+      operationId: listSupportedItsmConnections
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/itsm-manager/connection-templates/{type}:
+    get:
+      tags:
+      - ITSM Connection Metadata
+      summary: Get ITSM connection metadata for given template ID
+      operationId: getItsmConnectionMetadata
+      parameters:
+      - name: type
+        in: path
+        description: type of an ITSM Connection Template
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItsmConnectionTemplate'
+        '404':
+          description: ITSM Connection Template not found
+components:
+  schemas:
+    ItsmSupportedAuthType:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        isDefault:
+          type: boolean
+        connAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmConnectionAttribute'
+    ItsmConnectionTemplate:
+      type: object
+      properties:
+        type:
+          type: string
+        supportedAuthTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmSupportedAuthType'
+        supportedTicketTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmSupportedTicketType'
+    ItsmSupportedTicketType:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        defaultFilter:
+          type: object
+          additionalProperties:
+            type: string
+    ItsmConnectionAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        dataType:
+          type: string
+        isRequired:
+          type: boolean
+        privy:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Shared Signals - Catalog API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shared Signals - Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get supported shared signals events and Britive actions catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/admin/catalog"
+          },
+          "docs": "Get supported shared signals events and Britive actions catalog"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

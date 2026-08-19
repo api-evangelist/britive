@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Custom App Template Uploader API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom App Template Uploader",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Uploads a custom app template.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/generic-apps/templates",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "templateFile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This endpoint is used to upload a custom app template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

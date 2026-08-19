@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Application Profiles - Session Attributes API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Profiles - Session Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add session attributes to profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/paps/:papId/session-attributes",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path",
+                "description": "Profile id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add session attributes to profiles"
+        },
+        {
+          "info": {
+            "name": "Update session attribute of a specified profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/paps/:papId/session-attributes/:id",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update session attribute of a specified profile"
+        },
+        {
+          "info": {
+            "name": "Delete session attribues of a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/paps/:papId/session-attributes/:id",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete session attribues of a profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

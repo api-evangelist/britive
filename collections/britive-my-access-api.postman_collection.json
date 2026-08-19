@@ -1,0 +1,2571 @@
+{
+  "item": [
+    {
+      "id": "15e7ad2e-072a-4867-a0f1-c2bb19a0848e",
+      "name": "My Access",
+      "description": {
+        "content": "Manage My Access",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79f9df0d-0ead-4c79-bbce-72bfe193a820",
+          "name": "Get all profiles associated with the user with an API token",
+          "request": {
+            "name": "Get all profiles associated with the user with an API token",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "page number of my-access profile list. Default is 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "size of the request for my-access profile list. Default is 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filters for my-access profiles that can be applied - appName, papName, environmentName, environmentId, appType. Operators - eq, sw, co"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sorting of my-access profiles that can be applied - appName, papName, environmentName, environmentId, appType. Operators - asc, desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Search by all fields."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afa5d017-a506-4655-97d7-55e599ef990c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "appName eq \"AWS\""
+                    },
+                    {
+                      "key": "sort",
+                      "value": "appName,ASC"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "searchText=AWS"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5357,\n  \"page\": 4382,\n  \"size\": 8688,\n  \"sort\": \"appName,ASC\",\n  \"filter\": \"appName eq \\\"AWS\\\"\",\n  \"data\": [\n    {\n      \"frequency\": 9805,\n      \"countOfProfiles\": 4459,\n      \"papId\": \"id1\",\n      \"environmentId\": \"envId1\",\n      \"appId\": \"appId1\",\n      \"myAccessDetails\": [\n        {\n          \"checkOutTime\": \"1958-07-22T22:21:42.773Z\",\n          \"checkInTime\": \"2020-10-01T07:16:00.184Z\",\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": \"1969-07-07T23:31:40.923Z\",\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": null\n        },\n        {\n          \"checkOutTime\": null,\n          \"checkInTime\": null,\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": \"1965-02-14T10:22:44.292Z\",\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": \"string\"\n        }\n      ],\n      \"application\": {\n        \"appId\": \"appId1\",\n        \"appName\": \"AWS\",\n        \"applicationType\": \"AWS\",\n        \"consoleAccessError\": null,\n        \"programmaticAccessError\": null,\n        \"description\": null,\n        \"supportsToken\": true,\n        \"showAwsAccountNumber\": true,\n        \"supportsMultipleProfilesCheckoutCli\": false,\n        \"supportsMultipleProfilesCheckoutConsole\": true,\n        \"allowCopyingConsoleUrl\": false,\n        \"displayProgrammaticKeys\": false,\n        \"requiresHierarchicalModel\": true,\n        \"consoleAccess\": true,\n        \"programmaticAccess\": false,\n        \"supportsSharedAccounts\": true\n      },\n      \"environment\": {\n        \"environmentId\": \"envId1\",\n        \"environmentName\": \"demo\",\n        \"environmentDescription\": \"\",\n        \"alternateEnvironmentName\": \"demo\",\n        \"accountId\": \"string\",\n        \"profileEnvironmentProperties\": {}\n      },\n      \"profile\": {\n        \"papId\": \"id1\",\n        \"papName\": \"S3Access\",\n        \"description\": \"\",\n        \"consoleAccess\": true,\n        \"programmaticAccess\": true,\n        \"accessCount\": 9055,\n        \"expirationDuration\": 4358,\n        \"extensionDuration\": 6273,\n        \"extensionLimit\": 3235,\n        \"notificationPriorToExpiration\": 5955,\n        \"extendable\": false\n      }\n    },\n    {\n      \"frequency\": 2242,\n      \"countOfProfiles\": 6552,\n      \"papId\": \"id1\",\n      \"environmentId\": \"envId1\",\n      \"appId\": \"appId1\",\n      \"myAccessDetails\": [\n        {\n          \"checkOutTime\": \"1988-03-19T02:24:40.706Z\",\n          \"checkInTime\": \"1967-01-19T04:46:16.372Z\",\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": \"2019-08-24T14:36:51.412Z\",\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": null\n        },\n        {\n          \"checkOutTime\": null,\n          \"checkInTime\": \"1947-08-10T23:49:23.970Z\",\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": \"1972-04-03T14:13:48.893Z\",\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": null\n        }\n      ],\n      \"application\": {\n        \"appId\": \"appId1\",\n        \"appName\": \"AWS\",\n        \"applicationType\": \"AWS\",\n        \"consoleAccessError\": \"string\",\n        \"programmaticAccessError\": null,\n        \"description\": null,\n        \"supportsToken\": false,\n        \"showAwsAccountNumber\": false,\n        \"supportsMultipleProfilesCheckoutCli\": true,\n        \"supportsMultipleProfilesCheckoutConsole\": true,\n        \"allowCopyingConsoleUrl\": false,\n        \"displayProgrammaticKeys\": true,\n        \"requiresHierarchicalModel\": true,\n        \"consoleAccess\": false,\n        \"programmaticAccess\": true,\n        \"supportsSharedAccounts\": true\n      },\n      \"environment\": {\n        \"environmentId\": \"envId1\",\n        \"environmentName\": \"demo\",\n        \"environmentDescription\": \"\",\n        \"alternateEnvironmentName\": \"demo\",\n        \"accountId\": null,\n        \"profileEnvironmentProperties\": {}\n      },\n      \"profile\": {\n        \"papId\": \"id1\",\n        \"papName\": \"S3Access\",\n        \"description\": \"\",\n        \"consoleAccess\": true,\n        \"programmaticAccess\": false,\n        \"accessCount\": 9760,\n        \"expirationDuration\": 3495,\n        \"extensionDuration\": 847,\n        \"extensionLimit\": 8578,\n        \"notificationPriorToExpiration\": 2636,\n        \"extendable\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bd72db4-0eb3-4232-970c-9f77a1653583",
+          "name": "Get all frequently-used profiles for the logged-in user",
+          "request": {
+            "name": "Get all frequently-used profiles for the logged-in user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                "frequently-used"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "418e5ec5-35a9-4dec-9de6-5441bbd75955",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    "frequently-used"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5acfb3bd-167e-4407-9a92-2f0ccc475e52",
+          "name": "Get console URL",
+          "request": {
+            "name": "Get console URL",
+            "description": {
+              "content": "Returns the console sign-in URL for a checked-out profile. Available for `CLI` and `CONSOLE` checkout types; throws an error for `PROGRAMMATIC` checkouts. The response always contains a `url` key; some application types (e.g. OpenShift) may include additional keys such as `idpName`. When `spInitiatedSSO=true`, returns the tenant SAML endpoint URL instead of the application URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":id",
+                "url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "spInitiatedSSO",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Transaction ID returned by the checkout call"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d15f65e1-7764-44b1-9b35-1a9c79fbcf55",
+              "name": "Console URL retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":id",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "spInitiatedSSO",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Transaction ID returned by the checkout call"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"https://signin.aws.amazon.com/federation?Action=login&...\",\n  \"idpName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51f81778-a6b3-4ee5-9663-c17efcfcaadc",
+          "name": "Checkout profile - console or programmatic",
+          "request": {
+            "name": "Checkout profile - console or programmatic",
+            "description": {
+              "content": "Checkout a profile for a specific environment. Use `accessType=CONSOLE` to obtain a federated console session or `accessType=PROGRAMMATIC` to obtain short-lived programmatic credentials (e.g. AWS access keys). The response `transactionId` is required for subsequent getToken, getConsoleUrl, and check-in calls. For ITSM-gated profiles, supply `ticketId` and `ticketType` in the request body.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":profileId",
+                "environments",
+                ":environmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accessType",
+                  "value": "CLI",
+                  "description": "Type of access to checkout. `CONSOLE` grants a federated web-console session; `PROGRAMMATIC` grants short-lived API credentials; `CLI` (default) for CLI-based access.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "CLI",
+                  "description": "Legacy alias for `accessType`. Ignored when `accessType` is provided."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile (PAP) ID to checkout"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "environmentId",
+                  "description": "(Required) Environment ID within the application"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"justification\": \"<string>\",\n  \"ticketId\": \"<string>\",\n  \"ticketType\": \"<string>\",\n  \"userOnCall\": false,\n  \"checkoutVariableValues\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65339aab-74fa-4fcf-b545-ee01c2520e75",
+              "name": "Checkout initiated successfully. Poll `status` until `checkedOut`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessType",
+                      "value": "CLI"
+                    },
+                    {
+                      "key": "type",
+                      "value": "CLI"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile (PAP) ID to checkout"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID within the application"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"justification\": \"Access required for incident response\",\n  \"ticketId\": \"INC0001234\",\n  \"ticketType\": \"INCIDENT\",\n  \"userOnCall\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn_abc123\",\n  \"papId\": \"pap_xyz456\",\n  \"appContainerId\": \"app_123\",\n  \"environmentId\": \"env_789\",\n  \"userId\": \"user_001\",\n  \"status\": \"checkedOut\",\n  \"statusText\": \"Checked Out\",\n  \"accessType\": \"CONSOLE\",\n  \"checkedOut\": \"1994-11-13T06:20:28.376Z\",\n  \"checkedIn\": \"2020-03-29T09:29:49.946Z\",\n  \"expiration\": \"1951-08-04T03:41:12.063Z\",\n  \"currentExtensionIndex\": 2686,\n  \"policyConditionEndTime\": null,\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1b70462-3658-42dc-b173-66845ec09546",
+              "name": "Access denied or profile policy conditions not met",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessType",
+                      "value": "CLI"
+                    },
+                    {
+                      "key": "type",
+                      "value": "CLI"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile (PAP) ID to checkout"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID within the application"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"justification\": \"Access required for incident response\",\n  \"ticketId\": \"INC0001234\",\n  \"ticketType\": \"INCIDENT\",\n  \"userOnCall\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "738d06e1-afea-4a39-bc1d-d2e4b0e91a03",
+              "name": "Profile or environment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessType",
+                      "value": "CLI"
+                    },
+                    {
+                      "key": "type",
+                      "value": "CLI"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile (PAP) ID to checkout"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID within the application"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"justification\": \"Access required for incident response\",\n  \"ticketId\": \"INC0001234\",\n  \"ticketType\": \"INCIDENT\",\n  \"userOnCall\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "191d3888-8ff5-41ef-8c34-ab686a74a022",
+          "name": "Create an approval request for profile",
+          "request": {
+            "name": "Create an approval request for profile",
+            "description": {
+              "content": "This API is used  when a profile is configured with advanced settings for ITSM integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":profileId",
+                "environments",
+                ":environmentId",
+                "approvalRequest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "environmentId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25352975-6300-438b-b553-f66715cae36a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId",
+                    "approvalRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f73d1b30-bd6a-411f-bef1-124a9f926d16",
+          "name": "Search tickets using search text and the ITSM integration setting available for the profile",
+          "request": {
+            "name": "Search tickets using search text and the ITSM integration setting available for the profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":profileId",
+                "environments",
+                ":environmentId",
+                "itsm",
+                ":ticketType",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "The text for searching"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile ID to get the effective ITSM settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "environmentId",
+                  "description": "(Required) Environment ID to get the effective ITSM settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketType",
+                  "description": "(Required) Ticket type for ITSM ticket searching"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48540e14-88c6-4b0b-bfa4-dddf281fd392",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId",
+                    "itsm",
+                    ":ticketType",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for ITSM ticket searching"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 9999,\n  \"maxResults\": 9450,\n  \"tickets\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "114ae3c3-958f-45b2-8802-31c52403ca88",
+              "name": "Profile, environment or ticketType not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId",
+                    "itsm",
+                    ":ticketType",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for ITSM ticket searching"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f184f4f-4422-45c5-8d40-52f469812818",
+          "name": "Validate ITSM ticket using the ITSM integration setting available for the profile",
+          "request": {
+            "name": "Validate ITSM ticket using the ITSM integration setting available for the profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":profileId",
+                "environments",
+                ":environmentId",
+                "itsm",
+                ":ticketType",
+                "validate",
+                ":ticketId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile ID to get the effective ITSM settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "environmentId",
+                  "description": "(Required) Environment ID to get the effective ITSM settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketType",
+                  "description": "(Required) Ticket type for the validation"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) Ticket Id for the validation"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c58cbe9-fccb-4ad5-a71f-1755cd6f425c",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId",
+                    "itsm",
+                    ":ticketType",
+                    "validate",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for the validation"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) Ticket Id for the validation"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\",\n  \"ticketDetails\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33309fc0-e659-47a8-ba02-0b3fa504b7b2",
+              "name": "Profile, environment or ticketType not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId",
+                    "itsm",
+                    ":ticketType",
+                    "validate",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID to get the effective ITSM settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketType",
+                      "description": "(Required) Ticket type for the validation"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) Ticket Id for the validation"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "846f35e3-84fd-4b3f-9c14-16d3bd0b99b2",
+          "name": "Get access profile setting for given profile ID",
+          "request": {
+            "name": "Get access profile setting for given profile ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":profileId",
+                "environments",
+                ":environmentId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile ID to get Profile Access Setting"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "environmentId",
+                  "description": "(Required) Environment ID to get Profile Access Setting"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90384ee5-1a01-4ec0-b5b0-3ecd5bd53fb3",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get Profile Access Setting"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID to get Profile Access Setting"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"profileId\": \"string\",\n  \"environmentId\": \"string\",\n  \"justificationSetting\": {\n    \"settingsType\": \"string\",\n    \"isJustificationRequired\": false,\n    \"isJustificationRequiredAtCheckout\": false,\n    \"justificationRegex\": \"string\",\n    \"id\": \"string\",\n    \"entityId\": \"string\",\n    \"entityType\": \"string\",\n    \"isInherited\": false\n  },\n  \"itsmSetting\": {\n    \"settingsType\": \"string\",\n    \"connectionId\": \"string\",\n    \"connectionType\": \"string\",\n    \"isCommentRequired\": true,\n    \"isITSMEnabled\": true,\n    \"supportedTicketTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"itsmFilterCriteria\": [\n      {\n        \"supportedTicketType\": \"string\",\n        \"filter\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"supportedTicketType\": \"string\",\n        \"filter\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"id\": \"string\",\n    \"entityId\": \"string\",\n    \"entityType\": \"string\",\n    \"isInherited\": true\n  },\n  \"onCallSettings\": {\n    \"isAutoApproved\": false,\n    \"autoApprovalEndDate\": \"string\"\n  },\n  \"approvalRequestData\": {\n    \"justification\": \"string\",\n    \"ticketId\": \"string\",\n    \"ticketType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fbacd0e-0aaf-4b11-a701-6ee62a09762d",
+              "name": "Profile or environment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "environments",
+                    ":environmentId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile ID to get Profile Access Setting"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) Environment ID to get Profile Access Setting"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abc32e44-dbdc-4921-8a5b-eeb7651ef9d9",
+          "name": "Check in profile",
+          "request": {
+            "name": "Check in profile",
+            "description": {
+              "content": "Check in a previously checked-out profile session. The `transactionId` is returned by the checkout call. Terminates the active session and revokes any issued credentials.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction ID returned by the checkout call"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a16890e-2fc9-4e5d-9bf3-f50c06a17a33",
+              "name": "Check-in completed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction ID returned by the checkout call"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn_abc123\",\n  \"papId\": \"pap_xyz456\",\n  \"appContainerId\": \"app_123\",\n  \"environmentId\": \"env_789\",\n  \"userId\": \"user_001\",\n  \"status\": \"checkedOut\",\n  \"statusText\": \"Checked Out\",\n  \"accessType\": \"CONSOLE\",\n  \"checkedOut\": \"1994-11-13T06:20:28.376Z\",\n  \"checkedIn\": \"2020-03-29T09:29:49.946Z\",\n  \"expiration\": \"1951-08-04T03:41:12.063Z\",\n  \"currentExtensionIndex\": 2686,\n  \"policyConditionEndTime\": null,\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfd84019-2097-4332-98f1-4155e44bd700",
+              "name": "Transaction not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction ID returned by the checkout call"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fca6c08-1f2e-413d-acf5-bc46a7bb8899",
+          "name": "Get programmatic credentials (tokens)",
+          "request": {
+            "name": "Get programmatic credentials (tokens)",
+            "description": {
+              "content": "Retrieve short-lived programmatic credentials for a checked-out profile. Available for `CLI` and `PROGRAMMATIC` checkout types; throws an error for `CONSOLE` checkouts. The response is a key-value map whose structure varies by application type. Requires the application to have token support enabled (`supportsTokens=true`).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":transactionId",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction ID returned by the checkout call"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1209e157-19c4-477d-8ef1-32cb12361162",
+              "name": "Programmatic credentials retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":transactionId",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction ID returned by the checkout call"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf694cf1-cad6-4803-9864-f5e2a4c7cf3b",
+              "name": "Transaction not found or credentials not yet ready",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":transactionId",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction ID returned by the checkout call"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6dcc6f1-6f94-49d3-bf2e-4ac0a4dd4a24",
+          "name": "Create user filter",
+          "request": {
+            "name": "Create user filter",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":userId",
+                "filters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) userid"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"filter\": {\n    \"applications\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"associations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profiles\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"applicationTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "230f0d2c-24c1-418b-a68d-52cb93df674c",
+              "name": "User filter created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":userId",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) userid"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"filter\": {\n    \"applications\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"associations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profiles\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"applicationTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"filter\": {\n    \"applications\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"associations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profiles\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"applicationTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f29a33d0-6d96-485e-9bea-47343f3302df",
+          "name": "Get user filters",
+          "request": {
+            "name": "Get user filters",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":userId",
+                "filters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) userid"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fb1ec3e-8cf6-4ca8-803b-88c9d717130e",
+              "name": "Get user filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":userId",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) userid"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"filter\": {\n    \"applications\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"associations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profiles\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"applicationTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "750f65a9-65a2-40d8-b402-6d0d1306b062",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":userId",
+                    "filters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) userid"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b9c6a5b-2268-415a-a82f-15d8b27bd480",
+          "name": "Delete user filter",
+          "request": {
+            "name": "Delete user filter",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":userId",
+                "filters",
+                ":filterId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) Id of the user for that filter needs to be updated/deleted"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filterId",
+                  "description": "(Required) Id of the filter that needs to be updated/deleted"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16aced93-3ecb-42d0-9462-04b837d0bcfc",
+              "name": "Delete user filter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":userId",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) Id of the user for that filter needs to be updated/deleted"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) Id of the filter that needs to be updated/deleted"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe917015-c8da-4459-9b54-50e80ee2ef76",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":userId",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) Id of the user for that filter needs to be updated/deleted"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) Id of the filter that needs to be updated/deleted"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fa4a0c2-cce7-44f0-b648-1f8597d49820",
+          "name": "Update user filter",
+          "request": {
+            "name": "Update user filter",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":userId",
+                "filters",
+                ":filterId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) Id of the user for that filter needs to be updated/deleted"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filterId",
+                  "description": "(Required) Id of the filter that needs to be updated/deleted"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"filter\": {\n    \"applications\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"associations\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profiles\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"applicationTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22c109d2-0a87-42f5-b121-50c11e44c1b8",
+              "name": "Update user filter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":userId",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) Id of the user for that filter needs to be updated/deleted"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) Id of the filter that needs to be updated/deleted"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filter5\",\n  \"filter\": {\n    \"applications\": [\n      \"test11\"\n    ],\n    \"associations\": [\n      \"env11\"\n    ],\n    \"profiles\": [\n      \"profile11\"\n    ],\n    \"statuses\": [\n      \"status11\"\n    ],\n    \"applicationTypes\": [\n      \"AWS11\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7359dec-b9ec-458b-ae76-e0dadc83005e",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":userId",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) Id of the user for that filter needs to be updated/deleted"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) Id of the filter that needs to be updated/deleted"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filter5\",\n  \"filter\": {\n    \"applications\": [\n      \"test11\"\n    ],\n    \"associations\": [\n      \"env11\"\n    ],\n    \"profiles\": [\n      \"profile11\"\n    ],\n    \"statuses\": [\n      \"status11\"\n    ],\n    \"applicationTypes\": [\n      \"AWS11\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c54469d-e22b-4188-9715-6e34cb1eede0",
+    "name": "Britive Services API Documentation My Access API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,736 @@
+openapi: 3.2.0
+info:
+  title: Secret Manager Policy Administration API
+  version: v1
+  description: API documentation for Secret Manager, Policy Administration, Notifications, Approval service, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Policy Administration
+paths:
+  /api/v1/policy-admin/actions:
+    get:
+      tags:
+      - Policy Administration
+      summary: Get details of all actions
+      operationId: getActions
+      parameters:
+      - name: filter
+        in: query
+        description: Filter query
+        schema:
+          type: string
+        example: name%20eq%20iam.policy.create
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/consumers:
+    get:
+      tags:
+      - Policy Administration
+      summary: Get a list of consumers
+      operationId: getConsumers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/permissions:
+    post:
+      tags:
+      - Policy Administration
+      summary: Create a permission
+      operationId: createPermission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PermissionDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Policy Administration
+      summary: Get permission details
+      operationId: getPermissions
+      parameters:
+      - name: filter
+        in: query
+        description: Filter query
+        schema:
+          type: string
+        example: name%20eq%20per1
+      - name: pageToken
+        in: query
+        description: Page token
+        schema:
+          type: string
+        example: 18CE4C10585F4525BE35801AC7F7EBA4C3
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/permissions/{id}:
+    delete:
+      tags:
+      - Policy Administration
+      summary: Delete a specified permission
+      operationId: deletePermission
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Policy Administration
+      summary: Get permission details specified by Id
+      operationId: getPermissionById
+      parameters:
+      - name: id
+        in: path
+        description: Id of permission
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      - name: getReferences
+        in: query
+        description: Boolean to specify whether to get references in roles and/or policies
+        schema:
+          type: boolean
+        example: 'true'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Policy Administration
+      summary: Update permission details
+      operationId: updatePermission
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PermissionDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/policies:
+    post:
+      tags:
+      - Policy Administration
+      summary: Create a policy
+      operationId: createPolicy
+      parameters:
+      - name: resource
+        in: query
+        description: Resource
+        schema:
+          type: string
+        example: /a/b/c
+      - name: consumer
+        in: query
+        description: Consumer
+        schema:
+          type: string
+        example: secretmanager
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Policy Administration
+      summary: Get all policies
+      operationId: getAllPolicies
+      parameters:
+      - name: filter
+        in: query
+        description: Filter query
+        schema:
+          type: string
+        example: name%20eq%20Role
+      - name: returnAttrs
+        in: query
+        description: Attribute names
+        schema:
+          type: string
+        example: name,resource
+      - name: pageToken
+        in: query
+        description: Page token
+        schema:
+          type: string
+        example: 18CE4C10585F4525BE35801AC7F7EBA4C3
+      - name: resource
+        in: query
+        description: Resource
+        schema:
+          type: string
+        example: /a/b/c
+      - name: consumer
+        in: query
+        description: Consumer
+        schema:
+          type: string
+        example: secretmanager
+      - name: consumerResourceSpecific
+        in: query
+        description: ConsumerResourceSpecific
+        schema:
+          type: string
+        example: 'true'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Policy Administration
+      summary: Update policies details
+      operationId: updatePoliciesForResource
+      parameters:
+      - name: attach
+        in: query
+        description: true/false
+        schema:
+          type: boolean
+        example: 'true'
+      - name: resource
+        in: query
+        description: Resource
+        schema:
+          type: string
+        example: /a/b/c
+      - name: consumer
+        in: query
+        description: Consumer
+        schema:
+          type: string
+        example: secretmanager
+      - name: isInternalCall
+        in: query
+        description: true/false
+        schema:
+          type: boolean
+        example: 'true'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/policies/recache:
+    post:
+      tags:
+      - Policy Administration
+      summary: Re-cache policies with policyIds
+      operationId: recachePolicies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/policies/validate:
+    get:
+      tags:
+      - Policy Administration
+      summary: Validate policies
+      operationId: validatePolicies
+      parameters:
+      - name: resource
+        in: query
+        description: Resource
+        schema:
+          type: string
+        example: /a/b/c
+      - name: consumer
+        in: query
+        description: Consumer
+        schema:
+          type: string
+        example: secretmanager
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/policies/{id}:
+    delete:
+      tags:
+      - Policy Administration
+      summary: Delete a policy
+      operationId: deletePolicy
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resource
+        in: query
+        description: Resource
+        schema:
+          type: string
+        example: /a/b/c
+      - name: consumer
+        in: query
+        description: Consumer
+        schema:
+          type: string
+        example: secretmanager
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Policy Administration
+      summary: Get policy with policyId
+      operationId: getPolicy
+      parameters:
+      - name: id
+        in: path
+        description: Id of policy
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      - name: compactResponse
+        in: query
+        description: Return conpact response or not
+        schema:
+          type: boolean
+        example: 'true'
+      - name: conditionJson
+        in: query
+        description: true or false
+        schema:
+          type: boolean
+        example: 'true'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Policy Administration
+      summary: Update policy details
+      operationId: updatePolicy
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: attach
+        in: query
+        description: true/false
+        schema:
+          type: boolean
+        example: 'true'
+      - name: resource
+        in: query
+        description: Resource
+        schema:
+          type: string
+        example: /a/b/c
+      - name: consumer
+        in: query
+        description: Consumer
+        schema:
+          type: string
+        example: secretmanager
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/policies/{id}/recache:
+    get:
+      tags:
+      - Policy Administration
+      summary: Re-cache policy with policyId
+      operationId: recachePolicy
+      parameters:
+      - name: id
+        in: path
+        description: Id of policy
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/roles:
+    post:
+      tags:
+      - Policy Administration
+      summary: Create role
+      operationId: createRole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Policy Administration
+      summary: Get roles with tenantId
+      operationId: getAllRoles
+      parameters:
+      - name: filter
+        in: query
+        description: Filter query
+        schema:
+          type: string
+        example: name%20eq%20Role
+      - name: returnAttrs
+        in: query
+        description: Attribute names
+        schema:
+          type: string
+        example: name
+      - name: pageToken
+        in: query
+        description: Page token
+        schema:
+          type: string
+        example: 18CE4C10585F4525BE35801AC7F7EBA4C3
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/policy-admin/roles/{id}:
+    delete:
+      tags:
+      - Policy Administration
+      summary: Delete role
+      operationId: deleteRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Policy Administration
+      summary: Get role with roleId
+      operationId: getRole
+      parameters:
+      - name: id
+        in: path
+        description: Id of role
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      - name: getReferences
+        in: query
+        description: Boolean to specify whether to get references in policies
+        schema:
+          type: boolean
+        example: 'true'
+      - name: compactResponse
+        in: query
+        description: Boolean to specify whether to get compact role object or not
+        schema:
+          type: boolean
+        example: 'true'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Policy Administration
+      summary: Update role details
+      operationId: updateRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    MemberDto:
+      type: object
+      properties:
+        tags:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        tokens:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        users:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        serviceIdentities:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          maxLength: '64'
+          minLength: '1'
+          pattern: \s*[a-zA-Z0-9-_\s]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        isReadOnly:
+          type: boolean
+    PolicyDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          maxLength: '128'
+          minLength: '1'
+          pattern: \s*[a-zA-Z0-9-_\s]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        isActive:
+          type: boolean
+        isDraft:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        condition:
+          type: object
+          properties: {}
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        members:
+          $ref: '#/components/schemas/MemberDto'
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+        resources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        accessLevel:
+          type: string
+        resource:
+          type: string
+        consumer:
+          type: string
+        accessType:
+          pattern: \s*Allow\s*|\s*Deny\s*
+          type: string
+        resourceLabels:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    PermissionDto:
+      required:
+      - actions
+      - resources
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          pattern: \s*[a-zA-Z0-9-_\s]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        consumer:
+          maxLength: '30'
+          minLength: '0'
+          pattern: \s*[a-zA-Z]+\s*
+          type: string
+        actions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        resources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
+        isReadOnly:
+          type: boolean
+    IDNamePair:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 71
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

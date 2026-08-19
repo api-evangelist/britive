@@ -1,0 +1,1274 @@
+{
+  "item": [
+    {
+      "id": "744e742b-69ac-4f5c-929a-7f243de8f654",
+      "name": "Resource Profiles - Permissions",
+      "description": {
+        "content": "Manage Resource Profiles Permissions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d71ce19-1a52-4be2-bc1f-3104be7dccc6",
+          "name": "Get list of available system defined values",
+          "request": {
+            "name": "Get list of available system defined values",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profiles",
+                "permissions",
+                "system-defined-values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resourceTypeId",
+                  "value": "<string>",
+                  "description": "resource type id"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a89c411-3813-427a-8080-3487000ae404",
+              "name": "retrieved system defined values successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    "permissions",
+                    "system-defined-values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resourceTypeId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6abba606-1c0a-4d2b-a019-b1def7486e99",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    "permissions",
+                    "system-defined-values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resourceTypeId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "554b6e7b-bed5-4cd3-bfef-4c45eff25052",
+          "name": "List permissions available to a profile",
+          "request": {
+            "name": "List permissions available to a profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profiles",
+                ":profileId",
+                "available-permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Parameter to filter permission by search text"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Parameter to specify the page number of the records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Parameter to specify the number of records to retrieve per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "parameter to specify the sort parameter and direction"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Id of profile to add permission"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "357c65b1-177c-4a07-9ac5-dc76e2950016",
+              "name": "permissions got retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "available-permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "test"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to add permission"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6564,\n  \"page\": 2768,\n  \"size\": 3940,\n  \"sort\": \"string\",\n  \"data\": [\n    {\n      \"permissionId\": \"string\",\n      \"name\": \"string\",\n      \"resourceTypeName\": \"string\",\n      \"isDraft\": false,\n      \"createdOn\": \"string\",\n      \"versionCount\": 1201,\n      \"version\": \"string\"\n    },\n    {\n      \"permissionId\": \"string\",\n      \"name\": \"string\",\n      \"resourceTypeName\": \"string\",\n      \"isDraft\": false,\n      \"createdOn\": \"string\",\n      \"versionCount\": 8874,\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2602d02-528d-4c90-b1b7-6c05cd0ac75c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "available-permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "test"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to add permission"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f988fa13-7db3-415d-9dc4-887cd9ddea5d",
+          "name": "Add permission to resource profile",
+          "request": {
+            "name": "Add permission to resource profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profiles",
+                ":profileId",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Id of profile to add permission"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"permissionName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce97f4e5-57f9-4a5b-aeaf-b0c7c6098277",
+              "name": "permission got added to profile successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to add permission"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"permissionName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"permissionName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"type\": \"String\",\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"type\": \"String\",\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bd1e262-b089-4cb7-baa7-ed4839c8d3e6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to add permission"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"permissionName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d3613a9-bbef-4a66-85cd-a2d30ee783a6",
+          "name": "List permissions associated to a profile",
+          "request": {
+            "name": "List permissions associated to a profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profiles",
+                ":profileId",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Parameter to filter permissions by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Parameter to filter permission by search text"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Parameter to specify the page number of the records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Parameter to specify the number of records to retrieve per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "parameter to specify the sort parameter and direction"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Id of profile to add permission"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d19ae27-0868-4b15-b6ef-76b3a240b68b",
+              "name": "permissions got retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "name eq permission1"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "test"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to add permission"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9062,\n  \"page\": 1348,\n  \"size\": 487,\n  \"sort\": \"string\",\n  \"data\": [\n    {\n      \"permissionId\": \"<string>\",\n      \"version\": \"<string>\",\n      \"permissionName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"resourceTypeId\": \"<string>\",\n      \"resourceTypeName\": \"<string>\",\n      \"variables\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"isSystemDefined\": false,\n          \"promptAtCheckout\": false,\n          \"type\": \"String\",\n          \"regexPattern\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"isSystemDefined\": false,\n          \"promptAtCheckout\": false,\n          \"type\": \"password\",\n          \"regexPattern\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"permissionId\": \"<string>\",\n      \"version\": \"<string>\",\n      \"permissionName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"resourceTypeId\": \"<string>\",\n      \"resourceTypeName\": \"<string>\",\n      \"variables\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"isSystemDefined\": false,\n          \"promptAtCheckout\": false,\n          \"type\": \"password\",\n          \"regexPattern\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"isSystemDefined\": false,\n          \"promptAtCheckout\": false,\n          \"type\": \"String\",\n          \"regexPattern\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b63cf263-57b8-4693-87d6-61d2b20555d8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "name eq permission1"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "test"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to add permission"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db90b5c0-df4b-406f-81bb-3915f186a3c6",
+          "name": "Delete permission from resource profile",
+          "request": {
+            "name": "Delete permission from resource profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profiles",
+                ":profileId",
+                "permissions",
+                ":permissionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Id of profile to remove permission"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionId",
+                  "description": "(Required) Id of permission to remove from profile"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b95336bd-d6b7-43e2-bfae-ec74d633a868",
+              "name": "permission got removed from the profile successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions",
+                    ":permissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to remove permission"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionId",
+                      "description": "(Required) Id of permission to remove from profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f9b5a0ea-9d3d-46b0-90e9-fa039051f5b8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions",
+                    ":permissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Id of profile to remove permission"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionId",
+                      "description": "(Required) Id of permission to remove from profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ce0c524-7ee7-4955-9968-3dca67d55a30",
+          "name": "Update permission variable values",
+          "request": {
+            "name": "Update permission variable values",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profiles",
+                ":profileId",
+                "permissions",
+                ":permissionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) profile id  to which permission got associated"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionId",
+                  "description": "(Required) permission id to update details"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"permissionName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be22e4be-4bb3-481d-b093-182219fed9bc",
+              "name": "permission details got updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions",
+                    ":permissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profile id  to which permission got associated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionId",
+                      "description": "(Required) permission id to update details"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"permissionName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39cf533e-974b-4763-ae81-317fb29bc4da",
+              "name": "permission id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profiles",
+                    ":profileId",
+                    "permissions",
+                    ":permissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profile id  to which permission got associated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionId",
+                      "description": "(Required) permission id to update details"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"permissionName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"isSystemDefined\": false,\n      \"promptAtCheckout\": false,\n      \"regexPattern\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b86c953-ac86-4ed9-a888-4884223decb6",
+    "name": "Britive Services API Documentation Resource Profiles - Permissions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

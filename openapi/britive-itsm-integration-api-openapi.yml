@@ -1,0 +1,118 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation ITSM Integration API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: ITSM Integration
+  description: Manage ITSM Connections
+paths:
+  /api/itsm-integration/connections/{connectionId}/ticketTypes/{ticketType}/tickets/{ticketId}:
+    get:
+      tags:
+      - ITSM Integration
+      summary: Get the ticket details
+      operationId: getTicketDetails
+      parameters:
+      - name: connectionId
+        in: path
+        description: ITSM connection id for connecting to ITSM instance
+        required: true
+        schema:
+          type: string
+      - name: ticketType
+        in: path
+        description: Type or category of the ticket
+        required: true
+        schema:
+          type: string
+      - name: ticketId
+        in: path
+        description: Ticket Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ticket details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItsmTicketDetails'
+  /api/itsm-integration/filter-validation:
+    post:
+      tags:
+      - ITSM Integration
+      summary: Validate the filter criteria and ticket for the ITSM integration settings
+      operationId: validateFilter
+      requestBody:
+        description: The filter, ticket and other relevant data for the validation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItsmFilterDetails'
+      responses:
+        '200':
+          description: Filter validated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterValidationResult'
+components:
+  schemas:
+    ItsmFilterDetails:
+      type: object
+      properties:
+        connectionId:
+          type: string
+          description: ITSM connection id for connecting to ITSM instance
+        ticketType:
+          type: string
+          description: Type or category of the ticket
+        filter:
+          type: object
+          description: Optional. The JSON formatted filter. The filter for Jira and ServiceNow should have "jql" key and "sysparm_query" key respectively.
+          additionalProperties:
+            type: string
+        ticketId:
+          type: string
+          description: Ticket ID for validation
+        variableMap:
+          type: object
+          description: Map to provide the variable values for the validation. These value will be loaded to filter at runtime.
+          additionalProperties:
+            type: string
+    FilterValidationResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Validation result
+        message:
+          type: string
+          description: Validation message
+        ticketDetails:
+          type: object
+          description: Ticket details like id, number, title, assignee, priority, etc.
+    ItsmTicketDetails:
+      type: object
+      description: Ticket details like id, number, title, assignee, priority, etc.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

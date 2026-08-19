@@ -4,14 +4,11 @@ source: https://docs.britive.com/docs/setting-up-mcp-server + https://github.com
 name: Britive MCP Server
 status: published
 vendor: Britive, Inc.
-description: >-
-  Britive ships a first-party Model Context Protocol server that lets AI agents and MCP
-  clients (Claude Desktop, VS Code Copilot) drive the Britive platform: request just-in-time
-  privileged access, check access back in, list identities and tags, query audit logs, run
-  reports and terminate active sessions. It is offered two ways — a remote, OAuth-protected
-  server on the customer's own tenant, and an open-source local server run from the Britive
-  GitHub organization.
-
+description: 'Britive ships a first-party Model Context Protocol server that lets AI agents and MCP clients
+  (Claude Desktop, VS Code Copilot) drive the Britive platform: request just-in-time privileged access,
+  check access back in, list identities and tags, query audit logs, run reports and terminate active sessions.
+  It is offered two ways — a remote, OAuth-protected server on the customer''s own tenant, and an open-source
+  local server run from the Britive GitHub organization.'
 deployments:
 - kind: remote
   url_template: https://{tenant}.britive-app.com/mcp
@@ -20,55 +17,59 @@ deployments:
   status: live
   x-evidence:
     fetched: '2026-08-08'
-    method: 'POST tools/list (jsonrpc 2.0)'
+    method: POST tools/list (jsonrpc 2.0)
     http_status: 401
     error: invalid_token
-    www_authenticate: >-
-      Bearer error="invalid_token", resource_metadata="https://demo.britive-app.com/.well-known/oauth-protected-resource/mcp"
+    www_authenticate: Bearer error="invalid_token", resource_metadata="https://demo.britive-app.com/.well-known/oauth-protected-resource/mcp"
     server_header: uvicorn
-    note: >-
-      The endpoint is live and answers MCP JSON-RPC, but both tools/list and initialize are
-      auth-gated behind the tenant OAuth flow. The tool inventory below is therefore taken
-      from Britive's own open-source server source, not from a live tools/list response.
+    note: The endpoint is live and answers MCP JSON-RPC, but both tools/list and initialize are auth-gated
+      behind the tenant OAuth flow. The tool inventory below is therefore taken from Britive's own open-source
+      server source, not from a live tools/list response.
   auth:
     scheme: OAuth 2.0 (tenant login, SSO or username/password) via MCP client custom connector
     rfc9728_challenge: true
     rfc9728_metadata_served: false
-    defect: >-
-      The WWW-Authenticate challenge advertises resource_metadata at
-      https://{tenant}.britive-app.com/.well-known/oauth-protected-resource/mcp, but that URL
-      returns 404. The alternate form /mcp/.well-known/oauth-protected-resource returns 200
-      with the tenant SPA HTML rather than JSON. No OAuth protected-resource metadata document
-      is actually served, so a spec-compliant MCP client cannot complete discovery from the
-      challenge alone.
+    defect: The WWW-Authenticate challenge advertises resource_metadata at https://{tenant}.britive-app.com/.well-known/oauth-protected-resource/mcp,
+      but that URL returns 404. The alternate form /mcp/.well-known/oauth-protected-resource returns 200
+      with the tenant SPA HTML rather than JSON. No OAuth protected-resource metadata document is actually
+      served, so a spec-compliant MCP client cannot complete discovery from the challenge alone.
 - kind: local
   repository: https://github.com/britive/mcp-server
   runtime: Python >= 3.10 (fastmcp)
   status: open-source
   auth:
-    - PyBritive CLI login (recommended) — `pybritive login`
-    - static Britive API token via BRITIVE_STATIC_TOKEN
+  - PyBritive CLI login (recommended) — `pybritive login`
+  - static Britive API token via BRITIVE_STATIC_TOKEN
   environment:
     BRITIVE_TENANT: tenant subdomain
     BRITIVE_STATIC_TOKEN: optional static token
     BRITIVE_EMAIL: optional, enables on-behalf-of (OBO) mode
   containerized: true
-
 tool_inventory:
   method: searched
   source: https://github.com/britive/mcp-server (britive_mcp_tools/tools/*.py, @mcp.tool decorators)
   count: 53
-  note: >-
-    Names and parameters are read verbatim from the provider's own published server source.
-    Full JSON Schema types are not asserted here — the authoritative inputSchema is what the
-    live server returns from tools/list, which is auth-gated.
+  note: Names and parameters are read verbatim from the provider's own published server source. Full JSON
+    Schema types are not asserted here — the authoritative inputSchema is what the live server returns
+    from tools/list, which is auth-gated.
   groups:
   - name: my_access
     tools:
     - name: my_access_checkout
-      params: [profile_id, environment_id, include_credentials, justification, max_wait_time, otp, programmatic, ticket_id, ticket_type, wait_time]
+      params:
+      - profile_id
+      - environment_id
+      - include_credentials
+      - justification
+      - max_wait_time
+      - otp
+      - programmatic
+      - ticket_id
+      - ticket_type
+      - wait_time
     - name: my_access_checkin
-      params: [transaction_id]
+      params:
+      - transaction_id
     - name: my_access_list_profiles
       params: []
     - name: my_access_whoami
@@ -76,11 +77,23 @@ tool_inventory:
   - name: my_resources
     tools:
     - name: my_resources_list
-      params: [list_type]
+      params:
+      - list_type
     - name: my_resources_checkout
-      params: [profile_id, resource_id, include_credentials, justification, max_wait_time, otp, response_template, ticket_id, ticket_type, wait_time]
+      params:
+      - profile_id
+      - resource_id
+      - include_credentials
+      - justification
+      - max_wait_time
+      - otp
+      - response_template
+      - ticket_id
+      - ticket_type
+      - wait_time
     - name: my_resources_checkin
-      params: [transaction_id]
+      params:
+      - transaction_id
     - name: my_resources_list_checked_out_profiles
       params: []
   - name: my_secrets
@@ -88,45 +101,73 @@ tool_inventory:
     - name: my_secrets_list
       params: []
     - name: my_secrets_view
-      params: [path, justification, otp, wait_time, max_wait_time]
+      params:
+      - path
+      - justification
+      - otp
+      - wait_time
+      - max_wait_time
   - name: identity_management
     tools:
     - name: identity_management_users_list
-      params: [filter_expression, include_tags]
+      params:
+      - filter_expression
+      - include_tags
     - name: identity_management_users_get
-      params: [user_id]
+      params:
+      - user_id
     - name: identity_management_users_search
-      params: [search_string]
+      params:
+      - search_string
     - name: identity_management_users_enable
-      params: [user_id, user_ids]
+      params:
+      - user_id
+      - user_ids
     - name: identity_management_users_disable
-      params: [user_id, user_ids]
+      params:
+      - user_id
+      - user_ids
     - name: identity_management_tags_list
-      params: [filter_expression]
+      params:
+      - filter_expression
     - name: identity_management_tags_get
-      params: [tag_id]
+      params:
+      - tag_id
     - name: identity_management_tags_search
-      params: [search_string]
+      params:
+      - search_string
     - name: identity_management_tags_enable
-      params: [tag_id]
+      params:
+      - tag_id
     - name: identity_management_tags_disable
-      params: [tag_id]
+      params:
+      - tag_id
     - name: identity_management_service_identities_list
-      params: [filter_expression, include_tags]
+      params:
+      - filter_expression
+      - include_tags
     - name: identity_management_service_identities_get
-      params: [service_identity_id]
+      params:
+      - service_identity_id
     - name: identity_management_service_identities_search
-      params: [search_string]
+      params:
+      - search_string
     - name: identity_management_service_identities_enable
-      params: [service_identity_id, service_identity_ids]
+      params:
+      - service_identity_id
+      - service_identity_ids
     - name: identity_management_service_identities_disable
-      params: [service_identity_id, service_identity_ids]
+      params:
+      - service_identity_id
+      - service_identity_ids
   - name: application_management
     tools:
     - name: application_management_applications_list
-      params: [extended]
+      params:
+      - extended
     - name: application_management_applications_get
-      params: [application_id]
+      params:
+      - application_id
   - name: audit_logs
     tools:
     - name: audit_logs_logs_fields
@@ -134,64 +175,129 @@ tool_inventory:
     - name: audit_logs_logs_operators
       params: []
     - name: audit_logs_logs_query
-      params: [from_time, to_time, filter_expression, csv]
+      params:
+      - from_time
+      - to_time
+      - filter_expression
+      - csv
   - name: security_active_sessions
     tools:
     - name: security_active_sessions_list_users
-      params: [search_text]
+      params:
+      - search_text
     - name: security_active_sessions_list_user_sessions
-      params: [user_id]
+      params:
+      - user_id
     - name: security_active_sessions_checkin
-      params: [user_id, profile_ids]
+      params:
+      - user_id
+      - profile_ids
     - name: security_active_sessions_checkin_all
-      params: [user_id]
+      params:
+      - user_id
   - name: reports
-    note: >-
-      One narrowly-scoped tool per canned Britive report, plus a generic runner. All share the
-      same signature (report_id, csv, filter_expression) and all bind to the same REST operation.
+    note: One narrowly-scoped tool per canned Britive report, plus a generic runner. All share the same
+      signature (report_id, csv, filter_expression) and all bind to the same REST operation.
     tools:
     - name: reports_list
       params: []
     - name: all_reports_run
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_profile_historical_access
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_permissions_in_profile
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_permission_details
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_tag_membership
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_service_identities_details
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_user_secret_access
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_secret_last_access
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_profiles_assigned_to_service_identities
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_profile_accessed_tags
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_AI_identities_secret_last_access
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_resource_historical_access
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_resource_last_access
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_resources_assigned_to_ai_identities
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_resources_assigned_to_all_identities
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_resources_assigned_to_service_identities
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_resources_assigned_to_tags
-      params: [report_id, csv, filter_expression]
+      params:
+      - report_id
+      - csv
+      - filter_expression
     - name: report_run_resources_assigned_to_users
-      params: [report_id, csv, filter_expression]
-
+      params:
+      - report_id
+      - csv
+      - filter_expression
 related:
   product_page: https://www.britive.com/use-cases/secure-ai-agent-tool-access-mcp-gateway
-  note: >-
-    Distinct from the Britive MCP Gateway, a separate product that brokers and authorizes
-    calls to third-party MCP servers. This artifact describes Britive's own MCP server.
+  note: Distinct from the Britive MCP Gateway, a separate product that brokers and authorizes calls to
+    third-party MCP servers. This artifact describes Britive's own MCP server.
 crosswalk: mcp/britive-tool-crosswalk.yml
+deployment:
+  mode: unclear
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census

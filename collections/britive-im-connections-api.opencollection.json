@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation IM Connections API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IM Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of IM connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/im-manager/connections"
+          },
+          "docs": "Get list of IM connections"
+        },
+        {
+          "info": {
+            "name": "Create an IM connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/im-manager/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an IM connection"
+        },
+        {
+          "info": {
+            "name": "Validate an IM Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/im-manager/connections/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate an IM Connection"
+        },
+        {
+          "info": {
+            "name": "Get IM connection for given connection ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/im-manager/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an IM Connection"
+              }
+            ]
+          },
+          "docs": "Get IM connection for given connection ID"
+        },
+        {
+          "info": {
+            "name": "Update an IM connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/im-manager/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an IM Connection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an IM connection"
+        },
+        {
+          "info": {
+            "name": "Delete an IM connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/im-manager/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an IM Connection"
+              }
+            ]
+          },
+          "docs": "Delete an IM connection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

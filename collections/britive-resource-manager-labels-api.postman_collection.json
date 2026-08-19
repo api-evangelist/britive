@@ -1,0 +1,914 @@
+{
+  "item": [
+    {
+      "id": "940953b8-6092-4630-b7f9-47f3fdaba73c",
+      "name": "Resource Manager - Labels",
+      "description": {
+        "content": "Manage Resource Labels",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4aed631a-d984-4d19-be4e-a4b656614ce8",
+          "name": "Get All Resource Labels",
+          "request": {
+            "name": "Get All Resource Labels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "labels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Parameter to filter permissions by search text"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Parameter to specify the page number of the records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Parameter to specify the number of records to retrieve per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "parameter to specify the sort parameter and direction"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f3fbf6d-847a-45b5-86d9-9332445e562e",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "test"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2172,\n  \"page\": 6068,\n  \"size\": 4625,\n  \"sort\": \"string\",\n  \"data\": [\n    {\n      \"keyId\": \"string\",\n      \"keyName\": \"string\",\n      \"internal\": true,\n      \"description\": \"string\",\n      \"values\": [\n        {\n          \"valueId\": \"string\",\n          \"keyId\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"createdBy\": 7433,\n          \"updatedBy\": 2302,\n          \"resourceCount\": 9961,\n          \"createdOn\": \"string\",\n          \"updatedOn\": \"string\"\n        },\n        {\n          \"valueId\": \"string\",\n          \"keyId\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"createdBy\": 8831,\n          \"updatedBy\": 9446,\n          \"resourceCount\": 8119,\n          \"createdOn\": \"string\",\n          \"updatedOn\": \"string\"\n        }\n      ]\n    },\n    {\n      \"keyId\": \"string\",\n      \"keyName\": \"string\",\n      \"internal\": false,\n      \"description\": \"string\",\n      \"values\": [\n        {\n          \"valueId\": \"string\",\n          \"keyId\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"createdBy\": 5842,\n          \"updatedBy\": 9783,\n          \"resourceCount\": 7813,\n          \"createdOn\": \"string\",\n          \"updatedOn\": \"string\"\n        },\n        {\n          \"valueId\": \"string\",\n          \"keyId\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"createdBy\": 7468,\n          \"updatedBy\": 5861,\n          \"resourceCount\": 2369,\n          \"createdOn\": \"string\",\n          \"updatedOn\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85592f46-38b7-46bb-a45a-f3ed64840f1c",
+          "name": "Manage Resource Labels",
+          "request": {
+            "name": "Manage Resource Labels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "labels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keyId\": \"<string>\",\n  \"keyName\": \"<string>\",\n  \"internal\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"values\": [\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    },\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a757ede-2626-4312-b703-33dc4904d596",
+              "name": "Resource label key saved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyId\": \"<string>\",\n  \"keyName\": \"<string>\",\n  \"internal\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"values\": [\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    },\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keyId\": \"<string>\",\n  \"keyName\": \"<string>\",\n  \"internal\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"values\": [\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    },\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33522128-a9d5-4e11-9d96-6b25ed2dae0f",
+          "name": "Delete resource label",
+          "request": {
+            "name": "Delete resource label",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "labels",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) ID of the resource label key to delete"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93031cca-b0f7-47fb-a41e-8478ee92e70e",
+              "name": "Resource label deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "labels",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) ID of the resource label key to delete"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84d549fd-8db4-4b43-8364-68804685b163",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "labels",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) ID of the resource label key to delete"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9064f431-7b2d-4a3d-ae61-0f6d40912f67",
+          "name": "Get resource label details",
+          "request": {
+            "name": "Get resource label details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "labels",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) ID of the resource label key"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b9a3292-834a-4cac-85a4-f262c599e12c",
+              "name": "Resource label key details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "labels",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) ID of the resource label key"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keyId\": \"<string>\",\n  \"keyName\": \"<string>\",\n  \"internal\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"values\": [\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    },\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a035f53f-6184-410b-abd4-cf41684ce679",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "labels",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) ID of the resource label key"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5f56af9-a3cf-4cc3-b3e7-ebc8d9c728ba",
+          "name": "Manage Resource Labels",
+          "request": {
+            "name": "Manage Resource Labels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "labels",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) ID of the resource label key to retrieve"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keyId\": \"<string>\",\n  \"keyName\": \"<string>\",\n  \"internal\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"values\": [\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    },\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "839c928d-05f2-4ecf-b52a-57dda9368154",
+              "name": "Resource label key saved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "labels",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) ID of the resource label key to retrieve"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyId\": \"<string>\",\n  \"keyName\": \"<string>\",\n  \"internal\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"values\": [\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    },\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keyId\": \"<string>\",\n  \"keyName\": \"<string>\",\n  \"internal\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"values\": [\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    },\n    {\n      \"valueId\": \"<string>\",\n      \"keyId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdBy\": \"<integer>\",\n      \"updatedBy\": \"<integer>\",\n      \"resourceCount\": \"<integer>\",\n      \"createdOn\": \"<string>\",\n      \"updatedOn\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44af5380-54c4-47dd-932c-e84fc10d7c43",
+          "name": "Get resource labels by resource ID",
+          "request": {
+            "name": "Get resource labels by resource ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                ":resourceId",
+                "labels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceId",
+                  "description": "(Required) ID of the resource to retrieve"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a4639f9-0f3a-4e1b-9722-bac799484630",
+              "name": "Resource retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    ":resourceId",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) ID of the resource to retrieve"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    \"string\",\n    \"string\"\n  ],\n  \"key_1\": [\n    \"string\",\n    \"string\"\n  ],\n  \"key_2\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d30aae2-8df6-4987-8153-6eaa06ef8c65",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    ":resourceId",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) ID of the resource to retrieve"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b7877f5e-21d2-4667-a9d4-3fb842893a88",
+    "name": "Britive Services API Documentation Resource Manager - Labels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

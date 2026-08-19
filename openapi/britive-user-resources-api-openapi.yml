@@ -1,0 +1,216 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation User Resources API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: User Resources
+  description: Manage User Built Resources
+paths:
+  /api/resource-manager/my-resources/resource-templates:
+    get:
+      tags:
+      - User Resources
+      summary: Get Resource Templates
+      description: Retrieve a list of resource templates that user is allowed to use
+      operationId: getResourceTemplates
+      parameters:
+      - $ref: '#/components/parameters/searchText'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTemplatesSummary'
+  /api/resource-manager/my-resources/resource-templates/{id}/dynamic-parameters:
+    get:
+      tags:
+      - User Resources
+      summary: Get Resource Template Dynamic Fields
+      description: Retrieve a list of dynamic fields for a resource template that the user is allowed to use
+      operationId: getResourceTemplateDynamicFields
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID of the resource template
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicParameters'
+  /api/resource-manager/my-resources/user-resources:
+    post:
+      tags:
+      - User Resources
+      summary: Create a new resource using a resource template
+      description: Creates a new user resource based on the specified resource template.
+      operationId: createResourceUsingTemplate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserResourceDto'
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResourceDto'
+        '400':
+          description: Bad Request
+  /api/resource-manager/my-resources/user-resources/{id}:
+    delete:
+      tags:
+      - User Resources
+      summary: Delete user resource by ID
+      description: Delete user resource by ID
+      operationId: deleteUserResourceById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID of the resource to delete
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resource deleted successfully
+        '404':
+          description: Not Found
+components:
+  schemas:
+    ResourceTemplatesSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTemplateDto'
+    DynamicParameter:
+      type: object
+      properties:
+        paramName:
+          type: string
+        paramType:
+          type: string
+        paramValue:
+          type: string
+    UserResourceDto:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        resourceName:
+          type: string
+        parentResourceId:
+          type: string
+        resourceParameters:
+          type: object
+          additionalProperties:
+            type: string
+        profileId:
+          type: string
+    DynamicParameters:
+      type: object
+      properties:
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/DynamicParameter'
+    ResourceTemplateDto:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          example: '12345'
+        resourceName:
+          type: string
+          example: linux-server
+        resourceDescription:
+          type: string
+          example: description of linux server
+        profileId:
+          type: string
+          example: asdckl4347mcc
+        profileName:
+          type: string
+          example: linux-server-admin
+        profileDescription:
+          type: string
+          example: description of test profile
+        resourceTypeName:
+          type: string
+          example: serverType
+        resourceTypeIconUrl:
+          type: string
+        resourceLabels:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        resourceLabelColorMap:
+          type: object
+          additionalProperties:
+            type: string
+        status:
+          type: string
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    searchText:
+      in: query
+      name: searchText
+      description: Parameter to filter resource by search text
+      required: false
+      schema:
+        type: string
+        example: test
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

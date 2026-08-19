@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation ITSM Integration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ITSM Integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the ticket details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-integration/connections/:connectionId/ticketTypes/:ticketType/tickets/:ticketId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "ITSM connection id for connecting to ITSM instance"
+              },
+              {
+                "name": "ticketType",
+                "value": "",
+                "type": "path",
+                "description": "Type or category of the ticket"
+              },
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ]
+          },
+          "docs": "Get the ticket details"
+        },
+        {
+          "info": {
+            "name": "Validate the filter criteria and ticket for the ITSM integration settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/itsm-integration/filter-validation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate the filter criteria and ticket for the ITSM integration settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

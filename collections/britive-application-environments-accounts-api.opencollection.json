@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Application Environments - Accounts API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Environments - Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get membership changes for accounts between the last two consecutive scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/environments/:environmentId/accounts/memberships-last-scan-delta",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get membership changes for accounts between the last two consecutive scans"
+        },
+        {
+          "info": {
+            "name": "Map accounts with users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/environments/:environmentId/accounts/:accountId/users",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Map accounts with users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

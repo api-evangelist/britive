@@ -1,0 +1,161 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Advanced Settings API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Advanced Settings
+  description: Manage Application Profiles Advanced Settings
+paths:
+  /api/paps/{papId}/advanced-settings:
+    post:
+      tags:
+      - Application Profiles - Advanced Settings
+      summary: Create an advanced settings for app profile
+      operationId: saveAppProfileAdvancedSettings
+      parameters:
+      - name: papId
+        in: path
+        description: papId mapped to Advanced Settings
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Advanced Settings Data for profile
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvancedSettingsDto'
+      responses:
+        '201':
+          description: Advanced Settings saved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedSettingsDto'
+    get:
+      tags:
+      - Application Profiles - Advanced Settings
+      summary: Get advanced Settings for given app profile
+      operationId: getAppProfileAdvancedSettings
+      parameters:
+      - name: papId
+        in: path
+        description: papId mapped to Advanced Settings
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedSettingsDto'
+        '404':
+          description: Advanced settings not found.
+    put:
+      tags:
+      - Application Profiles - Advanced Settings
+      summary: Update advanced settings for app profile
+      operationId: updateAppProfileAdvancedSettings
+      parameters:
+      - name: papId
+        in: path
+        description: papId mapped to Advanced Settings
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Advanced Settings Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvancedSettingsDto'
+      responses:
+        '201':
+          description: Advanced Settings saved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedSettingsDto'
+        '404':
+          description: Advanced Settings not found.
+  /api/paps/{papId}/advanced-settings/{id}:
+    delete:
+      tags:
+      - Application Profiles - Advanced Settings
+      summary: Delete advanced settings mapped to a app profile
+      operationId: deleteAppProfileAdvancedSettings
+      parameters:
+      - name: papId
+        in: path
+        description: papId mapped to Advanced Settings
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id of Advanced Settings mapped to profile
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Advanced Settings deleted successfully.
+        '404':
+          description: Advanced Settings not found for given entity.
+components:
+  schemas:
+    SettingsDto:
+      type: object
+      required:
+      - settingsType
+      properties:
+        settingsType:
+          type: string
+        id:
+          type: string
+        entityId:
+          type: string
+        entityType:
+          type: string
+        isInherited:
+          type: boolean
+      discriminator:
+        propertyName: settingsType
+        mapping:
+          ITSM: ItsmSettingsDto
+          JUSTIFICATION: JustificationSettingsDto
+    AdvancedSettingsDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Allowed values are 'ITSM' and 'JUSTIFICATION'
+        consumer:
+          type: string
+        settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SettingsDto'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,809 @@
+{
+  "item": [
+    {
+      "id": "dc55ca5c-ddde-41f7-8071-85a492cef99e",
+      "name": "Workload Identity Providers",
+      "description": {
+        "content": "Manage workload identity providers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e3c34b5-5576-4707-bfe1-5849f1dcca4f",
+          "name": "Add new workload identity provider",
+          "request": {
+            "name": "Add new workload identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "identity-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfccda0d-d237-46c5-ada9-b48a859e1811",
+              "name": "Identity provider successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"idpType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"attributesMap\": [\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    },\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    }\n  ],\n  \"validationWindow\": \"<integer>\",\n  \"maxDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"idpType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"attributesMap\": [\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    },\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    }\n  ],\n  \"validationWindow\": \"<integer>\",\n  \"maxDuration\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9c66daf-2b45-40b7-b4a6-ad3e9c2b187c",
+          "name": "Get workload identity providers by page",
+          "request": {
+            "name": "Get workload identity providers by page",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "identity-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "the type of identity provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "filter resource that starts with name"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Zero-based page index (0..N)"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "The size of the page to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bca1bd5-3703-454d-b0bb-b3c979822ed5",
+              "name": "successfully retrieve workload identity providers by page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"idpType\": \"<string>\",\n    \"name\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"attributesMap\": [\n      {\n        \"idpAttr\": \"<string>\",\n        \"userAttr\": \"<string>\"\n      },\n      {\n        \"idpAttr\": \"<string>\",\n        \"userAttr\": \"<string>\"\n      }\n    ],\n    \"validationWindow\": \"<integer>\",\n    \"maxDuration\": \"<integer>\"\n  },\n  {\n    \"idpType\": \"<string>\",\n    \"name\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"attributesMap\": [\n      {\n        \"idpAttr\": \"<string>\",\n        \"userAttr\": \"<string>\"\n      },\n      {\n        \"idpAttr\": \"<string>\",\n        \"userAttr\": \"<string>\"\n      }\n    ],\n    \"validationWindow\": \"<integer>\",\n    \"maxDuration\": \"<integer>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01d7def1-7c7c-47c9-bb72-a2739947d015",
+          "name": "Update workload identity provider",
+          "request": {
+            "name": "Update workload identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "identity-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22df87e9-1196-4370-bda4-ef206fed0d94",
+              "name": "identity provider updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"idpType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"attributesMap\": [\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    },\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    }\n  ],\n  \"validationWindow\": \"<integer>\",\n  \"maxDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"idpType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"attributesMap\": [\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    },\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    }\n  ],\n  \"validationWindow\": \"<integer>\",\n  \"maxDuration\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d463713-1bb7-4afc-929a-6d10228cc42f",
+              "name": "identity provider not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"idpType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"attributesMap\": [\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    },\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    }\n  ],\n  \"validationWindow\": \"<integer>\",\n  \"maxDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "593bb873-6048-47a1-b349-6891420a51be",
+              "name": "invalid identity provider",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"idpType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"attributesMap\": [\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    },\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    }\n  ],\n  \"validationWindow\": \"<integer>\",\n  \"maxDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a12b1196-e5ed-4637-bc7a-503dc8da071e",
+          "name": "Delete identity provider",
+          "request": {
+            "name": "Delete identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "identity-providers",
+                ":idpId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "idpId",
+                  "description": "(Required) id of the identity provider."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc0423e9-effc-44ac-93a4-45d39dd17b13",
+              "name": "identity provider deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers",
+                    ":idpId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "idpId",
+                      "description": "(Required) id of the identity provider."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa8e2876-0099-47c3-af56-a55943e127e9",
+          "name": "Get identity provider details",
+          "request": {
+            "name": "Get identity provider details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "workload",
+                "identity-providers",
+                ":idpId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "idpId",
+                  "description": "(Required) Id of the identity provider."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "745be009-0005-4156-aae1-6750fea2eb2a",
+              "name": "identity provider retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers",
+                    ":idpId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "idpId",
+                      "description": "(Required) Id of the identity provider."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"idpType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"attributesMap\": [\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    },\n    {\n      \"idpAttr\": \"<string>\",\n      \"userAttr\": \"<string>\"\n    }\n  ],\n  \"validationWindow\": \"<integer>\",\n  \"maxDuration\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "034efe55-a1b9-45b6-969f-3ad15660c1bb",
+              "name": "identity provider not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workload",
+                    "identity-providers",
+                    ":idpId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "idpId",
+                      "description": "(Required) Id of the identity provider."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "17563eef-fef2-4ab7-bb1b-5233cb43cd91",
+    "name": "Britive Services API Documentation Workload Identity Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

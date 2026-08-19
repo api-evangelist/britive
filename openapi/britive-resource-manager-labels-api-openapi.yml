@@ -1,0 +1,243 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Manager - Labels API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Manager - Labels
+  description: Manage Resource Labels
+paths:
+  /api/resource-manager/labels:
+    get:
+      tags:
+      - Resource Manager - Labels
+      summary: Get All Resource Labels
+      operationId: getAllResourceLabels
+      parameters:
+      - in: query
+        name: searchText
+        description: Parameter to filter permissions by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceLabelsSummary'
+    post:
+      tags:
+      - Resource Manager - Labels
+      summary: Manage Resource Labels
+      operationId: saveResourceLabel
+      requestBody:
+        description: Information to save resource labels
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabelDto'
+      responses:
+        '201':
+          description: Resource label key saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceLabelDto'
+  /api/resource-manager/labels/{keyId}:
+    delete:
+      tags:
+      - Resource Manager - Labels
+      summary: Delete resource label
+      operationId: deleteResourceLabel
+      parameters:
+      - name: keyId
+        in: path
+        description: ID of the resource label key to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resource label deleted successfully
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager - Labels
+      summary: Get resource label details
+      operationId: getAllResourceLabelValuesForKey
+      parameters:
+      - name: keyId
+        in: path
+        description: ID of the resource label key
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Resource label key details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceLabelDto'
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - Resource Manager - Labels
+      summary: Manage Resource Labels
+      operationId: updateResourceLabel
+      parameters:
+      - name: keyId
+        in: path
+        description: ID of the resource label key to retrieve
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Information to save resource labels
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabelDto'
+      responses:
+        '200':
+          description: Resource label key saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceLabelDto'
+  /api/resource-manager/{resourceId}/labels:
+    get:
+      tags:
+      - Resource Manager - Labels
+      summary: Get resource labels by resource ID
+      operationId: getResourceLabelsByResourceId
+      parameters:
+      - name: resourceId
+        in: path
+        description: ID of the resource to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelAssociation'
+        '404':
+          description: Not Found
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    ResourceLabelDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        keyId:
+          type: string
+        keyName:
+          type: string
+        internal:
+          type: boolean
+        description:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceLabelValueDto'
+    ResourceLabelValueDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        valueId:
+          type: string
+        keyId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: integer
+        updatedBy:
+          type: integer
+        resourceCount:
+          type: integer
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+    ResourceLabelsSummary:
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceLabelDto'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

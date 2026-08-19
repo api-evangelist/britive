@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Application Profiles API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get profile details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/paps",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get profile details"
+        },
+        {
+          "info": {
+            "name": "Create a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/paps",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a profile"
+        },
+        {
+          "info": {
+            "name": "Clone application profile details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/paps/clone",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ignoreErrors",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cloneOptionsDto",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clone application profile details"
+        },
+        {
+          "info": {
+            "name": "Update profile details of a specified profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/paps/:papId",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update profile details of a specified profile"
+        },
+        {
+          "info": {
+            "name": "Update profile details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/paps/:papId",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update profile details"
+        },
+        {
+          "info": {
+            "name": "Delete a particular profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/paps/:papId",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a particular profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

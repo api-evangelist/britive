@@ -1,0 +1,168 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Applications - Root Environment Groups API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Applications - Root Environment Groups
+  description: Manage Application Root Environment Groups
+paths:
+  /api/apps/{appContainerId}/root-environment-group/environments:
+    post:
+      tags:
+      - Applications - Root Environment Groups
+      summary: Create an environment within an application
+      description: Applies to the following applications, AWS Standalone, SalesForce, and ServiceNow
+      operationId: rootEnvironments
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DefaultEnvironment'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/apps/{appContainerId}/root-environment-group/groups:
+    post:
+      tags:
+      - Applications - Root Environment Groups
+      summary: Create an environment group within an application
+      description: Applies to  AWS Standalone, SalesForce, and ServiceNow applications.
+      operationId: rootGroups
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DefaultEnvironmentGroup'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Applications - Root Environment Groups
+      summary: Update an environment group details within an application
+      operationId: rootGroups_1
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DefaultEnvironmentGroup'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    DefaultEnvironment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        nativeId:
+          type: string
+        parentGroupId:
+          type: string
+        type:
+          type: string
+        internalParentId:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
+    DefaultEnvironmentGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        parentId:
+          type: string
+        nativeId:
+          type: string
+        nativeParentId:
+          type: string
+        childGroupIds:
+          type: array
+          items:
+            type: string
+        childEnvironmentIds:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+        internalParentId:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

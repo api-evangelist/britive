@@ -1,0 +1,317 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Profiles API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Profiles
+  description: Manage Resource Profiles
+paths:
+  /api/resource-manager/profiles:
+    post:
+      tags:
+      - Resource Profiles
+      summary: Create a resource profile
+      operationId: saveProfileDetails
+      requestBody:
+        description: create profile with basic details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceProfileDto'
+      responses:
+        '201':
+          description: Resource Profile saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceProfileDto'
+    get:
+      tags:
+      - Resource Profiles
+      summary: Get all resource profiles
+      operationId: getAllResourceProfiles
+      parameters:
+      - in: query
+        name: filter
+        description: Parameter to filter profiles by name
+        required: false
+        schema:
+          type: string
+          example: name eq profile1
+      - in: query
+        name: searchText
+        description: Parameter to filter profiles by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Profiles successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceProfileSummary'
+  /api/resource-manager/profiles/{id}:
+    delete:
+      tags:
+      - Resource Profiles
+      summary: Delete resource profile
+      operationId: deleteResourceProfile
+      parameters:
+      - name: id
+        in: path
+        description: Id of the profile to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: profile got deleted successfully
+        '404':
+          description: Not Found.
+    get:
+      tags:
+      - Resource Profiles
+      summary: Get profile by ID
+      operationId: getResourceProfileById
+      parameters:
+      - name: id
+        in: path
+        description: ID of the profile to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceProfileDto'
+        '404':
+          description: Not Found
+    patch:
+      tags:
+      - Resource Profiles
+      summary: Update resource profile details
+      operationId: updateProfileDetails
+      parameters:
+      - name: id
+        in: path
+        description: Id of the resource profile update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Details of the profile to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceProfileDto'
+      responses:
+        '204':
+          description: Profile details got updated successfully
+        '404':
+          description: Profile id does not exist
+  /api/resource-manager/profiles/{id}/clone:
+    post:
+      tags:
+      - Resource Profiles
+      summary: Clone resource profile details
+      operationId: cloneProfileDetails
+      parameters:
+      - name: id
+        in: path
+        description: Id of the resource profile to be cloned
+        required: true
+        schema:
+          type: string
+      - name: options
+        in: query
+        description: Options for clone profile
+        required: false
+        schema:
+          type: string
+      - name: ignoreErrors
+        in: query
+        description: Ignore validation errors
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        description: Details for clone profile
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceProfileDto'
+      responses:
+        '201':
+          description: Clone profile created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '207':
+          description: Clone profile created partially
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Clone profile creation failed
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Profile id does not exist
+  /api/resource-manager/profiles/{id}/validate:
+    get:
+      tags:
+      - Resource Profiles
+      summary: Validate Profile Data
+      operationId: validateProfileData
+      parameters:
+      - name: id
+        in: path
+        description: Id of the resource profile to be validated
+        required: true
+        schema:
+          type: string
+      responses:
+        '207':
+          description: Profile validated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Profile id does not exist
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    ResourceProfileSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceProfileInfo'
+    ResourceProfileDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        profileId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        expirationDuration:
+          type: integer
+        status:
+          type: string
+          enum:
+          - inactive
+          - active
+        delegationEnabled:
+          type: boolean
+        extendable:
+          type: boolean
+        extensionDuration:
+          type: integer
+          format: int64
+        extensionLimit:
+          type: integer
+        notificationPriorToExpiration:
+          type: integer
+          format: int64
+        policyOrderingEnabled:
+          type: boolean
+        exclusiveCheckout:
+          type: boolean
+          description: 'When true, the profile maps to a single shared account and only one user may have the profile checked out at a time. Other users will see the profile as locked until the holder checks in (which also triggers the configured rotation script). No `default` is declared deliberately: on a PATCH an omitted value must deserialize to null (leave the flag unchanged), not false.'
+    ResourceProfileInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        associations:
+          $ref: '#/components/schemas/LabelAssociation'
+        status:
+          type: string
+        expiration:
+          type: string
+        lastAccessed:
+          type: string
+        lastModifiedBy:
+          type: string
+        policyOrderingEnabled:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

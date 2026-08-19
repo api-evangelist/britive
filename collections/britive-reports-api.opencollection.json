@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Reports API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return a list of all built-in reports in the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/reports",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return a list of all built-in reports in the system"
+        },
+        {
+          "info": {
+            "name": "Get details of a specific report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get details of a specific report"
+        },
+        {
+          "info": {
+            "name": "Download the data of a report in the CSV format.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/reports/:reportId/csv",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Download the data of a report in the CSV format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

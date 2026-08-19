@@ -1,0 +1,145 @@
+{
+  "item": [
+    {
+      "id": "6e8b02db-7e9e-429c-a09b-2a28111eae85",
+      "name": "Shared Signals - Catalog",
+      "description": {
+        "content": "Manage shared signals catalog data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86509b6f-74ff-42f6-b4ad-ff08ea16616e",
+          "name": "Get supported shared signals events and Britive actions catalog",
+          "request": {
+            "name": "Get supported shared signals events and Britive actions catalog",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "catalog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15225cd7-9b56-44d5-977f-db19b8f06213",
+              "name": "Catalog of supported events and actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "catalog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"type\": \"CAEP\",\n      \"uri\": \"https://dHgkpBRgPAYygWXfDVWZW.fhiwQbqLH\",\n      \"name\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"type\": \"RISC\",\n      \"uri\": \"https://uEVFxgNdoWRFp.kjP+dT.NdJPdJ8BXgTXNjzGZhDb,wQcbuND7VjsSZ3p3Rsv1shZbFZ0IENGNPCQqy7wEo\",\n      \"name\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"actions\": [\n    {\n      \"action\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"action\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"britiveEventTypes\": [\n    {\n      \"type\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d618a98-a984-4104-9e0b-10bebd77bf55",
+    "name": "Britive Services API Documentation Shared Signals - Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

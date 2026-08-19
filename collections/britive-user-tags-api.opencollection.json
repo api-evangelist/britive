@@ -1,0 +1,534 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation User Tags API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get members of a user tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/:userTagId/members",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "fetchDynamicallyAssignedUsers",
+                "value": "",
+                "type": "query",
+                "description": "When true, also includes users assigned via dynamic attribute criteria"
+              }
+            ]
+          },
+          "docs": "Returns all users who are members of the specified user tag. Optionally includes dynamically assigned users when `fetchDynamicallyAssignedUsers` is set to `true`.\n"
+        },
+        {
+          "info": {
+            "name": "Get details of all user tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/user-tags",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get details of all user tags"
+        },
+        {
+          "info": {
+            "name": "Create a user tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/user-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a user tag"
+        },
+        {
+          "info": {
+            "name": "Update a specified user tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/user-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specified user tag"
+        },
+        {
+          "info": {
+            "name": "Get details of all users matching a particular criteria assigned to a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/user-tags/tag-attributes/matched-users",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get details of all users matching a particular criteria assigned to a tag"
+        },
+        {
+          "info": {
+            "name": "Get details of a specified tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a specified tag"
+        },
+        {
+          "info": {
+            "name": "Update a specified user tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specified user tag"
+        },
+        {
+          "info": {
+            "name": "Delete a specified tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specified tag"
+        },
+        {
+          "info": {
+            "name": "Get attribute criteria for a given tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/attribute-criteria",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get attribute criteria for a given tag"
+        },
+        {
+          "info": {
+            "name": "Add attribute criteria for a specific tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/attribute-criteria",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add attribute criteria for a specific tag"
+        },
+        {
+          "info": {
+            "name": "Update attribute criteria for a specific tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/attribute-criteria",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update attribute criteria for a specific tag"
+        },
+        {
+          "info": {
+            "name": "Disables a specified tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/disabled-statuses",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disables a specified tag"
+        },
+        {
+          "info": {
+            "name": "Enables a specified tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/enabled-statuses",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Enables a specified tag"
+        },
+        {
+          "info": {
+            "name": "Get the details of all users matching a particular criteria assigned to a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/matched-users",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the tag page"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list of all users assigned to a tag (tag members) based on name or status. The supported operators are 'eq' and 'co'. An example format is given here, name co \"Smith\""
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get the details of all users matching a particular criteria assigned to a tag"
+        },
+        {
+          "info": {
+            "name": "Get details of all users of a specified user tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/users",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter that can filter the list of all users assigned to a tag (tag members) based on name or status. The supported operators are 'eq' and 'co'. An example format is given here- name co \"Smith\""
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "forceRemoveAnyDirectUserProfileAssociation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fetchDynamicallyAssignedUsers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get details of all users of a specified user tag"
+        },
+        {
+          "info": {
+            "name": "Get details of a specified user from a specified tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/users/:userId",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "forceRemoveAnyDirectUserProfileAssociation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fetchDynamicallyAssignedUsers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get details of a specified user from a specified tag"
+        },
+        {
+          "info": {
+            "name": "Add user to a specified tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/users/:userId",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add user to a specified tag"
+        },
+        {
+          "info": {
+            "name": "Remove a user from a specified tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/user-tags/:userTagId/users/:userId",
+            "params": [
+              {
+                "name": "userTagId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a user from a specified tag"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

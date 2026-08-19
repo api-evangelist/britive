@@ -1,0 +1,264 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Sessions API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Sessions
+  description: Manage Application Profiles Sessions
+paths:
+  /api/paps/sessions:
+    get:
+      tags:
+      - Application Profiles - Sessions
+      summary: Get a list of active sessions of all users
+      description: Returns a per-user summary of users with active sessions. Both application profile sessions (any state other than checked in or checkout failed) and checked-out resource profile sessions are counted. Supported filter attributes are `email`, `username`, `name`, `lastLogin` and `userType` (values `User`, `ServiceIdentity`, `AIIdentity`). If `searchText` is provided, it takes precedence over `filter` and is applied as `username co <searchText>`.
+      operationId: getCheckedOutProfilesForAdmin_1
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAccessStatusUserSummary'
+        '400':
+          description: Invalid filter criteria
+  /api/paps/sessions/user/{userId}:
+    delete:
+      tags:
+      - Application Profiles - Sessions
+      summary: Check in all active sessions for a user
+      description: Checks in every checked-out application profile session of the specified user. Resource profile sessions are not affected. An audit event of type ADMIN_ACCESS_CHECKIN_ALL is generated.
+      operationId: checkInAllProfilesForUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+  /api/paps/sessions/{id}:
+    delete:
+      tags:
+      - Application Profiles - Sessions
+      summary: Check in an active session by transaction ID
+      description: Checks in the application profile session identified by the given transaction ID. The operation is idempotent - checking in an already checked-in session succeeds without effect. Sessions with access type `DEVICE` cannot be checked in through this API. An audit event of type ADMIN_ACCESS_CHECKIN is generated.
+      operationId: checkInProfileForTransaction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The transaction ID of the session to check in
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Invalid transaction ID, or the session cannot be checked in through this API
+    get:
+      tags:
+      - Application Profiles - Sessions
+      summary: Get a list of active sessions for a specific user
+      description: Returns the active sessions (sessions in any state other than checked in or checkout failed) of the specified user. Supported filter attributes are `profileName`, `appName`, `environmentName`, `environmentId`, `accessType` (values `CONSOLE`, `PROGRAMMATIC`) and `appType`; the `in` operator is supported for `appName` and `appType` only. If `searchText` is provided, it takes precedence over `filter` and is applied as `profileName co <searchText>`.
+      operationId: getCheckedOutProfilesForUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the user whose active sessions are returned
+        schema:
+          type: string
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAccessStatusSummary'
+        '400':
+          description: Invalid filter criteria
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    Size:
+      name: size
+      in: query
+      required: false
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    AppAccessStatusSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        filter:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAccessStatusInfo'
+    AppAccessStatusInfo:
+      type: object
+      properties:
+        papId:
+          type: string
+        profileName:
+          type: string
+        description:
+          type: string
+        transactionId:
+          type: string
+        status:
+          type: string
+          enum:
+          - checkedOut
+          - checkedIn
+          - checkedInExpired
+          - checkOutSubmitted
+          - checkOutInProgress
+          - checkOutFailed
+          - checkInSubmitted
+          - checkInInProgress
+          - checkInFailed
+          - checkOutTimeOut
+          - checkInTimeOut
+        checkedOut:
+          type: string
+          format: date-time
+        expiration:
+          type: string
+          format: date-time
+        environmentId:
+          type: string
+        environmentName:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - CLI
+          - CONSOLE
+          - PROGRAMMATIC
+          - DEVICE
+        appContainerId:
+          type: string
+        appName:
+          type: string
+        appType:
+          type: string
+    AppAccessStatusUserSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        filter:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAccessStatusUserInfo'
+    AppAccessStatusUserInfo:
+      type: object
+      properties:
+        userId:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        name:
+          type: string
+        countOfProfiles:
+          type: integer
+          format: int32
+        lastLogin:
+          type: string
+          format: date-time
+        userType:
+          type: string
+          enum:
+          - User
+          - Service Identity
+          - AI Identity
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

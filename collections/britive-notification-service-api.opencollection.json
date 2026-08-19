@@ -1,0 +1,272 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Manager Notification Service API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notification Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get notification medium details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums",
+            "params": [
+              {
+                "name": "filter",
+                "value": "name%20eq%20corporate_slack",
+                "type": "query",
+                "description": "Filter query"
+              }
+            ]
+          },
+          "docs": "Get notification medium details"
+        },
+        {
+          "info": {
+            "name": "Create a notification medium",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a notification medium"
+        },
+        {
+          "info": {
+            "name": "Get notification medium details for id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of notification medium"
+              }
+            ]
+          },
+          "docs": "Get notification medium details for id"
+        },
+        {
+          "info": {
+            "name": "Update notification medium details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of notification medium"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update notification medium details"
+        },
+        {
+          "info": {
+            "name": "Delete notification medium",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete notification medium"
+        },
+        {
+          "info": {
+            "name": "Get channels for notification medium id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id/channels",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of notification medium"
+              },
+              {
+                "name": "pageToken",
+                "value": "dGVhbTpDMDYxRkE1UEI=",
+                "type": "query",
+                "description": "Cursor for next page"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Page limit"
+              }
+            ]
+          },
+          "docs": "Get channels for notification medium id"
+        },
+        {
+          "info": {
+            "name": "Check if user is member of channel(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id/channels/ismember",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of notification medium"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check if user is member of channel(s)"
+        },
+        {
+          "info": {
+            "name": "Validate channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id/channels/validate",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of notification medium"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate channels"
+        },
+        {
+          "info": {
+            "name": "Validate channel names",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id/channels/validate/names",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of notification medium"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate channel names"
+        },
+        {
+          "info": {
+            "name": "Get channel details for notification medium id and channel id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/notification-service/notificationmediums/:id/channels/:channelId",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of notification medium"
+              },
+              {
+                "name": "channelId",
+                "value": "C012AB3CD",
+                "type": "path",
+                "description": "Id of slack channel"
+              }
+            ]
+          },
+          "docs": "Get channel details for notification medium id and channel id"
+        },
+        {
+          "info": {
+            "name": "Delete all notification message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/v1/notification-service/notifications"
+          },
+          "docs": "Delete all notification message"
+        },
+        {
+          "info": {
+            "name": "Delete notification message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/v1/notification-service/notifications/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete notification message"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

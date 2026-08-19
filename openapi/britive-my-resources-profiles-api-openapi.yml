@@ -1,0 +1,323 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation My Resources - Profiles API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: My Resources - Profiles
+  description: Manage My Resource Profiles
+paths:
+  /api/resource-manager/my-resources/profiles/{profileId}/resources/{resourceId}/approvalRequest:
+    post:
+      tags:
+      - My Resources - Profiles
+      summary: Creates resource access approval request
+      operationId: resourceApprovalRequest
+      parameters:
+      - name: profileId
+        in: path
+        description: Id of profile to perform checkout
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: Id of resource to perform checkout
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: settings.
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Settings'
+      responses:
+        '201':
+          description: checkout performed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceEvent'
+  /api/resource-manager/my-resources/profiles/{profileId}/resources/{resourceId}/checkout:
+    post:
+      tags:
+      - My Resources - Profiles
+      summary: Perform resource profile checkout
+      operationId: resourceProfileCheckout
+      parameters:
+      - name: profileId
+        in: path
+        description: Id of profile to perform checkout
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: Id of resource to perform checkout
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: settings.
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Settings'
+      responses:
+        '201':
+          description: checkout performed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceAccessStatus'
+  /api/resource-manager/my-resources/profiles/{profileId}/resources/{resourceId}/getApprovers:
+    get:
+      tags:
+      - My Resources - Profiles
+      summary: Get approval details for a resource
+      operationId: getApprovalDetails
+      parameters:
+      - name: profileId
+        in: path
+        description: Id of profile to perform checkout
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: Id of resource to perform checkout
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyEvalResponse'
+        '404':
+          description: Not Found
+  /api/resource-manager/my-resources/{transactionId}/check-in:
+    post:
+      tags:
+      - My Resources - Profiles
+      summary: Perform resource profile check-in
+      operationId: resourceProfileCheckIn
+      parameters:
+      - name: transactionId
+        in: path
+        description: transactionId of checkedout profile
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: checkin performed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceAccessStatus'
+  /api/resource-manager/my-resources/{transactionId}/credentials:
+    post:
+      tags:
+      - My Resources - Profiles
+      summary: Get credentials of checkedout profile
+      operationId: getCredentials
+      parameters:
+      - name: transactionId
+        in: path
+        description: transactionId of checkedout profile
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: templateName
+        description: Name of the template used to render the response
+        required: false
+        schema:
+          type: string
+          example: testTemplate
+      responses:
+        '200':
+          description: checkout performed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credentials'
+  /api/resource-manager/my-resources/{transactionId}/extend:
+    post:
+      tags:
+      - My Resources - Profiles
+      summary: Extend resource session
+      description: Extend resource session
+      operationId: extendResourceSession
+      parameters:
+      - name: transactionId
+        in: path
+        description: transactionId of checkedout profile
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: resource session got extended successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceAccessStatus'
+  /api/resource-manager/my-resources/{transactionId}/templates:
+    get:
+      tags:
+      - My Resources - Profiles
+      summary: Get available response templates for profile checkout
+      operationId: getAvailableTemplates
+      parameters:
+      - name: transactionId
+        in: path
+        description: transactionId of checkedout profile
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: isConsoleEnabled
+        description: flag to filter out the console enabled templates
+        required: false
+        schema:
+          type: boolean
+          example: 'true'
+      - in: query
+        name: showOnUI
+        description: flag to filter out the show_on_ui enabled templates
+        required: false
+        schema:
+          type: boolean
+          example: 'true'
+      responses:
+        '200':
+          description: available template names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/resource-manager/sessions/checkin-all/{userId}:
+    delete:
+      tags:
+      - My Resources - Profiles
+      summary: Check in all active sessions for given user
+      operationId: checkInProfilesForUser
+      parameters:
+      - name: userId
+        in: path
+        description: user Id of the profiles
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resources Checked in successfully
+        '404':
+          description: Not Found
+components:
+  schemas:
+    Credentials:
+      type: string
+    ResourceAccessStatus:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        profileId:
+          type: string
+        resourceId:
+          type: string
+        status:
+          type: string
+        statusMsg:
+          type: string
+        checkoutTime:
+          type: string
+        expirationTime:
+          type: string
+        checkInTime:
+          type: string
+        userId:
+          type: string
+        errorMsg:
+          type: string
+        consoleAccess:
+          type: boolean
+          default: false
+        progAccess:
+          type: boolean
+          default: false
+        showOrigCreds:
+          type: boolean
+          default: false
+        resourceStatus:
+          type: string
+        currentExtensionIndex:
+          type: integer
+    PolicyEvalResponse:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    ResourceEvent:
+      type: object
+      properties:
+        requestId:
+          type: string
+        tenantId:
+          type: string
+        userId:
+          type: string
+        status:
+          type: string
+        statusText:
+          type: string
+    Settings:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        justification:
+          type: string
+        ticketId:
+          type: string
+        ticketType:
+          type: string
+        userOnCall:
+          type: boolean
+          default: false
+        checkoutVariableValues:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: true
+          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
+
+            '
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

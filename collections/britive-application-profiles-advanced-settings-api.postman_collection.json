@@ -1,0 +1,718 @@
+{
+  "item": [
+    {
+      "id": "b36f8c27-e175-4ad0-9e8f-7834a3cc6bb4",
+      "name": "Application Profiles - Advanced Settings",
+      "description": {
+        "content": "Manage Application Profiles Advanced Settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dcd95487-9e1b-4127-a7a3-787774dba1fd",
+          "name": "Create an advanced settings for app profile",
+          "request": {
+            "name": "Create an advanced settings for app profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "advanced-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) papId mapped to Advanced Settings"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43f9ee83-213d-4c1c-9b89-38c3384fb360",
+              "name": "Advanced Settings saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) papId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a02bd4db-365c-4c4e-a007-4bd401c1266b",
+          "name": "Get advanced Settings for given app profile",
+          "request": {
+            "name": "Get advanced Settings for given app profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "advanced-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) papId mapped to Advanced Settings"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "060d87ea-5e84-4faf-992b-ca117a9cecaa",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) papId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2682e21a-4832-4b3c-8b40-b96e262e8555",
+              "name": "Advanced settings not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) papId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51cd5952-f164-4c4c-80f9-cfbaecb0b7bb",
+          "name": "Update advanced settings for app profile",
+          "request": {
+            "name": "Update advanced settings for app profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "advanced-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) papId mapped to Advanced Settings"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7887e978-43c9-433d-a09b-49841a13acfd",
+              "name": "Advanced Settings saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) papId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d2abe91-7f88-4c52-b60c-b81fc4f3f065",
+              "name": "Advanced Settings not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) papId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ab384b9-70c2-44e6-859e-1151d2a9b692",
+          "name": "Delete advanced settings mapped to a app profile",
+          "request": {
+            "name": "Delete advanced settings mapped to a app profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "advanced-settings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) papId mapped to Advanced Settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) id of Advanced Settings mapped to profile"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d54b5d3-0de4-4582-aa73-2e3a8df8965e",
+              "name": "Advanced Settings deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "advanced-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) papId mapped to Advanced Settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) id of Advanced Settings mapped to profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6dad9a1-ac42-4b1e-9a37-4b400f448c1b",
+              "name": "Advanced Settings not found for given entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "advanced-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) papId mapped to Advanced Settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) id of Advanced Settings mapped to profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "894621cb-26fa-45bc-8477-f8a0a070fdad",
+    "name": "Britive Services API Documentation Application Profiles - Advanced Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

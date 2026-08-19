@@ -1,0 +1,133 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Session Attributes API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Session Attributes
+  description: Manage Application Profiles Session Attributes
+paths:
+  /api/paps/{papId}/session-attributes:
+    post:
+      tags:
+      - Application Profiles - Session Attributes
+      summary: Add session attributes to profiles
+      operationId: papSessionAttributes_6
+      parameters:
+      - name: papId
+        description: Profile id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PapSessionAttributeBean'
+            example:
+              attributeSchemaId: 89zu0rj78d0xqs5j2063
+              mappingName: cost-center
+              transitive: 'true'
+              sessionAttributeType: Identity
+              attributeValue: IT
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/paps/{papId}/session-attributes/{id}:
+    delete:
+      tags:
+      - Application Profiles - Session Attributes
+      summary: Delete session attribues of a profile
+      operationId: papSessionAttributes
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content
+    put:
+      tags:
+      - Application Profiles - Session Attributes
+      summary: Update session attribute of a specified profile
+      operationId: papSessionAttributes_3
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PapSessionAttributeBean'
+            example:
+              sessionAttributeType: Static
+              attributeSchemaId: null
+              attributeValue: IT
+              mappingName: pmtest_f
+              transitive: 'false'
+              id: a6xxui9m4ozga7mh1wpd
+      responses:
+        '204':
+          description: No content
+components:
+  schemas:
+    PapSessionAttributeBean:
+      type: object
+      properties:
+        id:
+          type: string
+        attributeSchemaId:
+          type: string
+          description: The id of the identity attribute. This is not required if sessionAttributeType is Static.
+        mappingName:
+          type: string
+          description: The name of the attribute that should be included in the request to AWS, during profile checkout. This name should match the tag name defined in your AWS roles.
+        transitive:
+          type: boolean
+          description: To allow role chaining, set the value to true.
+        sessionAttributeType:
+          type: string
+          enum:
+          - Identity
+          - Static
+        attributeValue:
+          type: string
+          description: If the sessionAttributetype value is Static, then the attributeValue should not be empty.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,678 @@
+{
+  "item": [
+    {
+      "id": "2c94a34a-750d-4b41-a1f4-66d079f8b2f5",
+      "name": "My Devices",
+      "description": {
+        "content": "Manage My Devices",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1fcdff0-13ed-4faa-80da-fcd688001bee",
+          "name": "Get all device profiles associated with the user with an API token",
+          "request": {
+            "name": "Get all device profiles associated with the user with an API token",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "access",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "page number of profile list. Default is 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "size of the request for profile list. Default is 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filters for device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - eq, sw, co"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sorting of device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - asc, desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Search by all fields."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19c48ad3-bc6a-4dd7-8e55-4bfa8af43975",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "deviceName eq \"Mac-1000\""
+                    },
+                    {
+                      "key": "sort",
+                      "value": "appName,ASC"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "searchText=Linux"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2875,\n  \"page\": 5158,\n  \"size\": 5270,\n  \"sort\": \"appName,ASC\",\n  \"filter\": \"appName eq \\\"AWS\\\"\",\n  \"data\": [\n    {\n      \"frequency\": 7905,\n      \"countOfProfiles\": 126,\n      \"papId\": \"id1\",\n      \"environmentId\": \"envId1\",\n      \"appId\": \"appId1\",\n      \"myAccessDetails\": [\n        {\n          \"checkOutTime\": null,\n          \"checkInTime\": \"1960-10-09T12:13:31.899Z\",\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": \"2004-09-15T08:27:28.958Z\",\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": \"string\"\n        },\n        {\n          \"checkOutTime\": \"2001-08-04T01:17:47.383Z\",\n          \"checkInTime\": null,\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": \"1955-12-06T08:12:03.668Z\",\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": \"string\"\n        }\n      ],\n      \"application\": {\n        \"appId\": \"appId1\",\n        \"appName\": \"AWS\",\n        \"applicationType\": \"AWS\",\n        \"consoleAccessError\": \"string\",\n        \"programmaticAccessError\": \"string\",\n        \"description\": null,\n        \"supportsToken\": false,\n        \"showAwsAccountNumber\": true,\n        \"supportsMultipleProfilesCheckoutCli\": false,\n        \"supportsMultipleProfilesCheckoutConsole\": true,\n        \"allowCopyingConsoleUrl\": false,\n        \"displayProgrammaticKeys\": true,\n        \"requiresHierarchicalModel\": false,\n        \"consoleAccess\": true,\n        \"programmaticAccess\": false,\n        \"supportsSharedAccounts\": false\n      },\n      \"environment\": {\n        \"environmentId\": \"envId1\",\n        \"environmentName\": \"demo\",\n        \"environmentDescription\": \"\",\n        \"alternateEnvironmentName\": \"demo\",\n        \"accountId\": \"string\",\n        \"profileEnvironmentProperties\": {}\n      },\n      \"profile\": {\n        \"papId\": \"id1\",\n        \"papName\": \"S3Access\",\n        \"description\": \"\",\n        \"consoleAccess\": false,\n        \"programmaticAccess\": true,\n        \"accessCount\": 1778,\n        \"expirationDuration\": 1878,\n        \"extensionDuration\": 6485,\n        \"extensionLimit\": 2975,\n        \"notificationPriorToExpiration\": 9916,\n        \"extendable\": true\n      }\n    },\n    {\n      \"frequency\": 9435,\n      \"countOfProfiles\": 7219,\n      \"papId\": \"id1\",\n      \"environmentId\": \"envId1\",\n      \"appId\": \"appId1\",\n      \"myAccessDetails\": [\n        {\n          \"checkOutTime\": \"1963-04-10T00:27:48.543Z\",\n          \"checkInTime\": \"1956-11-27T23:22:14.538Z\",\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": null,\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": null\n        },\n        {\n          \"checkOutTime\": null,\n          \"checkInTime\": \"1977-05-23T17:54:42.220Z\",\n          \"status\": \"Allow\",\n          \"approvalValidityTime\": \"2012-10-24T06:33:53.478Z\",\n          \"accessType\": \"CONSOLE\",\n          \"favoriteId\": \"string\"\n        }\n      ],\n      \"application\": {\n        \"appId\": \"appId1\",\n        \"appName\": \"AWS\",\n        \"applicationType\": \"AWS\",\n        \"consoleAccessError\": \"string\",\n        \"programmaticAccessError\": null,\n        \"description\": \"string\",\n        \"supportsToken\": false,\n        \"showAwsAccountNumber\": false,\n        \"supportsMultipleProfilesCheckoutCli\": false,\n        \"supportsMultipleProfilesCheckoutConsole\": true,\n        \"allowCopyingConsoleUrl\": true,\n        \"displayProgrammaticKeys\": true,\n        \"requiresHierarchicalModel\": true,\n        \"consoleAccess\": true,\n        \"programmaticAccess\": false,\n        \"supportsSharedAccounts\": false\n      },\n      \"environment\": {\n        \"environmentId\": \"envId1\",\n        \"environmentName\": \"demo\",\n        \"environmentDescription\": \"\",\n        \"alternateEnvironmentName\": \"demo\",\n        \"accountId\": null,\n        \"profileEnvironmentProperties\": {}\n      },\n      \"profile\": {\n        \"papId\": \"id1\",\n        \"papName\": \"S3Access\",\n        \"description\": \"\",\n        \"consoleAccess\": false,\n        \"programmaticAccess\": false,\n        \"accessCount\": 5259,\n        \"expirationDuration\": 2903,\n        \"extensionDuration\": 3831,\n        \"extensionLimit\": 9211,\n        \"notificationPriorToExpiration\": 9785,\n        \"extendable\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32efb911-3698-4036-8872-c6a217b01c8f",
+          "name": "Check in profile for a device",
+          "request": {
+            "name": "Check in profile for a device",
+            "description": {
+              "content": "Check in a previously checked-out profile session. The `transactionId` is returned by the checkout call. Terminates the active session and revokes any issued credentials.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "access",
+                "devices",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction ID returned by the checkout call"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a54e940c-8f6a-4437-a84d-4ed748d6c1cd",
+              "name": "Check-in completed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    "devices",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction ID returned by the checkout call"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn_abc123\",\n  \"papId\": \"pap_xyz456\",\n  \"appContainerId\": \"app_123\",\n  \"environmentId\": \"env_789\",\n  \"userId\": \"user_001\",\n  \"status\": \"checkedOut\",\n  \"statusText\": \"Checked Out\",\n  \"accessType\": \"CONSOLE\",\n  \"checkedOut\": \"2004-05-17T23:50:53.861Z\",\n  \"checkedIn\": \"1966-12-01T11:57:43.141Z\",\n  \"expiration\": \"1947-08-19T08:24:58.470Z\",\n  \"currentExtensionIndex\": 4482,\n  \"policyConditionEndTime\": \"1953-09-29T22:44:07.700Z\",\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15138fd8-72f9-4e41-88d5-4ac58f9692f3",
+              "name": "Transaction not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    "devices",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction ID returned by the checkout call"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fd2e7ae-dda6-4663-9327-c0b41025443b",
+          "name": "Checkout profile for a device",
+          "request": {
+            "name": "Checkout profile for a device",
+            "description": {
+              "content": "Checkout a profile for a specific device. Use `accessType=DEVICE` to elevate privileges on the device.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "access",
+                ":profileId",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accessType",
+                  "value": "DEVICE",
+                  "description": "Type of access to checkout. `DEVICE` elevates privileges of the device. This is the only supported type.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) Profile (PAP) ID to checkout"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) Device ID within the application"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"justification\": \"<string>\",\n  \"ticketId\": \"<string>\",\n  \"ticketType\": \"<string>\",\n  \"userOnCall\": false,\n  \"checkoutVariableValues\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26124ffe-9cad-453b-9371-6bd88d902f74",
+              "name": "Checkout initiated successfully. Poll `status` until `checkedOut`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessType",
+                      "value": "DEVICE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile (PAP) ID to checkout"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID within the application"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"justification\": \"Access required for incident response\",\n  \"ticketId\": \"INC0001234\",\n  \"ticketType\": \"INCIDENT\",\n  \"userOnCall\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn_abc123\",\n  \"papId\": \"pap_xyz456\",\n  \"appContainerId\": \"app_123\",\n  \"environmentId\": \"env_789\",\n  \"userId\": \"user_001\",\n  \"status\": \"checkedOut\",\n  \"statusText\": \"Checked Out\",\n  \"accessType\": \"CONSOLE\",\n  \"checkedOut\": \"2004-05-17T23:50:53.861Z\",\n  \"checkedIn\": \"1966-12-01T11:57:43.141Z\",\n  \"expiration\": \"1947-08-19T08:24:58.470Z\",\n  \"currentExtensionIndex\": 4482,\n  \"policyConditionEndTime\": \"1953-09-29T22:44:07.700Z\",\n  \"errorMessage\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b6ce261-11a0-4846-8a14-800e7daa25e2",
+              "name": "Access denied or profile policy conditions not met",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessType",
+                      "value": "DEVICE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile (PAP) ID to checkout"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID within the application"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"justification\": \"Access required for incident response\",\n  \"ticketId\": \"INC0001234\",\n  \"ticketType\": \"INCIDENT\",\n  \"userOnCall\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18f8ae75-ef46-4ff4-ae18-968ccc3c59a4",
+              "name": "Profile or environment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "access",
+                    ":profileId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accessType",
+                      "value": "DEVICE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) Profile (PAP) ID to checkout"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID within the application"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"justification\": \"Access required for incident response\",\n  \"ticketId\": \"INC0001234\",\n  \"ticketType\": \"INCIDENT\",\n  \"userOnCall\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4eb97e89-4164-41f7-a887-71a01256d40c",
+    "name": "Britive Services API Documentation My Devices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

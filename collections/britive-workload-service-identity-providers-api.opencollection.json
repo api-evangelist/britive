@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Workload Service Identity Providers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workload Service Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get service identity's identity provider for authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/workload/users/:targetUserId/identity-provider",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path",
+                "description": "The random 20 alphanumeric string id of the service identity user."
+              }
+            ]
+          },
+          "docs": "Get service identity's identity provider for authentication"
+        },
+        {
+          "info": {
+            "name": "Assign service identity's authenticating identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/workload/users/:targetUserId/identity-provider",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path",
+                "description": "The random 20 alphanumeric string id of the service identity user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign service identity's authenticating identity provider"
+        },
+        {
+          "info": {
+            "name": "Delete service identity's assigned identity provider for authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/workload/users/:targetUserId/identity-provider",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path",
+                "description": "The random 20 alphanumeric string id of the service identity user."
+              }
+            ]
+          },
+          "docs": "Revert service identity back to use a static API token for authentication by deleting the user identity provider assignment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

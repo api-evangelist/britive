@@ -1,0 +1,168 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Permissions API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Permissions
+  description: Manage Application Profiles Permissions
+paths:
+  /api/paps/{papId}/permissions:
+    post:
+      tags:
+      - Application Profiles - Permissions
+      summary: Add profile permissions to a specified profile
+      operationId: addOrRemovePapPermissions_1
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppContainerPapPermissionActionHelper'
+            example:
+              op: add
+              permission:
+                papId: n5unkqz5a2jme537o05c
+                name: BDK8Role
+                type: role
+                description: null
+                checkStatus: Success
+                message: ''
+                privileged: 'true'
+                source: britive
+                profilePermissionConstraintsSummaryDTO: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Application Profiles - Permissions
+      summary: Get a list of all permissions assigned to a profile for a specified profile
+      operationId: getPapPermissions_2
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    Size:
+      name: size
+      in: query
+      required: false
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    AppContainerPapPermissionActionHelper:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - add
+          - remove
+        permission:
+          $ref: '#/components/schemas/AppContainerPapPermission'
+    AppContainerPapPermission:
+      type: object
+      properties:
+        name:
+          pattern: ^((?!(\=)|(\-\-)).)*$
+          type: string
+        type:
+          pattern: ^((?!(\=)|(\-\-)).)*$
+          type: string
+        nativeId:
+          type: string
+        appPermissionId:
+          type: integer
+          format: int64
+        description:
+          type: string
+        permissionScopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionScope'
+        privileged:
+          type: boolean
+        source:
+          type: string
+    PermissionScope:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        scopeId:
+          type: integer
+          format: int64
+        parentId:
+          type: string
+        nativeId:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

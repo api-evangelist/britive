@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Shared Signals - Results API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shared Signals - Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query processed shared signals event results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/results",
+            "params": [
+              {
+                "name": "subjectValue",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subject identifier value (e.g. email address)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page. Default 20, max 100."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event direction. Omit to return all."
+              }
+            ]
+          },
+          "docs": "Results are returned in descending order by `receivedAt` (newest first).\nOrdering is fixed to ensure stable pagination with `nextToken`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

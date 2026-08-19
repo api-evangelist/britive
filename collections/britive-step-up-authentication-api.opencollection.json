@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Step Up Authentication API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Step Up Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Perform step up authentication using MFA factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/step-up/authenticate/:factor",
+            "params": [
+              {
+                "name": "factor",
+                "value": "",
+                "type": "path",
+                "description": "MFA factor used"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform step up authentication using MFA factor"
+        },
+        {
+          "info": {
+            "name": "Retrieve tenant step up authentication configuration settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/step-up/configuration"
+          },
+          "docs": "Retrieve tenant step up authentication configuration settings"
+        },
+        {
+          "info": {
+            "name": "Change tenant step up authentication configuration settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/step-up/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change tenant step up authentication configuration settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,387 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Users, Service Identities and AI Identities API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users, Service Identities and AI Identities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user subordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/users/:userId/subordinates",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              }
+            ]
+          },
+          "docs": "Get user subordinates"
+        },
+        {
+          "info": {
+            "name": "Update current user settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/self",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates profile settings (e.g. landing page) for the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get a list of all Identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/users",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeTags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get a list of all Identities"
+        },
+        {
+          "info": {
+            "name": "Create a new user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user"
+        },
+        {
+          "info": {
+            "name": "Get Members of a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/users/by-tag/:tagId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "Id or name of tag"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              }
+            ]
+          },
+          "docs": "Retrieve members of a Tag"
+        },
+        {
+          "info": {
+            "name": "Disable a specified user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/users/disabled-statuses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disable a specified user"
+        },
+        {
+          "info": {
+            "name": "Get details of a specified user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/users/:targetUserId",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a specified user"
+        },
+        {
+          "info": {
+            "name": "Update user details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/users/:targetUserId",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user details"
+        },
+        {
+          "info": {
+            "name": "Delete a specified user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/users/:targetUserId",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specified user"
+        },
+        {
+          "info": {
+            "name": "Disable a specified user tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/users/:targetUserId/disabled-statuses",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disable a specified user tag"
+        },
+        {
+          "info": {
+            "name": "Enable a specified user tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/users/:targetUserId/enabled-statuses",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Enable a specified user tag"
+        },
+        {
+          "info": {
+            "name": "Reset user's Multi-factor Authentication (MFA)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/users/:targetUserId/resetmfa",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reset user's Multi-factor Authentication (MFA)"
+        },
+        {
+          "info": {
+            "name": "Reset user password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/users/:targetUserId/resetpassword",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "If the request parameter sharePasswordToUser is true, the password is shared with the user on their email address. The password is also shared on one or more email addresses specified in the recipients' field."
+        },
+        {
+          "info": {
+            "name": "Get token details associated with identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/users/:targetUserId/tokens",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "apiToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get token details associated with identity"
+        },
+        {
+          "info": {
+            "name": "Create a token for a specified  identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/users/:targetUserId/tokens",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The token has the same privileges assigned to the identity. When this token is created, the old token associated with the identity provider is removed. An identity provider can have only one token at any given time. The generated token is returned only once."
+        },
+        {
+          "info": {
+            "name": "Update the token expiration days for an existing  identity token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/users/:targetUserId/tokens",
+            "params": [
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the token expiration days for an existing  identity token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation My Resources API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "My Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All User Accessible Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources",
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter resource by search text"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter resource by type i.e.frequently used"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all resources that user has access to"
+        },
+        {
+          "info": {
+            "name": "Add Favorite Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/favorites",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Favorite Resources"
+        },
+        {
+          "info": {
+            "name": "Delete Favorite Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/favorites/:favoriteId",
+            "params": [
+              {
+                "name": "favoriteId",
+                "value": "",
+                "type": "path",
+                "description": "favoriteId of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Favorite Resource"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

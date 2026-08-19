@@ -1,0 +1,357 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Manager - Types API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Manager - Types
+  description: Manage Resource Types
+paths:
+  /api/resource-manager/resource-types:
+    get:
+      tags:
+      - Resource Manager - Types
+      summary: Get all resource types
+      operationId: getAllResourceTypes
+      parameters:
+      - in: query
+        name: searchText
+        description: Parameter to filter resource types by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeSummary'
+    post:
+      tags:
+      - Resource Manager - Types
+      summary: Manage resource types
+      operationId: saveResourceType
+      requestBody:
+        description: Information to save resource type
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceTypeDto'
+      responses:
+        '201':
+          description: Resource type saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeDto'
+  /api/resource-manager/resource-types/{id}:
+    delete:
+      tags:
+      - Resource Manager - Types
+      summary: Delete Resource Type
+      description: Delete resource type
+      operationId: deleteResourceType
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource type to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resource type deleted successfully
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager - Types
+      summary: Get resource type by ID
+      operationId: getResourceTypeById
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource type to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource type retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeDto'
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - Resource Manager - Types
+      summary: Update Resource Type
+      description: Update resource type
+      operationId: updateResourceType
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource type to partially update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Information to update resource type
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceTypeDto'
+      responses:
+        '200':
+          description: Resource type updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeDto'
+        '404':
+          description: Not Found
+  /api/resource-manager/resource-types/{id}/icon:
+    get:
+      tags:
+      - Resource Manager - Types
+      summary: Returns icon svg image configured for the resource type
+      description: Returns icon svg image configured for the resource type. The icon image is returned from the cache and any updates to the icon takes time to refresh the cache. The other APIs to get the icon-data or the icon with the updatedTimestamp can be used to get the updated icon without delay.
+      operationId: getResourceTypeIcon
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Icon svg image configured for the resource type
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+              example: public, max-age=0
+        '404':
+          description: The resource type id is not found or icon data is not available
+        '400':
+          description: Bad Request
+  /api/resource-manager/resource-types/{id}/icon-data:
+    delete:
+      tags:
+      - Resource Manager - Types
+      summary: Delete Resource Type Icon Data
+      description: Delete icon data for given resource type
+      operationId: deleteResourceTypeIconData
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource type
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resource type icon deleted successfully
+        '404':
+          description: The resource type id is not found
+        '400':
+          description: Bad Request
+    get:
+      tags:
+      - Resource Manager - Types
+      summary: Get Resource Type Icon Data
+      description: Get resource type icon data in SVG XML format
+      operationId: getResourceTypeIconData
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource type to retrieve icon data
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SVG XML of the icon configured for the resource type
+          content:
+            text/xml:
+              schema:
+                type: string
+        '404':
+          description: The resource type id is not found or icon data is not available
+        '400':
+          description: Bad Request
+    put:
+      tags:
+      - Resource Manager - Types
+      summary: Save Resource Type Icon Data
+      description: Save icon data for given resource type
+      operationId: saveResourceTypeIconData
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource type
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: SVG XML to save the icon data for given resource type
+        required: true
+        content:
+          text/xml:
+            schema:
+              type: string
+      responses:
+        '204':
+          description: Resource type icon saved successfully
+        '404':
+          description: The resource type id is not found
+        '400':
+          description: Bad Request
+  /api/resource-manager/resource-types/{resourceTypeId}/{updatedTimestamp}/icon:
+    get:
+      tags:
+      - Resource Manager - Types
+      summary: Returns icon svg image configured for the resource type
+      description: Returns icon svg image configured for the resource type. The icon image is returned from the cache. The updatedTimestamp value is changed in case any updates to the icon, use the latest updatedTimestamp value to get the updated icon. The APIs that return the resource types have the updated icon URL in the response.
+      operationId: getResourceTypeIconWithTS
+      parameters:
+      - name: resourceTypeId
+        in: path
+        description: ID of the resource type
+        required: true
+        schema:
+          type: string
+      - name: updatedTimestamp
+        in: path
+        description: Timestamp of last update to icon for the resource type icon
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Icon svg image configured for the resource type
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+              example: public, max-age=0
+        '404':
+          description: The resource type id is not found, or invalid updatedTimestamp, or icon data is not available.
+        '400':
+          description: Bad Request
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ParamType:
+      type: string
+      description: Allowed values are 'string', 'password', 'ip-cidr', 'regex-pattern', 'list(comma-separated string)'
+    ResourceTypeDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        resourceTypeId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: integer
+        updatedBy:
+          type: integer
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTypeParam'
+        resourceCount:
+          type: integer
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+    ResourceTypeSummary:
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTypeDto'
+    ResourceTypeParam:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        name:
+          type: string
+        paramType:
+          $ref: '#/components/schemas/ParamType'
+        isMandatory:
+          type: boolean
+          default: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

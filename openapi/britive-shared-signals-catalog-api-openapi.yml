@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Shared Signals - Catalog API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Shared Signals - Catalog
+  description: Manage shared signals catalog data
+paths:
+  /api/ssf/admin/catalog:
+    get:
+      tags:
+      - Shared Signals - Catalog
+      summary: Get supported shared signals events and Britive actions catalog
+      operationId: getSsfCatalog
+      responses:
+        '200':
+          description: Catalog of supported events and actions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsfCatalogResponse'
+components:
+  schemas:
+    SsfCatalogResponse:
+      type: object
+      required:
+      - events
+      - actions
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SsfEventDefinition'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BritiveActionDefinition'
+        britiveEventTypes:
+          type: array
+          description: Britive audit event types available for receiver mappings
+          items:
+            $ref: '#/components/schemas/BritiveEventTypeDefinition'
+    SsfEventDefinition:
+      type: object
+      required:
+      - type
+      - uri
+      - name
+      properties:
+        type:
+          type: string
+          description: CAEP or RISC
+          enum:
+          - CAEP
+          - RISC
+        uri:
+          type: string
+          format: uri
+        name:
+          type: string
+        description:
+          type: string
+    BritiveActionDefinition:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          description: Britive action identifier
+        description:
+          type: string
+    BritiveEventTypeDefinition:
+      type: object
+      required:
+      - type
+      - displayName
+      properties:
+        type:
+          type: string
+          description: EventType.type value (e.g., "user.disable")
+        displayName:
+          type: string
+          description: Human-readable name (e.g., "Disable User")
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

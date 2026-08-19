@@ -1,0 +1,218 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Applications - Access Builder Settings API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Applications - Access Builder Settings
+  description: Manage access builder settings for an application
+paths:
+  /api/apps/{appId}/access-request-settings:
+    post:
+      tags:
+      - Applications - Access Builder Settings
+      summary: Configure access builder settings
+      operationId: createAccessRequestSettings
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessRequestSettingsDto'
+        required: true
+      responses:
+        '200':
+          description: Access request settings successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequestSettingsDto'
+        '404':
+          description: Approval group id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequestSettingsDto'
+    get:
+      tags:
+      - Applications - Access Builder Settings
+      summary: Get access builder settings
+      operationId: getAccessRequestSettings
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved access request settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequestSettingsDto'
+        '404':
+          description: Approval group id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequestSettingsDto'
+    patch:
+      tags:
+      - Applications - Access Builder Settings
+      summary: Update access builder settings
+      operationId: updateAccessRequestSettings
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessRequestSettingsDto'
+        required: true
+      responses:
+        '204':
+          description: Access request settings updated
+        '404':
+          description: application id not found
+components:
+  schemas:
+    AccessRequestSettingsDto:
+      type: object
+      properties:
+        allowAccessRequest:
+          type: boolean
+        associationApprovers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationApproversDto'
+        approvalTimeOut:
+          type: string
+          description: Approval time out value in form of days , hours and minute format
+        profileExpirationTimeout:
+          type: string
+          description: Indicates maximum allowed time for a profile to checkout
+        notificationMediums:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationMediumDto'
+        memberRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberRuleDto'
+    NotificationMediumDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        application:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    ApproversGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        condition:
+          type: string
+          enum:
+          - All
+          - Any
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberDto'
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
+    MemberRuleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+        condition:
+          type: string
+          enum:
+          - Include
+          - Exclude
+    AssociationApproversDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationDto'
+        approversGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApproversGroupDto'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,736 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles
+  description: Manage Application Profiles
+paths:
+  /api/apps/{appContainerId}/paps:
+    post:
+      tags:
+      - Application Profiles
+      summary: Create a profile
+      operationId: createAppContainerPap
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PapBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Application Profiles
+      summary: Get profile details
+      operationId: appContainerPaps_1
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: view
+        in: query
+        schema:
+          type: string
+          default: summary
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/apps/{appContainerId}/paps/clone:
+    post:
+      tags:
+      - Application Profiles
+      summary: Clone application profile details
+      operationId: clonePaps
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ignoreErrors
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: cloneOptionsDto
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CloneOptionsDto'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PapBeanToClone'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PapBean'
+  /api/apps/{appContainerId}/paps/{papId}:
+    delete:
+      tags:
+      - Application Profiles
+      summary: Delete a particular profile
+      operationId: DeleteProfile
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+      - Application Profiles
+      summary: Update profile details of a specified profile
+      operationId: UpdateProfile
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PapBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Application Profiles
+      summary: Update profile details
+      operationId: UpdateAppProfileDetails
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PapBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: false
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+  schemas:
+    AccessPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+    UserTagIntegrityCheck:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        userTagId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Inactive
+          - Active
+        accountIntegrityChecks:
+          type: array
+          items:
+            $ref: '#/components/schemas/PapAccountIntegrityCheck'
+    PapUserBean:
+      type: object
+      properties:
+        accessPeriod:
+          $ref: '#/components/schemas/AccessPeriod'
+        policyId:
+          $ref: '#/components/schemas/JsonNode'
+        approvalStatus:
+          type: string
+          enum:
+          - PENDING
+          - APPROVED
+          - REJECTED
+          - TIMEOUT
+          - WITHDRAWN
+          - DRAFT
+          - NO_ACTION_REQUIRED
+          - CANCELLED
+        approvalPoliciesIds:
+          $ref: '#/components/schemas/JsonNode'
+        mappedAccounts:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - User
+          - ServiceIdentity
+        status:
+          type: string
+          enum:
+          - inactive
+          - active
+        userId:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+    PapScopeBean:
+      type: object
+      properties:
+        papScopeId:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+          - Environment
+          - EnvironmentGroup
+          - ApplicationResource
+        appContainerId:
+          type: integer
+          format: int64
+        value:
+          type: string
+        papId:
+          type: string
+    PapBean:
+      type: object
+      properties:
+        tenantAppId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - inactive
+          - active
+        expirationDuration:
+          type: integer
+          format: int64
+        extendable:
+          type: boolean
+        extensionDuration:
+          type: integer
+          format: int64
+        extensionLimit:
+          type: integer
+          format: int32
+        notificationPriorToExpiration:
+          type: integer
+          format: int64
+        appContainerPapPermissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/AppContainerPapPermission'
+        runtimeEnvironmentId:
+          type: string
+        runtimeTargetAccountId:
+          type: integer
+          format: int64
+        environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+        userTagIntegrityChecks:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagIntegrityCheck'
+        destinationUrl:
+          type: string
+        origin:
+          type: string
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        lastAccessed:
+          type: string
+        createdDate:
+          type: string
+        modifiedDate:
+          type: string
+        approvalStatus:
+          type: string
+          enum:
+          - PENDING
+          - APPROVED
+          - REJECTED
+          - TIMEOUT
+          - WITHDRAWN
+          - DRAFT
+          - NO_ACTION_REQUIRED
+          - CANCELLED
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationPermission'
+        papId:
+          type: string
+        appContainerId:
+          type: string
+        scope:
+          type: array
+          items:
+            $ref: '#/components/schemas/PapScopeBean'
+        integrityChecks:
+          type: array
+          items:
+            $ref: '#/components/schemas/PapPermIntegrityCheckBean'
+        accountIntegrityChecks:
+          type: array
+          items:
+            $ref: '#/components/schemas/PapAccountIntegrityCheckBean'
+        userTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/PapUserTagBean'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/PapUserBean'
+        policyOrderingEnabled:
+          type: boolean
+        delegationEnabled:
+          type: boolean
+    PapAccountIntegrityCheckBean:
+      type: object
+      properties:
+        integrityCheckId:
+          type: integer
+          format: int64
+        appContainerId:
+          type: integer
+          format: int64
+        environmentId:
+          type: string
+        tenantAppId:
+          type: integer
+          format: int64
+        userId:
+          type: string
+        nativeUsername:
+          type: string
+        succeeded:
+          type: boolean
+        message:
+          type: string
+    CloneOptionsDto:
+      required:
+      - cloneOptions
+      - cloneProfileId
+      type: object
+      properties:
+        cloneProfileId:
+          type: string
+        cloneOptions:
+          type: string
+        cloneProfileDetails:
+          type: boolean
+        clonePermissions:
+          type: boolean
+        cloneAssociations:
+          type: boolean
+        clonePolicies:
+          type: boolean
+        cloneSessionAttributes:
+          type: boolean
+    EnvironmentGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        internalParentId:
+          type: string
+        parentId:
+          type: string
+        description:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+        nativeId:
+          type: string
+        nativeParentId:
+          type: string
+    PapAccountIntegrityCheck:
+      type: object
+      properties:
+        message:
+          type: string
+        appContainerId:
+          type: integer
+          format: int64
+        papId:
+          type: integer
+          format: int64
+        userId:
+          type: string
+        accountId:
+          type: integer
+          format: int64
+        succeeded:
+          type: boolean
+        environmentId:
+          type: string
+        tenantAppId:
+          type: integer
+          format: int64
+        integrityCheckId:
+          type: integer
+          format: int64
+        nativeUsername:
+          type: string
+    Environment:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        parentGroup:
+          $ref: '#/components/schemas/EnvironmentGroup'
+        internalParentId:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        nativeId:
+          type: string
+        nativeGroupParentId:
+          type: string
+        parentGroupId:
+          type: string
+    PapBeanToClone:
+      type: object
+      properties:
+        appContainerId:
+          type: integer
+          format: int64
+        expirationDuration:
+          type: integer
+          format: int64
+        extensionDuration:
+          type: integer
+          format: int64
+        notificationPriorToExpiration:
+          type: integer
+          format: int64
+        scope:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        description:
+          type: string
+        extendable:
+          type: boolean
+        extensionLimit:
+          type: integer
+        status:
+          type: string
+        destinationUrl:
+          type: string
+        useDefaultAppUrl:
+          type: boolean
+        excludeAdminFromAdminRelatedCommunication:
+          type: string
+        useDefaultProjectIdForServiceAccount:
+          type: boolean
+    PermissionScope:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        scopeId:
+          type: integer
+          format: int64
+        parentId:
+          type: string
+        nativeId:
+          type: string
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
+    JsonNode:
+      type: object
+    PapPermIntegrityCheckBean:
+      type: object
+      properties:
+        integrityCheckId:
+          type: integer
+          format: int64
+        permissionName:
+          type: string
+        permissionType:
+          type: string
+        succeeded:
+          type: boolean
+        environmentId:
+          type: string
+        scope:
+          type: string
+        message:
+          type: string
+        permissionId:
+          type: integer
+          format: int64
+        appContainerId:
+          type: integer
+          format: int64
+        tenantAppId:
+          type: integer
+          format: int64
+    PapUserTagBean:
+      type: object
+      properties:
+        accessPeriod:
+          $ref: '#/components/schemas/AccessPeriod'
+        policyId:
+          $ref: '#/components/schemas/JsonNode'
+        approvalPoliciesIds:
+          $ref: '#/components/schemas/JsonNode'
+        name:
+          type: string
+        external:
+          type: boolean
+        description:
+          type: string
+        userTagId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Inactive
+          - Active
+        userCount:
+          type: integer
+          format: int32
+        identityProviderId:
+          type: string
+        membershipRule:
+          type: boolean
+    AppContainerPapPermission:
+      type: object
+      properties:
+        name:
+          pattern: ^((?!(\=)|(\-\-)).)*$
+          type: string
+        type:
+          pattern: ^((?!(\=)|(\-\-)).)*$
+          type: string
+        nativeId:
+          type: string
+        appPermissionId:
+          type: integer
+          format: int64
+        description:
+          type: string
+        permissionScopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionScope'
+        privileged:
+          type: boolean
+        source:
+          type: string
+    ApplicationPermissionDefinition:
+      type: object
+      properties:
+        tags:
+          $ref: '#/components/schemas/JsonNode'
+        oldPermissionDefinition:
+          $ref: '#/components/schemas/JsonNode'
+        permissionDefinition:
+          $ref: '#/components/schemas/JsonNode'
+        appPermissionId:
+          type: integer
+          format: int64
+        oldTags:
+          $ref: '#/components/schemas/JsonNode'
+    ApplicationPermission:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        source:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - New
+          - Unregistered
+          - Registered
+          - Updated
+          - Deleted
+          - Re-provision
+        modified:
+          type: string
+          format: date-time
+        permissionScopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionScope'
+        rootPermissionScope:
+          $ref: '#/components/schemas/PermissionScope'
+        hasDeletePermissions:
+          type: boolean
+        extendedAttributes:
+          type: object
+          additionalProperties:
+            type: object
+        builtIn:
+          type: boolean
+        permissionDefinition:
+          $ref: '#/components/schemas/ApplicationPermissionDefinition'
+        nativeId:
+          type: string
+        privileged:
+          type: boolean
+        permissionScopesMap:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/PermissionScope'
+        tenantAppId:
+          type: integer
+          format: int64
+        appPermissionId:
+          type: integer
+          format: int64
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

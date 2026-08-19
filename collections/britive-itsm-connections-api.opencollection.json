@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation ITSM Connections API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ITSM Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of ITSM connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-manager/connections",
+            "params": [
+              {
+                "name": "type",
+                "value": "Jira",
+                "type": "query",
+                "description": "ITSM filter by type."
+              }
+            ]
+          },
+          "docs": "Get list of ITSM connections"
+        },
+        {
+          "info": {
+            "name": "Create an ITSM connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/itsm-manager/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an ITSM connection"
+        },
+        {
+          "info": {
+            "name": "Get ITSM connection for given connection ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-manager/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an ITSM Connection"
+              }
+            ]
+          },
+          "docs": "Get ITSM connection for given connection ID"
+        },
+        {
+          "info": {
+            "name": "Update an ITSM connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/itsm-manager/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an ITSM Connection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an ITSM connection"
+        },
+        {
+          "info": {
+            "name": "Delete an ITSM connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/itsm-manager/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an ITSM Connection"
+              }
+            ]
+          },
+          "docs": "Delete an ITSM connection"
+        },
+        {
+          "info": {
+            "name": "Get ITSM connection references for given connection ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-manager/connections/:connectionId/references",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an ITSM Connection"
+              }
+            ]
+          },
+          "docs": "Get ITSM connection references for given connection ID"
+        },
+        {
+          "info": {
+            "name": "Validate ITSM connection for given connection ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-manager/connections/:connectionId/validate",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "connectionId of an ITSM Connection"
+              }
+            ]
+          },
+          "docs": "Validate ITSM connection for given connection ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

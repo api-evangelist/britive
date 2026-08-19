@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation My Devices API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "My Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all device profiles associated with the user with an API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/devices",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of profile list. Default is 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "size of the request for profile list. Default is 20."
+              },
+              {
+                "name": "filter",
+                "value": "deviceName eq \"Mac-1000\"",
+                "type": "query",
+                "description": "Filters for device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - eq, sw, co"
+              },
+              {
+                "name": "sort",
+                "value": "appName,ASC",
+                "type": "query",
+                "description": "Sorting of device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - asc, desc"
+              },
+              {
+                "name": "searchText",
+                "value": "searchText=Linux",
+                "type": "query",
+                "description": "Search by all fields."
+              }
+            ]
+          },
+          "docs": "Get all device profiles associated with the user with an API token"
+        },
+        {
+          "info": {
+            "name": "Check in profile for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/access/devices/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID returned by the checkout call"
+              }
+            ]
+          },
+          "docs": "Check in a previously checked-out profile session. The `transactionId` is returned by the checkout call. Terminates the active session and revokes any issued credentials.\n"
+        },
+        {
+          "info": {
+            "name": "Checkout profile for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/access/:profileId/devices/:deviceId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile (PAP) ID to checkout"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID within the application"
+              },
+              {
+                "name": "accessType",
+                "value": "",
+                "type": "query",
+                "description": "Type of access to checkout. `DEVICE` elevates privileges of the device. This is the only supported type.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checkout a profile for a specific device. Use `accessType=DEVICE` to elevate privileges on the device.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

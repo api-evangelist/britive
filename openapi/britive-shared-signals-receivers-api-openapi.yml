@@ -1,0 +1,280 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Shared Signals - Receivers API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Shared Signals - Receivers
+  description: Manage shared signals receivers
+paths:
+  /api/ssf/admin/receivers:
+    post:
+      tags:
+      - Shared Signals - Receivers
+      summary: Create a shared signals receiver
+      operationId: createSsfReceiver
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReceiverRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receiver'
+    get:
+      tags:
+      - Shared Signals - Receivers
+      summary: List configured shared signals receivers for tenant
+      operationId: listSsfReceivers
+      responses:
+        '200':
+          description: Receivers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListReceiversResponse'
+  /api/ssf/admin/receivers/{receiverId}:
+    parameters:
+    - in: path
+      name: receiverId
+      required: true
+      schema:
+        type: string
+    delete:
+      tags:
+      - Shared Signals - Receivers
+      summary: Delete a shared signals receiver
+      operationId: deleteSsfReceiver
+      responses:
+        '204':
+          description: Deleted
+    get:
+      tags:
+      - Shared Signals - Receivers
+      summary: Get a shared signals receiver
+      operationId: getSsfReceiver
+      responses:
+        '200':
+          description: Receiver
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receiver'
+    patch:
+      tags:
+      - Shared Signals - Receivers
+      summary: Update a shared signals receiver
+      operationId: updateSsfReceiver
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateReceiverRequest'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receiver'
+  /api/ssf/admin/receivers/{receiverId}/mappings:
+    parameters:
+    - in: path
+      name: receiverId
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Shared Signals - Receivers
+      summary: Get event mappings for a shared signals receiver
+      operationId: getReceiverMappings
+      responses:
+        '200':
+          description: Mappings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiverMappings'
+    put:
+      tags:
+      - Shared Signals - Receivers
+      summary: Replace event mappings for a shared signals receiver
+      operationId: putReceiverMappings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutReceiverMappingsRequest'
+      responses:
+        '200':
+          description: Replaced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiverMappings'
+components:
+  schemas:
+    CreateReceiverRequest:
+      type: object
+      required:
+      - receiverUrl
+      properties:
+        receiverUrl:
+          type: string
+          format: uri
+          description: URL of the external receiver that will receive outbound SET events.
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+          default: true
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Custom HTTP headers to include in outbound requests.
+
+            All values are encrypted before storage.
+
+            '
+    ReceiverEventMapping:
+      type: object
+      required:
+      - britiveEventType
+      - eventUri
+      properties:
+        britiveEventType:
+          type: string
+          description: 'Britive audit event type identifier (e.g., "user.disable",
+
+            "admin.access.checkin.all"). Must match a type returned by
+
+            /api/ssf/admin/catalog britiveEventTypes.
+
+            '
+        eventUri:
+          type: string
+          format: uri
+          description: 'CAEP or RISC event URI to include in the outbound SET
+
+            (e.g., "https://schemas.openid.net/secevent/risc/event-type/account-disabled").
+
+            '
+    Receiver:
+      type: object
+      required:
+      - receiverId
+      - receiverUrl
+      - enabled
+      - createdAt
+      - updatedAt
+      properties:
+        receiverId:
+          type: string
+        receiverUrl:
+          type: string
+          format: uri
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Custom HTTP headers sent with outbound SET events.
+
+            Values are always returned masked ("******") in API responses.
+
+            Stored encrypted at rest using tenant encryption keys.
+
+            '
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ReceiverMappings:
+      type: object
+      required:
+      - receiverId
+      - mappings
+      - updatedAt
+      properties:
+        receiverId:
+          type: string
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiverEventMapping'
+        updatedAt:
+          type: string
+          format: date-time
+    UpdateReceiverRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        receiverUrl:
+          type: string
+          format: uri
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Replaces all headers. All values are encrypted before storage.
+
+            '
+    PutReceiverMappingsRequest:
+      type: object
+      required:
+      - mappings
+      properties:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiverEventMapping'
+    ListReceiversResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receiver'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

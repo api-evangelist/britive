@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Profile Requests - Managed Permissions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profile Requests - Managed Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Britive-managed permission for a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/profile-requests/apps/:appId/britive-managed/permissions",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Britive-managed permission for a profile"
+        },
+        {
+          "info": {
+            "name": "Validate permission from Access Broker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/profile-requests/apps/:appId/britive-managed/permissions/validate",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate permission from Access Broker"
+        },
+        {
+          "info": {
+            "name": "Validate role permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/profile-requests/apps/:appId/britive-managed/permissions/:permId/findings",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              },
+              {
+                "name": "permId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the permission"
+              }
+            ]
+          },
+          "docs": "Validate role permission"
+        },
+        {
+          "info": {
+            "name": "Get details of a Britive-managed permission for a specific permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/profile-requests/apps/:appId/britive-managed/permissions/:permissionId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application."
+              },
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application."
+              }
+            ]
+          },
+          "docs": "Get details of a Britive-managed permission for a specific permission"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

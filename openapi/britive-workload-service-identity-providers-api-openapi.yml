@@ -1,0 +1,177 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Workload Service Identity Providers API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Workload Service Identity Providers
+  description: Manage service identity association to identity provider
+paths:
+  /api/workload/users/{targetUserId}/identity-provider:
+    post:
+      tags:
+      - Workload Service Identity Providers
+      summary: Assign service identity's authenticating identity provider
+      operationId: assignIdentityProvider
+      parameters:
+      - name: targetUserId
+        in: path
+        description: The random 20 alphanumeric string id of the service identity user.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DesignateIdpRequest'
+        required: true
+      responses:
+        '200':
+          description: Successfully assigned identity provider to service identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDesignatedIdp'
+    delete:
+      tags:
+      - Workload Service Identity Providers
+      summary: Delete service identity's assigned identity provider for authentication
+      description: Revert service identity back to use a static API token for authentication by deleting the user identity provider assignment.
+      operationId: removeAssignedIdentityProvider
+      parameters:
+      - name: targetUserId
+        in: path
+        description: The random 20 alphanumeric string id of the service identity user.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user identity provider assignment deleted.
+    get:
+      tags:
+      - Workload Service Identity Providers
+      summary: Get service identity's identity provider for authentication
+      operationId: getUserIdentityProvider
+      parameters:
+      - name: targetUserId
+        in: path
+        description: The random 20 alphanumeric string id of the service identity user.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success retrieving the service identity's authenticating identity provider.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDesignatedIdp'
+components:
+  schemas:
+    MappingAttribute:
+      type: object
+      properties:
+        attrId:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+      description: mapped custom attribute value.
+    UserDesignatedIdp:
+      required:
+      - idp
+      - mappingAttributes
+      - tokenDuration
+      type: object
+      properties:
+        idp:
+          $ref: '#/components/schemas/IdentityProvider'
+        tokenDuration:
+          type: integer
+          description: duration in seconds the identity provider tokens issued for the service identity is valid for after initial token verification.
+          format: int32
+        mappingAttributes:
+          type: array
+          description: mapped custom attribute values.
+          items:
+            $ref: '#/components/schemas/MappingAttribute'
+      description: model of the workload identity provider currently assigned to a service identity
+    DesignateIdpRequest:
+      required:
+      - idpId
+      - mappingAttributes
+      - tokenDuration
+      type: object
+      properties:
+        idpId:
+          type: integer
+          description: the identifier of the identity provider to assign to the service identity
+          format: int32
+        tokenDuration:
+          type: integer
+          description: duration in seconds the identity provider tokens issued for the service identity is valid for after initial token verification.
+          format: int32
+        mappingAttributes:
+          type: array
+          description: mapped custom attribute values.
+          items:
+            $ref: '#/components/schemas/MappingAttribute'
+      description: The existing identity provider to update.
+    IdentityProvider:
+      required:
+      - idpType
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        attributesMap:
+          type: array
+          description: Provider's identity attributes mapped to Britive service identity custom attributes.
+          items:
+            $ref: '#/components/schemas/AttributeMap'
+        validationWindow:
+          type: integer
+          description: The amount of time in seconds, after the token has been issued/signed, Britive will attempt to validate the unverified token.  Outside this window, token validation will fail.
+          format: int32
+        idpType:
+          type: string
+      discriminator:
+        propertyName: idpType
+    AttributeMap:
+      required:
+      - idpAttr
+      - userAttr
+      type: object
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

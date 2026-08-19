@@ -1,0 +1,1524 @@
+{
+  "item": [
+    {
+      "id": "5131376c-c7f3-4c14-ae56-871f7ce06df6",
+      "name": "Identity Providers",
+      "description": {
+        "content": "Manage identity providers and settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "083d26d0-6505-402e-87fd-cb711e46dab0",
+          "name": "Create a identity provider",
+          "request": {
+            "name": "Create a identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8aafa5db-e970-4a14-b240-e3050939eba5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"N@m;\",\n  \"description\": \"string\",\n  \"type\": \"SAML\",\n  \"scimProvider\": \"Azure\",\n  \"ssoProvider\": \"Generic\",\n  \"scimEnabled\": false,\n  \"samlMetadata\": {\n    \"key_0\": \"string\"\n  },\n  \"ssoConfig\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"mfaEnabled\": true,\n  \"mfaRootUserEnabled\": false,\n  \"apiToken\": {},\n  \"userAttributeScimMappings\": [\n    {\n      \"attributeId\": \"string\",\n      \"scimAttributeName\": \"string\",\n      \"attributeName\": \"string\",\n      \"identityProviderId\": \"string\",\n      \"builtIn\": false\n    },\n    {\n      \"attributeId\": \"string\",\n      \"scimAttributeName\": \"string\",\n      \"attributeName\": \"string\",\n      \"identityProviderId\": \"string\",\n      \"builtIn\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b13ab70-e3a7-4874-b038-2de9ce763fd8",
+          "name": "Get a list of all identity providers",
+          "request": {
+            "name": "Get a list of all identity providers",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "metadata",
+                  "value": "true"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43dbb10a-1c07-4fb5-8e26-499d7e7f0316",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metadata",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"6\\\\>\\\\\",\n    \"description\": \"string\",\n    \"type\": \"SAML\",\n    \"scimProvider\": \"Generic\",\n    \"ssoProvider\": \"Azure\",\n    \"scimEnabled\": true,\n    \"samlMetadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"ssoConfig\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"mfaEnabled\": true,\n    \"mfaRootUserEnabled\": false,\n    \"apiToken\": {},\n    \"userAttributeScimMappings\": [\n      {\n        \"attributeId\": \"string\",\n        \"scimAttributeName\": \"string\",\n        \"attributeName\": \"string\",\n        \"identityProviderId\": \"string\",\n        \"builtIn\": true\n      },\n      {\n        \"attributeId\": \"string\",\n        \"scimAttributeName\": \"string\",\n        \"attributeName\": \"string\",\n        \"identityProviderId\": \"string\",\n        \"builtIn\": true\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"?atFt'\",\n    \"description\": \"string\",\n    \"type\": \"SAML\",\n    \"scimProvider\": \"Azure\",\n    \"ssoProvider\": \"Azure\",\n    \"scimEnabled\": false,\n    \"samlMetadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"ssoConfig\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"mfaEnabled\": true,\n    \"mfaRootUserEnabled\": true,\n    \"apiToken\": {},\n    \"userAttributeScimMappings\": [\n      {\n        \"attributeId\": \"string\",\n        \"scimAttributeName\": \"string\",\n        \"attributeName\": \"string\",\n        \"identityProviderId\": \"string\",\n        \"builtIn\": true\n      },\n      {\n        \"attributeId\": \"string\",\n        \"scimAttributeName\": \"string\",\n        \"attributeName\": \"string\",\n        \"identityProviderId\": \"string\",\n        \"builtIn\": false\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22627c49-6d7d-41a2-a35f-08732c54bfe6",
+          "name": "Get password policy details",
+          "request": {
+            "name": "Get password policy details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                "password-policy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f504580-002c-409a-818f-f6b30402ceda",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    "password-policy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"minLength\": 4218,\n  \"requiredUpperCase\": true,\n  \"requiredLowerCase\": false,\n  \"requiredNumbers\": false,\n  \"requiredSymbols\": true,\n  \"passwordExpirationPolicy\": {\n    \"days\": 5683,\n    \"enabled\": true\n  },\n  \"accountLockoutPolicy\": {\n    \"minAttempts\": 2334,\n    \"lockoutDurationInMinutes\": 6722\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02f45a72-97ab-4f44-86eb-1ef938121bb5",
+          "name": "Update password policy details",
+          "request": {
+            "name": "Update password policy details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                "password-policy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"minLength\": \"<integer>\",\n  \"requiredUpperCase\": \"<boolean>\",\n  \"requiredLowerCase\": \"<boolean>\",\n  \"requiredNumbers\": \"<boolean>\",\n  \"requiredSymbols\": \"<boolean>\",\n  \"passwordExpirationPolicy\": {\n    \"days\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"accountLockoutPolicy\": {\n    \"minAttempts\": \"<integer>\",\n    \"lockoutDurationInMinutes\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9424e64-0965-45a5-8dd5-263b4858f00e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    "password-policy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"minLength\": \"<integer>\",\n  \"requiredUpperCase\": \"<boolean>\",\n  \"requiredLowerCase\": \"<boolean>\",\n  \"requiredNumbers\": \"<boolean>\",\n  \"requiredSymbols\": \"<boolean>\",\n  \"passwordExpirationPolicy\": {\n    \"days\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"accountLockoutPolicy\": {\n    \"minAttempts\": \"<integer>\",\n    \"lockoutDurationInMinutes\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"minLength\": \"<integer>\",\n  \"requiredUpperCase\": \"<boolean>\",\n  \"requiredLowerCase\": \"<boolean>\",\n  \"requiredNumbers\": \"<boolean>\",\n  \"requiredSymbols\": \"<boolean>\",\n  \"passwordExpirationPolicy\": {\n    \"days\": \"<integer>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"accountLockoutPolicy\": {\n    \"minAttempts\": \"<integer>\",\n    \"lockoutDurationInMinutes\": \"<integer>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c399be9-6b9f-49bc-84ae-25cd8933e432",
+          "name": "Get identity provider types",
+          "request": {
+            "name": "Get identity provider types",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fddf114c-8d48-4a5f-ac9a-ee9b6a911ccb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af4e9eca-d35d-4d67-be4d-527e4ee7ba7f",
+          "name": "Delete a specified identity provider",
+          "request": {
+            "name": "Delete a specified identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46dcc073-3fa2-49d6-ab5b-8d7b6c3cbd4e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22480ec9-9653-46ac-a73c-1d0deb65f1a2",
+          "name": "Get details for a specified identity provider",
+          "request": {
+            "name": "Get details for a specified identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d43293cc-905e-4ecc-8786-8661cce81c76",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"n)n\",\n  \"description\": \"string\",\n  \"type\": \"DEFAULT\",\n  \"scimProvider\": \"Generic\",\n  \"ssoProvider\": \"Generic\",\n  \"scimEnabled\": false,\n  \"samlMetadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"ssoConfig\": {\n    \"key_0\": \"string\"\n  },\n  \"mfaEnabled\": true,\n  \"mfaRootUserEnabled\": false,\n  \"apiToken\": {\n    \"name\": \"string\",\n    \"id\": \"string\",\n    \"type\": \"ServiceIdentity\",\n    \"status\": \"Inactive\",\n    \"token\": \"string\",\n    \"createdOn\": \"1982-02-16T08:29:26.331Z\",\n    \"assignedTo\": {\n      \"name\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"ServiceIdentity\",\n      \"attributes\": [\n        {\n          \"id\": 5750,\n          \"attributeValue\": \"string\",\n          \"attributeId\": \"string\",\n          \"attributeName\": \"string\"\n        },\n        {\n          \"id\": 8550,\n          \"attributeValue\": \"string\",\n          \"attributeId\": \"string\",\n          \"attributeName\": \"string\"\n        }\n      ],\n      \"external\": true,\n      \"description\": \"string\",\n      \"created\": \"1984-11-03T20:19:26.807Z\",\n      \"status\": \"active\",\n      \"userId\": 6267,\n      \"tenant\": {\n        \"type\": \"string\",\n        \"billingAddress\": \"string\",\n        \"businessContactNo\": \"string\",\n        \"technicalContactNo\": \"string\",\n        \"pricingTier\": \"string\",\n        \"rootUserId\": \"string\",\n        \"namespace\": \"string\",\n        \"created\": {\n          \"user\": \"string\",\n          \"date\": \"2021-08-08T18:43:03.083Z\",\n          \"action\": \"string\"\n        },\n        \"status\": \"string\",\n        \"tenantId\": 6300,\n        \"companyName\": \"string\",\n        \"modified\": {\n          \"user\": \"string\",\n          \"date\": \"2021-06-01T22:48:12.799Z\",\n          \"action\": \"string\"\n        },\n        \"verified\": {\n          \"user\": \"string\",\n          \"date\": \"2025-03-16T11:22:51.912Z\",\n          \"action\": \"string\"\n        }\n      },\n      \"tenantId\": 9051,\n      \"email\": \"string\",\n      \"userTags\": [\n        {\n          \"name\": \"string\",\n          \"external\": true,\n          \"users\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            }\n          ],\n          \"description\": \"string\",\n          \"userTagId\": \"string\",\n          \"created\": \"2007-06-01T03:42:20.293Z\",\n          \"status\": \"Inactive\",\n          \"modified\": \"1996-10-23T04:17:10.384Z\",\n          \"userCount\": 9944,\n          \"identityProviderId\": \"string\",\n          \"identityProvider\": {\n            \"idpType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"attributesMap\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validationWindow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"membershipRule\": false\n        },\n        {\n          \"name\": \"string\",\n          \"external\": false,\n          \"users\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            }\n          ],\n          \"description\": \"string\",\n          \"userTagId\": \"string\",\n          \"created\": \"2014-10-23T08:14:24.214Z\",\n          \"status\": \"Active\",\n          \"modified\": \"2001-10-28T04:28:52.232Z\",\n          \"userCount\": 9807,\n          \"identityProviderId\": \"string\",\n          \"identityProvider\": {\n            \"idpType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"attributesMap\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validationWindow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"membershipRule\": true\n        }\n      ],\n      \"username\": \"string\",\n      \"mobile\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"phone\": \"string\",\n      \"modified\": \"2011-12-24T23:28:44.105Z\",\n      \"passwordChars\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authnDirUsername\": \"string\",\n      \"identityProvider\": {\n        \"idpType\": \"string\",\n        \"name\": \"string\",\n        \"id\": 7937,\n        \"description\": \"string\",\n        \"attributesMap\": [\n          {\n            \"idpAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"idpAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"validationWindow\": 7677\n      },\n      \"createdBy\": 5575,\n      \"modifiedBy\": 3056,\n      \"attributesMap\": {\n        \"key_0\": [\n          {\n            \"id\": 5851,\n            \"attributeValue\": \"string\",\n            \"attributeId\": \"string\",\n            \"attributeName\": \"string\"\n          },\n          {\n            \"id\": 4348,\n            \"attributeValue\": \"string\",\n            \"attributeId\": \"string\",\n            \"attributeName\": \"string\"\n          }\n        ]\n      },\n      \"externalId\": \"string\",\n      \"adminRoles\": [\n        {\n          \"name\": \"string\",\n          \"adminRoleId\": 1928,\n          \"authority\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"adminRoleId\": 7642,\n          \"authority\": \"string\"\n        }\n      ],\n      \"lastLogin\": \"2021-04-02T12:40:58.144Z\",\n      \"canChangeOrResetPassword\": true\n    },\n    \"expiresOn\": \"1970-11-08T22:28:57.608Z\",\n    \"tokenExpirationDays\": 9876,\n    \"clearTextToken\": \"string\",\n    \"createdBy\": {\n      \"name\": \"string\",\n      \"id\": \"string\",\n      \"type\": \"ServiceIdentity\",\n      \"attributes\": [\n        {\n          \"id\": 91,\n          \"attributeValue\": \"string\",\n          \"attributeId\": \"string\",\n          \"attributeName\": \"string\"\n        },\n        {\n          \"id\": 9929,\n          \"attributeValue\": \"string\",\n          \"attributeId\": \"string\",\n          \"attributeName\": \"string\"\n        }\n      ],\n      \"external\": true,\n      \"description\": \"string\",\n      \"created\": \"1962-03-08T19:09:32.760Z\",\n      \"status\": \"inactive\",\n      \"userId\": 9935,\n      \"tenant\": {\n        \"type\": \"string\",\n        \"billingAddress\": \"string\",\n        \"businessContactNo\": \"string\",\n        \"technicalContactNo\": \"string\",\n        \"pricingTier\": \"string\",\n        \"rootUserId\": \"string\",\n        \"namespace\": \"string\",\n        \"created\": {\n          \"user\": \"string\",\n          \"date\": \"1974-09-23T11:43:10.891Z\",\n          \"action\": \"string\"\n        },\n        \"status\": \"string\",\n        \"tenantId\": 1476,\n        \"companyName\": \"string\",\n        \"modified\": {\n          \"user\": \"string\",\n          \"date\": \"2004-02-08T04:00:01.101Z\",\n          \"action\": \"string\"\n        },\n        \"verified\": {\n          \"user\": \"string\",\n          \"date\": \"2013-11-07T19:33:00.499Z\",\n          \"action\": \"string\"\n        }\n      },\n      \"tenantId\": 9860,\n      \"email\": \"string\",\n      \"userTags\": [\n        {\n          \"name\": \"string\",\n          \"external\": false,\n          \"users\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            }\n          ],\n          \"description\": \"string\",\n          \"userTagId\": \"string\",\n          \"created\": \"1972-03-20T00:00:56.022Z\",\n          \"status\": \"Inactive\",\n          \"modified\": \"1962-04-01T14:55:35.839Z\",\n          \"userCount\": 1612,\n          \"identityProviderId\": \"string\",\n          \"identityProvider\": {\n            \"idpType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"attributesMap\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validationWindow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"membershipRule\": true\n        },\n        {\n          \"name\": \"string\",\n          \"external\": false,\n          \"users\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n            }\n          ],\n          \"description\": \"string\",\n          \"userTagId\": \"string\",\n          \"created\": \"1993-12-03T04:36:12.472Z\",\n          \"status\": \"Active\",\n          \"modified\": \"2026-07-03T15:43:26.005Z\",\n          \"userCount\": 3365,\n          \"identityProviderId\": \"string\",\n          \"identityProvider\": {\n            \"idpType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"attributesMap\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validationWindow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"membershipRule\": true\n        }\n      ],\n      \"username\": \"string\",\n      \"mobile\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"phone\": \"string\",\n      \"modified\": \"2003-06-04T07:09:03.964Z\",\n      \"passwordChars\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authnDirUsername\": \"string\",\n      \"identityProvider\": {\n        \"idpType\": \"string\",\n        \"name\": \"string\",\n        \"id\": 391,\n        \"description\": \"string\",\n        \"attributesMap\": [\n          {\n            \"idpAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"idpAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"userAttr\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"validationWindow\": 2732\n      },\n      \"createdBy\": 6299,\n      \"modifiedBy\": 8583,\n      \"attributesMap\": {\n        \"key_0\": [\n          {\n            \"id\": 4786,\n            \"attributeValue\": \"string\",\n            \"attributeId\": \"string\",\n            \"attributeName\": \"string\"\n          },\n          {\n            \"id\": 5223,\n            \"attributeValue\": \"string\",\n            \"attributeId\": \"string\",\n            \"attributeName\": \"string\"\n          }\n        ]\n      },\n      \"externalId\": \"string\",\n      \"adminRoles\": [\n        {\n          \"name\": \"string\",\n          \"adminRoleId\": 5641,\n          \"authority\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"adminRoleId\": 4011,\n          \"authority\": \"string\"\n        }\n      ],\n      \"lastLogin\": \"1946-10-30T20:42:44.354Z\",\n      \"canChangeOrResetPassword\": true\n    },\n    \"lastAccessed\": \"2003-05-15T16:17:15.042Z\"\n  },\n  \"userAttributeScimMappings\": [\n    {\n      \"attributeId\": \"string\",\n      \"scimAttributeName\": \"string\",\n      \"attributeName\": \"string\",\n      \"identityProviderId\": \"string\",\n      \"builtIn\": false\n    },\n    {\n      \"attributeId\": \"string\",\n      \"scimAttributeName\": \"string\",\n      \"attributeName\": \"string\",\n      \"identityProviderId\": \"string\",\n      \"builtIn\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4b02094-6dbd-4855-85ed-9e8d5d6280c9",
+          "name": "Update specified identity provider's details",
+          "request": {
+            "name": "Update specified identity provider's details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scimProvider\": \"<string>\",\n  \"ssoProvider\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dcac8048-9316-4c14-b18c-12650d4ada42",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scimProvider\": \"<string>\",\n  \"ssoProvider\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6c87519-299f-4878-b6ca-c57973d5852a",
+          "name": "Enable or disable Multi-factor Authentication (MFA) for users",
+          "request": {
+            "name": "Enable or disable Multi-factor Authentication (MFA) for users",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id",
+                "mfa"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mfaEnabled\": \"<boolean>\",\n  \"mfaRootUserEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "04a9c9c8-4933-4624-bb6b-ff247d67df2c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id",
+                    "mfa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mfaEnabled\": \"<boolean>\",\n  \"mfaRootUserEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a9bde20-d340-40d1-8aaa-3b7e5c18f1e4",
+          "name": "Adds SCIM mappings for an identity provider",
+          "request": {
+            "name": "Adds SCIM mappings for an identity provider",
+            "description": {
+              "content": "When new SCIM mappings are added, the existing SCIM mappings for the identity attribute are deleted, if they are already defined.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id",
+                "scim-attribute-mappings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"attributeId\": \"<string>\",\n    \"scimAttributeName\": \"<string>\",\n    \"attributeName\": \"<string>\"\n  },\n  {\n    \"op\": \"<string>\",\n    \"attributeId\": \"<string>\",\n    \"scimAttributeName\": \"<string>\",\n    \"attributeName\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e46c66c3-a0bf-48c3-8079-36eee01f9194",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id",
+                    "scim-attribute-mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"attributeId\": \"<string>\",\n    \"scimAttributeName\": \"<string>\",\n    \"attributeName\": \"<string>\"\n  },\n  {\n    \"op\": \"<string>\",\n    \"attributeId\": \"<string>\",\n    \"scimAttributeName\": \"<string>\",\n    \"attributeName\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6afb8cfd-1b40-47f0-9086-fcde1707e000",
+          "name": "Create a token used for SCIM provisioning of users and groups",
+          "request": {
+            "name": "Create a token used for SCIM provisioning of users and groups",
+            "description": {
+              "content": "When this token is created, the old token associated with the identity provider is removed. An identity provider can have only one token at any given time. The generated token is returned only once.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id",
+                "scim-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tokenExpirationDays\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "920dcf69-15bd-402d-bd81-29931d0d1073",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id",
+                    "scim-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenExpirationDays\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"expiresOn\": \"1957-07-15T14:25:30.141Z\",\n  \"createdOn\": \"2010-06-14T07:30:48.634Z\",\n  \"type\": \"DEFAULT\",\n  \"tokenExpirationDays\": 5556,\n  \"status\": \"Inactive\",\n  \"lastAccessed\": \"1999-10-30T12:01:26.314Z\",\n  \"assignedTo\": \"string\",\n  \"token\": \"string\",\n  \"createdBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3a11556-c98c-4f79-9852-000496377e31",
+          "name": "Get SCIM token details",
+          "request": {
+            "name": "Get SCIM token details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id",
+                "scim-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39af25df-6cf9-42bf-af14-5e759ad3e88f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id",
+                    "scim-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"expiresOn\": \"1957-07-15T14:25:30.141Z\",\n  \"createdOn\": \"2010-06-14T07:30:48.634Z\",\n  \"type\": \"DEFAULT\",\n  \"tokenExpirationDays\": 5556,\n  \"status\": \"Inactive\",\n  \"lastAccessed\": \"1999-10-30T12:01:26.314Z\",\n  \"assignedTo\": \"string\",\n  \"token\": \"string\",\n  \"createdBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edd35056-f894-4105-96ef-b54744b9301a",
+          "name": "Update token expiration days for the existing SCIM token of an identity provider",
+          "request": {
+            "name": "Update token expiration days for the existing SCIM token of an identity provider",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "identity-providers",
+                ":id",
+                "scim-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tokenExpirationDays\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "655403e1-e64f-4a66-b4a4-7ef46327b520",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "identity-providers",
+                    ":id",
+                    "scim-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenExpirationDays\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4362c451-cd5f-4112-a1dd-ebaf036e5fed",
+    "name": "Britive Services API Documentation Identity Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

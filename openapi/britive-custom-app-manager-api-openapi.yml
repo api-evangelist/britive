@@ -1,0 +1,139 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Custom App Manager API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Custom App Manager
+  description: Creates an app using custom template and other operations for managing the template.
+paths:
+  /api/generic-apps:
+    post:
+      tags:
+      - Custom App Manager
+      summary: Creates a custom app
+      description: This endpoint is used to create an app based on previously uploaded template file.
+      operationId: createApp
+      requestBody:
+        description: The create custom app request.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGenericAppRequest'
+      responses:
+        '200':
+          description: Successful custom app creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateGenericAppResponse'
+  /api/generic-apps/templates:
+    get:
+      tags:
+      - Custom App Manager
+      summary: Lists all templates with option to query for provisioned status
+      description: This API is used to list all templates with option to query for provisioned status
+      operationId: listTemplates
+      parameters:
+      - name: provisioned
+        in: query
+        description: Filter templates by provisioned status
+        required: false
+        schema:
+          $ref: '#/components/schemas/ProvisionedStatus'
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppTemplateListItem'
+  /api/generic-apps/templates/{template_name}/icon:
+    get:
+      tags:
+      - Custom App Manager
+      summary: Returns icon svg image configured for the template
+      description: This API is used to returns icon svg image configured for the template
+      operationId: getIconSvg
+      parameters:
+      - name: template_name
+        in: path
+        description: Name of the template
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Icon svg image configured for the template
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+              example: public, max-age=0
+components:
+  schemas:
+    AppTemplateListItem:
+      type: object
+      properties:
+        templateName:
+          type: string
+        templateDescription:
+          type: string
+        integration:
+          type: string
+        version:
+          type: string
+        requiresScanningForProfiles:
+          type: boolean
+        iconUrl:
+          type: string
+        provisioned:
+          $ref: '#/components/schemas/ProvisionedStatus'
+    ProvisionedStatus:
+      type: string
+      enum:
+      - PENDING
+      - SUCCESS
+      - FAILED
+    CreateGenericAppRequest:
+      type: object
+      properties:
+        templateName:
+          description: The template name of the custom app template previously uploaded
+          type: string
+        catalogAppDisplayName:
+          description: The application display name.
+          type: string
+      required:
+      - templateName
+      - catalogAppDisplayName
+    CreateGenericAppResponse:
+      type: object
+      properties:
+        appContainerId:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,478 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation My Devices API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: My Devices
+  description: Manage My Devices
+paths:
+  /api/access/devices:
+    get:
+      tags:
+      - My Devices
+      summary: Get all device profiles associated with the user with an API token
+      operationId: getMyDevices
+      parameters:
+      - name: page
+        in: query
+        description: page number of profile list. Default is 0
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        description: size of the request for profile list. Default is 20.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: filter
+        in: query
+        description: Filters for device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - eq, sw, co
+        required: false
+        schema:
+          type: string
+        example: deviceName eq "Mac-1000"
+      - name: sort
+        in: query
+        description: Sorting of device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - asc, desc
+        required: false
+        schema:
+          type: string
+        example: appName,ASC
+      - name: searchText
+        in: query
+        description: Search by all fields.
+        required: false
+        schema:
+          type: string
+        example: searchText=Linux
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyAccessSummary'
+  /api/access/devices/{transactionId}:
+    put:
+      tags:
+      - My Devices
+      summary: Check in profile for a device
+      description: 'Check in a previously checked-out profile session. The `transactionId` is returned by the checkout call. Terminates the active session and revokes any issued credentials.
+
+        '
+      operationId: checkinProfile
+      parameters:
+      - name: transactionId
+        in: path
+        description: Transaction ID returned by the checkout call
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Check-in completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAccessStatusResponse'
+        '404':
+          description: Transaction not found
+  /api/access/{profileId}/devices/{deviceId}:
+    post:
+      tags:
+      - My Devices
+      summary: Checkout profile for a device
+      description: 'Checkout a profile for a specific device. Use `accessType=DEVICE` to elevate privileges on the device.
+
+        '
+      operationId: checkoutProfile
+      parameters:
+      - name: profileId
+        in: path
+        description: Profile (PAP) ID to checkout
+        required: true
+        schema:
+          type: string
+      - name: deviceId
+        description: Device ID within the application
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: accessType
+        in: query
+        description: 'Type of access to checkout. `DEVICE` elevates privileges of the device. This is the only supported type.
+
+          '
+        required: false
+        schema:
+          type: string
+          enum:
+          - DEVICE
+          default: DEVICE
+      requestBody:
+        description: Optional ITSM ticket details for approval-gated profiles
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Settings'
+            example:
+              justification: Access required for incident response
+              ticketId: INC0001234
+              ticketType: INCIDENT
+              userOnCall: 'false'
+      responses:
+        '200':
+          description: Checkout initiated successfully. Poll `status` until `checkedOut`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAccessStatusResponse'
+        '403':
+          description: Access denied or profile policy conditions not met
+        '404':
+          description: Profile or environment not found
+components:
+  schemas:
+    AppAccessStatusResponse:
+      type: object
+      description: Status of a profile checkout or check-in operation
+      properties:
+        transactionId:
+          type: string
+          description: Unique transaction identifier; required for getTokens, getConsoleUrl, and check-in calls
+          example: txn_abc123
+        papId:
+          type: string
+          description: Profile (PAP) string identifier
+          example: pap_xyz456
+        appContainerId:
+          type: string
+          description: Application container identifier
+          example: app_123
+        environmentId:
+          type: string
+          description: Environment identifier
+          example: env_789
+        userId:
+          type: string
+          description: User identifier (string form)
+          example: user_001
+        status:
+          type: string
+          description: Current lifecycle status of the checkout operation
+          enum:
+          - checkedOut
+          - checkedIn
+          - checkedInExpired
+          - checkOutSubmitted
+          - checkOutInProgress
+          - checkOutFailed
+          - checkInSubmitted
+          - checkInInProgress
+          - checkInFailed
+          - checkOutTimeOut
+          - checkInTimeOut
+          example: checkedOut
+        statusText:
+          type: string
+          description: Human-readable label for `status`
+          example: Checked Out
+        accessType:
+          type: string
+          enum:
+          - CLI
+          - CONSOLE
+          - PROGRAMMATIC
+          example: CONSOLE
+        checkedOut:
+          type: string
+          format: date-time
+          description: Timestamp when the profile was checked out
+        checkedIn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp when the profile was checked in; null if still active
+        expiration:
+          type: string
+          format: date-time
+          description: Timestamp when the session expires automatically
+        currentExtensionIndex:
+          type: integer
+          description: Number of times the session has been extended
+          example: '0'
+        policyConditionEndTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: End time derived from policy time conditions, if applicable
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: Error details if the checkout or check-in operation failed
+    MyAccessDetail:
+      type: object
+      properties:
+        checkOutTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        checkInTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          type: string
+          enum:
+          - Allow
+          - Deny
+          - Pending
+          example: Allow
+        approvalValidityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        accessType:
+          type: string
+          enum:
+          - CONSOLE
+          - PROGRAMMATIC
+          example: CONSOLE
+        favoriteId:
+          type:
+          - string
+          - 'null'
+    MyAccessProfile:
+      type: object
+      properties:
+        papId:
+          type: string
+          example: id1
+        papName:
+          type: string
+          example: S3Access
+        description:
+          type: string
+          example: ''
+        consoleAccess:
+          type: boolean
+          example: 'true'
+        programmaticAccess:
+          type: boolean
+          example: 'false'
+        sessionAttributes:
+          type: array
+          items:
+            type: object
+          example: []
+        accessCount:
+          type: integer
+          example: '0'
+        expirationDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionLimit:
+          type: integer
+          example: '1'
+        notificationPriorToExpiration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '300000'
+        extendable:
+          type: boolean
+          example: 'false'
+    MyAccessEnvironment:
+      type: object
+      properties:
+        environmentId:
+          type: string
+          example: envId1
+        environmentName:
+          type: string
+          example: demo
+        environmentDescription:
+          type: string
+          example: ''
+        alternateEnvironmentName:
+          type: string
+          example: demo
+        accountId:
+          type:
+          - string
+          - 'null'
+        profileEnvironmentProperties:
+          type: object
+          additionalProperties: 'true'
+          example: {}
+    Settings:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        justification:
+          type: string
+        ticketId:
+          type: string
+        ticketType:
+          type: string
+        userOnCall:
+          type: boolean
+          default: false
+        checkoutVariableValues:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: true
+          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
+
+            '
+    MyAccessSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total count of items
+          example: '100'
+        page:
+          type: integer
+          description: Current page number
+          example: '0'
+        size:
+          type: integer
+          description: Page size
+          example: '20'
+        sort:
+          type: string
+          description: Sort order
+          example: appName,ASC
+        filter:
+          type:
+          - string
+          - 'null'
+          description: Applied filter
+          example: appName eq "AWS"
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccess'
+    MyAccessApplication:
+      type: object
+      properties:
+        appId:
+          type: string
+          example: appId1
+        appName:
+          type: string
+          example: AWS
+        applicationType:
+          type: string
+          example: AWS
+        consoleAccessError:
+          type:
+          - string
+          - 'null'
+        programmaticAccessError:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        supportsToken:
+          type: boolean
+          example: 'false'
+        showAwsAccountNumber:
+          type: boolean
+          example: 'false'
+        supportsMultipleProfilesCheckoutCli:
+          type: boolean
+          example: 'false'
+        supportsMultipleProfilesCheckoutConsole:
+          type: boolean
+          example: 'false'
+        allowCopyingConsoleUrl:
+          type: boolean
+          example: 'false'
+        displayProgrammaticKeys:
+          type: boolean
+          example: 'true'
+        requiresHierarchicalModel:
+          type: boolean
+          example: 'false'
+        consoleAccess:
+          type: boolean
+          example: 'true'
+        programmaticAccess:
+          type: boolean
+          example: 'false'
+        supportsSharedAccounts:
+          type: boolean
+          example: 'true'
+    MyAccess:
+      type: object
+      properties:
+        frequency:
+          type: integer
+          example: '0'
+        countOfProfiles:
+          type: integer
+          example: '100'
+        papId:
+          type: string
+          example: id1
+        environmentId:
+          type: string
+          example: envId1
+        appId:
+          type: string
+          example: appId1
+        myAccessDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccessDetail'
+        application:
+          $ref: '#/components/schemas/MyAccessApplication'
+        environment:
+          $ref: '#/components/schemas/MyAccessEnvironment'
+        profile:
+          $ref: '#/components/schemas/MyAccessProfile'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

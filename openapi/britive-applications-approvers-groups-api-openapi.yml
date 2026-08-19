@@ -1,0 +1,189 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Applications - Approvers Groups API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Applications - Approvers Groups
+  description: Manage approvers groups for association approvers
+paths:
+  /api/apps/{appId}/approvers-groups:
+    post:
+      tags:
+      - Applications - Approvers Groups
+      summary: Create approvers groups for association approvers
+      operationId: createApproversGroup
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproversGroupDto'
+        required: true
+      responses:
+        '200':
+          description: Successfully retrieved approvers groups for an application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApproversGroupDto'
+    get:
+      tags:
+      - Applications - Approvers Groups
+      summary: Get approvers groups for association approvers combination
+      operationId: getApproversGroups
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved access request settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApproversGroupsSummary'
+  /api/apps/{appId}/approvers-groups/{groupId}:
+    delete:
+      tags:
+      - Applications - Approvers Groups
+      summary: Delete approval groups for access request settings
+      operationId: deleteApproversGroup
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: path
+        description: id of the approval group.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Approvers group deleted
+        '404':
+          description: Approvers group id not found
+    get:
+      tags:
+      - Applications - Approvers Groups
+      summary: Get approvers groups for a given id
+      operationId: getApproversGroupsById
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: path
+        description: id of the approval group.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved access request settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApproversGroupDto'
+        '404':
+          description: Approvers group id not found
+    patch:
+      tags:
+      - Applications - Approvers Groups
+      summary: Update approvers group for given id
+      operationId: updateApproversGroup
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      - name: groupId
+        in: path
+        description: id of the approval group.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproversGroupDto'
+        required: true
+      responses:
+        '204':
+          description: Approvers groups updated
+        '404':
+          description: Approvers group id not found
+components:
+  schemas:
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    ApproversGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        condition:
+          type: string
+          enum:
+          - All
+          - Any
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberDto'
+    ApproversGroupsSummary:
+      type: object
+      properties:
+        approversGroupSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApproversGroupDto'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

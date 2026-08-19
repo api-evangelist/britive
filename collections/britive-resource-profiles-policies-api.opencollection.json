@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Resource Profiles - Policies API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource Profiles - Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all policies associated to a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:profileId/policies",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to get policies"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter policy by name"
+              }
+            ]
+          },
+          "docs": "Get all policies associated to a profile"
+        },
+        {
+          "info": {
+            "name": "Add policy to profile to grant resources to end user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:profileId/policies",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the profile to add policy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add policy to profile to grant resources to end user"
+        },
+        {
+          "info": {
+            "name": "Set orders for policies associated with an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:profileId/policies/order",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the profile"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set orders for policies associated with an entity"
+        },
+        {
+          "info": {
+            "name": "Get policy details for a given policy id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:profileId/policies/:policyId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to add policy"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "policy Id to fetch policy details"
+              },
+              {
+                "name": "compactResponse",
+                "value": "",
+                "type": "query",
+                "description": "Policy details in compact json foramt"
+              }
+            ]
+          },
+          "docs": "Get policy details for a given policy id"
+        },
+        {
+          "info": {
+            "name": "Update policy details for a given policy id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:profileId/policies/:policyId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to add policy"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "policy ID to update policy details"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update policy details for a given policy id"
+        },
+        {
+          "info": {
+            "name": "Delete  profile policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:profileId/policies/:policyId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to delete policy"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "policy Id to delete"
+              }
+            ]
+          },
+          "docs": "Delete  profile policy"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Applications - Association Approvers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications - Association Approvers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get associations and approver groups combination configured for an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appId/association-approvers",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              }
+            ]
+          },
+          "docs": "Get associations and approver groups combination configured for an application"
+        },
+        {
+          "info": {
+            "name": "Create Association Approvers combination for an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appId/association-approvers",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Association Approvers combination for an application"
+        },
+        {
+          "info": {
+            "name": "Get configured association and approvers by id to an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appId/association-approvers/:id",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the association approvers."
+              }
+            ]
+          },
+          "docs": "Get configured association and approvers by id to an application"
+        },
+        {
+          "info": {
+            "name": "Update association and approvers for a given id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/apps/:appId/association-approvers/:id",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the association approvers."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update association and approvers for a given id"
+        },
+        {
+          "info": {
+            "name": "Delete association approvers configured for a given id in an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/apps/:appId/association-approvers/:id",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the association approvers."
+              }
+            ]
+          },
+          "docs": "Delete association approvers configured for a given id in an application"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

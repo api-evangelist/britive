@@ -1,0 +1,191 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Permission Constraint Manager API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Permission Constraint Manager
+  description: Manage Profile Permission Constraints for the permissions that support to define constraints.
+paths:
+  /api/paps/{papId}/permissions/{permission-name}/{permission-type}/constraints/{constraint-type}:
+    post:
+      tags:
+      - Application Profiles - Permission Constraint Manager
+      operationId: manageProfilePermissionConstraint_1
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission-name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission-type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: constraint-type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: operation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: validate
+          enum:
+          - add
+          - update
+          - remove
+          - validate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonNodeWrapper'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Application Profiles - Permission Constraint Manager
+      operationId: getProfilePermissionConstraints
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission-name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission-type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: constraint-type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: available
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/paps/{papId}/permissions/{permission-name}/{permission-type}/constraints/{constraint-type}/metadata:
+    get:
+      tags:
+      - Application Profiles - Permission Constraint Manager
+      summary: Get Permission Constraint Type Metadata.
+      description: Get Permission Constraint Type Metadata.
+      operationId: getConstraintTypeMetadata
+      parameters:
+      - name: papId
+        in: path
+        description: Profile ID to get Profile Access Setting
+        required: true
+        schema:
+          type: string
+      - name: permission-name
+        in: path
+        description: permission-name
+        required: true
+        schema:
+          type: string
+      - name: permission-type
+        in: path
+        description: permission-type
+        required: true
+        schema:
+          type: string
+      - name: constraint-type
+        in: path
+        description: constraint-type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/paps/{papId}/permissions/{permission-name}/{permission-type}/supported-constraint-types:
+    get:
+      tags:
+      - Application Profiles - Permission Constraint Manager
+      operationId: getProfilePermissionSupportedConstraintTypes
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission-name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission-type
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    JsonNodeWrapper:
+      type: object
+      properties:
+        realNode:
+          $ref: '#/components/schemas/JsonNode'
+    JsonNode:
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

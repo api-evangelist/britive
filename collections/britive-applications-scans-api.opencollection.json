@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Applications - Scans API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications - Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scan all environments for a specified application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/full-scan",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Scan all environments for a specified application"
+        },
+        {
+          "info": {
+            "name": "GET a list of all scans in the past 90 days for the application id given in the request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appContainerId/scans/env-status/history",
+            "params": [
+              {
+                "name": "appContainerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "The data is returned in pages. Multiple API calls have to be made to return the complete list."
+        },
+        {
+          "info": {
+            "name": "Run an organization scan for the specified application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:id/scan",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "orgScanOnly",
+                "value": "",
+                "type": "query",
+                "description": "If this parameter is set to true, only organization scan runs for Azure and GCP (Environment scan is not triggered.) The default value when this query parameter is not passed is false."
+              }
+            ]
+          },
+          "docs": "Run an organization scan for the specified application"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

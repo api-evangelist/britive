@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "da77dc7d-3b9a-48e1-8013-793f491c6129",
+      "name": "Custom App Manager",
+      "description": {
+        "content": "Creates an app using custom template and other operations for managing the template.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a4de6671-8e4f-431e-8471-cc51c46f79b8",
+          "name": "Creates a custom app",
+          "request": {
+            "name": "Creates a custom app",
+            "description": {
+              "content": "This endpoint is used to create an app based on previously uploaded template file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "generic-apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templateName\": \"<string>\",\n  \"catalogAppDisplayName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e73ca74f-fbcd-4065-ba99-5f2823d389d3",
+              "name": "Successful custom app creation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "generic-apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"templateName\": \"<string>\",\n  \"catalogAppDisplayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appContainerId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41a6d665-32ec-487e-97f3-4447a354e23a",
+          "name": "Lists all templates with option to query for provisioned status",
+          "request": {
+            "name": "Lists all templates with option to query for provisioned status",
+            "description": {
+              "content": "This API is used to list all templates with option to query for provisioned status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "generic-apps",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "provisioned",
+                  "value": "<string>",
+                  "description": "Filter templates by provisioned status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2953ef62-be2a-42bd-b4c4-48d847711053",
+              "name": "List of templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "generic-apps",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "provisioned",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"templateName\": \"string\",\n    \"templateDescription\": \"string\",\n    \"integration\": \"string\",\n    \"version\": \"string\",\n    \"requiresScanningForProfiles\": true,\n    \"iconUrl\": \"string\",\n    \"provisioned\": \"<string>\"\n  },\n  {\n    \"templateName\": \"string\",\n    \"templateDescription\": \"string\",\n    \"integration\": \"string\",\n    \"version\": \"string\",\n    \"requiresScanningForProfiles\": true,\n    \"iconUrl\": \"string\",\n    \"provisioned\": \"<string>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bee1216-1bf5-4bfa-9f97-d38d36fade43",
+          "name": "Returns icon svg image configured for the template",
+          "request": {
+            "name": "Returns icon svg image configured for the template",
+            "description": {
+              "content": "This API is used to returns icon svg image configured for the template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "generic-apps",
+                "templates",
+                ":template_name",
+                "icon"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_name",
+                  "description": "(Required) Name of the template"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/svg+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2c252e2-13f9-43e6-bccf-91c6124352f3",
+              "name": "Icon svg image configured for the template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "generic-apps",
+                    "templates",
+                    ":template_name",
+                    "icon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_name",
+                      "description": "(Required) Name of the template"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/svg+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Cache-Control",
+                  "value": "public, max-age=0",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "image/svg+xml"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1530e27d-ceb7-4a3f-8a16-27ac9cf845f5",
+    "name": "Britive Services API Documentation Custom App Manager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

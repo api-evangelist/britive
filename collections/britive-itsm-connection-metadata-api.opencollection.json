@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation ITSM Connection Metadata API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ITSM Connection Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of ITSM connection Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-manager/connection-templates"
+          },
+          "docs": "Get list of ITSM connection Metadata"
+        },
+        {
+          "info": {
+            "name": "Get list of supported ITSM connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-manager/connection-templates/supported-types"
+          },
+          "docs": "Get list of supported ITSM connections"
+        },
+        {
+          "info": {
+            "name": "Get ITSM connection metadata for given template ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/itsm-manager/connection-templates/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type of an ITSM Connection Template"
+              }
+            ]
+          },
+          "docs": "Get ITSM connection metadata for given template ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

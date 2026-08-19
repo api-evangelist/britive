@@ -1,0 +1,415 @@
+{
+  "item": [
+    {
+      "id": "d5ed56a3-7a89-43ee-a018-d1a9dbf72dd4",
+      "name": "My Resources",
+      "description": {
+        "content": "Manage My Resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd662b67-22c4-456e-95dd-47467c11d377",
+          "name": "Get All User Accessible Resources",
+          "request": {
+            "name": "Get All User Accessible Resources",
+            "description": {
+              "content": "Retrieve a list of all resources that user has access to",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "my-resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Parameter to filter resource by search text"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Parameter to filter resource by type i.e.frequently used"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Parameter to specify the page number of the records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Parameter to specify the number of records to retrieve per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "parameter to specify the sort parameter and direction"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d6e100d-e94f-407d-b737-0e7c7c6abb04",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "test"
+                    },
+                    {
+                      "key": "type",
+                      "value": "frequentlyUsed"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9811,\n  \"page\": 3655,\n  \"size\": 7242,\n  \"sort\": \"string\",\n  \"data\": [\n    {\n      \"transactionId\": \"string\",\n      \"favoriteId\": \"12345\",\n      \"resourceId\": \"12345\",\n      \"resourceName\": \"linux-server\",\n      \"resourceDescription\": \"description of linux server\",\n      \"profileId\": \"asdckl4347mcc\",\n      \"profileName\": \"linux-server-admin\",\n      \"profileDescription\": \"description of test profile\",\n      \"resourceTypeName\": \"serverType\",\n      \"resourceLabels\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"status\": \"string\",\n      \"expirationDuration\": \"string\",\n      \"checkedOutTime\": \"string\",\n      \"checkedInTime\": \"string\",\n      \"approvalValidityTime\": \"string\",\n      \"consoleAccess\": false,\n      \"progAccess\": false,\n      \"showOrigCreds\": false,\n      \"exclusiveCheckout\": false,\n      \"locked\": false,\n      \"lockedBy\": \"string\",\n      \"lockedAt\": \"string\",\n      \"lockExpiry\": \"string\"\n    },\n    {\n      \"transactionId\": \"string\",\n      \"favoriteId\": \"12345\",\n      \"resourceId\": \"12345\",\n      \"resourceName\": \"linux-server\",\n      \"resourceDescription\": \"description of linux server\",\n      \"profileId\": \"asdckl4347mcc\",\n      \"profileName\": \"linux-server-admin\",\n      \"profileDescription\": \"description of test profile\",\n      \"resourceTypeName\": \"serverType\",\n      \"resourceLabels\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"status\": \"string\",\n      \"expirationDuration\": \"string\",\n      \"checkedOutTime\": \"string\",\n      \"checkedInTime\": \"string\",\n      \"approvalValidityTime\": \"string\",\n      \"consoleAccess\": false,\n      \"progAccess\": false,\n      \"showOrigCreds\": false,\n      \"exclusiveCheckout\": false,\n      \"locked\": false,\n      \"lockedBy\": \"string\",\n      \"lockedAt\": \"string\",\n      \"lockExpiry\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e857242a-256b-4a76-b1de-d01c2ab0b167",
+          "name": "Add Favorite Resources",
+          "request": {
+            "name": "Add Favorite Resources",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "my-resources",
+                "favorites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceId\": \"<string>\",\n  \"profileId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fcd35d83-4978-4087-888a-df8110858605",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources",
+                    "favorites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceId\": \"<string>\",\n  \"profileId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"favoriteId\": \"12345\",\n  \"resourceId\": \"12345\",\n  \"resourceName\": \"linux-server\",\n  \"resourceDescription\": \"description of linux server\",\n  \"profileId\": \"asdckl4347mcc\",\n  \"profileName\": \"linux-server-admin\",\n  \"profileDescription\": \"description of test profile\",\n  \"resourceTypeName\": \"serverType\",\n  \"resourceLabels\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"status\": \"string\",\n  \"expirationDuration\": \"string\",\n  \"checkedOutTime\": \"string\",\n  \"checkedInTime\": \"string\",\n  \"approvalValidityTime\": \"string\",\n  \"consoleAccess\": false,\n  \"progAccess\": false,\n  \"showOrigCreds\": false,\n  \"exclusiveCheckout\": false,\n  \"locked\": false,\n  \"lockedBy\": \"string\",\n  \"lockedAt\": \"string\",\n  \"lockExpiry\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feaff9cd-e259-4a8c-a76b-39fd4346ba9e",
+          "name": "Delete Favorite Resource",
+          "request": {
+            "name": "Delete Favorite Resource",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "my-resources",
+                "favorites",
+                ":favoriteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "favoriteId",
+                  "description": "(Required) favoriteId of the resource."
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2ec2b78-d616-490e-bf6a-918b13265665",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "my-resources",
+                    "favorites",
+                    ":favoriteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "favoriteId",
+                      "description": "(Required) favoriteId of the resource."
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "735d0956-414d-4107-8031-b3a9cd60db4d",
+    "name": "Britive Services API Documentation My Resources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

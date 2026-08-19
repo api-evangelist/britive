@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Multi Factor Authentication API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multi Factor Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get given user's MFA factor registration details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/mfa/admin/registrations/:factor/users/:targetUserId",
+            "params": [
+              {
+                "name": "factor",
+                "value": "",
+                "type": "path",
+                "description": "the mfa factor used"
+              },
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path",
+                "description": "The random 20 alphanumeric string id of the service identity user."
+              }
+            ]
+          },
+          "docs": "Get given user's MFA factor registration details."
+        },
+        {
+          "info": {
+            "name": "Delete MFA factor registration details",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/mfa/admin/registrations/:factor/users/:targetUserId",
+            "params": [
+              {
+                "name": "factor",
+                "value": "",
+                "type": "path",
+                "description": "the mfa factor used"
+              },
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "path",
+                "description": "The random 20 alphanumeric string id of the service identity user."
+              }
+            ]
+          },
+          "docs": "Delete MFA factor registration details"
+        },
+        {
+          "info": {
+            "name": "Get current authenticated user's MFA factor registration details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/mfa/register/:factor",
+            "params": [
+              {
+                "name": "factor",
+                "value": "",
+                "type": "path",
+                "description": "MFA factor used"
+              }
+            ]
+          },
+          "docs": "Get current authenticated user's MFA factor registration details."
+        },
+        {
+          "info": {
+            "name": "Register current authenticated user for the MFA factor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/mfa/register/:factor",
+            "params": [
+              {
+                "name": "factor",
+                "value": "",
+                "type": "path",
+                "description": "the mfa factor used"
+              }
+            ]
+          },
+          "docs": "Register current authenticated user for the MFA factor."
+        },
+        {
+          "info": {
+            "name": "Delete current authenticated user's MFA factor registration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/mfa/register/:factor/:credential",
+            "params": [
+              {
+                "name": "factor",
+                "value": "",
+                "type": "path",
+                "description": "the mfa factor used"
+              },
+              {
+                "name": "credential",
+                "value": "",
+                "type": "path",
+                "description": "The MFA factor credential to confirm deletion of the MFA factor registration"
+              }
+            ]
+          },
+          "docs": "Delete current authenticated user's MFA factor registration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

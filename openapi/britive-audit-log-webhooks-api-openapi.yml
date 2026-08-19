@@ -1,0 +1,104 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Audit Log Webhooks API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Audit Log Webhooks
+  description: Manage Audit Log Webhooks
+paths:
+  /api/logs/webhooks:
+    get:
+      tags:
+      - Audit Log Webhooks
+      summary: Get audit log webhook details for the tenant.
+      operationId: getAuditLogWebhooks
+      responses:
+        '200':
+          description: Audit log webhook details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogWebhook'
+    post:
+      tags:
+      - Audit Log Webhooks
+      summary: Save or update a audit log webhook for the tenant
+      operationId: saveAuditLogWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogWebhook'
+        required: true
+      responses:
+        '200':
+          description: Webhook logs updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogWebhook'
+  /api/logs/webhooks/{notificationMediumId}:
+    delete:
+      tags:
+      - Audit Log Webhooks
+      summary: Delete audit log webhook by notificationMediumId
+      operationId: deleteAuditLogWebhookByNotificationMediumId
+      parameters:
+      - name: notificationMediumId
+        in: path
+        description: notificationMediumId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: broker pool successfully deleted.
+    get:
+      tags:
+      - Audit Log Webhooks
+      summary: Get audit log webhook by notificationMediumId
+      operationId: getAuditLogWebhookByNotificationMediumId
+      parameters:
+      - name: notificationMediumId
+        in: path
+        description: notificationMediumId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Audit log webhook details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogWebhook'
+components:
+  schemas:
+    AuditLogWebhook:
+      type: object
+      properties:
+        notificationMediumId:
+          type: string
+        filter:
+          type: string
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

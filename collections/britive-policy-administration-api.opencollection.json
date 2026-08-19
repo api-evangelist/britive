@@ -1,0 +1,555 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Manager Policy Administration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policy Administration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get details of all actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/actions",
+            "params": [
+              {
+                "name": "filter",
+                "value": "name%20eq%20iam.policy.create",
+                "type": "query",
+                "description": "Filter query"
+              }
+            ]
+          },
+          "docs": "Get details of all actions"
+        },
+        {
+          "info": {
+            "name": "Get a list of consumers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/consumers"
+          },
+          "docs": "Get a list of consumers"
+        },
+        {
+          "info": {
+            "name": "Get permission details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/permissions",
+            "params": [
+              {
+                "name": "filter",
+                "value": "name%20eq%20per1",
+                "type": "query",
+                "description": "Filter query"
+              },
+              {
+                "name": "pageToken",
+                "value": "18CE4C10585F4525BE35801AC7F7EBA4C3",
+                "type": "query",
+                "description": "Page token"
+              }
+            ]
+          },
+          "docs": "Get permission details"
+        },
+        {
+          "info": {
+            "name": "Create a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/policy-admin/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a permission"
+        },
+        {
+          "info": {
+            "name": "Get permission details specified by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of permission"
+              },
+              {
+                "name": "getReferences",
+                "value": "true",
+                "type": "query",
+                "description": "Boolean to specify whether to get references in roles and/or policies"
+              }
+            ]
+          },
+          "docs": "Get permission details specified by Id"
+        },
+        {
+          "info": {
+            "name": "Update permission details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/v1/policy-admin/permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update permission details"
+        },
+        {
+          "info": {
+            "name": "Delete a specified permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/v1/policy-admin/permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specified permission"
+        },
+        {
+          "info": {
+            "name": "Get all policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies",
+            "params": [
+              {
+                "name": "filter",
+                "value": "name%20eq%20Role",
+                "type": "query",
+                "description": "Filter query"
+              },
+              {
+                "name": "returnAttrs",
+                "value": "name,resource",
+                "type": "query",
+                "description": "Attribute names"
+              },
+              {
+                "name": "pageToken",
+                "value": "18CE4C10585F4525BE35801AC7F7EBA4C3",
+                "type": "query",
+                "description": "Page token"
+              },
+              {
+                "name": "resource",
+                "value": "/a/b/c",
+                "type": "query",
+                "description": "Resource"
+              },
+              {
+                "name": "consumer",
+                "value": "secretmanager",
+                "type": "query",
+                "description": "Consumer"
+              },
+              {
+                "name": "consumerResourceSpecific",
+                "value": "true",
+                "type": "query",
+                "description": "ConsumerResourceSpecific"
+              }
+            ]
+          },
+          "docs": "Get all policies"
+        },
+        {
+          "info": {
+            "name": "Create a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies",
+            "params": [
+              {
+                "name": "resource",
+                "value": "/a/b/c",
+                "type": "query",
+                "description": "Resource"
+              },
+              {
+                "name": "consumer",
+                "value": "secretmanager",
+                "type": "query",
+                "description": "Consumer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a policy"
+        },
+        {
+          "info": {
+            "name": "Update policies details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies",
+            "params": [
+              {
+                "name": "attach",
+                "value": "true",
+                "type": "query",
+                "description": "true/false"
+              },
+              {
+                "name": "resource",
+                "value": "/a/b/c",
+                "type": "query",
+                "description": "Resource"
+              },
+              {
+                "name": "consumer",
+                "value": "secretmanager",
+                "type": "query",
+                "description": "Consumer"
+              },
+              {
+                "name": "isInternalCall",
+                "value": "true",
+                "type": "query",
+                "description": "true/false"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update policies details"
+        },
+        {
+          "info": {
+            "name": "Re-cache policies with policyIds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies/recache",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-cache policies with policyIds"
+        },
+        {
+          "info": {
+            "name": "Validate policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies/validate",
+            "params": [
+              {
+                "name": "resource",
+                "value": "/a/b/c",
+                "type": "query",
+                "description": "Resource"
+              },
+              {
+                "name": "consumer",
+                "value": "secretmanager",
+                "type": "query",
+                "description": "Consumer"
+              }
+            ]
+          },
+          "docs": "Validate policies"
+        },
+        {
+          "info": {
+            "name": "Get policy with policyId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of policy"
+              },
+              {
+                "name": "compactResponse",
+                "value": "true",
+                "type": "query",
+                "description": "Return conpact response or not"
+              },
+              {
+                "name": "conditionJson",
+                "value": "true",
+                "type": "query",
+                "description": "true or false"
+              }
+            ]
+          },
+          "docs": "Get policy with policyId"
+        },
+        {
+          "info": {
+            "name": "Update policy details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attach",
+                "value": "true",
+                "type": "query",
+                "description": "true/false"
+              },
+              {
+                "name": "resource",
+                "value": "/a/b/c",
+                "type": "query",
+                "description": "Resource"
+              },
+              {
+                "name": "consumer",
+                "value": "secretmanager",
+                "type": "query",
+                "description": "Consumer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update policy details"
+        },
+        {
+          "info": {
+            "name": "Delete a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resource",
+                "value": "/a/b/c",
+                "type": "query",
+                "description": "Resource"
+              },
+              {
+                "name": "consumer",
+                "value": "secretmanager",
+                "type": "query",
+                "description": "Consumer"
+              }
+            ]
+          },
+          "docs": "Delete a policy"
+        },
+        {
+          "info": {
+            "name": "Re-cache policy with policyId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/policies/:id/recache",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of policy"
+              }
+            ]
+          },
+          "docs": "Re-cache policy with policyId"
+        },
+        {
+          "info": {
+            "name": "Get roles with tenantId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/roles",
+            "params": [
+              {
+                "name": "filter",
+                "value": "name%20eq%20Role",
+                "type": "query",
+                "description": "Filter query"
+              },
+              {
+                "name": "returnAttrs",
+                "value": "name",
+                "type": "query",
+                "description": "Attribute names"
+              },
+              {
+                "name": "pageToken",
+                "value": "18CE4C10585F4525BE35801AC7F7EBA4C3",
+                "type": "query",
+                "description": "Page token"
+              }
+            ]
+          },
+          "docs": "Get roles with tenantId"
+        },
+        {
+          "info": {
+            "name": "Create role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/v1/policy-admin/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create role"
+        },
+        {
+          "info": {
+            "name": "Get role with roleId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/v1/policy-admin/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "a6ed82f6-32b5-46d8-a3a3-c36cc574abd9",
+                "type": "path",
+                "description": "Id of role"
+              },
+              {
+                "name": "getReferences",
+                "value": "true",
+                "type": "query",
+                "description": "Boolean to specify whether to get references in policies"
+              },
+              {
+                "name": "compactResponse",
+                "value": "true",
+                "type": "query",
+                "description": "Boolean to specify whether to get compact role object or not"
+              }
+            ]
+          },
+          "docs": "Get role with roleId"
+        },
+        {
+          "info": {
+            "name": "Update role details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/v1/policy-admin/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update role details"
+        },
+        {
+          "info": {
+            "name": "Delete role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/v1/policy-admin/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete role"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

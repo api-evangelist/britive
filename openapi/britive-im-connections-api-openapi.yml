@@ -1,0 +1,177 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation IM Connections API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: IM Connections
+  description: Manage IM Connections
+paths:
+  /api/im-manager/connections:
+    post:
+      tags:
+      - IM Connections
+      summary: Create an IM connection
+      operationId: createImConnection
+      requestBody:
+        description: IM Connection Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImConnectionDetails'
+      responses:
+        '201':
+          description: IM Connection created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImConnectionDetails'
+    get:
+      tags:
+      - IM Connections
+      summary: Get list of IM connections
+      operationId: listImConnections
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImConnection'
+  /api/im-manager/connections/validate:
+    post:
+      tags:
+      - IM Connections
+      summary: Validate an IM Connection
+      description: Validate an IM Connection
+      operationId: validateImConnectionDetails
+      requestBody:
+        description: IM Connection Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImConnectionDetails'
+      responses:
+        '201':
+          description: IM Connection validated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImConnectionDetails'
+        '400':
+          description: Validation Failed
+  /api/im-manager/connections/{connectionId}:
+    delete:
+      tags:
+      - IM Connections
+      summary: Delete an IM connection
+      operationId: deleteImConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an IM Connection
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: IM Connection deleted successfully.
+        '404':
+          description: IM Connection not found.
+    get:
+      tags:
+      - IM Connections
+      summary: Get IM connection for given connection ID
+      operationId: getImConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an IM Connection
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImConnectionDetails'
+        '404':
+          description: IM Connection not found.
+    patch:
+      tags:
+      - IM Connections
+      summary: Update an IM connection
+      operationId: updateImConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an IM Connection
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: IM Connection Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImConnectionDetails'
+      responses:
+        '204':
+          description: IM Connection updated successfully.
+        '404':
+          description: IM Connection not found.
+components:
+  schemas:
+    ImConnectionDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        authType:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+    ImConnection:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        authType:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

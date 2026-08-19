@@ -1,0 +1,96 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Workload SCIM Identity Providers API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Workload SCIM Identity Providers
+  description: Manage service identity association to SCIM provisioning for identity provider
+paths:
+  /api/workload/scim-user/identity-provider:
+    post:
+      tags:
+      - Workload SCIM Identity Providers
+      summary: Designate user to authenticate as for scim provisioning
+      operationId: designateScimUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScimUserIdentityProvider'
+        required: true
+      responses:
+        '200':
+          description: successfully added or updated the user for scim provisioning
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUserIdentityProvider'
+  /api/workload/scim-user/identity-provider/{idpName}:
+    delete:
+      tags:
+      - Workload SCIM Identity Providers
+      summary: Delete user SCIM identity provider association
+      operationId: deleteScimUserIdentityProvider
+      parameters:
+      - name: idpName
+        in: path
+        description: Name of the identity provider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user SCIM identity provider association deleted.
+    get:
+      tags:
+      - Workload SCIM Identity Providers
+      summary: Identity provider SCIM provisioning assigned service identity
+      operationId: getScimUserIdentityProvider
+      parameters:
+      - name: idpName
+        in: path
+        description: Name of the identity provider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success retrieving the identity provider's SCIM provisioning assigned service identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUserIdentityProvider'
+components:
+  schemas:
+    ScimUserIdentityProvider:
+      required:
+      - idpName
+      - userId
+      type: object
+      properties:
+        idpName:
+          type: string
+        userId:
+          type: string
+        username:
+          type: string
+      description: model of the identity provider's SCIM provisioning assigned service identity
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

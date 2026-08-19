@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation IM Integration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IM Integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Escalation Policies (paginated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/im-integration/:connectionId/escalation-policies/search",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection ID of an IM Connection"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "The text for searching escalation policies"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (0-based index)"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page"
+              }
+            ]
+          },
+          "docs": "Get Escalation Policies by search text with pagination (fixed limit = 25)"
+        },
+        {
+          "info": {
+            "name": "Validate Escalation Policy IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/im-integration/:connectionId/escalation-policies/validate",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection ID of an IM Connection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validates that all provided Escalation Policy IDs exist for the given connection."
+        },
+        {
+          "info": {
+            "name": "Check Escalation Policies by Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/im-integration/:connectionId/escalation-policies/validate/names",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection ID of an IM Connection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Takes an array of escalation policy names and returns names not found along with mappings of found names to their IDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

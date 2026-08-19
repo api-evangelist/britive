@@ -1,0 +1,1367 @@
+{
+  "item": [
+    {
+      "id": "5a35df0d-159d-40e2-8d46-48c22e3cdc18",
+      "name": "Resource Manager - Permissions",
+      "description": {
+        "content": "Manage Resource Permissions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "666ff48e-165d-48ad-aa64-36e4c126bbde",
+          "name": "Manage resource permissions",
+          "request": {
+            "name": "Manage resource permissions",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5cdb57da-22c0-495c-9360-24185fde4f4a",
+              "name": "Resource type saved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7df3db5-683e-411a-9db7-acd09a55013d",
+          "name": "Get pre signed urls for checkin - checkout",
+          "request": {
+            "name": "Get pre signed urls for checkin - checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "permissions",
+                "get-urls",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the resource permission to get urls for"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3a9356c-32c1-46c6-9f9a-8d00c0382563",
+              "name": "Resource Permission URLs retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    "get-urls",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to get urls for"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04c71ece-cd11-407c-8399-c20e9d37ce58",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    "get-urls",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to get urls for"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffa11fbd-8281-4e94-ab21-735087145288",
+          "name": "Delete resource permission",
+          "request": {
+            "name": "Delete resource permission",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "permissions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the resource permission to delete"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f868a8af-f02b-4c5e-82b9-401729f35fb5",
+              "name": "Resource permission deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to delete"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d72b39a3-5641-47dd-82fb-4ce8d230151e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to delete"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3acbf20c-6916-400c-95b0-fbbe431f1fbb",
+          "name": "Get resource permission by ID",
+          "request": {
+            "name": "Get resource permission by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "permissions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the resource permission to retrieve"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7b718c2-e8e1-43d6-9a84-012cf8da184d",
+              "name": "Resource Permission retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to retrieve"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"permissionId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"version\": \"string\",\n    \"createdOn\": \"string\",\n    \"isDraft\": false\n  },\n  {\n    \"permissionId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"version\": \"string\",\n    \"createdOn\": \"string\",\n    \"isDraft\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0ee7b62-9be4-4553-ae6f-d331e7781627",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to retrieve"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c9bbe58-1704-4156-a0f9-4e28e81fc6e5",
+          "name": "Update resource permission",
+          "request": {
+            "name": "Update resource permission",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "permissions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the resource permission to partially update"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85a6631f-a05d-4868-ae87-198e998104bd",
+              "name": "Resource permission updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to partially update"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7586590-2309-405d-ba2e-47f48940696f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to partially update"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "714261da-8a84-47f2-adb0-6dd1a843bec1",
+          "name": "Delete resource permission",
+          "request": {
+            "name": "Delete resource permission",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "permissions",
+                ":id",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID and version of the resource permission to delete"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) ID and version  id of the resource permission to deleted"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0519774-9147-4b1a-9c1c-46a70e36c5be",
+              "name": "Resource permission deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID and version of the resource permission to delete"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) ID and version  id of the resource permission to deleted"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92254b9a-a934-4f9f-8aeb-725f3af5a3d0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID and version of the resource permission to delete"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) ID and version  id of the resource permission to deleted"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9728ce13-571c-48fc-af92-09f95740b203",
+          "name": "Get permission for given version id",
+          "request": {
+            "name": "Get permission for given version id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "permissions",
+                ":id",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the resource permission to get urls for"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) version id of the resource permission to get"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62d51cf2-fe76-4f31-9c6a-bd8313d5f713",
+              "name": "Resource Permission retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to get urls for"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) version id of the resource permission to get"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissionId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"resourceTypeId\": \"<string>\",\n  \"resourceTypeName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"checkinURL\": \"<string>\",\n  \"checkoutURL\": \"<string>\",\n  \"checkinFileName\": \"<string>\",\n  \"checkinTimeLimit\": 0,\n  \"checkoutTimeLimit\": 0,\n  \"checkoutFileName\": \"<string>\",\n  \"isDraft\": false,\n  \"inlineFileExists\": false,\n  \"editorType\": \"<string>\",\n  \"variables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"responseTemplates\": [\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"templateId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"showOrigCreds\": false,\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"updatedOn\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9bd644c-8a23-413f-9ae9-0b370b556d07",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "permissions",
+                    ":id",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the resource permission to get urls for"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) version id of the resource permission to get"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a1aa4f5-d5d4-4a77-999c-bad76bfa7519",
+          "name": "Get all resource permissions for given resource type id",
+          "request": {
+            "name": "Get all resource permissions for given resource type id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "resource-types",
+                ":resourceTypeId",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Parameter to filter resource types by search text"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Parameter to specify the page number of the records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Parameter to specify the number of records to retrieve per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "parameter to specify the sort parameter and direction"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceTypeId",
+                  "description": "(Required) ID of the resource type of permissions"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b61caa1f-0e49-492f-ba41-300c769d692c",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "resource-types",
+                    ":resourceTypeId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "test"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceTypeId",
+                      "description": "(Required) ID of the resource type of permissions"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5748,\n  \"page\": 404,\n  \"size\": 4840,\n  \"sort\": \"string\",\n  \"data\": [\n    {\n      \"permissionId\": \"string\",\n      \"name\": \"string\",\n      \"resourceTypeName\": \"string\",\n      \"isDraft\": false,\n      \"createdOn\": \"string\",\n      \"versionCount\": 4762,\n      \"version\": \"string\"\n    },\n    {\n      \"permissionId\": \"string\",\n      \"name\": \"string\",\n      \"resourceTypeName\": \"string\",\n      \"isDraft\": false,\n      \"createdOn\": \"string\",\n      \"versionCount\": 1737,\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "85dce3f5-7a64-49ce-acd6-4966b8324368",
+    "name": "Britive Services API Documentation Resource Manager - Permissions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Notifications API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all workflow notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/notifications"
+          },
+          "docs": "Get a list of all workflow notifications"
+        },
+        {
+          "info": {
+            "name": "Create a workflow notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/notifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a workflow notification"
+        },
+        {
+          "info": {
+            "name": "Update workflow notification details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/notifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update workflow notification details"
+        },
+        {
+          "info": {
+            "name": "Get available rules for a workflow notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/notifications/supported-rules"
+          },
+          "docs": "Get available rules for a workflow notification"
+        },
+        {
+          "info": {
+            "name": "Get details of a notification medium",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/notifications/:notificationId",
+            "params": [
+              {
+                "name": "notificationId",
+                "value": "",
+                "type": "path",
+                "description": "Notification ID"
+              }
+            ]
+          },
+          "docs": "Get details of a notification medium"
+        },
+        {
+          "info": {
+            "name": "Delete a specified workflow notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/notifications/:notificationId",
+            "params": [
+              {
+                "name": "notificationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specified workflow notification"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

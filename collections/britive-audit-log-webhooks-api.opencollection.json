@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Audit Log Webhooks API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Log Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get audit log webhook details for the tenant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/logs/webhooks"
+          },
+          "docs": "Get audit log webhook details for the tenant."
+        },
+        {
+          "info": {
+            "name": "Save or update a audit log webhook for the tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/logs/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save or update a audit log webhook for the tenant"
+        },
+        {
+          "info": {
+            "name": "Get audit log webhook by notificationMediumId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/logs/webhooks/:notificationMediumId",
+            "params": [
+              {
+                "name": "notificationMediumId",
+                "value": "",
+                "type": "path",
+                "description": "notificationMediumId"
+              }
+            ]
+          },
+          "docs": "Get audit log webhook by notificationMediumId"
+        },
+        {
+          "info": {
+            "name": "Delete audit log webhook by notificationMediumId",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/logs/webhooks/:notificationMediumId",
+            "params": [
+              {
+                "name": "notificationMediumId",
+                "value": "",
+                "type": "path",
+                "description": "notificationMediumId"
+              }
+            ]
+          },
+          "docs": "Delete audit log webhook by notificationMediumId"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

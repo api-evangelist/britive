@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Application Profiles - Permission Constraint Manager API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Profiles - Permission Constraint Manager",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getProfilePermissionConstraints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/paps/:papId/permissions/:permission-name/:permission-type/constraints/:constraint-type",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permission-name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permission-type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "constraint-type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "available",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "manageProfilePermissionConstraint_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/paps/:papId/permissions/:permission-name/:permission-type/constraints/:constraint-type",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permission-name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permission-type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "constraint-type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "operation",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Get Permission Constraint Type Metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/paps/:papId/permissions/:permission-name/:permission-type/constraints/:constraint-type/metadata",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID to get Profile Access Setting"
+              },
+              {
+                "name": "permission-name",
+                "value": "",
+                "type": "path",
+                "description": "permission-name"
+              },
+              {
+                "name": "permission-type",
+                "value": "",
+                "type": "path",
+                "description": "permission-type"
+              },
+              {
+                "name": "constraint-type",
+                "value": "",
+                "type": "path",
+                "description": "constraint-type"
+              }
+            ]
+          },
+          "docs": "Get Permission Constraint Type Metadata."
+        },
+        {
+          "info": {
+            "name": "getProfilePermissionSupportedConstraintTypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/paps/:papId/permissions/:permission-name/:permission-type/supported-constraint-types",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permission-name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permission-type",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

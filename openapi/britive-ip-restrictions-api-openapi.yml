@@ -1,0 +1,160 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation IP Restrictions API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: IP Restrictions
+  description: Manage firewall rules/settings
+paths:
+  /api/settings/firewall:
+    get:
+      tags:
+      - IP Restrictions
+      summary: Get firewall rules
+      operationId: getFirewallRules
+      responses:
+        '200':
+          description: Firewall rules details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallRulesRequest'
+        '404':
+          description: Error
+    post:
+      tags:
+      - IP Restrictions
+      summary: Save firewall rules
+      operationId: saveFirewallRules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirewallRulesRequest'
+        required: true
+      responses:
+        '201':
+          description: Firewall rules updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallRulesRequest'
+  /api/settings/firewall/fields:
+    get:
+      tags:
+      - IP Restrictions
+      summary: Get firewall fields
+      operationId: getFirewallFields
+      responses:
+        '200':
+          description: Firewall fields details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallFields'
+    post:
+      tags:
+      - IP Restrictions
+      summary: Save firewall fields
+      operationId: saveFirewallFields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirewallFields'
+            example:
+              fields:
+                country:
+                  header: CloudFront-Viewer-Country
+                  field_type: string
+                  info: The country as represented by the 2 character ISO code.
+                  operators:
+                  - equals
+                  - contains
+                  - startswith
+                  - endswith
+                client_ip:
+                  header: clientip
+                  field_type: ip
+                  info: 'The IP address(es) in CIDR notation. Example: 120.121.122.0/24, 180.179.178.176/32.'
+                  operators:
+                  - contains
+        required: true
+      responses:
+        '201':
+          description: Firewall rules updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallFields'
+components:
+  schemas:
+    FirewallRulesDto:
+      type: object
+      properties:
+        priority:
+          type: integer
+          format: int32
+        action:
+          type: string
+        field:
+          type: string
+        invert:
+          type: boolean
+        operator:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+    FirewallFields:
+      type: object
+      properties:
+        fields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Field'
+    FirewallRulesRequest:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FirewallRulesDto'
+        default_action:
+          type: string
+        antilockout:
+          type: boolean
+    Field:
+      type: object
+      properties:
+        header:
+          type: string
+        field_type:
+          type: string
+          description: Allowed values are 'ip', 'string'
+        info:
+          type: string
+        operators:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

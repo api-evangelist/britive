@@ -1,0 +1,255 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Notifications API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Notifications
+  description: Manage notifications
+paths:
+  /api/notifications:
+    post:
+      tags:
+      - Notifications
+      summary: Create a workflow notification
+      operationId: notifications_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationBean'
+            example:
+              name: Y-Testing
+              description: ''
+              status: Active
+              sendNoChanges: 'false'
+              actionType: Email
+              notificationMedium:
+              - id: ''
+              - id: ''
+                channels:
+                - testchannel22
+                - testchannel3
+              - id: ''
+              rules:
+              - predicate: ProfileAccessRequestAllApprovedAndFulfilled
+                operator: OR
+                description: Access builder request approved and fulfilled
+              memberRules:
+              - id: v0akzyxj5aiodocoya2x
+                memberType: User
+              - id: afl7qbomi9zwcneywqkt
+                memberType: User
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Notifications
+      summary: Get a list of all workflow notifications
+      operationId: notifications
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      tags:
+      - Notifications
+      summary: Update workflow notification details
+      operationId: notifications_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationBean'
+            example:
+              notificationId: x08qo4f21b7rea91ids8
+              name: vg
+              description: test
+              status: Active
+              sendNoChanges: 'false'
+              actionType: ''
+              notificationMedium:
+              - id: 29fe9ae2-a274-490e-8b88-49640a28097e
+                name: Slack-test
+                description: test
+                type: slack
+                connectionParameters: null
+                referenceCount: '6'
+                application: slack
+              rules: []
+              memberRules:
+              - id: 7u14pfw68vvznukhz77b
+                condition: null
+                name: testuser
+                memberType: User
+                firstName: test
+                lastName: S
+              applications:
+              - appContainerId: n7xbqbm1l86e9j5b9jrc
+                catalogAppDisplayName: AWS
+                description: null
+                status: active
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/notifications/supported-rules:
+    get:
+      tags:
+      - Notifications
+      summary: Get available rules for a workflow notification
+      operationId: supportedRules
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/notifications/{notificationId}:
+    delete:
+      tags:
+      - Notifications
+      summary: Delete a specified workflow notification
+      operationId: notification
+      parameters:
+      - name: notificationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Notifications
+      summary: Get details of a notification medium
+      operationId: notification_1
+      parameters:
+      - name: notificationId
+        description: Notification ID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    JsonNode:
+      type: object
+    WorkflowMemberRuleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    NotificationBean:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - Inactive
+          - Active
+        sendNoChanges:
+          type: boolean
+        actionType:
+          type: string
+        notificationMedium:
+          $ref: '#/components/schemas/JsonNode'
+        rules:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleBean'
+        memberRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowMemberRuleDto'
+        applications:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/ApplicationSummary'
+    ApplicationSummary:
+      type: object
+      properties:
+        appContainerId:
+          type: string
+        catalogAppDisplayName:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+    RuleBean:
+      type: object
+      properties:
+        predicate:
+          type: string
+        predicateType:
+          type: string
+          enum:
+          - SCANNER
+          - ACCESS_BUILDER
+          - API_TOKEN
+          - USER
+          - PROFILE
+          - RESOURCE_SCANNER
+        operator:
+          type: string
+          enum:
+          - OR
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

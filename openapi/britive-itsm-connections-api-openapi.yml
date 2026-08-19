@@ -1,0 +1,217 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation ITSM Connections API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: ITSM Connections
+  description: Manage ITSM Connections
+paths:
+  /api/itsm-manager/connections:
+    post:
+      tags:
+      - ITSM Connections
+      summary: Create an ITSM connection
+      operationId: createItsmConnection
+      requestBody:
+        description: ITSM Connection Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItsmConnectionDetails'
+      responses:
+        '201':
+          description: ITSM Connection created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItsmConnectionDetails'
+    get:
+      tags:
+      - ITSM Connections
+      summary: Get list of ITSM connections
+      operationId: listItsmConnections
+      parameters:
+      - name: type
+        in: query
+        description: ITSM filter by type.
+        required: false
+        schema:
+          type: string
+        example: Jira
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItsmConnection'
+  /api/itsm-manager/connections/{connectionId}:
+    delete:
+      tags:
+      - ITSM Connections
+      summary: Delete an ITSM connection
+      operationId: deleteItsmConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an ITSM Connection
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ITSM Connection deleted successfully.
+        '404':
+          description: ITSM Connection not found.
+    get:
+      tags:
+      - ITSM Connections
+      summary: Get ITSM connection for given connection ID
+      operationId: getItsmConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an ITSM Connection
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItsmConnectionDetails'
+        '404':
+          description: ITSM Connection not found.
+    patch:
+      tags:
+      - ITSM Connections
+      summary: Update an ITSM connection
+      operationId: updateItsmConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an ITSM Connection
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ITSM Connection Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItsmConnectionDetails'
+      responses:
+        '204':
+          description: ITSM Connection updated successfully.
+        '404':
+          description: ITSM Connection not found.
+  /api/itsm-manager/connections/{connectionId}/references:
+    get:
+      tags:
+      - ITSM Connections
+      summary: Get ITSM connection references for given connection ID
+      operationId: getItsmConnectionReferences
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an ITSM Connection
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItsmConnectionReference'
+        '404':
+          description: ITSM Connection not found.
+  /api/itsm-manager/connections/{connectionId}/validate:
+    get:
+      tags:
+      - ITSM Connections
+      summary: Validate ITSM connection for given connection ID
+      operationId: validateItsmConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: connectionId of an ITSM Connection
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful operation
+        '404':
+          description: ITSM Connection not found.
+components:
+  schemas:
+    ItsmConnectionReference:
+      type: object
+      properties:
+        id:
+          type: string
+        consumer:
+          type: string
+        entityType:
+          type: string
+        url:
+          type: string
+        entityData:
+          type: object
+    ItsmConnection:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        authType:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    ItsmConnectionDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        authType:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

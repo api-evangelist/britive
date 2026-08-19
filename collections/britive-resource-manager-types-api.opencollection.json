@@ -1,0 +1,238 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Resource Manager - Types API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource Manager - Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all resource types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types",
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter resource types by search text"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get all resource types"
+        },
+        {
+          "info": {
+            "name": "Manage resource types",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manage resource types"
+        },
+        {
+          "info": {
+            "name": "Get resource type by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type to retrieve"
+              }
+            ]
+          },
+          "docs": "Get resource type by ID"
+        },
+        {
+          "info": {
+            "name": "Update Resource Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type to partially update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update resource type"
+        },
+        {
+          "info": {
+            "name": "Delete Resource Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type to delete"
+              }
+            ]
+          },
+          "docs": "Delete resource type"
+        },
+        {
+          "info": {
+            "name": "Returns icon svg image configured for the resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:id/icon",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type"
+              }
+            ]
+          },
+          "docs": "Returns icon svg image configured for the resource type. The icon image is returned from the cache and any updates to the icon takes time to refresh the cache. The other APIs to get the icon-data or the icon with the updatedTimestamp can be used to get the updated icon without delay."
+        },
+        {
+          "info": {
+            "name": "Get Resource Type Icon Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:id/icon-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type to retrieve icon data"
+              }
+            ]
+          },
+          "docs": "Get resource type icon data in SVG XML format"
+        },
+        {
+          "info": {
+            "name": "Save Resource Type Icon Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:id/icon-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type"
+              }
+            ]
+          },
+          "docs": "Save icon data for given resource type"
+        },
+        {
+          "info": {
+            "name": "Delete Resource Type Icon Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:id/icon-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type"
+              }
+            ]
+          },
+          "docs": "Delete icon data for given resource type"
+        },
+        {
+          "info": {
+            "name": "Returns icon svg image configured for the resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:resourceTypeId/:updatedTimestamp/icon",
+            "params": [
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type"
+              },
+              {
+                "name": "updatedTimestamp",
+                "value": "",
+                "type": "path",
+                "description": "Timestamp of last update to icon for the resource type icon"
+              }
+            ]
+          },
+          "docs": "Returns icon svg image configured for the resource type. The icon image is returned from the cache. The updatedTimestamp value is changed in case any updates to the icon, use the latest updatedTimestamp value to get the updated icon. The APIs that return the resource types have the updated icon URL in the response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

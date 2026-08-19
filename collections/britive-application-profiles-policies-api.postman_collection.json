@@ -1,0 +1,914 @@
+{
+  "item": [
+    {
+      "id": "ed141cc6-717c-4178-bf80-e7be4779689a",
+      "name": "Application Profiles - Policies",
+      "description": {
+        "content": "Manage Application Profiles Policies",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a4b3761-7b03-4e61-9200-a498819294ec",
+          "name": "Create a policy for a specified profile",
+          "request": {
+            "name": "Create a policy for a specified profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"isDraft\": \"<boolean>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"condition\": \"<object>\",\n  \"permissions\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"isInline\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"isInline\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\"\n    }\n  ],\n  \"members\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"memberType\": \"<string>\"\n  },\n  \"roles\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"permissions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        }\n      ],\n      \"isReadOnly\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"permissions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        }\n      ],\n      \"isReadOnly\": \"<boolean>\"\n    }\n  ],\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessLevel\": \"<string>\",\n  \"resource\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"accessType\": \"<string>\",\n  \"resourceLabels\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0dcb6f9-47f3-4c2f-b4f1-60a7dda5b600",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ProfilePolicy_15dec\",\n  \"description\": \"test\",\n  \"isActive\": \"true\",\n  \"isDraft\": \"false\",\n  \"isReadOnly\": \"false\",\n  \"condition\": {\n    \"timeOfAccess\": {\n      \"dateSchedule\": {\n        \"fromDate\": \"2022-12-18 00:30:00\",\n        \"toDate\": \"2022-12-20 02:30:00\",\n        \"timezone\": \"Europe/Paris\"\n      },\n      \"daysSchedule\": {\n        \"fromTime\": \"20:30:00\",\n        \"toTime\": \"21:30:00\",\n        \"timezone\": \"Europe/Paris\",\n        \"days\": [\n          \"SATURDAY\",\n          \"TUESDAY\"\n        ]\n      }\n    }\n  },\n  \"settings\": [\n    {\n      \"settingsType\": \"ITSM\",\n      \"connectionId\": \"71b94622-30ef-4d17-babb-94972ce4b2db\",\n      \"connectionType\": \"servicenow\",\n      \"isCommentRequired\": \"false\",\n      \"isITSMEnabled\": \"true\",\n      \"itsmFilterCriteria\": [\n        {\n          \"supportedTicketType\": \"change_request\",\n          \"filter\": {\n            \"sysparm_query\": \"\"\n          }\n        }\n      ]\n    },\n    {\n      \"settingsType\": \"JUSTIFICATION\",\n      \"isJustificationRequired\": \"true\",\n      \"justificationRegex\": \"XYZ\"\n    }\n  ],\n  \"members\": {\n    \"users\": [\n      {\n        \"id\": \"CCy1O21HXuzSNzCp8vWI\"\n      }\n    ]\n  },\n  \"resource\": \"aziewhoieflmzqd4k7yf\",\n  \"consumer\": \"papservice\",\n  \"accessType\": \"Allow\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf131ae5-04ec-4865-96ba-134fd04f1df1",
+          "name": "Get a list of all policies for the specified profile",
+          "request": {
+            "name": "Get a list of all policies for the specified profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "compactResponse",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Parameter to specify the page number of the records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "parameter to specify the number of records to retrieve per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "parameter to specify the sort parameter and direction"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0453045c-018a-4161-a21b-bb42de5f52c5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "compactResponse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5be8925-01b0-4d92-8697-926ad16adba2",
+          "name": "Set orders for policies associated with profile",
+          "request": {
+            "name": "Set orders for policies associated with profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "policies",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) ID of the profile"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"order\": \"<integer>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"order\": \"<integer>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2519d4a3-9ada-44ac-94f1-ca500e225197",
+              "name": "Policy priorities successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "policies",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) ID of the profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"order\": \"<integer>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"order\": \"<integer>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb7b97b7-81c4-4429-b336-3e87bd99b4d1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "policies",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) ID of the profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"order\": \"<integer>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"order\": \"<integer>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aff64081-5e36-47d0-b08e-e0660dd81c35",
+          "name": "Delete a specified policy created for a specified profile",
+          "request": {
+            "name": "Delete a specified policy created for a specified profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "policies",
+                ":policyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37a8d880-16ed-449b-9049-a340f76592df",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d20bd7e7-45c3-44c5-9623-01f69956ac3b",
+          "name": "Get details of a policy for a specified profile and policy",
+          "request": {
+            "name": "Get details of a policy for a specified profile and policy",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "policies",
+                ":policyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aefc9f1d-fb0d-445b-bdb5-3b84168f7b4a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "224f1bce-7d82-47a4-bc17-76ef9f9fe31e",
+          "name": "Update policy details of a specified policy of a specified profile",
+          "request": {
+            "name": "Update policy details of a specified policy of a specified profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "paps",
+                ":papId",
+                "policies",
+                ":policyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"isDraft\": \"<boolean>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"condition\": \"<object>\",\n  \"permissions\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"isInline\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"actions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"isInline\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\"\n    }\n  ],\n  \"members\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"memberType\": \"<string>\"\n  },\n  \"roles\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"permissions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        }\n      ],\n      \"isReadOnly\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"permissions\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"consumer\": \"<string>\",\n          \"actions\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"resources\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"isInline\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        }\n      ],\n      \"isReadOnly\": \"<boolean>\"\n    }\n  ],\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessLevel\": \"<string>\",\n  \"resource\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"accessType\": \"<string>\",\n  \"resourceLabels\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7cd0c1b5-3506-4c51-b6ef-da39186582e0",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "paps",
+                    ":papId",
+                    "policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ProfilePolicy_15dec\",\n  \"description\": \"test\",\n  \"isActive\": \"true\",\n  \"isDraft\": \"false\",\n  \"isReadOnly\": \"false\",\n  \"condition\": {\n    \"timeOfAccess\": {\n      \"dateSchedule\": {\n        \"fromDate\": \"2022-12-18 00:30:00\",\n        \"toDate\": \"2022-12-20 02:30:00\",\n        \"timezone\": \"Europe/Paris\"\n      },\n      \"daysSchedule\": {\n        \"fromTime\": \"20:30:00\",\n        \"toTime\": \"21:30:00\",\n        \"timezone\": \"Europe/Paris\",\n        \"days\": [\n          \"SATURDAY\",\n          \"TUESDAY\"\n        ]\n      }\n    }\n  },\n  \"settings\": [\n    {\n      \"settingsType\": \"ITSM\",\n      \"connectionId\": \"71b94622-30ef-4d17-babb-94972ce4b2db\",\n      \"connectionType\": \"servicenow\",\n      \"isCommentRequired\": \"false\",\n      \"isITSMEnabled\": \"true\",\n      \"itsmFilterCriteria\": [\n        {\n          \"supportedTicketType\": \"change_request\",\n          \"filter\": {\n            \"sysparm_query\": \"\"\n          }\n        }\n      ]\n    },\n    {\n      \"settingsType\": \"JUSTIFICATION\",\n      \"isJustificationRequired\": \"true\",\n      \"justificationRegex\": \"XYZ\"\n    }\n  ],\n  \"members\": {\n    \"users\": [\n      {\n        \"id\": \"CCy1O21HXuzSNzCp8vWI\"\n      }\n    ]\n  },\n  \"resource\": \"aziewhoieflmzqd4k7yf\",\n  \"consumer\": \"papservice\",\n  \"accessType\": \"Allow\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e2482f12-273e-4bdd-96f1-7696a41017df",
+    "name": "Britive Services API Documentation Application Profiles - Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

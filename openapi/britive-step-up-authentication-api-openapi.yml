@@ -1,0 +1,161 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Step Up Authentication API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Step Up Authentication
+  description: Manage service identity association to identity provider
+paths:
+  /api/step-up/authenticate/{factor}:
+    post:
+      tags:
+      - Step Up Authentication
+      summary: Perform step up authentication using MFA factor
+      operationId: stepUpAuthenticate
+      parameters:
+      - name: factor
+        in: path
+        description: MFA factor used
+        required: true
+        schema:
+          type: string
+          enum:
+          - TOTP
+          - WEB_AUTHN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: object
+              description: Credentials to perform step up authentication
+            example:
+              otp: 093971
+        required: true
+      responses:
+        '200':
+          description: The step up authentication result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaAuthResponse'
+        '401':
+          description: step up authentication failed due to invalid credential.
+  /api/step-up/configuration:
+    post:
+      tags:
+      - Step Up Authentication
+      summary: Change tenant step up authentication configuration settings
+      operationId: changeConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StepUpConfiguration'
+        required: true
+      responses:
+        '200':
+          description: The step up configuration settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepUpConfiguration'
+        '401':
+          description: authentication failed invalid credential given.
+        '403':
+          description: authenticated user does not have administrator access.
+    get:
+      tags:
+      - Step Up Authentication
+      summary: Retrieve tenant step up authentication configuration settings
+      operationId: getConfiguration
+      responses:
+        '200':
+          description: The step up configuration settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepUpConfiguration'
+        '401':
+          description: authentication failed with invalid credential given.
+        '403':
+          description: authenticated user does not have administrator access.
+components:
+  schemas:
+    StepUpConfiguration:
+      required:
+      - completedCookieMaxAge
+      - totpConfiguration
+      - validationWindow
+      type: object
+      properties:
+        validationWindow:
+          maximum: '60'
+          minimum: '15'
+          type: integer
+          description: How long in minutes the last step up authentication completion is valid before prompting for step up again.
+          format: int32
+        completedCookieMaxAge:
+          maximum: '30'
+          minimum: '2'
+          type: integer
+          description: How long in seconds the completion id cookie is valid for step up policy conditions enabled for always prompt for step up.
+          format: int32
+        totpConfiguration:
+          $ref: '#/components/schemas/TotpConfiguration'
+    MfaAuthResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+          - SUCCEEDED
+          - CHALLENGE
+          - FAILED
+        additionalDetails:
+          type: object
+          additionalProperties:
+            type: object
+    TotpConfiguration:
+      required:
+      - digits
+      - hashFunction
+      - timeStep
+      type: object
+      properties:
+        hashFunction:
+          type: string
+          enum:
+          - SHA1
+          - SHA256
+          - SHA512
+        digits:
+          maximum: '8'
+          minimum: '6'
+          type: integer
+          format: int32
+        timeStep:
+          maximum: '60'
+          minimum: '30'
+          type: integer
+          format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

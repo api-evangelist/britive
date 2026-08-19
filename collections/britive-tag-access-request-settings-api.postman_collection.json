@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "2b99fe34-569d-4d10-9529-6712604249f0",
+      "name": "Tag Access Request Settings",
+      "description": {
+        "content": "Manage access request settings for a user tag",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8972a8f7-c458-43b7-941c-64b49ef7da19",
+          "name": "Create tag access request settings",
+          "request": {
+            "name": "Create tag access request settings",
+            "description": {
+              "content": "Create access request settings for all user tags",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "user-tags",
+                "access-request-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowAccessRequest\": \"<boolean>\",\n  \"approvalTimeOut\": \"<string>\",\n  \"notificationMediums\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"managerApproval\": {\n    \"required\": false,\n    \"condition\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07f22840-211b-448b-9a02-b2d0f7aadf21",
+              "name": "Tag access request settings successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user-tags",
+                    "access-request-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowAccessRequest\": \"<boolean>\",\n  \"approvalTimeOut\": \"<string>\",\n  \"notificationMediums\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"managerApproval\": {\n    \"required\": false,\n    \"condition\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allowAccessRequest\": \"<boolean>\",\n  \"approvalTimeOut\": \"<string>\",\n  \"notificationMediums\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"managerApproval\": {\n    \"required\": false,\n    \"condition\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "014d216c-70ab-4de6-90e4-cad4849b92d3",
+          "name": "Get tag access request settings",
+          "request": {
+            "name": "Get tag access request settings",
+            "description": {
+              "content": "Get access request settings for all user tags",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "user-tags",
+                "access-request-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e8d707d-1296-4349-944e-406dc2f2d7ff",
+              "name": "Successfully retrieved tag access request settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user-tags",
+                    "access-request-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allowAccessRequest\": \"<boolean>\",\n  \"approvalTimeOut\": \"<string>\",\n  \"notificationMediums\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"managerApproval\": {\n    \"required\": false,\n    \"condition\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a3d29f9-7ab1-440d-a80e-498527ec380e",
+          "name": "Update tag access request settings",
+          "request": {
+            "name": "Update tag access request settings",
+            "description": {
+              "content": "Update access request settings for all user tags",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "user-tags",
+                "access-request-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowAccessRequest\": \"<boolean>\",\n  \"approvalTimeOut\": \"<string>\",\n  \"notificationMediums\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"managerApproval\": {\n    \"required\": false,\n    \"condition\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69db2e13-8d51-480a-a747-1cc02457922f",
+              "name": "Tag access request settings updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user-tags",
+                    "access-request-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowAccessRequest\": \"<boolean>\",\n  \"approvalTimeOut\": \"<string>\",\n  \"notificationMediums\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"channels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"managerApproval\": {\n    \"required\": false,\n    \"condition\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9e55d7b4-6479-4a63-b7c8-45ac755772f7",
+    "name": "Britive Services API Documentation Tag Access Request Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

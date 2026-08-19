@@ -1,0 +1,852 @@
+{
+  "item": [
+    {
+      "id": "ac351df9-879c-41ba-be7a-01ba90731eb9",
+      "name": "Shared Signals - Issuers",
+      "description": {
+        "content": "Manage shared signals issuers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dcea5842-0942-4393-9bb8-104fe7c8c7b3",
+          "name": "Create a shared signals issuer",
+          "request": {
+            "name": "Create a shared signals issuer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "issuers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"issuerUrl\": \"<uri>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "563cf95f-0569-4b8d-ba4f-bf8458c591dc",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "issuers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"issuerUrl\": \"<uri>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuerId\": \"string\",\n  \"issuerUrl\": \"http://xvZimmLLHaEBDBiLlDEqXBvlSJsw.mnJKNgoKtvG,S9kT6Ga0UeH-aWYmNwsnM68q9qh3qs9uwFEawPIuiw7r\",\n  \"enabled\": false,\n  \"createdAt\": \"1955-01-31T18:14:00.309Z\",\n  \"updatedAt\": \"1961-11-10T01:18:44.933Z\",\n  \"displayName\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f44f3a7-349e-4140-8120-c9427dea160c",
+          "name": "List configured shared signals issuers for tenant",
+          "request": {
+            "name": "List configured shared signals issuers for tenant",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "issuers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "211b20d8-8706-438b-9708-fa590bcef3a2",
+              "name": "Issuers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "issuers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"issuerId\": \"string\",\n      \"issuerUrl\": \"https://IrmmiargwhBozZpGPwqKIVEywyF.yxyslA8b+owIRx-Esc1IiJimjIyW17Eop30JmePc\",\n      \"enabled\": true,\n      \"createdAt\": \"1967-01-03T18:07:34.729Z\",\n      \"updatedAt\": \"1999-07-02T20:56:03.240Z\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"issuerId\": \"string\",\n      \"issuerUrl\": \"http://JQNrXfAFVEkdXzAtQyBuwTxVAsviQ.cqUPz-vR3ecZB-mHRWmBsrKbNd-WsVeYk6.XsAkCtHsh8\",\n      \"enabled\": false,\n      \"createdAt\": \"1987-01-07T18:32:32.865Z\",\n      \"updatedAt\": \"1995-04-22T21:10:44.757Z\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c199615-df9a-484c-9dfa-c8e3e203da6d",
+          "name": "Delete a shared signals issuer",
+          "request": {
+            "name": "Delete a shared signals issuer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "issuers",
+                ":issuerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issuerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd11d36d-93d5-4338-9c63-35b04869dcfb",
+              "name": "Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "issuers",
+                    ":issuerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issuerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad163173-bc47-4992-9721-b6c9e91be212",
+          "name": "Get a shared signals issuer",
+          "request": {
+            "name": "Get a shared signals issuer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "issuers",
+                ":issuerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issuerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94313269-bfae-41bc-8528-e7c0af3858ea",
+              "name": "Issuer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "issuers",
+                    ":issuerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issuerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuerId\": \"string\",\n  \"issuerUrl\": \"http://xvZimmLLHaEBDBiLlDEqXBvlSJsw.mnJKNgoKtvG,S9kT6Ga0UeH-aWYmNwsnM68q9qh3qs9uwFEawPIuiw7r\",\n  \"enabled\": false,\n  \"createdAt\": \"1955-01-31T18:14:00.309Z\",\n  \"updatedAt\": \"1961-11-10T01:18:44.933Z\",\n  \"displayName\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e13935a6-7725-4ccd-a426-04e982e54178",
+          "name": "Update a shared signals issuer",
+          "request": {
+            "name": "Update a shared signals issuer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "issuers",
+                ":issuerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issuerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd5c0bca-c59d-47cb-bd2f-4bb0b4b684b1",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "issuers",
+                    ":issuerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issuerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuerId\": \"string\",\n  \"issuerUrl\": \"http://xvZimmLLHaEBDBiLlDEqXBvlSJsw.mnJKNgoKtvG,S9kT6Ga0UeH-aWYmNwsnM68q9qh3qs9uwFEawPIuiw7r\",\n  \"enabled\": false,\n  \"createdAt\": \"1955-01-31T18:14:00.309Z\",\n  \"updatedAt\": \"1961-11-10T01:18:44.933Z\",\n  \"displayName\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd56a7ee-4851-47ad-8529-24e7249dc0ff",
+          "name": "Get event-to-action mappings for a shared signals issuer",
+          "request": {
+            "name": "Get event-to-action mappings for a shared signals issuer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "issuers",
+                ":issuerId",
+                "mappings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issuerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41a6f609-84bf-453d-875a-9fd3d0bc4d26",
+              "name": "Mappings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "issuers",
+                    ":issuerId",
+                    "mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issuerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuerId\": \"string\",\n  \"mappings\": [\n    {\n      \"eventUri\": \"https://sdgQRAHMmBWSkj.ljkAlq5+vWXwGypB8pa4MZcfrI,ULd3VUwN4mv2qSIQ69FziJVag.HLcFx04C5u1H1CQy8yYOxqyK-\",\n      \"action\": \"string\"\n    },\n    {\n      \"eventUri\": \"https://lwFlGyYWM.hifjpsWAKNSQj8qmZRkRQ,eORULisfOogGko92zNVOTxn+3crQIt8Of+BvVaHtE9Y\",\n      \"action\": \"string\"\n    }\n  ],\n  \"updatedAt\": \"1972-02-18T10:50:43.368Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20b93b77-16a4-4480-9be3-a0d04f023835",
+          "name": "Replace event-to-action mappings for a shared signals issuer",
+          "request": {
+            "name": "Replace event-to-action mappings for a shared signals issuer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "admin",
+                "issuers",
+                ":issuerId",
+                "mappings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issuerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mappings\": [\n    {\n      \"eventUri\": \"<uri>\",\n      \"action\": \"<string>\"\n    },\n    {\n      \"eventUri\": \"<uri>\",\n      \"action\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99e54324-2634-4656-b23b-b4a69fb1db87",
+              "name": "Replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "admin",
+                    "issuers",
+                    ":issuerId",
+                    "mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issuerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mappings\": [\n    {\n      \"eventUri\": \"<uri>\",\n      \"action\": \"<string>\"\n    },\n    {\n      \"eventUri\": \"<uri>\",\n      \"action\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuerId\": \"string\",\n  \"mappings\": [\n    {\n      \"eventUri\": \"<uri>\",\n      \"action\": \"<string>\"\n    },\n    {\n      \"eventUri\": \"<uri>\",\n      \"action\": \"<string>\"\n    }\n  ],\n  \"updatedAt\": \"1994-07-03T12:28:19.765Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f4919ca-58d8-48f2-b960-934ad02e321a",
+    "name": "Britive Services API Documentation Shared Signals - Issuers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

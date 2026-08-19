@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation User Resources API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Resource Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/resource-templates",
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter resource by search text"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of resource templates that user is allowed to use"
+        },
+        {
+          "info": {
+            "name": "Get Resource Template Dynamic Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/resource-templates/:id/dynamic-parameters",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource template"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of dynamic fields for a resource template that the user is allowed to use"
+        },
+        {
+          "info": {
+            "name": "Create a new resource using a resource template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/user-resources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user resource based on the specified resource template."
+        },
+        {
+          "info": {
+            "name": "Delete user resource by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/user-resources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource to delete"
+              }
+            ]
+          },
+          "docs": "Delete user resource by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

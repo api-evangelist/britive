@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Audit Logs API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Audit Logs
+  description: Manage Audit Logs
+paths:
+  /api/logs:
+    get:
+      tags:
+      - Audit Logs
+      operationId: getAuditLogs
+      summary: Queries the audit log using filters
+      parameters:
+      - name: to
+        in: query
+        schema:
+          type: string
+        example: '2026-05-06T09:36:54.499Z'
+      - name: from
+        in: query
+        schema:
+          type: string
+        example: '2026-04-30T09:36:54.499Z'
+      - name: size
+        in: query
+        schema:
+          type: string
+      - name: search
+        in: query
+        schema:
+          type: string
+      - name: filter
+        in: query
+        schema:
+          type: string
+        example: actor.role eq test
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/logs/csv:
+    get:
+      tags:
+      - Audit Logs
+      operationId: getAuditLogsCsv
+      summary: Download audit log query result in CSV format
+      parameters:
+      - name: to
+        in: query
+        schema:
+          type: string
+        example: '2026-05-06T09:36:54.499Z'
+      - name: from
+        in: query
+        schema:
+          type: string
+        example: '2026-04-30T09:36:54.499Z'
+      - name: size
+        in: query
+        schema:
+          type: string
+      - name: search
+        in: query
+        schema:
+          type: string
+      - name: filter
+        in: query
+        schema:
+          type: string
+        example: actor.role eq test
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/logs/fields:
+    get:
+      tags:
+      - Audit Logs
+      operationId: getFields
+      summary: Gets the list of fields used in the audit query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/logs/operators:
+    get:
+      tags:
+      - Audit Logs
+      operationId: getOperators
+      summary: Gets the list of operators used in the audit query
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

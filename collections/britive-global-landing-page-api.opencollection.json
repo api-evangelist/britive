@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Global Landing Page API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Global Landing Page",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get global landing page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/settings/landing-page"
+          },
+          "docs": "Get global landing page"
+        },
+        {
+          "info": {
+            "name": "Update global landing page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/settings/landing-page",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update global landing page"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

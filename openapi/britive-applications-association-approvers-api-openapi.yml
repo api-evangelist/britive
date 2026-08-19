@@ -1,0 +1,219 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Applications - Association Approvers API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Applications - Association Approvers
+  description: Manage association approvers for an application
+paths:
+  /api/apps/{appId}/association-approvers:
+    post:
+      tags:
+      - Applications - Association Approvers
+      summary: Create Association Approvers combination for an application
+      operationId: createAssociationApprovers
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssociationApproversDto'
+        required: true
+      responses:
+        '200':
+          description: Successfully created Association Approvers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociationApproversDto'
+    get:
+      tags:
+      - Applications - Association Approvers
+      summary: Get associations and approver groups combination configured for an application
+      operationId: getAssociationApprovers
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved Association Approvers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociationApproversSummary'
+  /api/apps/{appId}/association-approvers/{id}:
+    delete:
+      tags:
+      - Applications - Association Approvers
+      summary: Delete association approvers configured for a given id in an application
+      operationId: deleteAssociationApprovers
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id of the association approvers.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: delete association aprovers combination
+        '404':
+          description: Access request group id not found
+    get:
+      tags:
+      - Applications - Association Approvers
+      summary: Get configured association and approvers by id to an application
+      operationId: getAssociationApproversById
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id of the association approvers.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved access request group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociationApproversDto'
+        '404':
+          description: Association Approvers configured to an id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociationApproversDto'
+    patch:
+      tags:
+      - Applications - Association Approvers
+      summary: Update association and approvers for a given id
+      operationId: updateAssociationApprovers
+      parameters:
+      - name: appId
+        in: path
+        description: id of the application.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id of the association approvers.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssociationApproversDto'
+        required: true
+      responses:
+        '204':
+          description: Association & Approvers combination updated
+        '404':
+          description: Association Approvers set for a given id not found
+components:
+  schemas:
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    ApproversGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        condition:
+          type: string
+          enum:
+          - All
+          - Any
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberDto'
+    AssociationApproversSummary:
+      type: object
+      properties:
+        associationApproversSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationApproversDto'
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
+    AssociationApproversDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationDto'
+        approversGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApproversGroupDto'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

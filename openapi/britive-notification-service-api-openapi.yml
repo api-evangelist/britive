@@ -1,0 +1,353 @@
+openapi: 3.2.0
+info:
+  title: Secret Manager Notification Service API
+  version: v1
+  description: API documentation for Secret Manager, Policy Administration, Notifications, Approval service, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Notification Service
+paths:
+  /api/v1/notification-service/notificationmediums:
+    post:
+      tags:
+      - Notification Service
+      summary: Create a notification medium
+      operationId: createNotificationMedium
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationMediumDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Notification Service
+      summary: Get notification medium details
+      operationId: getNotificationMediums
+      parameters:
+      - name: filter
+        in: query
+        description: Filter query
+        schema:
+          type: string
+        example: name%20eq%20corporate_slack
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notificationmediums/{id}:
+    delete:
+      tags:
+      - Notification Service
+      summary: Delete notification medium
+      operationId: deleteNotificationMedium
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Notification Service
+      summary: Get notification medium details for id
+      operationId: getNotificationMedium
+      parameters:
+      - name: id
+        in: path
+        description: Id of notification medium
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Notification Service
+      summary: Update notification medium details
+      operationId: updateNotificationMedium
+      parameters:
+      - name: id
+        in: path
+        description: Id of notification medium
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationMediumDto'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notificationmediums/{id}/channels:
+    get:
+      tags:
+      - Notification Service
+      summary: Get channels for notification medium id
+      operationId: getChannelsForNotificationMediumId
+      parameters:
+      - name: id
+        in: path
+        description: Id of notification medium
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      - name: pageToken
+        in: query
+        description: Cursor for next page
+        schema:
+          type: string
+        example: dGVhbTpDMDYxRkE1UEI=
+      - name: limit
+        in: query
+        description: Page limit
+        schema:
+          default: '200'
+        example: '100'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notificationmediums/{id}/channels/ismember:
+    post:
+      tags:
+      - Notification Service
+      summary: Check if user is member of channel(s)
+      operationId: isMember
+      parameters:
+      - name: id
+        in: path
+        description: Id of notification medium
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelMembership'
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notificationmediums/{id}/channels/validate:
+    post:
+      tags:
+      - Notification Service
+      summary: Validate channels
+      operationId: validateChannels
+      parameters:
+      - name: id
+        in: path
+        description: Id of notification medium
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notificationmediums/{id}/channels/validate/names:
+    post:
+      tags:
+      - Notification Service
+      summary: Validate channel names
+      operationId: validateChannelNames
+      parameters:
+      - name: id
+        in: path
+        description: Id of notification medium
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notificationmediums/{id}/channels/{channelId}:
+    get:
+      tags:
+      - Notification Service
+      summary: Get channel details for notification medium id and channel id
+      operationId: getChannelInfoForNotificationMediumId
+      parameters:
+      - name: id
+        in: path
+        description: Id of notification medium
+        required: true
+        schema:
+          type: string
+        example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
+      - name: channelId
+        in: path
+        description: Id of slack channel
+        required: true
+        schema:
+          type: string
+        example: C012AB3CD
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notifications:
+    delete:
+      tags:
+      - Notification Service
+      summary: Delete all notification message
+      operationId: deleteNotificationAllMessage
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/notification-service/notifications/{id}:
+    delete:
+      tags:
+      - Notification Service
+      summary: Delete notification message
+      operationId: deleteNotificationMessage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    NotificationMediumDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          maxLength: '30'
+          minLength: '1'
+          pattern: \s*[a-zA-Z0-9\s*_-]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        type:
+          maxLength: '30'
+          minLength: '1'
+          pattern: \s*[a-zA-Z]+\s*
+          type: string
+        connectionParameters:
+          type: object
+          additionalProperties:
+            type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        referenceCount:
+          maximum: '1'
+          minimum: '-1'
+          type: integer
+          format: int32
+    ChannelMembership:
+      type: object
+      properties:
+        userId:
+          type: string
+        emailId:
+          type: string
+        channels:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 71
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

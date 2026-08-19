@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Resource Profiles - Advanced Settings API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource Profiles - Advanced Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get sdvanced settings for given profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/profile/:profileId/advanced-settings",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "profileId mapped to Advanced Settings"
+              }
+            ]
+          },
+          "docs": "Get sdvanced settings for given profile"
+        },
+        {
+          "info": {
+            "name": "Create an advanced settings for resource profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/profile/:profileId/advanced-settings",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "profileId mapped to Advanced Settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an advanced settings for resource profile"
+        },
+        {
+          "info": {
+            "name": "Update advanced settings for profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/resource-manager/profile/:profileId/advanced-settings",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "profileId mapped to Advanced Settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update advanced settings for profile"
+        },
+        {
+          "info": {
+            "name": "Delete advanced settings mapped to a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/profile/:profileId/advanced-settings/:id",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "profileId mapped to Advanced Settings"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of Advanced Settings mapped to profile"
+              }
+            ]
+          },
+          "docs": "Delete advanced settings mapped to a profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

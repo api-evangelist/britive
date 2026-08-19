@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Application Profiles - Advanced Settings API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Profiles - Advanced Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get advanced Settings for given app profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/paps/:papId/advanced-settings",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path",
+                "description": "papId mapped to Advanced Settings"
+              }
+            ]
+          },
+          "docs": "Get advanced Settings for given app profile"
+        },
+        {
+          "info": {
+            "name": "Create an advanced settings for app profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/paps/:papId/advanced-settings",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path",
+                "description": "papId mapped to Advanced Settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an advanced settings for app profile"
+        },
+        {
+          "info": {
+            "name": "Update advanced settings for app profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/paps/:papId/advanced-settings",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path",
+                "description": "papId mapped to Advanced Settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update advanced settings for app profile"
+        },
+        {
+          "info": {
+            "name": "Delete advanced settings mapped to a app profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/paps/:papId/advanced-settings/:id",
+            "params": [
+              {
+                "name": "papId",
+                "value": "",
+                "type": "path",
+                "description": "papId mapped to Advanced Settings"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of Advanced Settings mapped to profile"
+              }
+            ]
+          },
+          "docs": "Delete advanced settings mapped to a app profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

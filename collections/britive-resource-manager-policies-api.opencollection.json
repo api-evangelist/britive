@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Resource Manager - Policies API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource Manager - Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all resource policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/policies",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter policy by name"
+              }
+            ]
+          },
+          "docs": "Get all resource policies"
+        },
+        {
+          "info": {
+            "name": "Add policy to delegate resource access to users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add policy to delegate resource access to users"
+        },
+        {
+          "info": {
+            "name": "Get policy details for a given policy id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/policies/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the policy to retrieve details"
+              },
+              {
+                "name": "compactResponse",
+                "value": "",
+                "type": "query",
+                "description": "Policy details in compact json foramt"
+              }
+            ]
+          },
+          "docs": "Get policy details for a given policy id"
+        },
+        {
+          "info": {
+            "name": "Update resource policy details for a given policy id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/resource-manager/policies/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "policy Id to update the details"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update resource policy details for a given policy id"
+        },
+        {
+          "info": {
+            "name": "Delete  resource policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/policies/:policyId",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "policy Id to delete"
+              }
+            ]
+          },
+          "docs": "Delete  resource policy"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

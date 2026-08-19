@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "554b00a3-6171-4888-b456-e680beda9d9b",
+      "name": "Custom App Template Uploader",
+      "description": {
+        "content": "Uploads custom app template.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b55a97b-2258-4c20-9b4e-f4e8c276ea7c",
+          "name": "Uploads a custom app template.",
+          "request": {
+            "name": "Uploads a custom app template.",
+            "description": {
+              "content": "This endpoint is used to upload a custom app template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "generic-apps",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "templateFile",
+                  "type": "file",
+                  "description": "(Required) The app template file (.yaml or .baml)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "31e24ece-ba03-4d4e-a37c-17b2ed732e54",
+              "name": "Successfully uploaded custom app template. Provisioning in progress.\nTo check whether template is ready for usage, use get /api/generic-apps/templates\nto see if template if available.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "generic-apps",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The app template file (.yaml or .baml).",
+                        "type": "text/plain"
+                      },
+                      "key": "templateFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a33d53f9-6822-4e10-a347-922750cb05a3",
+    "name": "Britive Services API Documentation Custom App Template Uploader API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

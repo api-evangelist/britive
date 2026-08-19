@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Resource Profiles - Associations API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource Profiles - Associations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get associations to resource profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:id/associations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to add permission"
+              }
+            ]
+          },
+          "docs": "Get associations to resource profile"
+        },
+        {
+          "info": {
+            "name": "Add associations to resource profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/profiles/:id/associations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of profile to add permission"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add associations to resource profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

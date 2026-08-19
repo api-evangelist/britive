@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation User Identity Attributes API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Identity Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user identity attributes (Access API)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/users/attributes"
+          },
+          "docs": "Returns all user identity attributes defined in the system. This access-scoped endpoint mirrors `GET /api/users/attributes` but is accessible via the access API path.\n"
+        },
+        {
+          "info": {
+            "name": "Get a list of all identity attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/user-attributes"
+          },
+          "docs": "Get a list of all identity attributes"
+        },
+        {
+          "info": {
+            "name": "Get list of all custom attributes in the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/users/attributes",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get list of all custom attributes in the system"
+        },
+        {
+          "info": {
+            "name": "Create an identity attribute in the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/users/attributes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an identity attribute in the system"
+        },
+        {
+          "info": {
+            "name": "Get data types of identity attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/users/attributes/data-types"
+          },
+          "docs": "Get data types of identity attribute"
+        },
+        {
+          "info": {
+            "name": "Get details of a specified identity attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/users/attributes/:id",
+            "params": [
+              {
+                "name": "userAttribute",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a specified identity attribute"
+        },
+        {
+          "info": {
+            "name": "Update specified identity attribute details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/users/attributes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update specified identity attribute details"
+        },
+        {
+          "info": {
+            "name": "Delete a specified identity attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/users/attributes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specified identity attribute"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

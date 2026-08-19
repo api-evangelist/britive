@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation SAML Configuration API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: SAML Configuration
+  description: Manage SAML Configuration
+paths:
+  /api/saml/certificate/{id}:
+    get:
+      tags:
+      - SAML Configuration
+      summary: Download the SAML certificate required in the SAML SSO configuration with a service provider
+      description: This operation is applicable for applications that do not support importing SAML metadata.
+      operationId: samlCertificate
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: object
+  /api/saml/metadata/{id}:
+    get:
+      tags:
+      - SAML Configuration
+      summary: Download the SAML metadata required in the SAML SSO configuration with a service provider
+      description: This operation is supported only in AWS and Oracle Cloud.
+      operationId: samlMetadata_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: object
+  /api/saml/settings:
+    get:
+      tags:
+      - SAML Configuration
+      summary: Return SAML settings required in the SAML SSO configuration with a service provider
+      operationId: samlSettings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

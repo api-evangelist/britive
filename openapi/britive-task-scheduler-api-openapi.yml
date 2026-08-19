@@ -1,0 +1,233 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Task Scheduler API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Task Scheduler
+  description: Manage Tasks
+paths:
+  /api/tasks/services:
+    get:
+      tags:
+      - Task Scheduler
+      operationId: getTasks
+      summary: Get details of the task scheduler service by retrieving the task scheduler service object
+      parameters:
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: appId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/tasks/services/{taskServiceId}:
+    delete:
+      tags:
+      - Task Scheduler
+      operationId: deleteTasks
+      summary: Deletes all the tasks for provided taskServiceId
+      parameters:
+      - name: taskServiceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '204':
+          description: successful operation
+  /api/tasks/services/{taskServiceId}/disble-statuses:
+    post:
+      tags:
+      - Task Scheduler
+      operationId: disableStatuses
+      summary: Disable atask service in the system, as indicated by the taskServiceId
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/tasks/services/{taskServiceId}/enabled-statuses:
+    post:
+      tags:
+      - Task Scheduler
+      operationId: enableStatuses
+      summary: Enables the task service in the system, as indicated by the taskServiceId
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/tasks/services/{taskServiceId}/tasks:
+    post:
+      tags:
+      - Task Scheduler
+      operationId: createTask
+      summary: Create a new task in the system
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Task Scheduler
+      operationId: getAllTasks
+      summary: Return an array of tasks, as indicated by the taskServiceId
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/tasks/services/{taskServiceId}/tasks/statuses:
+    get:
+      tags:
+      - Task Scheduler
+      operationId: getTaskStatuses
+      summary: Return an array of task statuses ordered by the sentTime descending
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/tasks/services/{taskServiceId}/tasks/{taskId}:
+    delete:
+      tags:
+      - Task Scheduler
+      operationId: deleteTaskDetails
+      summary: Delete a task in the system, as indicated by the taskId
+      description: When a task is deleted, all the associated tasks are also deleted.
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+    get:
+      tags:
+      - Task Scheduler
+      operationId: getTaskDetails
+      summary: Return details of a specified task
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Task Scheduler
+      operationId: upatetTaskDetails
+      summary: Return the details of a task, as indicated by the taskId
+      parameters:
+      - name: taskServiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              name: Daily Scan All 3 update
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

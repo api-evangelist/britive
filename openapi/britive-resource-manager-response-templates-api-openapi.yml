@@ -1,0 +1,218 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Manager - Response Templates API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Manager - Response Templates
+  description: Manage Resource Response Templates
+paths:
+  /api/resource-manager/response-templates:
+    get:
+      tags:
+      - Resource Manager - Response Templates
+      summary: Get All Response templates
+      description: Retrieve a list of all response templates
+      operationId: getAllResponseTemplates
+      parameters:
+      - in: query
+        name: searchText
+        description: Parameter to filter permissions by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTemplatesSummary'
+    post:
+      tags:
+      - Resource Manager - Response Templates
+      summary: Manage response templates
+      operationId: saveResponseTemplate
+      requestBody:
+        description: Information to save response templates
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseTemplateDto'
+      responses:
+        '201':
+          description: Response template saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTemplateDto'
+  /api/resource-manager/response-templates/{templateId}:
+    delete:
+      tags:
+      - Resource Manager - Response Templates
+      summary: Delete response template
+      operationId: deleteResponseTemplate
+      parameters:
+      - name: templateId
+        in: path
+        description: ID of the response template to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Response template deleted successfully
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager - Response Templates
+      summary: Get response template details
+      operationId: getResponseTemplateDetails
+      parameters:
+      - name: templateId
+        in: path
+        description: ID of the response template
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Response template details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTemplateDto'
+    put:
+      tags:
+      - Resource Manager - Response Templates
+      summary: Manage response templates
+      operationId: updateResponseTemplate
+      parameters:
+      - name: templateId
+        in: path
+        description: ID of the response template to retrieve
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Information to save response template
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseTemplateDto'
+      responses:
+        '201':
+          description: Response template saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTemplateDto'
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ResponseTemplateDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        templateId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        template_data:
+          type: string
+        show_on_ui:
+          type: boolean
+          default: false
+        isConsoleAccessEnabled:
+          type: boolean
+          default: false
+        createdBy:
+          type: string
+        updatedBy:
+          type: string
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+    ResponseTemplateDetailsDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        templateId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        show_on_ui:
+          type: boolean
+          default: false
+        isConsoleAccessEnabled:
+          type: boolean
+          default: false
+    ResponseTemplatesSummary:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseTemplateDetailsDto'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

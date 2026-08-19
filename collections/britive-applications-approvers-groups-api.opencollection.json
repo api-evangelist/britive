@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Applications - Approvers Groups API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications - Approvers Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get approvers groups for association approvers combination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appId/approvers-groups",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              }
+            ]
+          },
+          "docs": "Get approvers groups for association approvers combination"
+        },
+        {
+          "info": {
+            "name": "Create approvers groups for association approvers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appId/approvers-groups",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create approvers groups for association approvers"
+        },
+        {
+          "info": {
+            "name": "Get approvers groups for a given id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appId/approvers-groups/:groupId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "id of the approval group."
+              }
+            ]
+          },
+          "docs": "Get approvers groups for a given id"
+        },
+        {
+          "info": {
+            "name": "Update approvers group for given id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/apps/:appId/approvers-groups/:groupId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "id of the approval group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update approvers group for given id"
+        },
+        {
+          "info": {
+            "name": "Delete approval groups for access request settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/apps/:appId/approvers-groups/:groupId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the application."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "id of the approval group."
+              }
+            ]
+          },
+          "docs": "Delete approval groups for access request settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation API Tokens API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all API tokens in the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/token"
+          },
+          "docs": "Get all API tokens in the system"
+        },
+        {
+          "info": {
+            "name": "Create an API token with full administrator privileges.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The API token is returned only once. Copy and keep it in a secure location. If you lose the token you will have to generate a new token again."
+        },
+        {
+          "info": {
+            "name": "Get details of an API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/token/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token ID"
+              }
+            ]
+          },
+          "docs": "Get details of an API token"
+        },
+        {
+          "info": {
+            "name": "Update an API Token for a specific token ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/token/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an API Token for a specific token ID"
+        },
+        {
+          "info": {
+            "name": "Update API token expiration days for a specified token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/token/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update API token expiration days for a specified token"
+        },
+        {
+          "info": {
+            "name": "Revoke a token for a specific token id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/token/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token ID"
+              }
+            ]
+          },
+          "docs": "Use the Get tokens API call to retrieve the id of the token that should be revoked."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

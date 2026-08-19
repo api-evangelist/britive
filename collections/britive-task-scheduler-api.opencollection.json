@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Task Scheduler API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task Scheduler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get details of the task scheduler service by retrieving the task scheduler service object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/tasks/services",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get details of the task scheduler service by retrieving the task scheduler service object"
+        },
+        {
+          "info": {
+            "name": "Deletes all the tasks for provided taskServiceId",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all the tasks for provided taskServiceId"
+        },
+        {
+          "info": {
+            "name": "Disable atask service in the system, as indicated by the taskServiceId",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/disble-statuses",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disable atask service in the system, as indicated by the taskServiceId"
+        },
+        {
+          "info": {
+            "name": "Enables the task service in the system, as indicated by the taskServiceId",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/enabled-statuses",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Enables the task service in the system, as indicated by the taskServiceId"
+        },
+        {
+          "info": {
+            "name": "Return an array of tasks, as indicated by the taskServiceId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/tasks",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return an array of tasks, as indicated by the taskServiceId"
+        },
+        {
+          "info": {
+            "name": "Create a new task in the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/tasks",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a new task in the system"
+        },
+        {
+          "info": {
+            "name": "Return an array of task statuses ordered by the sentTime descending",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/tasks/statuses",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return an array of task statuses ordered by the sentTime descending"
+        },
+        {
+          "info": {
+            "name": "Return details of a specified task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return details of a specified task"
+        },
+        {
+          "info": {
+            "name": "Return the details of a task, as indicated by the taskId",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the details of a task, as indicated by the taskId"
+        },
+        {
+          "info": {
+            "name": "Delete a task in the system, as indicated by the taskId",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/tasks/services/:taskServiceId/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskServiceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "When a task is deleted, all the associated tasks are also deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

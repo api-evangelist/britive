@@ -1,0 +1,962 @@
+{
+  "item": [
+    {
+      "id": "9d9d7793-c916-4f88-a4cf-bafa06a04df8",
+      "name": "Applications",
+      "description": {
+        "content": "Manage Applications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a038caf-ef9e-43d8-9021-7d46ceb444fd",
+          "name": "Create a new application",
+          "request": {
+            "name": "Create a new application",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<integer>\",\n  \"catalogAppId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"hasValidPaps\": \"<boolean>\",\n  \"allowAccessRequests\": \"<boolean>\",\n  \"catalogAppDisplayName\": \"<string>\",\n  \"deleted\": \"<dateTime>\",\n  \"deletedBy\": \"<string>\",\n  \"rootEnvironmentGroup\": {\n    \"environmentGroups\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      }\n    ],\n    \"environments\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      }\n    ]\n  },\n  \"iconUrl\": \"<string>\",\n  \"catalogAppName\": \"<string>\",\n  \"catalogApplication\": {\n    \"name\": \"<string>\",\n    \"key\": \"<string>\",\n    \"version\": \"<string>\",\n    \"catalogAppId\": \"<long>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"provisionHandler\": \"<string>\",\n    \"ssoHandler\": \"<string>\",\n    \"provisionSupportClass\": \"<string>\",\n    \"supportsProfilePermissionConstraints\": \"<boolean>\",\n    \"supportManagedPermissions\": \"<boolean>\",\n    \"propertyTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      }\n    ],\n    \"requiresAccountMapping\": \"<boolean>\",\n    \"securityScanner\": \"<string>\",\n    \"requiresScanningForProfiles\": \"<boolean>\",\n    \"papExpirationSettings\": {\n      \"minimumSessionTime\": \"<integer>\",\n      \"maximumSessionTime\": \"<integer>\",\n      \"supportsSessionExtension\": \"<boolean>\",\n      \"numberOfSessionExtensionsAllowed\": \"<integer>\",\n      \"sessionTimeDuringExtension\": \"<integer>\"\n    },\n    \"permissionValidatorClass\": \"<string>\",\n    \"provisionAccessHandler\": \"<string>\",\n    \"credentialGeneratorHandler\": \"<string>\",\n    \"requiresKeyPair\": \"<boolean>\",\n    \"supportsDynamicAccountMapping\": \"<boolean>\",\n    \"provisionHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"ssoHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"securityScannerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"allEnvironmentGroupMap\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    }\n  },\n  \"defaultAppUrl\": \"<string>\",\n  \"catalogAppVersion\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"userAccountMappings\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d10c0267-dcb7-4b3f-8c49-dc03a6fe6d53",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<integer>\",\n  \"catalogAppId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"hasValidPaps\": \"<boolean>\",\n  \"allowAccessRequests\": \"<boolean>\",\n  \"catalogAppDisplayName\": \"<string>\",\n  \"deleted\": \"<dateTime>\",\n  \"deletedBy\": \"<string>\",\n  \"rootEnvironmentGroup\": {\n    \"environmentGroups\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      }\n    ],\n    \"environments\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      }\n    ]\n  },\n  \"iconUrl\": \"<string>\",\n  \"catalogAppName\": \"<string>\",\n  \"catalogApplication\": {\n    \"name\": \"<string>\",\n    \"key\": \"<string>\",\n    \"version\": \"<string>\",\n    \"catalogAppId\": \"<long>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"provisionHandler\": \"<string>\",\n    \"ssoHandler\": \"<string>\",\n    \"provisionSupportClass\": \"<string>\",\n    \"supportsProfilePermissionConstraints\": \"<boolean>\",\n    \"supportManagedPermissions\": \"<boolean>\",\n    \"propertyTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      }\n    ],\n    \"requiresAccountMapping\": \"<boolean>\",\n    \"securityScanner\": \"<string>\",\n    \"requiresScanningForProfiles\": \"<boolean>\",\n    \"papExpirationSettings\": {\n      \"minimumSessionTime\": \"<integer>\",\n      \"maximumSessionTime\": \"<integer>\",\n      \"supportsSessionExtension\": \"<boolean>\",\n      \"numberOfSessionExtensionsAllowed\": \"<integer>\",\n      \"sessionTimeDuringExtension\": \"<integer>\"\n    },\n    \"permissionValidatorClass\": \"<string>\",\n    \"provisionAccessHandler\": \"<string>\",\n    \"credentialGeneratorHandler\": \"<string>\",\n    \"requiresKeyPair\": \"<boolean>\",\n    \"supportsDynamicAccountMapping\": \"<boolean>\",\n    \"provisionHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"ssoHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"securityScannerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"allEnvironmentGroupMap\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    },\n    \"key_1\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    }\n  },\n  \"defaultAppUrl\": \"<string>\",\n  \"catalogAppVersion\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"userAccountMappings\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67300042-710a-4f81-a641-d69a727d12c9",
+          "name": "Get details of all applications",
+          "request": {
+            "name": "Get details of all applications",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0ecf41b-41c1-4137-a777-66c9aa270cc8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f13801c3-00c4-40ee-8d3e-cbe8c417abcf",
+          "name": "Check the status of currently active scans",
+          "request": {
+            "name": "Check the status of currently active scans",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                "tasks",
+                ":taskId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55d6ae2f-1c53-46a8-928d-1893fdfb6a08",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    "tasks",
+                    ":taskId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bed81f3a-c886-4bb3-9801-2483a8c9e7d6",
+          "name": "Delete an environment group within an application",
+          "request": {
+            "name": "Delete an environment group within an application",
+            "description": {
+              "content": "Applies to the following applications, AWS Standalone, SalesForce, and ServiceNow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "environment-groups",
+                ":envGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "envGroupId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d85d876-5197-48b8-a580-52142a4bc24d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "environment-groups",
+                    ":envGroupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "envGroupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35ff1c03-3367-4542-9f4a-6a4c81c1dea8",
+          "name": "Delete a specific application",
+          "request": {
+            "name": "Delete a specific application",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Application ID"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c53950c9-1a64-44f9-b5e4-7317a4cefce0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Application ID"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "282a857f-0310-48dc-aaa7-dc4c97ac17d9",
+          "name": "Enable or disable a specific Application",
+          "request": {
+            "name": "Enable or disable a specific Application",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<integer>\",\n  \"catalogAppId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"hasValidPaps\": \"<boolean>\",\n  \"allowAccessRequests\": \"<boolean>\",\n  \"catalogAppDisplayName\": \"<string>\",\n  \"deleted\": \"<dateTime>\",\n  \"deletedBy\": \"<string>\",\n  \"rootEnvironmentGroup\": {\n    \"environmentGroups\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      }\n    ],\n    \"environments\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      }\n    ]\n  },\n  \"iconUrl\": \"<string>\",\n  \"catalogAppName\": \"<string>\",\n  \"catalogApplication\": {\n    \"name\": \"<string>\",\n    \"key\": \"<string>\",\n    \"version\": \"<string>\",\n    \"catalogAppId\": \"<long>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"provisionHandler\": \"<string>\",\n    \"ssoHandler\": \"<string>\",\n    \"provisionSupportClass\": \"<string>\",\n    \"supportsProfilePermissionConstraints\": \"<boolean>\",\n    \"supportManagedPermissions\": \"<boolean>\",\n    \"propertyTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      }\n    ],\n    \"requiresAccountMapping\": \"<boolean>\",\n    \"securityScanner\": \"<string>\",\n    \"requiresScanningForProfiles\": \"<boolean>\",\n    \"papExpirationSettings\": {\n      \"minimumSessionTime\": \"<integer>\",\n      \"maximumSessionTime\": \"<integer>\",\n      \"supportsSessionExtension\": \"<boolean>\",\n      \"numberOfSessionExtensionsAllowed\": \"<integer>\",\n      \"sessionTimeDuringExtension\": \"<integer>\"\n    },\n    \"permissionValidatorClass\": \"<string>\",\n    \"provisionAccessHandler\": \"<string>\",\n    \"credentialGeneratorHandler\": \"<string>\",\n    \"requiresKeyPair\": \"<boolean>\",\n    \"supportsDynamicAccountMapping\": \"<boolean>\",\n    \"provisionHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"ssoHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"securityScannerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"allEnvironmentGroupMap\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    }\n  },\n  \"defaultAppUrl\": \"<string>\",\n  \"catalogAppVersion\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"userAccountMappings\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4e12f76-2b84-4f36-969f-7dabf22d9959",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<integer>\",\n  \"catalogAppId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"hasValidPaps\": \"<boolean>\",\n  \"allowAccessRequests\": \"<boolean>\",\n  \"catalogAppDisplayName\": \"<string>\",\n  \"deleted\": \"<dateTime>\",\n  \"deletedBy\": \"<string>\",\n  \"rootEnvironmentGroup\": {\n    \"environmentGroups\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      }\n    ],\n    \"environments\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      }\n    ]\n  },\n  \"iconUrl\": \"<string>\",\n  \"catalogAppName\": \"<string>\",\n  \"catalogApplication\": {\n    \"name\": \"<string>\",\n    \"key\": \"<string>\",\n    \"version\": \"<string>\",\n    \"catalogAppId\": \"<long>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"provisionHandler\": \"<string>\",\n    \"ssoHandler\": \"<string>\",\n    \"provisionSupportClass\": \"<string>\",\n    \"supportsProfilePermissionConstraints\": \"<boolean>\",\n    \"supportManagedPermissions\": \"<boolean>\",\n    \"propertyTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      }\n    ],\n    \"requiresAccountMapping\": \"<boolean>\",\n    \"securityScanner\": \"<string>\",\n    \"requiresScanningForProfiles\": \"<boolean>\",\n    \"papExpirationSettings\": {\n      \"minimumSessionTime\": \"<integer>\",\n      \"maximumSessionTime\": \"<integer>\",\n      \"supportsSessionExtension\": \"<boolean>\",\n      \"numberOfSessionExtensionsAllowed\": \"<integer>\",\n      \"sessionTimeDuringExtension\": \"<integer>\"\n    },\n    \"permissionValidatorClass\": \"<string>\",\n    \"provisionAccessHandler\": \"<string>\",\n    \"credentialGeneratorHandler\": \"<string>\",\n    \"requiresKeyPair\": \"<boolean>\",\n    \"supportsDynamicAccountMapping\": \"<boolean>\",\n    \"provisionHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"ssoHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"securityScannerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"allEnvironmentGroupMap\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    },\n    \"key_1\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    }\n  },\n  \"defaultAppUrl\": \"<string>\",\n  \"catalogAppVersion\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"userAccountMappings\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34b745f5-bc52-4135-81f9-fbefd7cb8d8c",
+          "name": "Get details of a specific application",
+          "request": {
+            "name": "Get details of a specific application",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Application ID"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8658fff8-8f83-4ce3-80e3-c1732a685b41",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Application ID"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91eba02a-8513-4a28-9272-bcc7ced6d6df",
+          "name": "Update application properties",
+          "request": {
+            "name": "Update application properties",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Application ID"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<integer>\",\n  \"catalogAppId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"hasValidPaps\": \"<boolean>\",\n  \"allowAccessRequests\": \"<boolean>\",\n  \"catalogAppDisplayName\": \"<string>\",\n  \"deleted\": \"<dateTime>\",\n  \"deletedBy\": \"<string>\",\n  \"rootEnvironmentGroup\": {\n    \"environmentGroups\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      }\n    ],\n    \"environments\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      }\n    ]\n  },\n  \"iconUrl\": \"<string>\",\n  \"catalogAppName\": \"<string>\",\n  \"catalogApplication\": {\n    \"name\": \"<string>\",\n    \"key\": \"<string>\",\n    \"version\": \"<string>\",\n    \"catalogAppId\": \"<long>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"provisionHandler\": \"<string>\",\n    \"ssoHandler\": \"<string>\",\n    \"provisionSupportClass\": \"<string>\",\n    \"supportsProfilePermissionConstraints\": \"<boolean>\",\n    \"supportManagedPermissions\": \"<boolean>\",\n    \"propertyTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      }\n    ],\n    \"requiresAccountMapping\": \"<boolean>\",\n    \"securityScanner\": \"<string>\",\n    \"requiresScanningForProfiles\": \"<boolean>\",\n    \"papExpirationSettings\": {\n      \"minimumSessionTime\": \"<integer>\",\n      \"maximumSessionTime\": \"<integer>\",\n      \"supportsSessionExtension\": \"<boolean>\",\n      \"numberOfSessionExtensionsAllowed\": \"<integer>\",\n      \"sessionTimeDuringExtension\": \"<integer>\"\n    },\n    \"permissionValidatorClass\": \"<string>\",\n    \"provisionAccessHandler\": \"<string>\",\n    \"credentialGeneratorHandler\": \"<string>\",\n    \"requiresKeyPair\": \"<boolean>\",\n    \"supportsDynamicAccountMapping\": \"<boolean>\",\n    \"provisionHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"ssoHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"securityScannerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"allEnvironmentGroupMap\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    }\n  },\n  \"defaultAppUrl\": \"<string>\",\n  \"catalogAppVersion\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"userAccountMappings\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "322b6950-af4d-4b84-924b-834dfeed3270",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Application ID"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<integer>\",\n  \"catalogAppId\": \"<long>\",\n  \"status\": \"<string>\",\n  \"hasValidPaps\": \"<boolean>\",\n  \"allowAccessRequests\": \"<boolean>\",\n  \"catalogAppDisplayName\": \"<string>\",\n  \"deleted\": \"<dateTime>\",\n  \"deletedBy\": \"<string>\",\n  \"rootEnvironmentGroup\": {\n    \"environmentGroups\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      }\n    ],\n    \"environments\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"parentGroup\": {\n          \"name\": \"<string>\",\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"internalParentId\": \"<string>\",\n          \"parentId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created\": {\n            \"user\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"action\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nativeId\": \"<string>\",\n          \"nativeParentId\": \"<string>\"\n        },\n        \"internalParentId\": \"<string>\",\n        \"status\": \"<string>\",\n        \"nativeId\": \"<string>\",\n        \"nativeGroupParentId\": \"<string>\",\n        \"parentGroupId\": \"<string>\"\n      }\n    ]\n  },\n  \"iconUrl\": \"<string>\",\n  \"catalogAppName\": \"<string>\",\n  \"catalogApplication\": {\n    \"name\": \"<string>\",\n    \"key\": \"<string>\",\n    \"version\": \"<string>\",\n    \"catalogAppId\": \"<long>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"provisionHandler\": \"<string>\",\n    \"ssoHandler\": \"<string>\",\n    \"provisionSupportClass\": \"<string>\",\n    \"supportsProfilePermissionConstraints\": \"<boolean>\",\n    \"supportManagedPermissions\": \"<boolean>\",\n    \"propertyTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"propertyTypeId\": \"<long>\"\n      }\n    ],\n    \"requiresAccountMapping\": \"<boolean>\",\n    \"securityScanner\": \"<string>\",\n    \"requiresScanningForProfiles\": \"<boolean>\",\n    \"papExpirationSettings\": {\n      \"minimumSessionTime\": \"<integer>\",\n      \"maximumSessionTime\": \"<integer>\",\n      \"supportsSessionExtension\": \"<boolean>\",\n      \"numberOfSessionExtensionsAllowed\": \"<integer>\",\n      \"sessionTimeDuringExtension\": \"<integer>\"\n    },\n    \"permissionValidatorClass\": \"<string>\",\n    \"provisionAccessHandler\": \"<string>\",\n    \"credentialGeneratorHandler\": \"<string>\",\n    \"requiresKeyPair\": \"<boolean>\",\n    \"supportsDynamicAccountMapping\": \"<boolean>\",\n    \"provisionHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"ssoHandlerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    },\n    \"securityScannerMetadata\": {\n      \"className\": \"<string>\",\n      \"propertyTypes\": [\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"enumType\": \"<string>\",\n          \"enumValues\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"value\": \"<object>\",\n          \"global\": \"<boolean>\",\n          \"privy\": \"<boolean>\",\n          \"enumNameMap\": {\n            \"key_0\": \"<string>\"\n          },\n          \"readOnly\": \"<boolean>\",\n          \"includeEnvPropsOnGetAccess\": \"<boolean>\",\n          \"generatorClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"allEnvironmentGroupMap\": {\n    \"key_0\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    },\n    \"key_1\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"internalParentId\": \"<string>\",\n      \"parentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": {\n        \"user\": \"<string>\",\n        \"date\": \"<dateTime>\",\n        \"action\": \"<string>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"nativeParentId\": \"<string>\"\n    }\n  },\n  \"defaultAppUrl\": \"<string>\",\n  \"catalogAppVersion\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"userAccountMappings\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aa915aee-48f8-49b0-82fd-ad554dd5f3d4",
+    "name": "Britive Services API Documentation Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

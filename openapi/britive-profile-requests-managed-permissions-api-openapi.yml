@@ -1,0 +1,228 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Profile Requests - Managed Permissions API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Profile Requests - Managed Permissions
+  description: Manage Profile Requests Britive Permissions
+paths:
+  /api/profile-requests/apps/{appId}/britive-managed/permissions:
+    post:
+      tags:
+      - Profile Requests - Managed Permissions
+      summary: Create Britive-managed permission for a profile
+      operationId: createPermissionFromAccessBuilder
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedPermissionDto'
+            example:
+              name: DevAccessPermission
+              description: Permission to access develop environment
+              type: role
+              tags:
+              - key: string
+                value: string
+              childPermissions:
+              - name: DevAdminPolicy
+                type: inlinePolicy
+                permissionDefinition: {}
+        required: true
+      responses:
+        '200':
+          description: Permission successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedPermissionDto'
+  /api/profile-requests/apps/{appId}/britive-managed/permissions/validate:
+    post:
+      tags:
+      - Profile Requests - Managed Permissions
+      summary: Validate permission from Access Broker
+      operationId: validatePermissionFromAccessBuilder
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Json to validate
+            example:
+              Version: '2012-10-17'
+              Statement:
+              - Sid: VisualEditor0
+                Action: s3:*
+                Effect: Allow
+                Resource: '*'
+              - Sid: VisualEditor01
+                Action: s3:*
+                Effect: Allow
+                Resource: '*'
+        required: true
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Findings'
+  /api/profile-requests/apps/{appId}/britive-managed/permissions/{permId}/findings:
+    get:
+      tags:
+      - Profile Requests - Managed Permissions
+      summary: Validate role permission
+      operationId: validatePermissionAndGetFindings
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      - name: permId
+        in: path
+        description: Id of the permission
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Findings'
+  /api/profile-requests/apps/{appId}/britive-managed/permissions/{permissionId}:
+    get:
+      tags:
+      - Profile Requests - Managed Permissions
+      summary: Get details of a Britive-managed permission for a specific permission
+      operationId: getPermissionFromAccessBuilder
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application.
+        required: true
+        schema:
+          type: string
+      - name: permissionId
+        in: path
+        description: Id of the application.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved britive managed permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedPermissionDto'
+        '404':
+          description: Permission id not found
+components:
+  schemas:
+    ChildPermissionDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: DevAdminPolicy
+        type:
+          type: string
+          example: inlinePolicy
+        permissionDefinition:
+          type: object
+        isPrivileged:
+          type: boolean
+    Findings:
+      type: object
+      properties:
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingsInfo'
+    ManagedPermissionDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: DevAccessPermission
+        description:
+          type: string
+          example: Permission to access develop environment
+        type:
+          type: string
+          example: role
+        isPrivileged:
+          type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        permissionDefinition:
+          type: object
+        createdDate:
+          type: string
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+        updatedBy:
+          type: string
+        childPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildPermissionDto'
+    FindingsInfo:
+      type: object
+      properties:
+        type:
+          type: string
+        messages:
+          type: array
+          items:
+            type: string
+    Tag:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,263 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Identity Providers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all identity providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/identity-providers",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of all identity providers"
+        },
+        {
+          "info": {
+            "name": "Create a identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/identity-providers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a identity provider"
+        },
+        {
+          "info": {
+            "name": "Get password policy details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/identity-providers/password-policy"
+          },
+          "docs": "Get password policy details"
+        },
+        {
+          "info": {
+            "name": "Update password policy details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/identity-providers/password-policy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update password policy details"
+        },
+        {
+          "info": {
+            "name": "Get identity provider types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/identity-providers/types"
+          },
+          "docs": "Get identity provider types"
+        },
+        {
+          "info": {
+            "name": "Get details for a specified identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/identity-providers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details for a specified identity provider"
+        },
+        {
+          "info": {
+            "name": "Update specified identity provider's details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/identity-providers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update specified identity provider's details"
+        },
+        {
+          "info": {
+            "name": "Delete a specified identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/identity-providers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specified identity provider"
+        },
+        {
+          "info": {
+            "name": "Enable or disable Multi-factor Authentication (MFA) for users",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/identity-providers/:id/mfa",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable Multi-factor Authentication (MFA) for users"
+        },
+        {
+          "info": {
+            "name": "Adds SCIM mappings for an identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/identity-providers/:id/scim-attribute-mappings",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "When new SCIM mappings are added, the existing SCIM mappings for the identity attribute are deleted, if they are already defined."
+        },
+        {
+          "info": {
+            "name": "Get SCIM token details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/identity-providers/:id/scim-token",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get SCIM token details"
+        },
+        {
+          "info": {
+            "name": "Create a token used for SCIM provisioning of users and groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/identity-providers/:id/scim-token",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "When this token is created, the old token associated with the identity provider is removed. An identity provider can have only one token at any given time. The generated token is returned only once."
+        },
+        {
+          "info": {
+            "name": "Update token expiration days for the existing SCIM token of an identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/identity-providers/:id/scim-token",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update token expiration days for the existing SCIM token of an identity provider"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

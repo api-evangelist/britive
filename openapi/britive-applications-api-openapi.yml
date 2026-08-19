@@ -1,0 +1,449 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Applications API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Applications
+  description: Manage Applications
+paths:
+  /api/apps:
+    post:
+      tags:
+      - Applications
+      summary: Create a new application
+      operationId: appContainers_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppContainerBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Applications
+      summary: Get details of all applications
+      operationId: getAllAppContainers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/apps/tasks/{taskId}/status:
+    get:
+      tags:
+      - Applications
+      summary: Check the status of currently active scans
+      operationId: getTaskStatus
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/apps/{appContainerId}/environment-groups/{envGroupId}:
+    delete:
+      tags:
+      - Applications
+      summary: Delete an environment group within an application
+      description: Applies to the following applications, AWS Standalone, SalesForce, and ServiceNow
+      operationId: deleteEnvironmentGroup
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: envGroupId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/apps/{id}:
+    delete:
+      tags:
+      - Applications
+      summary: Delete a specific application
+      operationId: appContainers
+      parameters:
+      - name: id
+        description: Application ID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      tags:
+      - Applications
+      summary: Enable or disable a specific Application
+      operationId: appContainers_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppContainerBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Applications
+      summary: Get details of a specific application
+      operationId: getAppContainer_1
+      parameters:
+      - name: id
+        in: path
+        description: Application ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Applications
+      summary: Update application properties
+      operationId: appContainers_3
+      parameters:
+      - name: id
+        description: Application ID
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppContainerBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
+    JsonNode:
+      type: object
+    AppContainerBean:
+      type: object
+      properties:
+        tenantId:
+          type: integer
+          format: int32
+        catalogAppId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        hasValidPaps:
+          type: boolean
+        allowAccessRequests:
+          type: boolean
+        catalogAppDisplayName:
+          type: string
+        deleted:
+          type: string
+          format: date-time
+        deletedBy:
+          type: string
+        rootEnvironmentGroup:
+          $ref: '#/components/schemas/RootEnvironmentGroup'
+        iconUrl:
+          type: string
+        catalogAppName:
+          type: string
+        catalogApplication:
+          $ref: '#/components/schemas/CatalogApplication'
+        allEnvironmentGroupMap:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EnvironmentGroup'
+        defaultAppUrl:
+          type: string
+        catalogAppVersion:
+          type: string
+        appContainerId:
+          type: string
+        userAccountMappings:
+          $ref: '#/components/schemas/JsonNode'
+    PropertyType:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        propertyTypeId:
+          type: integer
+          format: int64
+    Environment:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        parentGroup:
+          $ref: '#/components/schemas/EnvironmentGroup'
+        internalParentId:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        nativeId:
+          type: string
+        nativeGroupParentId:
+          type: string
+        parentGroupId:
+          type: string
+    RootEnvironmentGroup:
+      type: object
+      properties:
+        environmentGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentGroup'
+        environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+    SsoHandlerMetadata:
+      type: object
+      properties:
+        className:
+          type: string
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
+    CatalogApplication:
+      type: object
+      properties:
+        name:
+          type: string
+        key:
+          type: string
+        version:
+          type: string
+        catalogAppId:
+          type: integer
+          format: int64
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - new
+          - inactive
+          - active
+        provisionHandler:
+          type: string
+        ssoHandler:
+          type: string
+        provisionSupportClass:
+          type: string
+        supportsProfilePermissionConstraints:
+          type: boolean
+        supportManagedPermissions:
+          type: boolean
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyType'
+        requiresAccountMapping:
+          type: boolean
+        securityScanner:
+          type: string
+        requiresScanningForProfiles:
+          type: boolean
+        papExpirationSettings:
+          $ref: '#/components/schemas/PapExpirationSettings'
+        permissionValidatorClass:
+          type: string
+        provisionAccessHandler:
+          type: string
+        credentialGeneratorHandler:
+          type: string
+        requiresKeyPair:
+          type: boolean
+        supportsDynamicAccountMapping:
+          type: boolean
+        provisionHandlerMetadata:
+          $ref: '#/components/schemas/ProvisionHandlerMetadata'
+        ssoHandlerMetadata:
+          $ref: '#/components/schemas/SsoHandlerMetadata'
+        securityScannerMetadata:
+          $ref: '#/components/schemas/SecurityScannerMetadata'
+    SecurityScannerMetadata:
+      type: object
+      properties:
+        className:
+          type: string
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
+    EnvironmentGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        internalParentId:
+          type: string
+        parentId:
+          type: string
+        description:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+        nativeId:
+          type: string
+        nativeParentId:
+          type: string
+    ProvisionHandlerMetadata:
+      type: object
+      properties:
+        className:
+          type: string
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
+    PapExpirationSettings:
+      type: object
+      properties:
+        minimumSessionTime:
+          type: integer
+          format: int32
+        maximumSessionTime:
+          type: integer
+          format: int32
+        supportsSessionExtension:
+          type: boolean
+        numberOfSessionExtensionsAllowed:
+          type: integer
+          format: int32
+        sessionTimeDuringExtension:
+          type: integer
+          format: int32
+    DefaultPropertyType:
+      type: object
+      properties:
+        type:
+          type: string
+        enumType:
+          type: string
+        enumValues:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        description:
+          type: string
+        required:
+          type: boolean
+        value:
+          type: object
+        global:
+          type: boolean
+        privy:
+          type: boolean
+        enumNameMap:
+          type: object
+          additionalProperties:
+            type: string
+        readOnly:
+          type: boolean
+        includeEnvPropsOnGetAccess:
+          type: boolean
+        generatorClass:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

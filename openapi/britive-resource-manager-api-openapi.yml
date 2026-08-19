@@ -1,0 +1,343 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Manager API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Manager
+  description: Manage Resources
+paths:
+  /api/resource-manager/resources:
+    get:
+      tags:
+      - Resource Manager
+      summary: Get all resources
+      operationId: getResources_1
+      parameters:
+      - in: query
+        name: filter
+        description: Parameter to filter resources by name
+        required: false
+        schema:
+          type: string
+          example: name eq profile1
+      - in: query
+        name: searchText
+        description: Parameter to filter profiles by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceSummary'
+    post:
+      tags:
+      - Resource Manager
+      summary: Manage resources
+      operationId: saveResource
+      requestBody:
+        description: Information to save resource
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceDto'
+      responses:
+        '201':
+          description: Resource saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDto'
+  /api/resource-manager/resources/{id}:
+    delete:
+      tags:
+      - Resource Manager
+      summary: Delete resource
+      operationId: deleteResource
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resource deleted successfully
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager
+      summary: Get resource by ID
+      operationId: getResourceById
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDto'
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - Resource Manager
+      summary: Update resource
+      operationId: updateResource
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource to partially update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Information to save resource
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceDto'
+      responses:
+        '200':
+          description: Resource updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDto'
+  /api/resource-manager/resources/{id}/broker-pools:
+    get:
+      tags:
+      - Resource Manager
+      summary: Get broker pools by resource ID
+      operationId: getBrokerPoolsByResourceId
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource mapped to broker pools
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: searchText
+        description: Parameter to filter broker pools by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Broker pools retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BrokerPoolDetailsDto'
+        '404':
+          description: Not Found
+    post:
+      tags:
+      - Resource Manager
+      summary: Manage resource broker pools
+      operationId: addBrokerPoolsToResource
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource mapped to broker pools
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Map broker pools to resource
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '201':
+          description: Broker pools added successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/resource-manager/resources/{id}/broker-pools/{brokerPoolId}:
+    delete:
+      tags:
+      - Resource Manager
+      summary: Delete broker poold for a resource
+      operationId: removeBrokerPoolForResourceId
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource mapped to broker pools
+        required: true
+        schema:
+          type: string
+      - name: brokerPoolId
+        in: path
+        description: brokerPoolId to be deleted.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Broker pool deleted successfully
+        '404':
+          description: Not Found
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ResourceParamValue:
+      type: object
+      additionalProperties:
+        type: string
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    BrokerPoolDetailsDto:
+      type: object
+      properties:
+        brokerPoolId:
+          type: string
+        brokerPoolName:
+          type: string
+        brokerPoolDesc:
+          type: string
+        brokerCount:
+          type: integer
+    ResourceSummary:
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceInfo'
+    ResourceType:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    ResourceInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        origin:
+          type: string
+        resourceLabels:
+          $ref: '#/components/schemas/LabelAssociation'
+    ResourceDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        resourceId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+        origin:
+          type: string
+        createdBy:
+          type: integer
+        updatedBy:
+          type: integer
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+        brokerPools:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrokerPoolDetailsDto'
+        paramValues:
+          $ref: '#/components/schemas/ResourceParamValue'
+        resourceLabels:
+          $ref: '#/components/schemas/LabelAssociation'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

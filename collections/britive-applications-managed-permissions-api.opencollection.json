@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Applications - Managed Permissions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications - Managed Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Britive-managed permissions details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appId/britive-managed/permissions",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter permissions by name"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter permissions by search text"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get all Britive-managed permissions details"
+        },
+        {
+          "info": {
+            "name": "Create a Britive-managed permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appId/britive-managed/permissions",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Britive-managed permission"
+        },
+        {
+          "info": {
+            "name": "Validate Britive-managed permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appId/britive-managed/permissions/validate",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate Britive-managed permission"
+        },
+        {
+          "info": {
+            "name": "Get Britive-managed permission details for a specific permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appId/britive-managed/permissions/:permissionId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              },
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              }
+            ]
+          },
+          "docs": "Get Britive-managed permission details for a specific permission"
+        },
+        {
+          "info": {
+            "name": "Update Britive-managed permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/apps/:appId/britive-managed/permissions/:permissionId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              },
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Britive-managed permission"
+        },
+        {
+          "info": {
+            "name": "Delete Britive-managed permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/apps/:appId/britive-managed/permissions/:permissionId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              },
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the application"
+              }
+            ]
+          },
+          "docs": "Delete Britive-managed permission"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

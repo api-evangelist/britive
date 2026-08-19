@@ -1,0 +1,189 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Multi Factor Authentication API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Multi Factor Authentication
+  description: Manage MFA authentication settings
+paths:
+  /api/mfa/admin/registrations/{factor}/users/{targetUserId}:
+    delete:
+      tags:
+      - Multi Factor Authentication
+      summary: Delete MFA factor registration details
+      operationId: deleteUserRegistration
+      parameters:
+      - name: factor
+        in: path
+        description: the mfa factor used
+        required: true
+        schema:
+          type: string
+          enum:
+          - TOTP
+          - WEB_AUTHN
+      - name: targetUserId
+        in: path
+        description: The random 20 alphanumeric string id of the service identity user.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Given user's MFA factor registration is successfully deleted.
+    get:
+      tags:
+      - Multi Factor Authentication
+      summary: Get given user's MFA factor registration details.
+      operationId: getUserRegistration
+      parameters:
+      - name: factor
+        in: path
+        description: the mfa factor used
+        required: true
+        schema:
+          type: string
+          enum:
+          - TOTP
+          - WEB_AUTHN
+      - name: targetUserId
+        in: path
+        description: The random 20 alphanumeric string id of the service identity user.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The user's MFA factor registration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaRegistration'
+        '404':
+          description: the user not registered for the MFA factor
+  /api/mfa/register/{factor}:
+    get:
+      tags:
+      - Multi Factor Authentication
+      summary: Get current authenticated user's MFA factor registration details.
+      operationId: getRegistration
+      parameters:
+      - name: factor
+        in: path
+        description: MFA factor used
+        required: true
+        schema:
+          type: string
+          enum:
+          - TOTP
+          - WEB_AUTHN
+      responses:
+        '200':
+          description: The user's MFA factor registration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaRegistration'
+        '404':
+          description: the user not registered for the MFA factor
+    post:
+      tags:
+      - Multi Factor Authentication
+      summary: Register current authenticated user for the MFA factor.
+      operationId: register
+      parameters:
+      - name: factor
+        in: path
+        description: the mfa factor used
+        required: true
+        schema:
+          type: string
+          enum:
+          - TOTP
+          - WEB_AUTHN
+      responses:
+        '200':
+          description: The registration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaRegistration'
+        '409':
+          description: The authenticated user has either started or completed registration for the MFA factor.  To re-register for a new TOTP secret key, first delete the existing registration using DELETE /api/mfa/register/{factor}.
+  /api/mfa/register/{factor}/{credential}:
+    delete:
+      tags:
+      - Multi Factor Authentication
+      summary: Delete current authenticated user's MFA factor registration.
+      operationId: deleteRegistration
+      parameters:
+      - name: factor
+        in: path
+        description: the mfa factor used
+        required: true
+        schema:
+          type: string
+          enum:
+          - TOTP
+          - WEB_AUTHN
+      - name: credential
+        in: path
+        description: The MFA factor credential to confirm deletion of the MFA factor registration
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: user MFA factor registration successfully deleted.
+        '403':
+          description: registration deletion failed because of invalid MFA factor credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register409Response'
+components:
+  schemas:
+    Register409Response:
+      type: object
+      properties:
+        message:
+          type: string
+        errorCode:
+          type: string
+    MfaRegistration:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - CHALLENGE
+          - REGISTERED
+          - CHALLENGE_FAILED
+        factor:
+          type: string
+          enum:
+          - TOTP
+          - WEB_AUTHN
+        additionalDetails:
+          type: object
+          additionalProperties:
+            type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,187 @@
+{
+  "item": [
+    {
+      "id": "a91de6c9-f91c-4cb8-8109-00ea9999be9e",
+      "name": "Shared Signals - Results",
+      "description": {
+        "content": "Query shared signals processing results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e860f1d6-8c47-4732-9f3d-9dfc018adb65",
+          "name": "Query processed shared signals event results",
+          "request": {
+            "name": "Query processed shared signals event results",
+            "description": {
+              "content": "Results are returned in descending order by `receivedAt` (newest first).\nOrdering is fixed to ensure stable pagination with `nextToken`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ssf",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "subjectValue",
+                  "value": "<string>",
+                  "description": "Filter by subject identifier value (e.g. email address)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results per page. Default 20, max 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "Filter by event direction. Omit to return all."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fbeff73-6016-4ec2-b218-91408c3fc586",
+              "name": "Results page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ssf",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subjectValue",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"resultId\": \"string\",\n      \"issuerId\": \"string\",\n      \"issuerUrl\": \"http://UnIXYBUIuoECMKVRDiCnHJzcVvJ.ygPOq2SjXTgDAXtS03ii1wF\",\n      \"eventUri\": \"http://lJjgpSNKsujAPHZTyoTvtURBBuyHQV.llccILDlF4RYhckL4E\",\n      \"subject\": {\n        \"type\": \"email\",\n        \"value\": \"string\"\n      },\n      \"action\": \"string\",\n      \"status\": \"FAILED\",\n      \"receivedAt\": \"1968-05-05T23:26:33.287Z\",\n      \"direction\": \"<string>\",\n      \"receiverUrl\": \"https://CryiSAMvnnzebKltzPEnWfyhmxsFmgjM.llV,B.4qq3bGY7rVRj6XUvPkY0RgIFtT2aYAjJEfzA\",\n      \"processedAt\": null,\n      \"outcome\": {\n        \"success\": true,\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"details\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      \"rawSsfEvent\": {\n        \"key_0\": {}\n      }\n    },\n    {\n      \"resultId\": \"string\",\n      \"issuerId\": \"string\",\n      \"issuerUrl\": \"http://olTgXEemSKBTwRtES.vbdwGpPtmMMA3EOTvxw70e5yeZF7x2oHjajeX4Zk7cS96heSvMziKlYagpSohs-HKKnxCtls\",\n      \"eventUri\": \"http://jRAoiLKMWpxZSfHpMzBViy.fjbfdWualTpbhtpynIXCYHgU\",\n      \"subject\": {\n        \"type\": \"email\",\n        \"value\": \"string\"\n      },\n      \"action\": \"string\",\n      \"status\": \"FAILED\",\n      \"receivedAt\": \"1982-10-03T04:22:45.703Z\",\n      \"direction\": \"<string>\",\n      \"receiverUrl\": \"https://BauicQYNlKtFVXgXeTBATfwqmYbiZeeQM.qlxteNf8nCWM3-W5LwMWD,J-mCe\",\n      \"processedAt\": null,\n      \"outcome\": {\n        \"success\": true,\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"details\": {\n          \"key_0\": {}\n        }\n      },\n      \"rawSsfEvent\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  ],\n  \"nextToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3231030e-500c-4ef1-a8f8-b40b374d509e",
+    "name": "Britive Services API Documentation Shared Signals - Results API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

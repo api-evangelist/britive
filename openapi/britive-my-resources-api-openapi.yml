@@ -1,0 +1,220 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation My Resources API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: My Resources
+  description: Manage My Resources
+paths:
+  /api/resource-manager/my-resources:
+    get:
+      tags:
+      - My Resources
+      summary: Get All User Accessible Resources
+      description: Retrieve a list of all resources that user has access to
+      operationId: getMyResources
+      parameters:
+      - $ref: '#/components/parameters/searchText'
+      - $ref: '#/components/parameters/type'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcesSummary'
+  /api/resource-manager/my-resources/favorites:
+    post:
+      tags:
+      - My Resources
+      summary: Add Favorite Resources
+      operationId: addFavorite
+      requestBody:
+        description: The favorite resource to add.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoriteDto'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyResourcesDto'
+  /api/resource-manager/my-resources/favorites/{favoriteId}:
+    delete:
+      tags:
+      - My Resources
+      summary: Delete Favorite Resource
+      operationId: deleteFavoriteResources
+      parameters:
+      - $ref: '#/components/parameters/favoriteId'
+      responses:
+        '204':
+          description: Successful operation
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    type:
+      in: query
+      name: type
+      description: Parameter to filter resource by type i.e.frequently used
+      required: false
+      schema:
+        type: string
+        example: frequentlyUsed
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    searchText:
+      in: query
+      name: searchText
+      description: Parameter to filter resource by search text
+      required: false
+      schema:
+        type: string
+        example: test
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+    favoriteId:
+      name: favoriteId
+      in: path
+      description: favoriteId of the resource.
+      required: true
+      schema:
+        type: string
+  schemas:
+    FavoriteDto:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        profileId:
+          type: string
+    ResourcesSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyResourcesDto'
+    MyResourcesDto:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        favoriteId:
+          type: string
+          example: '12345'
+        resourceId:
+          type: string
+          example: '12345'
+        resourceName:
+          type: string
+          example: linux-server
+        resourceDescription:
+          type: string
+          example: description of linux server
+        profileId:
+          type: string
+          example: asdckl4347mcc
+        profileName:
+          type: string
+          example: linux-server-admin
+        profileDescription:
+          type: string
+          example: description of test profile
+        resourceTypeName:
+          type: string
+          example: serverType
+        resourceLabels:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        status:
+          type: string
+        expirationDuration:
+          type: string
+        checkedOutTime:
+          type: string
+        checkedInTime:
+          type: string
+        approvalValidityTime:
+          type: string
+        consoleAccess:
+          type: boolean
+          default: false
+        progAccess:
+          type: boolean
+          default: false
+        showOrigCreds:
+          type: boolean
+          default: false
+        exclusiveCheckout:
+          type: boolean
+          default: false
+          description: True if the underlying profile is configured for exclusive (one-user-at-a-time) checkout. The flag is profile-level; lock enforcement is per (profile, resource).
+        locked:
+          type: boolean
+          default: false
+          description: True when an exclusive-checkout profile is currently held by another user on this specific resource. Computed per (profile, resource) — a hold on a different resource of the same profile does not lock this entry. While true, attempts to check out this (profile, resource) return HTTP 409.
+        lockedBy:
+          type: string
+          description: Display name of the user holding the current exclusive checkout on this (profile, resource).
+        lockedAt:
+          type: string
+          description: ISO-8601 timestamp the exclusive checkout was acquired on this (profile, resource).
+        lockExpiry:
+          type: string
+          description: ISO-8601 timestamp at which the holder's current session on this (profile, resource) expires — i.e. when the exclusive lock is expected to be released and the entry becomes checkout-eligible again. Sourced from the active access expiration time.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

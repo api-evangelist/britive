@@ -1,0 +1,729 @@
+{
+  "item": [
+    {
+      "id": "7d914c44-1bd4-4cf6-b1ea-983672e81b72",
+      "name": "Resource Profiles - Advanced Settings",
+      "description": {
+        "content": "Manage Resource Profiles Advanced Settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed334d37-a91c-41b3-91d5-8c28d43bd02e",
+          "name": "Create an advanced settings for resource profile",
+          "request": {
+            "name": "Create an advanced settings for resource profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profile",
+                ":profileId",
+                "advanced-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) profileId mapped to Advanced Settings"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ece20fe1-01e3-40e1-b462-a01493a84709",
+              "name": "Advanced Settings saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profile",
+                    ":profileId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profileId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76a1b52d-cc52-434f-a2ec-221e82b1d23d",
+          "name": "Get sdvanced settings for given profile",
+          "request": {
+            "name": "Get sdvanced settings for given profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profile",
+                ":profileId",
+                "advanced-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) profileId mapped to Advanced Settings"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0dfb18bc-8a8b-4fe8-b047-3c2886ca4e66",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profile",
+                    ":profileId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profileId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0fd0264-79b4-456e-811f-6251c6addf30",
+              "name": "Advanced settings not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profile",
+                    ":profileId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profileId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59a7509b-2039-4bcb-9638-4a5d4c55ae87",
+          "name": "Update advanced settings for profile",
+          "request": {
+            "name": "Update advanced settings for profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profile",
+                ":profileId",
+                "advanced-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) profileId mapped to Advanced Settings"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26954b9b-d0dd-433f-af77-395a7390050d",
+              "name": "Advanced Settings saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profile",
+                    ":profileId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profileId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64092b6c-20e7-453c-81e2-54a40a54260d",
+              "name": "Advanced Settings not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profile",
+                    ":profileId",
+                    "advanced-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profileId mapped to Advanced Settings"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"consumer\": \"<string>\",\n  \"settings\": [\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    },\n    {\n      \"settingsType\": \"<string>\",\n      \"id\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"entityType\": \"<string>\",\n      \"isInherited\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c83d2c7-b1cf-494a-8a00-c951bbbae826",
+          "name": "Delete advanced settings mapped to a profile",
+          "request": {
+            "name": "Delete advanced settings mapped to a profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "resource-manager",
+                "profile",
+                ":profileId",
+                "advanced-settings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileId",
+                  "description": "(Required) profileId mapped to Advanced Settings"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) id of Advanced Settings mapped to profile"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39367830-f29d-4cda-a9b8-c1f70c85b491",
+              "name": "Advanced Settings deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profile",
+                    ":profileId",
+                    "advanced-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profileId mapped to Advanced Settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) id of Advanced Settings mapped to profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fce26f5-61a1-4299-8699-a0105793d6ab",
+              "name": "Advanced Settings not found for given entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "resource-manager",
+                    "profile",
+                    ":profileId",
+                    "advanced-settings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileId",
+                      "description": "(Required) profileId mapped to Advanced Settings"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) id of Advanced Settings mapped to profile"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5e58da9-0a5c-4bd2-89f4-29f4d2bff03b",
+    "name": "Britive Services API Documentation Resource Profiles - Advanced Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

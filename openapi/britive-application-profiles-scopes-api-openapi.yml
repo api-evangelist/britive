@@ -1,0 +1,71 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Scopes API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Scopes
+  description: Manage Application Profiles Scopes
+paths:
+  /api/paps/{papId}/scopes:
+    post:
+      tags:
+      - Application Profiles - Scopes
+      summary: Update the profiles
+      operationId: addOrRemovePapScope_1
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DefaultPapScope'
+            example:
+              type: Environment
+              value: '111222333444'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    DefaultPapScope:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - Environment
+          - EnvironmentGroup
+          - ApplicationResource
+        value:
+          type: string
+        papId:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

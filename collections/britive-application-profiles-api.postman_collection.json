@@ -1,0 +1,950 @@
+{
+  "item": [
+    {
+      "id": "9d57b89f-6c0e-4555-b2a2-a7eef6abc7b9",
+      "name": "Application Profiles",
+      "description": {
+        "content": "Manage Application Profiles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f774637-d982-43b4-934e-6a6e9fb6fe7f",
+          "name": "Create a profile",
+          "request": {
+            "name": "Create a profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "paps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantAppId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"expirationDuration\": \"<long>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionDuration\": \"<long>\",\n  \"extensionLimit\": \"<integer>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"appContainerPapPermissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"runtimeTargetAccountId\": \"<long>\",\n  \"environments\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    }\n  ],\n  \"userTagIntegrityChecks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"destinationUrl\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"modifiedBy\": \"<string>\",\n  \"lastAccessed\": \"<string>\",\n  \"createdDate\": \"<string>\",\n  \"modifiedDate\": \"<string>\",\n  \"approvalStatus\": \"<string>\",\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\",\n        \"key_3\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    }\n  ],\n  \"papId\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"scope\": [\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    },\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    }\n  ],\n  \"integrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    }\n  ],\n  \"accountIntegrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"userTags\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"policyOrderingEnabled\": \"<boolean>\",\n  \"delegationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d952b3e-0440-4929-94d1-fccde9d13270",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "paps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantAppId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"expirationDuration\": \"<long>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionDuration\": \"<long>\",\n  \"extensionLimit\": \"<integer>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"appContainerPapPermissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"runtimeTargetAccountId\": \"<long>\",\n  \"environments\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    }\n  ],\n  \"userTagIntegrityChecks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"destinationUrl\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"modifiedBy\": \"<string>\",\n  \"lastAccessed\": \"<string>\",\n  \"createdDate\": \"<string>\",\n  \"modifiedDate\": \"<string>\",\n  \"approvalStatus\": \"<string>\",\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_1\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_2\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_3\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    }\n  ],\n  \"papId\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"scope\": [\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    },\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    }\n  ],\n  \"integrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    }\n  ],\n  \"accountIntegrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"userTags\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"policyOrderingEnabled\": \"<boolean>\",\n  \"delegationEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45eaf730-73de-4af9-befd-73eb0d2b7508",
+          "name": "Get profile details",
+          "request": {
+            "name": "Get profile details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "paps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "view",
+                  "value": "summary"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Parameter to specify the page number of the records to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "parameter to specify the number of records to retrieve per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "parameter to specify the sort parameter and direction"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "202eff19-9329-4f15-b06c-50f7522bfa69",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "paps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view",
+                      "value": "summary"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10b69e1a-b0f1-4289-a47f-4927464cac58",
+          "name": "Clone application profile details",
+          "request": {
+            "name": "Clone application profile details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "paps",
+                "clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ignoreErrors",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "cloneOptions",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "cloneProfileId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "cloneProfileDetails",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "clonePermissions",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "cloneAssociations",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "clonePolicies",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "cloneSessionAttributes",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appContainerId\": \"<long>\",\n  \"expirationDuration\": \"<long>\",\n  \"extensionDuration\": \"<long>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"scope\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionLimit\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"destinationUrl\": \"<string>\",\n  \"useDefaultAppUrl\": \"<boolean>\",\n  \"excludeAdminFromAdminRelatedCommunication\": \"<string>\",\n  \"useDefaultProjectIdForServiceAccount\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd8c89ee-25f3-4dcf-a853-7d62f9699935",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "paps",
+                    "clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ignoreErrors",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cloneOptions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cloneProfileId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cloneProfileDetails",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "clonePermissions",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cloneAssociations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "clonePolicies",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cloneSessionAttributes",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appContainerId\": \"<long>\",\n  \"expirationDuration\": \"<long>\",\n  \"extensionDuration\": \"<long>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"scope\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionLimit\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"destinationUrl\": \"<string>\",\n  \"useDefaultAppUrl\": \"<boolean>\",\n  \"excludeAdminFromAdminRelatedCommunication\": \"<string>\",\n  \"useDefaultProjectIdForServiceAccount\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantAppId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"expirationDuration\": \"<long>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionDuration\": \"<long>\",\n  \"extensionLimit\": \"<integer>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"appContainerPapPermissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"runtimeTargetAccountId\": \"<long>\",\n  \"environments\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    }\n  ],\n  \"userTagIntegrityChecks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"destinationUrl\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"modifiedBy\": \"<string>\",\n  \"lastAccessed\": \"<string>\",\n  \"createdDate\": \"<string>\",\n  \"modifiedDate\": \"<string>\",\n  \"approvalStatus\": \"<string>\",\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_1\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_2\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_3\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    }\n  ],\n  \"papId\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"scope\": [\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    },\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    }\n  ],\n  \"integrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    }\n  ],\n  \"accountIntegrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"userTags\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"policyOrderingEnabled\": \"<boolean>\",\n  \"delegationEnabled\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39c9c37c-f881-40dc-bfe7-bf2b08c0b1c8",
+          "name": "Delete a particular profile",
+          "request": {
+            "name": "Delete a particular profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "paps",
+                ":papId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ab14978-2d78-4f87-a4b7-6090cf20ce21",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "paps",
+                    ":papId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8bc8ce1-1bf7-4499-970b-88326dd75f19",
+          "name": "Update profile details of a specified profile",
+          "request": {
+            "name": "Update profile details of a specified profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "paps",
+                ":papId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantAppId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"expirationDuration\": \"<long>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionDuration\": \"<long>\",\n  \"extensionLimit\": \"<integer>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"appContainerPapPermissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"runtimeTargetAccountId\": \"<long>\",\n  \"environments\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    }\n  ],\n  \"userTagIntegrityChecks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"destinationUrl\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"modifiedBy\": \"<string>\",\n  \"lastAccessed\": \"<string>\",\n  \"createdDate\": \"<string>\",\n  \"modifiedDate\": \"<string>\",\n  \"approvalStatus\": \"<string>\",\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_1\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\",\n        \"key_3\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    }\n  ],\n  \"papId\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"scope\": [\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    },\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    }\n  ],\n  \"integrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    }\n  ],\n  \"accountIntegrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"userTags\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"policyOrderingEnabled\": \"<boolean>\",\n  \"delegationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a55c31b3-4e6a-4fd3-b7e5-063f217fb8d5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "paps",
+                    ":papId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantAppId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"expirationDuration\": \"<long>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionDuration\": \"<long>\",\n  \"extensionLimit\": \"<integer>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"appContainerPapPermissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"runtimeTargetAccountId\": \"<long>\",\n  \"environments\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    }\n  ],\n  \"userTagIntegrityChecks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"destinationUrl\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"modifiedBy\": \"<string>\",\n  \"lastAccessed\": \"<string>\",\n  \"createdDate\": \"<string>\",\n  \"modifiedDate\": \"<string>\",\n  \"approvalStatus\": \"<string>\",\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_1\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_2\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_3\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    }\n  ],\n  \"papId\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"scope\": [\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    },\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    }\n  ],\n  \"integrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    }\n  ],\n  \"accountIntegrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"userTags\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"policyOrderingEnabled\": \"<boolean>\",\n  \"delegationEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aac8dbf-9b27-4a5c-b690-fa2a47de63f5",
+          "name": "Update profile details",
+          "request": {
+            "name": "Update profile details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "paps",
+                ":papId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "papId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantAppId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"expirationDuration\": \"<long>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionDuration\": \"<long>\",\n  \"extensionLimit\": \"<integer>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"appContainerPapPermissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"runtimeTargetAccountId\": \"<long>\",\n  \"environments\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    }\n  ],\n  \"userTagIntegrityChecks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"destinationUrl\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"modifiedBy\": \"<string>\",\n  \"lastAccessed\": \"<string>\",\n  \"createdDate\": \"<string>\",\n  \"modifiedDate\": \"<string>\",\n  \"approvalStatus\": \"<string>\",\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_1\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\",\n        \"key_3\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    }\n  ],\n  \"papId\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"scope\": [\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    },\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    }\n  ],\n  \"integrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    }\n  ],\n  \"accountIntegrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"userTags\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"policyOrderingEnabled\": \"<boolean>\",\n  \"delegationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b1cee9a-7b8a-428b-b26d-c9c0455041dd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "paps",
+                    ":papId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "papId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantAppId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"expirationDuration\": \"<long>\",\n  \"extendable\": \"<boolean>\",\n  \"extensionDuration\": \"<long>\",\n  \"extensionLimit\": \"<integer>\",\n  \"notificationPriorToExpiration\": \"<long>\",\n  \"appContainerPapPermissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"appPermissionId\": \"<long>\",\n      \"description\": \"<string>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"privileged\": \"<boolean>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"runtimeTargetAccountId\": \"<long>\",\n  \"environments\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"parentGroup\": {\n        \"name\": \"<string>\",\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"internalParentId\": \"<string>\",\n        \"parentId\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created\": {\n          \"user\": \"<string>\",\n          \"date\": \"<dateTime>\",\n          \"action\": \"<string>\"\n        },\n        \"nativeId\": \"<string>\",\n        \"nativeParentId\": \"<string>\"\n      },\n      \"internalParentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"nativeId\": \"<string>\",\n      \"nativeGroupParentId\": \"<string>\",\n      \"parentGroupId\": \"<string>\"\n    }\n  ],\n  \"userTagIntegrityChecks\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"accountIntegrityChecks\": [\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"appContainerId\": \"<long>\",\n          \"papId\": \"<long>\",\n          \"userId\": \"<string>\",\n          \"accountId\": \"<long>\",\n          \"succeeded\": \"<boolean>\",\n          \"environmentId\": \"<string>\",\n          \"tenantAppId\": \"<long>\",\n          \"integrityCheckId\": \"<long>\",\n          \"nativeUsername\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"destinationUrl\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"modifiedBy\": \"<string>\",\n  \"lastAccessed\": \"<string>\",\n  \"createdDate\": \"<string>\",\n  \"modifiedDate\": \"<string>\",\n  \"approvalStatus\": \"<string>\",\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_1\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_2\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        \"key_3\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"permissionScopes\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      ],\n      \"rootPermissionScope\": {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"scopeId\": \"<long>\",\n        \"parentId\": \"<string>\",\n        \"nativeId\": \"<string>\"\n      },\n      \"hasDeletePermissions\": \"<boolean>\",\n      \"extendedAttributes\": {\n        \"key_0\": \"<object>\"\n      },\n      \"builtIn\": \"<boolean>\",\n      \"permissionDefinition\": {\n        \"tags\": \"<object>\",\n        \"oldPermissionDefinition\": \"<object>\",\n        \"permissionDefinition\": \"<object>\",\n        \"appPermissionId\": \"<long>\",\n        \"oldTags\": \"<object>\"\n      },\n      \"nativeId\": \"<string>\",\n      \"privileged\": \"<boolean>\",\n      \"permissionScopesMap\": {\n        \"key_0\": {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"scopeId\": \"<long>\",\n          \"parentId\": \"<string>\",\n          \"nativeId\": \"<string>\"\n        }\n      },\n      \"tenantAppId\": \"<long>\",\n      \"appPermissionId\": \"<long>\"\n    }\n  ],\n  \"papId\": \"<string>\",\n  \"appContainerId\": \"<string>\",\n  \"scope\": [\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    },\n    {\n      \"papScopeId\": \"<long>\",\n      \"type\": \"<string>\",\n      \"appContainerId\": \"<long>\",\n      \"value\": \"<string>\",\n      \"papId\": \"<string>\"\n    }\n  ],\n  \"integrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"permissionName\": \"<string>\",\n      \"permissionType\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"environmentId\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"message\": \"<string>\",\n      \"permissionId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"tenantAppId\": \"<long>\"\n    }\n  ],\n  \"accountIntegrityChecks\": [\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"integrityCheckId\": \"<long>\",\n      \"appContainerId\": \"<long>\",\n      \"environmentId\": \"<string>\",\n      \"tenantAppId\": \"<long>\",\n      \"userId\": \"<string>\",\n      \"nativeUsername\": \"<string>\",\n      \"succeeded\": \"<boolean>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"userTags\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"name\": \"<string>\",\n      \"external\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"userTagId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userCount\": \"<integer>\",\n      \"identityProviderId\": \"<string>\",\n      \"membershipRule\": \"<boolean>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    },\n    {\n      \"accessPeriod\": {\n        \"start\": \"<dateTime>\",\n        \"end\": \"<dateTime>\"\n      },\n      \"policyId\": \"<object>\",\n      \"approvalStatus\": \"<string>\",\n      \"approvalPoliciesIds\": \"<object>\",\n      \"mappedAccounts\": [\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"username\": \"<string>\"\n    }\n  ],\n  \"policyOrderingEnabled\": \"<boolean>\",\n  \"delegationEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b2b963cb-00c7-4013-a0f3-89d007d525ab",
+    "name": "Britive Services API Documentation Application Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

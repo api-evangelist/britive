@@ -1,0 +1,406 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation My Access API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "My Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all profiles associated with the user with an API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of my-access profile list. Default is 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "size of the request for my-access profile list. Default is 20."
+              },
+              {
+                "name": "filter",
+                "value": "appName eq \"AWS\"",
+                "type": "query",
+                "description": "Filters for my-access profiles that can be applied - appName, papName, environmentName, environmentId, appType. Operators - eq, sw, co"
+              },
+              {
+                "name": "sort",
+                "value": "appName,ASC",
+                "type": "query",
+                "description": "Sorting of my-access profiles that can be applied - appName, papName, environmentName, environmentId, appType. Operators - asc, desc"
+              },
+              {
+                "name": "searchText",
+                "value": "searchText=AWS",
+                "type": "query",
+                "description": "Search by all fields."
+              }
+            ]
+          },
+          "docs": "Get all profiles associated with the user with an API token"
+        },
+        {
+          "info": {
+            "name": "Get all frequently-used profiles for the logged-in user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/frequently-used",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all frequently-used profiles for the logged-in user"
+        },
+        {
+          "info": {
+            "name": "Get console URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/:id/url",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID returned by the checkout call"
+              },
+              {
+                "name": "spInitiatedSSO",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the console sign-in URL for a checked-out profile. Available for `CLI` and `CONSOLE` checkout types; throws an error for `PROGRAMMATIC` checkouts. The response always contains a `url` key; some application types (e.g. OpenShift) may include additional keys such as `idpName`. When `spInitiatedSSO=true`, returns the tenant SAML endpoint URL instead of the application URL.\n"
+        },
+        {
+          "info": {
+            "name": "Checkout profile - console or programmatic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/access/:profileId/environments/:environmentId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile (PAP) ID to checkout"
+              },
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "Environment ID within the application"
+              },
+              {
+                "name": "accessType",
+                "value": "",
+                "type": "query",
+                "description": "Type of access to checkout. `CONSOLE` grants a federated web-console session; `PROGRAMMATIC` grants short-lived API credentials; `CLI` (default) for CLI-based access.\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Legacy alias for `accessType`. Ignored when `accessType` is provided."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checkout a profile for a specific environment. Use `accessType=CONSOLE` to obtain a federated console session or `accessType=PROGRAMMATIC` to obtain short-lived programmatic credentials (e.g. AWS access keys). The response `transactionId` is required for subsequent getToken, getConsoleUrl, and check-in calls. For ITSM-gated profiles, supply `ticketId` and `ticketType` in the request body.\n"
+        },
+        {
+          "info": {
+            "name": "Create an approval request for profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/access/:profileId/environments/:environmentId/approvalRequest",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This API is used  when a profile is configured with advanced settings for ITSM integration."
+        },
+        {
+          "info": {
+            "name": "Search tickets using search text and the ITSM integration setting available for the profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/:profileId/environments/:environmentId/itsm/:ticketType/search",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID to get the effective ITSM settings"
+              },
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "Environment ID to get the effective ITSM settings"
+              },
+              {
+                "name": "ticketType",
+                "value": "",
+                "type": "path",
+                "description": "Ticket type for ITSM ticket searching"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "The text for searching"
+              }
+            ]
+          },
+          "docs": "Search tickets using search text and the ITSM integration setting available for the profile"
+        },
+        {
+          "info": {
+            "name": "Validate ITSM ticket using the ITSM integration setting available for the profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/:profileId/environments/:environmentId/itsm/:ticketType/validate/:ticketId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID to get the effective ITSM settings"
+              },
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "Environment ID to get the effective ITSM settings"
+              },
+              {
+                "name": "ticketType",
+                "value": "",
+                "type": "path",
+                "description": "Ticket type for the validation"
+              },
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id for the validation"
+              }
+            ]
+          },
+          "docs": "Validate ITSM ticket using the ITSM integration setting available for the profile"
+        },
+        {
+          "info": {
+            "name": "Get access profile setting for given profile ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/:profileId/environments/:environmentId/settings",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID to get Profile Access Setting"
+              },
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "Environment ID to get Profile Access Setting"
+              }
+            ]
+          },
+          "docs": "Get access profile setting for given profile ID"
+        },
+        {
+          "info": {
+            "name": "Check in profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/access/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID returned by the checkout call"
+              }
+            ]
+          },
+          "docs": "Check in a previously checked-out profile session. The `transactionId` is returned by the checkout call. Terminates the active session and revokes any issued credentials.\n"
+        },
+        {
+          "info": {
+            "name": "Get programmatic credentials (tokens)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/:transactionId/tokens",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID returned by the checkout call"
+              }
+            ]
+          },
+          "docs": "Retrieve short-lived programmatic credentials for a checked-out profile. Available for `CLI` and `PROGRAMMATIC` checkout types; throws an error for `CONSOLE` checkouts. The response is a key-value map whose structure varies by application type. Requires the application to have token support enabled (`supportsTokens=true`).\n"
+        },
+        {
+          "info": {
+            "name": "Get user filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/:userId/filters",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "userid"
+              }
+            ]
+          },
+          "docs": "Get user filters"
+        },
+        {
+          "info": {
+            "name": "Create user filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/access/:userId/filters",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "userid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create user filter"
+        },
+        {
+          "info": {
+            "name": "Update user filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/access/:userId/filters/:filterId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user for that filter needs to be updated/deleted"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the filter that needs to be updated/deleted"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user filter"
+        },
+        {
+          "info": {
+            "name": "Delete user filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/access/:userId/filters/:filterId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user for that filter needs to be updated/deleted"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the filter that needs to be updated/deleted"
+              }
+            ]
+          },
+          "docs": "Delete user filter"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

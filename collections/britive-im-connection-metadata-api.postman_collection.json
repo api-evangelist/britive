@@ -1,0 +1,403 @@
+{
+  "item": [
+    {
+      "id": "06c04d5d-a4ba-4ef8-90f8-02aab05b360d",
+      "name": "IM Connection Metadata",
+      "description": {
+        "content": "Manage IM Connection Metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44f35f4b-ec3d-480e-99dd-ae0bedf13442",
+          "name": "Get list of IM connection Metadata",
+          "request": {
+            "name": "Get list of IM connection Metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "im-manager",
+                "connection-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c69f107-82de-4c64-bf73-44b94aa3b851",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-manager",
+                    "connection-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"string\",\n    \"supportedAuthTypes\": [\n      {\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"isDefault\": true,\n        \"connAttributes\": [\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": false,\n            \"privy\": false\n          },\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": false,\n            \"privy\": true\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"isDefault\": false,\n        \"connAttributes\": [\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": true,\n            \"privy\": true\n          },\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": false,\n            \"privy\": false\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"type\": \"string\",\n    \"supportedAuthTypes\": [\n      {\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"isDefault\": true,\n        \"connAttributes\": [\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": true,\n            \"privy\": true\n          },\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": false,\n            \"privy\": true\n          }\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"isDefault\": false,\n        \"connAttributes\": [\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": true,\n            \"privy\": false\n          },\n          {\n            \"name\": \"string\",\n            \"displayName\": \"string\",\n            \"description\": \"string\",\n            \"dataType\": \"string\",\n            \"isRequired\": true,\n            \"privy\": true\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f30a2701-7b03-4f96-abd8-6d8deafbd7ac",
+          "name": "Get list of supported IM connections",
+          "request": {
+            "name": "Get list of supported IM connections",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "im-manager",
+                "connection-templates",
+                "supported-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93df7024-d814-4b64-9b8c-45e821d9cead",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-manager",
+                    "connection-templates",
+                    "supported-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a10df2b-de3b-4ab2-b162-1d6a1c58e049",
+          "name": "Get IM connection metadata for given template ID",
+          "request": {
+            "name": "Get IM connection metadata for given template ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "im-manager",
+                "connection-templates",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) type of an IM Connection Template"
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "752cde9c-ed6e-4350-aa9e-55d6dbb42a7e",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-manager",
+                    "connection-templates",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type of an IM Connection Template"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"supportedAuthTypes\": [\n    {\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"isDefault\": true,\n      \"connAttributes\": [\n        {\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"dataType\": \"string\",\n          \"isRequired\": true,\n          \"privy\": false\n        },\n        {\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"dataType\": \"string\",\n          \"isRequired\": true,\n          \"privy\": true\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"isDefault\": true,\n      \"connAttributes\": [\n        {\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"dataType\": \"string\",\n          \"isRequired\": false,\n          \"privy\": true\n        },\n        {\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"dataType\": \"string\",\n          \"isRequired\": true,\n          \"privy\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d928ecdc-97b8-484f-b5b6-4e7450f6f5c2",
+              "name": "IM Connection Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "im-manager",
+                    "connection-templates",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type of an IM Connection Template"
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f36af4d8-9372-4362-a809-800e2e20b7b7",
+    "name": "Britive Services API Documentation IM Connection Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

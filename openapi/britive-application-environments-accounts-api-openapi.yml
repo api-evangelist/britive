@@ -1,0 +1,85 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Environments - Accounts API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Environments - Accounts
+  description: Manage Application Environments Accounts
+paths:
+  /api/apps/{appContainerId}/environments/{environmentId}/accounts/memberships-last-scan-delta:
+    get:
+      tags:
+      - Application Environments - Accounts
+      summary: Get membership changes for accounts between the last two consecutive scans
+      operationId: getEnvironmentAccountChanges
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/apps/{appContainerId}/environments/{environmentId}/accounts/{accountId}/users:
+    post:
+      tags:
+      - Application Environments - Accounts
+      summary: Map accounts with users
+      operationId: mapUsers_1
+      parameters:
+      - name: appContainerId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

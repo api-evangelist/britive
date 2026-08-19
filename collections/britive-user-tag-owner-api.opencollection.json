@@ -1,0 +1,410 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation User Tag Owner API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Tag Owner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tags managed by the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/my-managed-tags",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter string (e.g. `name co \"foo\"`)"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search on tag name (URL-encoded)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Returns all tags where the authenticated user is an owner, either directly (their identity is recorded as an Owner) or indirectly (they are a member of a tag that is itself an Owner). Supports optional name filtering and pagination. When the `page` parameter is omitted the raw list is returned; when `page` is supplied a full `UserTagSummary` (with count/page/size) is returned.\n"
+        },
+        {
+          "info": {
+            "name": "Get details of an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              }
+            ]
+          },
+          "docs": "Returns full details of the specified tag. Returns 403 if the authenticated user is not an owner of this tag.\n"
+        },
+        {
+          "info": {
+            "name": "Get attribute criteria of an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/attribute-criteria",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              }
+            ]
+          },
+          "docs": "Returns the attribute-based membership criteria for the specified tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Add attribute criteria to an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/attribute-criteria",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds attribute-based membership criteria to the specified tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Update attribute criteria of an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/attribute-criteria",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces attribute-based membership criteria on the specified tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Get available members for an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/available-users",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter string (e.g. `name co \"foo\"`)"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search on user name (URL-encoded)"
+              }
+            ]
+          },
+          "docs": "Returns active users who are not yet members of the specified tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Get users matched by tag attribute criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/matched-users",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter string (e.g. `name co \"foo\"`)"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search on user name (URL-encoded)"
+              }
+            ]
+          },
+          "docs": "Returns users that match the attribute-based membership criteria of the specified tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Get requested memberships of an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/requested-memberships",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter string (e.g. `name co \"foo\"`)"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search on user name (URL-encoded)"
+              }
+            ]
+          },
+          "docs": "Returns users whose is_user_requested flag is true for the specified tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Remove a requested membership from an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/requested-memberships/:userId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "External string ID of the user (e.g. puXXXXXX)"
+              }
+            ]
+          },
+          "docs": "Clears the is_user_requested flag for the specified user in the tag. If this was the only active access path, the row is deleted and deprovisioning is triggered. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Get members of an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/users",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter string (e.g. `name co \"foo\"`)"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search on user name (URL-encoded)"
+              }
+            ]
+          },
+          "docs": "Returns the current members of the specified tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Add a member to an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/users/:userId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "External string ID of the user (e.g. puXXXXXX)"
+              }
+            ]
+          },
+          "docs": "Adds the specified user to the tag. Returns 403 if the authenticated user is not an owner.\n"
+        },
+        {
+          "info": {
+            "name": "Remove a member from an owned tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/access/user-tags/:tagId/users/:userId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "External string ID of the user (e.g. puXXXXXX)"
+              }
+            ]
+          },
+          "docs": "Removes the specified user from the tag. Returns 403 if the authenticated user is not an owner.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

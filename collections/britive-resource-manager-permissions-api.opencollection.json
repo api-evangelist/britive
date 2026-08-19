@@ -1,0 +1,212 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Resource Manager - Permissions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource Manager - Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Manage resource permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/resource-manager/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manage resource permissions"
+        },
+        {
+          "info": {
+            "name": "Get pre signed urls for checkin - checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/permissions/get-urls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource permission to get urls for"
+              }
+            ]
+          },
+          "docs": "Get pre signed urls for checkin - checkout"
+        },
+        {
+          "info": {
+            "name": "Get resource permission by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource permission to retrieve"
+              }
+            ]
+          },
+          "docs": "Get resource permission by ID"
+        },
+        {
+          "info": {
+            "name": "Update resource permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/resource-manager/permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource permission to partially update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update resource permission"
+        },
+        {
+          "info": {
+            "name": "Delete resource permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource permission to delete"
+              }
+            ]
+          },
+          "docs": "Delete resource permission"
+        },
+        {
+          "info": {
+            "name": "Get permission for given version id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/permissions/:id/:version",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource permission to get urls for"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "version id of the resource permission to get"
+              }
+            ]
+          },
+          "docs": "Get permission for given version id"
+        },
+        {
+          "info": {
+            "name": "Delete resource permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/resource-manager/permissions/:id/:version",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID and version of the resource permission to delete"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "ID and version  id of the resource permission to deleted"
+              }
+            ]
+          },
+          "docs": "Delete resource permission"
+        },
+        {
+          "info": {
+            "name": "Get all resource permissions for given resource type id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/resource-types/:resourceTypeId/permissions",
+            "params": [
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the resource type of permissions"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to filter resource types by search text"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Get all resource permissions for given resource type id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,198 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation User Identity Attributes API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: User Identity Attributes
+  description: Manage User Identity Attributes
+paths:
+  /api/access/users/attributes:
+    get:
+      tags:
+      - User Identity Attributes
+      summary: Get user identity attributes (Access API)
+      description: 'Returns all user identity attributes defined in the system. This access-scoped endpoint mirrors `GET /api/users/attributes` but is accessible via the access API path.
+
+        '
+      operationId: getAccessUserAttributes
+      responses:
+        '200':
+          description: List of user identity attributes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserAttributeSchemaBean'
+  /api/apps/user-attributes:
+    get:
+      tags:
+      - User Identity Attributes
+      summary: Get a list of all identity attributes
+      operationId: appUserAttributes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/attributes:
+    post:
+      tags:
+      - User Identity Attributes
+      summary: Create an identity attribute in the system
+      operationId: userAttributes_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAttributeSchemaBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - User Identity Attributes
+      summary: Get list of all custom attributes in the system
+      operationId: userAttributes_1
+      parameters:
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/attributes/data-types:
+    get:
+      tags:
+      - User Identity Attributes
+      summary: Get data types of identity attribute
+      operationId: attributeDataTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/attributes/{id}:
+    delete:
+      tags:
+      - User Identity Attributes
+      summary: Delete a specified identity attribute
+      operationId: userAttributes_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - User Identity Attributes
+      summary: Get details of a specified identity attribute
+      operationId: userAttributes_5
+      parameters:
+      - name: userAttribute
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/UserAttributeSchemaBean'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - User Identity Attributes
+      summary: Update specified identity attribute details
+      operationId: userAttributes_7
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAttributeSchemaBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    UserAttributeSchemaBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        identityTypes:
+          type: array
+          items:
+            type: string
+        dataType:
+          type: string
+          enum:
+          - Number
+          - String
+          - Boolean
+          - Date
+        multiValued:
+          type: boolean
+        builtIn:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation My Resources - Integration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "My Resources - Integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search tickets using search text and the ITSM integration setting available for the profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/profiles/:profileId/itsm/:ticketType/search",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID to get the effective ITSM settings"
+              },
+              {
+                "name": "ticketType",
+                "value": "",
+                "type": "path",
+                "description": "Ticket type for ITSM ticket searching"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "The text for searching"
+              }
+            ]
+          },
+          "docs": "Search tickets using search text and the ITSM integration setting available for the profile"
+        },
+        {
+          "info": {
+            "name": "Validate ITSM ticket using the ITSM integration setting available for the profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/profiles/:profileId/itsm/:ticketType/validate/:ticketId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID to get the effective ITSM settings"
+              },
+              {
+                "name": "ticketType",
+                "value": "",
+                "type": "path",
+                "description": "Ticket type for the validation"
+              },
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id for the validation"
+              }
+            ]
+          },
+          "docs": "Validate ITSM ticket using the ITSM integration setting available for the profile"
+        },
+        {
+          "info": {
+            "name": "Get resource profile setting for given Profile ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/resource-manager/my-resources/:profileId/resources/:resourceId/settings",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Profile ID to get Resource Profile Setting"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "Resource ID to get Resource Profile Setting"
+              }
+            ]
+          },
+          "docs": "Get resource profile setting for given Profile ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

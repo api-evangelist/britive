@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation IM Connection Metadata API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IM Connection Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of IM connection Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/im-manager/connection-templates"
+          },
+          "docs": "Get list of IM connection Metadata"
+        },
+        {
+          "info": {
+            "name": "Get list of supported IM connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/im-manager/connection-templates/supported-types"
+          },
+          "docs": "Get list of supported IM connections"
+        },
+        {
+          "info": {
+            "name": "Get IM connection metadata for given template ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/im-manager/connection-templates/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type of an IM Connection Template"
+              }
+            ]
+          },
+          "docs": "Get IM connection metadata for given template ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

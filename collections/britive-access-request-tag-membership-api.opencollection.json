@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Access Request Tag Membership API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Request Tag Membership",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get requested memberships of a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/user-tags/:tagId/requested-memberships",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter string"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search on user name"
+              }
+            ]
+          },
+          "docs": "Returns users whose is_user_requested flag is true for the given tag."
+        },
+        {
+          "info": {
+            "name": "Remove a requested membership from a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/user-tags/:tagId/requested-memberships/:userId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user tag"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "External string ID of the user (e.g. puXXXXXX)"
+              }
+            ]
+          },
+          "docs": "Clears the is_user_requested flag for the specified user in the tag. If this was the only active access path, the row is deleted and deprovisioning is triggered.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

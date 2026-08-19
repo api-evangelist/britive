@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Audit Logs API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queries the audit log using filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/logs",
+            "params": [
+              {
+                "name": "to",
+                "value": "2026-05-06T09:36:54.499Z",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-30T09:36:54.499Z",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "actor.role eq test",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Queries the audit log using filters"
+        },
+        {
+          "info": {
+            "name": "Download audit log query result in CSV format",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/logs/csv",
+            "params": [
+              {
+                "name": "to",
+                "value": "2026-05-06T09:36:54.499Z",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "2026-04-30T09:36:54.499Z",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "actor.role eq test",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download audit log query result in CSV format"
+        },
+        {
+          "info": {
+            "name": "Gets the list of fields used in the audit query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/logs/fields"
+          },
+          "docs": "Gets the list of fields used in the audit query"
+        },
+        {
+          "info": {
+            "name": "Gets the list of operators used in the audit query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/logs/operators"
+          },
+          "docs": "Gets the list of operators used in the audit query"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

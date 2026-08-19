@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Custom App Manager API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom App Manager",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a custom app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/generic-apps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint is used to create an app based on previously uploaded template file."
+        },
+        {
+          "info": {
+            "name": "Lists all templates with option to query for provisioned status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/generic-apps/templates",
+            "params": [
+              {
+                "name": "provisioned",
+                "value": "",
+                "type": "query",
+                "description": "Filter templates by provisioned status"
+              }
+            ]
+          },
+          "docs": "This API is used to list all templates with option to query for provisioned status"
+        },
+        {
+          "info": {
+            "name": "Returns icon svg image configured for the template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/generic-apps/templates/:template_name/icon",
+            "params": [
+              {
+                "name": "template_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the template"
+              }
+            ]
+          },
+          "docs": "This API is used to returns icon svg image configured for the template"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

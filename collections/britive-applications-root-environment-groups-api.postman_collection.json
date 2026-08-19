@@ -1,0 +1,452 @@
+{
+  "item": [
+    {
+      "id": "385affb0-9f2e-4d7a-bd5b-55a77e8e26ee",
+      "name": "Applications - Root Environment Groups",
+      "description": {
+        "content": "Manage Application Root Environment Groups",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c795ec62-718c-46b4-94c9-70dda0a78f43",
+          "name": "Create an environment within an application",
+          "request": {
+            "name": "Create an environment within an application",
+            "description": {
+              "content": "Applies to the following applications, AWS Standalone, SalesForce, and ServiceNow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "root-environment-group",
+                "environments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nativeId\": \"<string>\",\n  \"parentGroupId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"internalParentId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created\": {\n    \"user\": \"<string>\",\n    \"date\": \"<dateTime>\",\n    \"action\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd3050da-d1bc-41cf-83f1-5a185533c256",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "root-environment-group",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nativeId\": \"<string>\",\n  \"parentGroupId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"internalParentId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created\": {\n    \"user\": \"<string>\",\n    \"date\": \"<dateTime>\",\n    \"action\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "530a79b6-5073-48ab-af23-be5d26d625d5",
+          "name": "Create an environment group within an application",
+          "request": {
+            "name": "Create an environment group within an application",
+            "description": {
+              "content": "Applies to  AWS Standalone, SalesForce, and ServiceNow applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "root-environment-group",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"parentId\": \"<string>\",\n  \"nativeId\": \"<string>\",\n  \"nativeParentId\": \"<string>\",\n  \"childGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"childEnvironmentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"internalParentId\": \"<string>\",\n  \"created\": {\n    \"user\": \"<string>\",\n    \"date\": \"<dateTime>\",\n    \"action\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb8496ac-33d0-466e-9d90-236f38bec327",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "root-environment-group",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"parentId\": \"<string>\",\n  \"nativeId\": \"<string>\",\n  \"nativeParentId\": \"<string>\",\n  \"childGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"childEnvironmentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"internalParentId\": \"<string>\",\n  \"created\": {\n    \"user\": \"<string>\",\n    \"date\": \"<dateTime>\",\n    \"action\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "275cfbea-7047-497f-a78b-fdc67db100ee",
+          "name": "Update an environment group details within an application",
+          "request": {
+            "name": "Update an environment group details within an application",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "apps",
+                ":appContainerId",
+                "root-environment-group",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appContainerId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The host of the server",
+                  "type": "any",
+                  "value": "{{tenantURL}}",
+                  "key": "tenantURL"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"parentId\": \"<string>\",\n  \"nativeId\": \"<string>\",\n  \"nativeParentId\": \"<string>\",\n  \"childGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"childEnvironmentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"internalParentId\": \"<string>\",\n  \"created\": {\n    \"user\": \"<string>\",\n    \"date\": \"<dateTime>\",\n    \"action\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1edffa60-dc79-4839-be1e-5b750956c341",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apps",
+                    ":appContainerId",
+                    "root-environment-group",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appContainerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The host of the server",
+                      "type": "any",
+                      "value": "{{tenantURL}}",
+                      "key": "tenantURL"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"parentId\": \"<string>\",\n  \"nativeId\": \"<string>\",\n  \"nativeParentId\": \"<string>\",\n  \"childGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"childEnvironmentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"internalParentId\": \"<string>\",\n  \"created\": {\n    \"user\": \"<string>\",\n    \"date\": \"<dateTime>\",\n    \"action\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The host of the server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test.britive-app.com",
+      "key": "tenantURL"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantURL}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5dc8d2c2-6d1f-4f19-a412-55b7974edf35",
+    "name": "Britive Services API Documentation Applications - Root Environment Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,566 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation User Tag Owner API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: User Tag Owner
+  description: Tag Owners manage the tag memberships of their owned tags
+paths:
+  /api/access/user-tags/my-managed-tags:
+    get:
+      tags:
+      - User Tag Owner
+      summary: List tags managed by the current user
+      description: 'Returns all tags where the authenticated user is an owner, either directly (their identity is recorded as an Owner) or indirectly (they are a member of a tag that is itself an Owner). Supports optional name filtering and pagination. When the `page` parameter is omitted the raw list is returned; when `page` is supplied a full `UserTagSummary` (with count/page/size) is returned.
+
+        '
+      operationId: getMyManagedTags
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        description: Filter string (e.g. `name co "foo"`)
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        description: Free-text search on tag name (URL-encoded)
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: List of managed tags
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTagSummary'
+  /api/access/user-tags/{tagId}:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    get:
+      tags:
+      - User Tag Owner
+      summary: Get details of an owned tag
+      description: 'Returns full details of the specified tag. Returns 403 if the authenticated user is not an owner of this tag.
+
+        '
+      operationId: getOwnedTagDetails
+      responses:
+        '200':
+          description: Tag details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTagDto'
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+  /api/access/user-tags/{tagId}/attribute-criteria:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    post:
+      tags:
+      - User Tag Owner
+      summary: Add attribute criteria to an owned tag
+      description: 'Adds attribute-based membership criteria to the specified tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: addOwnedTagAttributeCriteria
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserTagAttributeCriteriaDto'
+      responses:
+        '200':
+          description: Criteria added successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserTagAttributeCriteriaDto'
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+    get:
+      tags:
+      - User Tag Owner
+      summary: Get attribute criteria of an owned tag
+      description: 'Returns the attribute-based membership criteria for the specified tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: getOwnedTagAttributeCriteria
+      responses:
+        '200':
+          description: List of attribute criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserTagAttributeCriteriaDto'
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+    patch:
+      tags:
+      - User Tag Owner
+      summary: Update attribute criteria of an owned tag
+      description: 'Replaces attribute-based membership criteria on the specified tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: updateOwnedTagAttributeCriteria
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserTagAttributeCriteriaDto'
+      responses:
+        '204':
+          description: Criteria updated successfully
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+  /api/access/user-tags/{tagId}/available-users:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    - $ref: '#/components/parameters/Page'
+    - $ref: '#/components/parameters/PageSize'
+    get:
+      tags:
+      - User Tag Owner
+      summary: Get available members for an owned tag
+      description: 'Returns active users who are not yet members of the specified tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: getOwnedTagAvailableMembers
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        description: SCIM-style filter string (e.g. `name co "foo"`)
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        description: Free-text search on user name (URL-encoded)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of available users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSummary'
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+  /api/access/user-tags/{tagId}/matched-users:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    - $ref: '#/components/parameters/Page'
+    - $ref: '#/components/parameters/PageSize'
+    - $ref: '#/components/parameters/Sort'
+    get:
+      tags:
+      - User Tag Owner
+      summary: Get users matched by tag attribute criteria
+      description: 'Returns users that match the attribute-based membership criteria of the specified tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: getOwnedTagMatchedUsers
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        description: SCIM-style filter string (e.g. `name co "foo"`)
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        description: Free-text search on user name (URL-encoded)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of matched users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSummary'
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+  /api/access/user-tags/{tagId}/requested-memberships:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    - $ref: '#/components/parameters/Page'
+    - $ref: '#/components/parameters/PageSize'
+    - $ref: '#/components/parameters/Sort'
+    get:
+      tags:
+      - User Tag Owner
+      summary: Get requested memberships of an owned tag
+      description: 'Returns users whose is_user_requested flag is true for the specified tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: getOwnedTagRequestedMemberships
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        description: SCIM-style filter string (e.g. `name co "foo"`)
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        description: Free-text search on user name (URL-encoded)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of requested memberships
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSummary'
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+  /api/access/user-tags/{tagId}/requested-memberships/{userId}:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    - in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+      description: External string ID of the user (e.g. puXXXXXX)
+    delete:
+      tags:
+      - User Tag Owner
+      summary: Remove a requested membership from an owned tag
+      description: 'Clears the is_user_requested flag for the specified user in the tag. If this was the only active access path, the row is deleted and deprovisioning is triggered. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: removeOwnedTagRequestedMembership
+      responses:
+        '200':
+          description: Requested membership removed successfully
+        '403':
+          description: Forbidden
+        '404':
+          description: User not found in tag
+  /api/access/user-tags/{tagId}/users:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    - $ref: '#/components/parameters/Page'
+    - $ref: '#/components/parameters/PageSize'
+    get:
+      tags:
+      - User Tag Owner
+      summary: Get members of an owned tag
+      description: 'Returns the current members of the specified tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: getOwnedTagMembers
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        description: SCIM-style filter string (e.g. `name co "foo"`)
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        description: Free-text search on user name (URL-encoded)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of tag members
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSummary'
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+  /api/access/user-tags/{tagId}/users/{userId}:
+    parameters:
+    - in: path
+      name: tagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    - in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+      description: External string ID of the user (e.g. puXXXXXX)
+    post:
+      tags:
+      - User Tag Owner
+      summary: Add a member to an owned tag
+      description: 'Adds the specified user to the tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: addOwnedTagMember
+      responses:
+        '200':
+          description: User added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Bad request
+        '403':
+          description: Forbidden — authenticated user is not an owner of this tag
+        '404':
+          description: Tag not found
+    delete:
+      tags:
+      - User Tag Owner
+      summary: Remove a member from an owned tag
+      description: 'Removes the specified user from the tag. Returns 403 if the authenticated user is not an owner.
+
+        '
+      operationId: removeOwnedTagMember
+      responses:
+        '200':
+          description: User removed successfully
+        '403':
+          description: Forbidden
+        '404':
+          description: User not found in tag
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    IdentityProviderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SAML
+    UserTagAttributeCriteria:
+      type: object
+      properties:
+        value:
+          type: string
+        attributeId:
+          type: string
+        operator:
+          type: string
+    UserTagDto:
+      type: object
+      properties:
+        userTagId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - Inactive
+          - Active
+        userCount:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        external:
+          type: boolean
+        membershipRule:
+          type: boolean
+        userTagIdentityProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagIdentityProvider'
+        attributeCriteriaBeans:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagAttributeCriteria'
+    UserTagIdentityProvider:
+      type: object
+      properties:
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProviderDto'
+        externalId:
+          type: string
+    UserDto:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    UserTagAttributeCriteriaDto:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: integer
+          format: int64
+        attributeId:
+          type: string
+        operator:
+          type: string
+        value:
+          type: string
+    UserTagSummary:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        filter:
+          type: string
+        sort:
+          type: string
+        userTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagDto'
+    UserSummary:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

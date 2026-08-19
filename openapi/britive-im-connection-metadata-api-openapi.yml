@@ -1,0 +1,118 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation IM Connection Metadata API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: IM Connection Metadata
+  description: Manage IM Connection Metadata
+paths:
+  /api/im-manager/connection-templates:
+    get:
+      tags:
+      - IM Connection Metadata
+      summary: Get list of IM connection Metadata
+      operationId: listImConnectionMetadata
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImConnectionTemplate'
+  /api/im-manager/connection-templates/supported-types:
+    get:
+      tags:
+      - IM Connection Metadata
+      summary: Get list of supported IM connections
+      operationId: listSupportedImConnections
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/im-manager/connection-templates/{type}:
+    get:
+      tags:
+      - IM Connection Metadata
+      summary: Get IM connection metadata for given template ID
+      operationId: getImConnectionMetadata
+      parameters:
+      - name: type
+        in: path
+        description: type of an IM Connection Template
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImConnectionTemplate'
+        '404':
+          description: IM Connection Template not found
+components:
+  schemas:
+    ImSupportedAuthType:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        isDefault:
+          type: boolean
+        connAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImConnectionAttribute'
+    ImConnectionTemplate:
+      type: object
+      properties:
+        type:
+          type: string
+        supportedAuthTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImSupportedAuthType'
+    ImConnectionAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        dataType:
+          type: string
+        isRequired:
+          type: boolean
+        privy:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

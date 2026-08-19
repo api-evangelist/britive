@@ -1,0 +1,204 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation IM Integration API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: IM Integration
+  description: Manage IM Connections
+paths:
+  /api/im-integration/{connectionId}/escalation-policies/search:
+    get:
+      tags:
+      - IM Integration
+      summary: Get Escalation Policies (paginated)
+      description: Get Escalation Policies by search text with pagination (fixed limit = 25)
+      operationId: getEscalationPolicies
+      parameters:
+      - name: connectionId
+        in: path
+        description: Connection ID of an IM Connection
+        required: true
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        description: The text for searching escalation policies
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number (0-based index)
+        schema:
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: Number of records per page
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEscalationPolicyDetails'
+        '404':
+          description: Escalation Policies not found
+  /api/im-integration/{connectionId}/escalation-policies/validate:
+    post:
+      tags:
+      - IM Integration
+      summary: Validate Escalation Policy IDs
+      description: Validates that all provided Escalation Policy IDs exist for the given connection.
+      operationId: validateEscalationPolicesByIds
+      parameters:
+      - name: connectionId
+        in: path
+        description: Connection ID of an IM Connection
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+            example:
+            - C06T5C8UT08
+            - asdsfsdf
+            - ereafc
+      responses:
+        '200':
+          description: All IDs are valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EscalationPoliciesValidationResult'
+        '404':
+          description: One or more IDs are invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Escalation policy does not exist: asdsfsdf,ereafc'
+                  errorCode:
+                    type: string
+                    example: NM-0075
+  /api/im-integration/{connectionId}/escalation-policies/validate/names:
+    post:
+      tags:
+      - IM Integration
+      summary: Check Escalation Policies by Names
+      description: Takes an array of escalation policy names and returns names not found along with mappings of found names to their IDs.
+      operationId: checkEscalationPoliciesByNames
+      parameters:
+      - name: connectionId
+        in: path
+        description: Connection ID of an IM Connection
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+            example:
+            - policy-A
+            - test-1
+            - policy-B
+      responses:
+        '200':
+          description: Escalation policy lookup result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EscalationPoliciesByNamesResponse'
+components:
+  schemas:
+    EscalationPoliciesByNamesResponse:
+      type: object
+      properties:
+        policies_not_found:
+          type: array
+          items:
+            type: string
+          description: List of policy names that were not found
+          example:
+          - test-1
+        policies_found:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of policy name to policy ID
+          example:
+            policy-A: C06T5C8UT08
+            policy-B: X09Z8K4PQ12
+    PaginatedEscalationPolicyDetails:
+      type: object
+      properties:
+        escalationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EscalationPolicy'
+        page:
+          type: integer
+          description: Current page number (0-based)
+        size:
+          type: integer
+          description: Number of records per page
+        count:
+          type: integer
+          description: Total number of records
+        more:
+          type: boolean
+          description: Whether there are more records available
+    EscalationPolicy:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        summary:
+          type: string
+    EscalationPoliciesValidationResult:
+      type: object
+      properties:
+        escalationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EscalationPolicy'
+        errorMsg:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

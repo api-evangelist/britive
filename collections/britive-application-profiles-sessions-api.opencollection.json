@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Application Profiles - Sessions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Profiles - Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of active sessions of all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/paps/sessions",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Returns a per-user summary of users with active sessions. Both application profile sessions (any state other than checked in or checkout failed) and checked-out resource profile sessions are counted. Supported filter attributes are `email`, `username`, `name`, `lastLogin` and `userType` (values `User`, `ServiceIdentity`, `AIIdentity`). If `searchText` is provided, it takes precedence over `filter` and is applied as `username co <searchText>`."
+        },
+        {
+          "info": {
+            "name": "Check in all active sessions for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/paps/sessions/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Checks in every checked-out application profile session of the specified user. Resource profile sessions are not affected. An audit event of type ADMIN_ACCESS_CHECKIN_ALL is generated."
+        },
+        {
+          "info": {
+            "name": "Get a list of active sessions for a specific user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/paps/sessions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user whose active sessions are returned"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to specify the page number of the records to retrieve"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the number of records to retrieve per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "parameter to specify the sort parameter and direction"
+              }
+            ]
+          },
+          "docs": "Returns the active sessions (sessions in any state other than checked in or checkout failed) of the specified user. Supported filter attributes are `profileName`, `appName`, `environmentName`, `environmentId`, `accessType` (values `CONSOLE`, `PROGRAMMATIC`) and `appType`; the `in` operator is supported for `appName` and `appType` only. If `searchText` is provided, it takes precedence over `filter` and is applied as `profileName co <searchText>`."
+        },
+        {
+          "info": {
+            "name": "Check in an active session by transaction ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/paps/sessions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The transaction ID of the session to check in"
+              }
+            ]
+          },
+          "docs": "Checks in the application profile session identified by the given transaction ID. The operation is idempotent - checking in an already checked-in session succeeds without effect. Sessions with access type `DEVICE` cannot be checked in through this API. An audit event of type ADMIN_ACCESS_CHECKIN is generated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

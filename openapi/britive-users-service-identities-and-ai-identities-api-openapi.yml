@@ -1,0 +1,862 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Users, Service Identities and AI Identities API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Users, Service Identities and AI Identities
+  description: Manage Users, Service Identities and AI Identities
+paths:
+  /api/access/users/{userId}/subordinates:
+    parameters:
+    - in: path
+      name: userId
+      schema:
+        type: string
+      required: true
+    - $ref: '#/components/parameters/Page'
+    - $ref: '#/components/parameters/PageSize'
+    get:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Get user subordinates
+      description: Get user subordinates
+      operationId: getSubordinates
+      responses:
+        '200':
+          description: Get user subordinates
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not found
+  /api/self:
+    patch:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Update current user settings
+      description: Updates profile settings (e.g. landing page) for the currently authenticated user.
+      operationId: updateSelf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                landingPage:
+                  type: string
+                  description: The landing page to set for the authenticated user.
+                  enum:
+                  - default
+                  - my-access
+                  - my-resources
+                  - my-secrets
+                  example: my-access
+      responses:
+        '204':
+          description: No content
+  /api/users:
+    post:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Create a new user
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserBeanRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Get a list of all Identities
+      operationId: get_1
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: User
+      - name: includeTags
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserBeanResult'
+  /api/users/by-tag/{tagId}:
+    get:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Get Members of a Tag
+      description: Retrieve members of a Tag
+      operationId: getTagMembers
+      parameters:
+      - name: tagId
+        in: path
+        description: Id or name of tag
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagMembersResponse'
+        '400':
+          description: Invalid tag id
+  /api/users/disabled-statuses:
+    post:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Disable a specified user
+      operationId: disabledStatusesBulk
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+            example: '["dwepkc6xlxepe2wpe455"]'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/{targetUserId}:
+    delete:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Delete a specified user
+      operationId: delete
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Get details of a specified user
+      operationId: get
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Update user details
+      operationId: update
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserBeanRequest'
+            example:
+              firstName: test
+              lastName: test
+              mobile: ''
+              phone: '12'
+              roleName: ''
+              email: test@britive.com
+              username: test
+              identityProvider:
+                id: 1HhvrKWjoFPXvOcbJSDx
+              type: User
+              attributes: []
+      responses:
+        '204':
+          description: No content
+  /api/users/{targetUserId}/disabled-statuses:
+    post:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Disable a specified user tag
+      operationId: disabledStatuses
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/{targetUserId}/enabled-statuses:
+    post:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Enable a specified user tag
+      operationId: enabledStatuses
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/{targetUserId}/resetmfa:
+    patch:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Reset user's Multi-factor Authentication (MFA)
+      operationId: adminResetMfaForUser
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/{targetUserId}/resetpassword:
+    post:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Reset user password
+      description: If the request parameter sharePasswordToUser is true, the password is shared with the user on their email address. The password is also shared on one or more email addresses specified in the recipients' field.
+      operationId: adminResetPassword
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonNodeWrapper'
+            example: '{''password'' : ''Admin@123$'',''sharePasswordToUser'' : true}'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/{targetUserId}/tokens:
+    post:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Create a token for a specified  identity
+      description: The token has the same privileges assigned to the identity. When this token is created, the old token associated with the identity provider is removed. An identity provider can have only one token at any given time. The generated token is returned only once.
+      operationId: tokens_1
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiTokenBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Get token details associated with identity
+      operationId: tokens
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: apiToken
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/ApiTokenBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Users, Service Identities and AI Identities
+      summary: Update the token expiration days for an existing  identity token
+      operationId: tokens_2
+      parameters:
+      - name: targetUserId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiTokenBean'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: false
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    UserView:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+    UserBeanRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        status:
+          type: string
+          enum:
+          - inactive
+          - active
+        lastName:
+          type: string
+        firstName:
+          type: string
+        email:
+          type: string
+        emailList:
+          type: array
+          items:
+            type: string
+        sharePasswordToUser:
+          type: boolean
+        password:
+          type: string
+        identityProvider:
+          type: string
+          example:
+          - id: 1HhvrKWjoFPXvOcbJSDx
+        businessUse:
+          type: string
+        jobFunction:
+          type: string
+        category:
+          type: string
+        relationships:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/IdentityRelationship'
+    UserBeanResult:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: string
+        sort:
+          type: string
+        filter:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserBeanResponse'
+    UserBeanResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        username:
+          type: string
+        status:
+          type: string
+          enum:
+          - inactive
+          - active
+        lastName:
+          type: string
+        firstName:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        phone:
+          type: string
+        mobile:
+          type: string
+        email:
+          type: string
+        type:
+          type: string
+          enum:
+          - User
+          - ServiceIdentity
+          - AIIdentity
+        externalId:
+          type: string
+        name:
+          type: string
+        userTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTag'
+        lastLogin:
+          type: string
+          format: date-time
+        external:
+          type: boolean
+        adminRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminRole'
+        canChangeOrResetPassword:
+          type: boolean
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProvider'
+    Tenant:
+      type: object
+      properties:
+        type:
+          type: string
+        billingAddress:
+          type: string
+        businessContactNo:
+          type: string
+        technicalContactNo:
+          type: string
+        pricingTier:
+          type: string
+        rootUserId:
+          type: string
+        namespace:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+        status:
+          type: string
+        tenantId:
+          type: integer
+          format: int32
+        companyName:
+          type: string
+        modified:
+          $ref: '#/components/schemas/AuditStamp'
+        verified:
+          $ref: '#/components/schemas/AuditStamp'
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - User
+          - ServiceIdentity
+          - AIIdentity
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomUserAttribute'
+        external:
+          type: boolean
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - inactive
+          - active
+        userId:
+          type: integer
+          format: int32
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+        tenantId:
+          type: integer
+          format: int32
+        email:
+          type: string
+        userTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTag'
+        username:
+          type: string
+        mobile:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        modified:
+          type: string
+          format: date-time
+        passwordChars:
+          type: array
+          items:
+            type: string
+        authnDirUsername:
+          type: string
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProvider'
+        createdBy:
+          type: integer
+          format: int32
+        modifiedBy:
+          type: integer
+          format: int32
+        attributesMap:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/CustomUserAttribute'
+        externalId:
+          type: string
+        adminRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminRole'
+        lastLogin:
+          type: string
+          format: date-time
+        canChangeOrResetPassword:
+          type: boolean
+    IdentityRelationship:
+      type: object
+      properties:
+        relatedEntityId:
+          type: string
+        relatedEntityName:
+          type: string
+        relatedEntityType:
+          type: string
+        relationType:
+          type: string
+    UserTag:
+      type: object
+      properties:
+        name:
+          type: string
+        external:
+          type: boolean
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        description:
+          type: string
+        userTagId:
+          type: string
+        created:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - Inactive
+          - Active
+        modified:
+          type: string
+          format: date-time
+        userCount:
+          type: integer
+          format: int32
+        identityProviderId:
+          type: string
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProvider'
+        membershipRule:
+          type: boolean
+    IdentityProvider:
+      required:
+      - idpType
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        attributesMap:
+          type: array
+          description: Provider's identity attributes mapped to Britive service identity custom attributes.
+          items:
+            $ref: '#/components/schemas/AttributeMap'
+        validationWindow:
+          type: integer
+          description: The amount of time in seconds, after the token has been issued/signed, Britive will attempt to validate the unverified token.  Outside this window, token validation will fail.
+          format: int32
+        idpType:
+          type: string
+      discriminator:
+        propertyName: idpType
+    TagMembersResponse:
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+          default: 20
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserView'
+    AttributeMap:
+      required:
+      - idpAttr
+      - userAttr
+      type: object
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
+    CustomUserAttribute:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attributeValue:
+          type: string
+        attributeId:
+          type: string
+        attributeName:
+          type: string
+    ApiTokenBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        expiresOn:
+          type: string
+          format: date-time
+        createdOn:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SCIM
+          - ServiceIdentity
+        tokenExpirationDays:
+          type: integer
+          description: Any value between 1 and 90 days.
+          format: int32
+        status:
+          type: string
+          enum:
+          - Active
+          - Inactive
+        lastAccessed:
+          type: string
+          format: date-time
+        assignedTo:
+          type: string
+        token:
+          type: string
+        createdBy:
+          type: string
+    JsonNodeWrapper:
+      type: object
+      properties:
+        realNode:
+          $ref: '#/components/schemas/JsonNode'
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
+    JsonNode:
+      type: object
+    AdminRole:
+      type: object
+      properties:
+        name:
+          type: string
+        adminRoleId:
+          type: integer
+          format: int32
+        authority:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

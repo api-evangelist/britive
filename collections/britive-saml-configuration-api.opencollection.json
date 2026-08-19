@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation SAML Configuration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SAML Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download the SAML certificate required in the SAML SSO configuration with a service provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/saml/certificate/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This operation is applicable for applications that do not support importing SAML metadata."
+        },
+        {
+          "info": {
+            "name": "Download the SAML metadata required in the SAML SSO configuration with a service provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/saml/metadata/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This operation is supported only in AWS and Oracle Cloud."
+        },
+        {
+          "info": {
+            "name": "Return SAML settings required in the SAML SSO configuration with a service provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/saml/settings"
+          },
+          "docs": "Return SAML settings required in the SAML SSO configuration with a service provider"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

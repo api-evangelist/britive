@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Workload Identity Providers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workload Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get workload identity providers by page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/workload/identity-providers",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "the type of identity provider."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "filter resource that starts with name"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index (0..N)"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The size of the page to be returned"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+              }
+            ]
+          },
+          "docs": "Get workload identity providers by page"
+        },
+        {
+          "info": {
+            "name": "Add new workload identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/workload/identity-providers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new workload identity provider"
+        },
+        {
+          "info": {
+            "name": "Update workload identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/workload/identity-providers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update workload identity provider"
+        },
+        {
+          "info": {
+            "name": "Get identity provider details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/workload/identity-providers/:idpId",
+            "params": [
+              {
+                "name": "idpId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the identity provider."
+              }
+            ]
+          },
+          "docs": "Get identity provider details"
+        },
+        {
+          "info": {
+            "name": "Delete identity provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/workload/identity-providers/:idpId",
+            "params": [
+              {
+                "name": "idpId",
+                "value": "",
+                "type": "path",
+                "description": "id of the identity provider."
+              }
+            ]
+          },
+          "docs": "Delete identity provider"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

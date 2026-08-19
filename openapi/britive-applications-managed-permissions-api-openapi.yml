@@ -1,0 +1,359 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Applications - Managed Permissions API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Applications - Managed Permissions
+  description: Manage Britive Permissions
+paths:
+  /api/apps/{appId}/britive-managed/permissions:
+    post:
+      tags:
+      - Applications - Managed Permissions
+      summary: Create a Britive-managed permission
+      operationId: createPermission
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedPermissionDto'
+            example:
+              name: DevAccessPermission
+              description: Permission to access develop environment
+              type: role
+              tags:
+              - key: string
+                value: string
+              childPermissions:
+              - name: DevAdminPolicy
+                type: inlinePolicy
+                permissionDefinition: {}
+        required: true
+      responses:
+        '200':
+          description: Permission successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedPermissionDto'
+    get:
+      tags:
+      - Applications - Managed Permissions
+      summary: Get all Britive-managed permissions details
+      operationId: getPermissions_1
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Parameter to filter permissions by name
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        description: Parameter to filter permissions by search text
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Parameter to specify the page number of the records to retrieve
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        description: Parameter to specify the number of records to retrieve per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sort
+        in: query
+        description: Parameter to specify the sort parameter and direction
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Permissions successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedPermissionsSummary'
+  /api/apps/{appId}/britive-managed/permissions/validate:
+    post:
+      tags:
+      - Applications - Managed Permissions
+      summary: Validate Britive-managed permission
+      operationId: validatePermission
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Json to validate
+            example:
+              Version: '2012-10-17'
+              Statement:
+              - Sid: VisualEditor0
+                Action: s3:*
+                Effect: Allow
+                Resource: '*'
+              - Sid: VisualEditor01
+                Action: s3:*
+                Effect: Allow
+                Resource: '*'
+        required: true
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Findings'
+  /api/apps/{appId}/britive-managed/permissions/{permissionId}:
+    delete:
+      tags:
+      - Applications - Managed Permissions
+      summary: Delete Britive-managed permission
+      operationId: deletePermission
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      - name: permissionId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted britive managed permission
+        '404':
+          description: Permission id not found
+    get:
+      tags:
+      - Applications - Managed Permissions
+      summary: Get Britive-managed permission details for a specific permission
+      operationId: getPermission
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      - name: permissionId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved britive managed permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedPermissionDto'
+        '404':
+          description: Permission id not found
+    patch:
+      tags:
+      - Applications - Managed Permissions
+      summary: Update Britive-managed permission
+      operationId: updatePermission
+      parameters:
+      - name: appId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      - name: permissionId
+        in: path
+        description: Id of the application
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedPermissionDto'
+        required: true
+      responses:
+        '204':
+          description: Managed permission updated
+        '404':
+          description: Permission id not found
+components:
+  schemas:
+    ChildPermissionDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: DevAdminPolicy
+        type:
+          type: string
+          example: inlinePolicy
+        permissionDefinition:
+          type: object
+        isPrivileged:
+          type: boolean
+    ManagedPermissionInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: DevAccessPermission
+        description:
+          type: string
+          example: Permission to access develop environment
+        profileCount:
+          type: integer
+          format: int32
+        associatedEnvironments:
+          type: array
+          items:
+            type: string
+        provisionedEnvironments:
+          type: array
+          items:
+            type: string
+        outOfSyncEnvironments:
+          type: array
+          items:
+            type: string
+        createdDate:
+          type: string
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+        updatedBy:
+          type: string
+        isPrivileged:
+          type: boolean
+    Findings:
+      type: object
+      properties:
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingsInfo'
+    ManagedPermissionsSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedPermissionInfo'
+    ManagedPermissionDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: DevAccessPermission
+        description:
+          type: string
+          example: Permission to access develop environment
+        type:
+          type: string
+          example: role
+        isPrivileged:
+          type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        permissionDefinition:
+          type: object
+        createdDate:
+          type: string
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+        updatedBy:
+          type: string
+        childPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildPermissionDto'
+    FindingsInfo:
+      type: object
+      properties:
+        type:
+          type: string
+        messages:
+          type: array
+          items:
+            type: string
+    Tag:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

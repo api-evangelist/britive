@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Shared Signals - Issuers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shared Signals - Issuers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List configured shared signals issuers for tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/admin/issuers"
+          },
+          "docs": "List configured shared signals issuers for tenant"
+        },
+        {
+          "info": {
+            "name": "Create a shared signals issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/ssf/admin/issuers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a shared signals issuer"
+        },
+        {
+          "info": {
+            "name": "Get a shared signals issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/admin/issuers/:issuerId",
+            "params": [
+              {
+                "name": "issuerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a shared signals issuer"
+        },
+        {
+          "info": {
+            "name": "Update a shared signals issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/ssf/admin/issuers/:issuerId",
+            "params": [
+              {
+                "name": "issuerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a shared signals issuer"
+        },
+        {
+          "info": {
+            "name": "Delete a shared signals issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/ssf/admin/issuers/:issuerId",
+            "params": [
+              {
+                "name": "issuerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a shared signals issuer"
+        },
+        {
+          "info": {
+            "name": "Get event-to-action mappings for a shared signals issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/admin/issuers/:issuerId/mappings",
+            "params": [
+              {
+                "name": "issuerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get event-to-action mappings for a shared signals issuer"
+        },
+        {
+          "info": {
+            "name": "Replace event-to-action mappings for a shared signals issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/ssf/admin/issuers/:issuerId/mappings",
+            "params": [
+              {
+                "name": "issuerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace event-to-action mappings for a shared signals issuer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

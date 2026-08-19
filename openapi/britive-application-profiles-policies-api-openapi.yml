@@ -1,0 +1,396 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Application Profiles - Policies API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Application Profiles - Policies
+  description: Manage Application Profiles Policies
+paths:
+  /api/paps/{papId}/policies:
+    post:
+      tags:
+      - Application Profiles - Policies
+      summary: Create a policy for a specified profile
+      operationId: papPolicies_2
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyDto'
+            example:
+              name: ProfilePolicy_15dec
+              description: test
+              isActive: 'true'
+              isDraft: 'false'
+              isReadOnly: 'false'
+              condition:
+                timeOfAccess:
+                  dateSchedule:
+                    fromDate: '2022-12-18 00:30:00'
+                    toDate: '2022-12-20 02:30:00'
+                    timezone: Europe/Paris
+                  daysSchedule:
+                    fromTime: '20:30:00'
+                    toTime: '21:30:00'
+                    timezone: Europe/Paris
+                    days:
+                    - SATURDAY
+                    - TUESDAY
+              settings:
+              - settingsType: ITSM
+                connectionId: 71b94622-30ef-4d17-babb-94972ce4b2db
+                connectionType: servicenow
+                isCommentRequired: 'false'
+                isITSMEnabled: 'true'
+                itsmFilterCriteria:
+                - supportedTicketType: change_request
+                  filter:
+                    sysparm_query: ''
+              - settingsType: JUSTIFICATION
+                isJustificationRequired: 'true'
+                justificationRegex: XYZ
+              members:
+                users:
+                - id: CCy1O21HXuzSNzCp8vWI
+              resource: aziewhoieflmzqd4k7yf
+              consumer: papservice
+              accessType: Allow
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - Application Profiles - Policies
+      summary: Get a list of all policies for the specified profile
+      operationId: papPolicies_1
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: compactResponse
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/paps/{papId}/policies/order:
+    post:
+      tags:
+      - Application Profiles - Policies
+      summary: Set orders for policies associated with profile
+      operationId: setPolicyOrdering
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        description: ID of the profile
+        schema:
+          type: string
+      requestBody:
+        required: true
+        description: List of policy IDs and their corresponding order values
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PolicyOrderingDto'
+      responses:
+        '200':
+          description: Policy priorities successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+  /api/paps/{papId}/policies/{policyId}:
+    delete:
+      tags:
+      - Application Profiles - Policies
+      summary: Delete a specified policy created for a specified profile
+      operationId: papPolicies_12
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No content
+    get:
+      tags:
+      - Application Profiles - Policies
+      summary: Get details of a policy for a specified profile and policy
+      operationId: papPolicies_13
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Application Profiles - Policies
+      summary: Update policy details of a specified policy of a specified profile
+      operationId: papPolicies_15
+      parameters:
+      - name: papId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: policyId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyDto'
+            example:
+              name: ProfilePolicy_15dec
+              description: test
+              isActive: 'true'
+              isDraft: 'false'
+              isReadOnly: 'false'
+              condition:
+                timeOfAccess:
+                  dateSchedule:
+                    fromDate: '2022-12-18 00:30:00'
+                    toDate: '2022-12-20 02:30:00'
+                    timezone: Europe/Paris
+                  daysSchedule:
+                    fromTime: '20:30:00'
+                    toTime: '21:30:00'
+                    timezone: Europe/Paris
+                    days:
+                    - SATURDAY
+                    - TUESDAY
+              settings:
+              - settingsType: ITSM
+                connectionId: 71b94622-30ef-4d17-babb-94972ce4b2db
+                connectionType: servicenow
+                isCommentRequired: 'false'
+                isITSMEnabled: 'true'
+                itsmFilterCriteria:
+                - supportedTicketType: change_request
+                  filter:
+                    sysparm_query: ''
+              - settingsType: JUSTIFICATION
+                isJustificationRequired: 'true'
+                justificationRegex: XYZ
+              members:
+                users:
+                - id: CCy1O21HXuzSNzCp8vWI
+              resource: aziewhoieflmzqd4k7yf
+              consumer: papservice
+              accessType: Allow
+      responses:
+        '204':
+          description: No Content
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    Size:
+      name: size
+      in: query
+      required: false
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    PolicyOrderingDto:
+      type: object
+      required:
+      - id
+      - order
+      properties:
+        id:
+          type: string
+          description: Unique ID of the policy
+        order:
+          type: integer
+          description: Order value for the policy
+          example: '1'
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        isReadOnly:
+          type: boolean
+    PolicyDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        isDraft:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        condition:
+          type: object
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        members:
+          $ref: '#/components/schemas/MemberDto'
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+        resources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        accessLevel:
+          type: string
+        resource:
+          type: string
+        consumer:
+          type: string
+        accessType:
+          type: string
+        resourceLabels:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    PermissionDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        consumer:
+          type: string
+        actions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        resources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
+        isReadOnly:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

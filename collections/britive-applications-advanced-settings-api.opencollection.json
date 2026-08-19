@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Applications - Advanced Settings API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications - Advanced Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get advanced settings for given application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/apps/:appId/advanced-settings",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "appId mapped to Advanced Settings"
+              }
+            ]
+          },
+          "docs": "Get advanced settings for given application"
+        },
+        {
+          "info": {
+            "name": "Create advanced settings for application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/apps/:appId/advanced-settings",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "appId mapped to Advanced Settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create advanced settings for application"
+        },
+        {
+          "info": {
+            "name": "Update advanced settings for application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/apps/:appId/advanced-settings",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "appId mapped to Advanced Settings"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update advanced settings for application"
+        },
+        {
+          "info": {
+            "name": "Delete advanced settings mapped to a application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/apps/:appId/advanced-settings/:id",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "appId mapped to Advanced Settings"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of Advanced Settings mapped to application"
+              }
+            ]
+          },
+          "docs": "Delete advanced settings mapped to a application"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

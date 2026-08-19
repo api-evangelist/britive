@@ -1,0 +1,364 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Manager - Permissions API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Manager - Permissions
+  description: Manage Resource Permissions
+paths:
+  /api/resource-manager/permissions:
+    post:
+      tags:
+      - Resource Manager - Permissions
+      summary: Manage resource permissions
+      operationId: saveResourcePerm
+      requestBody:
+        description: Information to save resource permission
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePermissionDto'
+      responses:
+        '201':
+          description: Resource type saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePermissionDto'
+  /api/resource-manager/permissions/get-urls/{id}:
+    get:
+      tags:
+      - Resource Manager - Permissions
+      summary: Get pre signed urls for checkin - checkout
+      operationId: getPreSignedURLsForPermission
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource permission to get urls for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource Permission URLs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePermissionDto'
+        '404':
+          description: Not Found
+  /api/resource-manager/permissions/{id}:
+    delete:
+      tags:
+      - Resource Manager - Permissions
+      summary: Delete resource permission
+      operationId: deleteResourcePermission
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource permission to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resource permission deleted successfully
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager - Permissions
+      summary: Get resource permission by ID
+      operationId: getResourcePermissionById
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource permission to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource Permission retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResourcePermissionVersionDto'
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - Resource Manager - Permissions
+      summary: Update resource permission
+      operationId: updateResourcePermission
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource permission to partially update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Information to update resource permission
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePermissionDto'
+      responses:
+        '200':
+          description: Resource permission updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePermissionDto'
+        '404':
+          description: Not Found
+  /api/resource-manager/permissions/{id}/{version}:
+    delete:
+      tags:
+      - Resource Manager - Permissions
+      summary: Delete resource permission
+      operationId: deleteResourcePermissionByVersion
+      parameters:
+      - name: id
+        in: path
+        description: ID and version of the resource permission to delete
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: ID and version  id of the resource permission to deleted
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Resource permission deleted successfully
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager - Permissions
+      summary: Get permission for given version id
+      operationId: getPermissionForVersion
+      parameters:
+      - name: id
+        in: path
+        description: ID of the resource permission to get urls for
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: version id of the resource permission to get
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resource Permission retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePermissionDto'
+        '404':
+          description: Not Found
+  /api/resource-manager/resource-types/{resourceTypeId}/permissions:
+    get:
+      tags:
+      - Resource Manager - Permissions
+      summary: Get all resource permissions for given resource type id
+      operationId: getResourcePermissionsForResourceType
+      parameters:
+      - name: resourceTypeId
+        in: path
+        description: ID of the resource type of permissions
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: searchText
+        description: Parameter to filter resource types by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePermissionSummary'
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ResourcePermissionDetailsDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        permissionId:
+          type: string
+        name:
+          type: string
+        resourceTypeName:
+          type: string
+        isDraft:
+          type: boolean
+          default: false
+        createdOn:
+          type: string
+        versionCount:
+          type: integer
+        version:
+          type: string
+    ResourcePermissionVersionDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        permissionId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        createdOn:
+          type: string
+        isDraft:
+          type: boolean
+          default: false
+    ResponseTemplate:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        templateId:
+          type: string
+        name:
+          type: string
+    ResourcePermissionSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
+    ResourcePermissionDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        permissionId:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        resourceTypeId:
+          type: string
+        resourceTypeName:
+          type: string
+        description:
+          type: string
+        checkinURL:
+          type: string
+        checkoutURL:
+          type: string
+        checkinFileName:
+          type: string
+        checkinTimeLimit:
+          type: integer
+          default: 0
+        checkoutTimeLimit:
+          type: integer
+          default: 0
+        checkoutFileName:
+          type: string
+        isDraft:
+          type: boolean
+          default: false
+        inlineFileExists:
+          type: boolean
+          default: false
+        editorType:
+          type: string
+        variables:
+          type: array
+          description: 'Variables declared by this permission, as a plain array of strings — fully backward compatible with the historical shape (e.g. ["host","user"]). A bare entry ("host") is a String variable; the single dynamic-password variable is marked with a :password suffix ("newpwd:password"). Since '':'' is not allowed in a variable name the split is unambiguous; at most one entry may carry :password (otherwise 400 RM-0021), and any other entry is treated as String. The dynamic-password flow is configured on the profile-permission binding (VariableValues): an optional regexPattern, generated server-side when isSystemDefined=true or supplied at checkout via Settings.checkoutVariableValues when promptAtCheckout=true.
+
+            '
+          items:
+            type: string
+        responseTemplates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseTemplate'
+        showOrigCreds:
+          type: boolean
+          default: false
+        createdBy:
+          type: string
+        updatedBy:
+          type: string
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

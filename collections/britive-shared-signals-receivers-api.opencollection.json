@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Britive Services API Documentation Shared Signals - Receivers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shared Signals - Receivers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List configured shared signals receivers for tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/admin/receivers"
+          },
+          "docs": "List configured shared signals receivers for tenant"
+        },
+        {
+          "info": {
+            "name": "Create a shared signals receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantURL}/api/ssf/admin/receivers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a shared signals receiver"
+        },
+        {
+          "info": {
+            "name": "Get a shared signals receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/admin/receivers/:receiverId",
+            "params": [
+              {
+                "name": "receiverId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a shared signals receiver"
+        },
+        {
+          "info": {
+            "name": "Update a shared signals receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenantURL}/api/ssf/admin/receivers/:receiverId",
+            "params": [
+              {
+                "name": "receiverId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a shared signals receiver"
+        },
+        {
+          "info": {
+            "name": "Delete a shared signals receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantURL}/api/ssf/admin/receivers/:receiverId",
+            "params": [
+              {
+                "name": "receiverId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a shared signals receiver"
+        },
+        {
+          "info": {
+            "name": "Get event mappings for a shared signals receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantURL}/api/ssf/admin/receivers/:receiverId/mappings",
+            "params": [
+              {
+                "name": "receiverId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get event mappings for a shared signals receiver"
+        },
+        {
+          "info": {
+            "name": "Replace event mappings for a shared signals receiver",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantURL}/api/ssf/admin/receivers/:receiverId/mappings",
+            "params": [
+              {
+                "name": "receiverId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace event mappings for a shared signals receiver"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

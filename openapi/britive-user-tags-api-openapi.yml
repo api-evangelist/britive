@@ -1,0 +1,630 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation User Tags API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: User Tags
+  description: Manage User Tags
+paths:
+  /api/access/user-tags/{userTagId}/members:
+    parameters:
+    - in: path
+      name: userTagId
+      required: true
+      schema:
+        type: string
+      description: ID of the user tag
+    get:
+      tags:
+      - User Tags
+      summary: Get members of a user tag
+      description: 'Returns all users who are members of the specified user tag. Optionally includes dynamically assigned users when `fetchDynamicallyAssignedUsers` is set to `true`.
+
+        '
+      operationId: getAccessUserTagMembers
+      parameters:
+      - name: fetchDynamicallyAssignedUsers
+        in: query
+        required: false
+        description: When true, also includes users assigned via dynamic attribute criteria
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: List of tag members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserView'
+        '404':
+          description: Tag not found
+  /api/user-tags:
+    post:
+      tags:
+      - User Tags
+      summary: Create a user tag
+      operationId: userTags_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserTagDto'
+            example:
+              name: test
+              description: test
+              identityProvider: null
+              userTagIdentityProviders:
+              - identityProvider:
+                  id: 1HhvrKWjoFPXvOcbJSDx
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - User Tags
+      summary: Get details of all user tags
+      operationId: userTags
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - User Tags
+      summary: Update a specified user tag
+      operationId: userTags_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserTagDto'
+            example:
+              userTagId: 7j4uouyqnl7e1gy3fh0n
+              name: Dev Admins
+              description: Administrators
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user-tags/tag-attributes/matched-users:
+    post:
+      tags:
+      - User Tags
+      summary: Get details of all users matching a particular criteria assigned to a tag
+      operationId: getUsersForTagAttributes
+      parameters:
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserTagAttributeCriteriaDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user-tags/{userTagId}:
+    delete:
+      tags:
+      - User Tags
+      summary: Delete a specified tag
+      operationId: userTag
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - User Tags
+      summary: Get details of a specified tag
+      operationId: userTag_1
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - User Tags
+      summary: Update a specified user tag
+      operationId: userTag_2
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserTagDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user-tags/{userTagId}/attribute-criteria:
+    post:
+      tags:
+      - User Tags
+      summary: Add attribute criteria for a specific tag
+      operationId: addOrUpdateUserTagAttributeCriteria_1
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserTagAttributeCriteriaDto'
+            example:
+            - attributeId: OqL4P1I8aJ1uSSV0JtKr
+              operator: is
+              value: '123'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - User Tags
+      summary: Get attribute criteria for a given tag
+      operationId: addOrUpdateUserTagAttributeCriteria
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - User Tags
+      summary: Update attribute criteria for a specific tag
+      operationId: addOrUpdateUserTagAttributeCriteria_2
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserTagAttributeCriteriaDto'
+            example:
+            - attributeId: OqL4P1I8aJ1uSSV0JtKr
+              operator: is
+              value: '123'
+      responses:
+        '204':
+          description: No content
+  /api/user-tags/{userTagId}/disabled-statuses:
+    post:
+      tags:
+      - User Tags
+      summary: Disables a specified tag
+      operationId: disabledStatuses_1
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user-tags/{userTagId}/enabled-statuses:
+    post:
+      tags:
+      - User Tags
+      summary: Enables a specified tag
+      operationId: enabledStatuses_1
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user-tags/{userTagId}/matched-users:
+    get:
+      tags:
+      - User Tags
+      summary: Get the details of all users matching a particular criteria assigned to a tag
+      operationId: getDynamicUsersForTagAttributes
+      parameters:
+      - name: userTagId
+        description: ID of the tag page
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter
+        description: Filter the list of all users assigned to a tag (tag members) based on name or status. The supported operators are 'eq' and 'co'. An example format is given here, name co "Smith"
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user-tags/{userTagId}/users:
+    get:
+      tags:
+      - User Tags
+      summary: Get details of all users of a specified user tag
+      operationId: userTagMembers_1
+      parameters:
+      - name: userTagId
+        description: ID of the user tag
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter
+        description: The filter that can filter the list of all users assigned to a tag (tag members) based on name or status. The supported operators are 'eq' and 'co'. An example format is given here- name co "Smith"
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: forceRemoveAnyDirectUserProfileAssociation
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: fetchDynamicallyAssignedUsers
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user-tags/{userTagId}/users/{userId}:
+    post:
+      tags:
+      - User Tags
+      summary: Add user to a specified tag
+      operationId: userTagMembers_5
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      tags:
+      - User Tags
+      summary: Get details of a specified user from a specified tag
+      operationId: userTagMembers_4
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: searchText
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: forceRemoveAnyDirectUserProfileAssociation
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: fetchDynamicallyAssignedUsers
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+      - User Tags
+      summary: Remove a user from a specified tag
+      operationId: userTagMembers_3
+      parameters:
+      - name: userTagId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    Size:
+      name: size
+      in: query
+      required: false
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    UserView:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+    UserTagAttributeCriteria:
+      type: object
+      properties:
+        value:
+          type: string
+        attributeId:
+          type: string
+        operator:
+          type: string
+    UserTagDto:
+      type: object
+      properties:
+        userTagId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - Inactive
+          - Active
+        userCount:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        external:
+          type: boolean
+        membershipRule:
+          type: boolean
+        userTagIdentityProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagIdentityProvider'
+        attributeCriteriaBeans:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagAttributeCriteria'
+    UserTagIdentityProvider:
+      type: object
+      properties:
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProviderDto'
+        externalId:
+          type: string
+    UserTagAttributeCriteriaDto:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: integer
+          format: int64
+        attributeId:
+          type: string
+        operator:
+          type: string
+        value:
+          type: string
+    IdentityProviderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SAML
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

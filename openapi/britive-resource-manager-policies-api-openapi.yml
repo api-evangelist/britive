@@ -1,0 +1,280 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Manager - Policies API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Manager - Policies
+  description: Manage Resource Policies
+paths:
+  /api/resource-manager/policies:
+    post:
+      tags:
+      - Resource Manager - Policies
+      summary: Add policy to delegate resource access to users
+      operationId: AddResourcePolicy
+      requestBody:
+        description: Add resource policy
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePolicyDto'
+      responses:
+        '201':
+          description: policy got created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePolicyDto'
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager - Policies
+      summary: Get all resource policies
+      operationId: geAllResourcePolicies
+      parameters:
+      - name: filter
+        in: query
+        description: Parameter to filter policy by name
+        required: false
+        schema:
+          type: string
+          example: name eq policy1
+      responses:
+        '200':
+          description: retrieved  resource policies successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResourcePolicyDto'
+        '404':
+          description: Not Found
+  /api/resource-manager/policies/{policyId}:
+    delete:
+      tags:
+      - Resource Manager - Policies
+      summary: Delete  resource policy
+      operationId: deleteResourcePolicy
+      parameters:
+      - name: policyId
+        in: path
+        description: policy Id to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: profile got deleted successfully
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Manager - Policies
+      summary: Get policy details for a given policy id
+      operationId: GetResourcePolicyDetails
+      parameters:
+      - name: policyId
+        in: path
+        description: Id of the policy to retrieve details
+        required: true
+        schema:
+          type: string
+      - name: compactResponse
+        in: query
+        description: Policy details in compact json foramt
+        required: false
+        schema:
+          type: boolean
+          example: 'true'
+      responses:
+        '200':
+          description: resource policy retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyDto'
+        '404':
+          description: Not Found
+    patch:
+      tags:
+      - Resource Manager - Policies
+      summary: Update resource policy details for a given policy id
+      operationId: UpdateResourcePolicy
+      parameters:
+      - name: policyId
+        in: path
+        description: policy Id to update the details
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: update policy details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePolicyDto'
+      responses:
+        '204':
+          description: policy details got updated successfully
+        '404':
+          description: Not Found
+components:
+  schemas:
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        isReadOnly:
+          type: boolean
+    PolicyDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        isDraft:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        condition:
+          type: object
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        members:
+          $ref: '#/components/schemas/MemberDto'
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+        resources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        accessLevel:
+          type: string
+        resource:
+          type: string
+        consumer:
+          type: string
+        accessType:
+          type: string
+        resourceLabels:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    PermissionDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        consumer:
+          type: string
+        actions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        resources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
+        isReadOnly:
+          type: boolean
+    ResourcePolicyDto:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isActive:
+          type: boolean
+        isDraft:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        condition:
+          type: object
+        resource:
+          type: string
+        accessLevel:
+          type: string
+        consumer:
+          type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberDto'
+        resourceLabels:
+          $ref: '#/components/schemas/LabelAssociation'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

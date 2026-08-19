@@ -1,0 +1,121 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Tag Access Request Settings API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Tag Access Request Settings
+  description: Manage access request settings for a user tag
+paths:
+  /api/user-tags/access-request-settings:
+    post:
+      tags:
+      - Tag Access Request Settings
+      summary: Create tag access request settings
+      description: Create access request settings for all user tags
+      operationId: createTagAccessRequestSettings
+      requestBody:
+        description: Tag access request settings to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagAccessRequestSettingsDto'
+      responses:
+        '200':
+          description: Tag access request settings successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagAccessRequestSettingsDto'
+    get:
+      tags:
+      - Tag Access Request Settings
+      summary: Get tag access request settings
+      description: Get access request settings for all user tags
+      operationId: getTagAccessRequestSettings
+      responses:
+        '200':
+          description: Successfully retrieved tag access request settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagAccessRequestSettingsDto'
+    patch:
+      tags:
+      - Tag Access Request Settings
+      summary: Update tag access request settings
+      description: Update access request settings for all user tags
+      operationId: updateTagAccessRequestSettings
+      requestBody:
+        description: Tag access request settings to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagAccessRequestSettingsDto'
+      responses:
+        '204':
+          description: Tag access request settings updated successfully
+components:
+  schemas:
+    ManagerApproval:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        required:
+          type: boolean
+          default: false
+        condition:
+          type: string
+          enum:
+          - Any
+          - All
+          - Manager
+    NotificationMediumDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        application:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+    TagAccessRequestSettingsDto:
+      type: object
+      properties:
+        allowAccessRequest:
+          type: boolean
+        approvalTimeOut:
+          type: string
+          description: Approval timeout value in days, hours and minutes format
+        notificationMediums:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationMediumDto'
+        managerApproval:
+          $ref: '#/components/schemas/ManagerApproval'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

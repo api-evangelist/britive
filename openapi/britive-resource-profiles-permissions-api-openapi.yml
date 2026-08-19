@@ -1,0 +1,342 @@
+openapi: 3.2.0
+info:
+  title: Britive Services API Documentation Resource Profiles - Permissions API
+  version: v1
+  description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
+servers:
+- url: https://{tenantURL}
+  description: The primary server
+  variables:
+    tenantURL:
+      default: test.britive-app.com
+      description: The host of the server
+security:
+- bearerAuth: []
+tags:
+- name: Resource Profiles - Permissions
+  description: Manage Resource Profiles Permissions
+paths:
+  /api/resource-manager/profiles/permissions/system-defined-values:
+    get:
+      tags:
+      - Resource Profiles - Permissions
+      summary: Get list of available system defined values
+      operationId: GetSystemDefinedValues
+      parameters:
+      - name: resourceTypeId
+        in: query
+        description: resource type id
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: retrieved system defined values successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemDefinedValues'
+        '404':
+          description: Not Found
+  /api/resource-manager/profiles/{profileId}/available-permissions:
+    get:
+      tags:
+      - Resource Profiles - Permissions
+      summary: List permissions available to a profile
+      operationId: ListAvailablePermissions
+      parameters:
+      - name: profileId
+        in: path
+        description: Id of profile to add permission
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: searchText
+        description: Parameter to filter permission by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: permissions got retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePermissionSummary'
+        '404':
+          description: Not Found
+  /api/resource-manager/profiles/{profileId}/permissions:
+    post:
+      tags:
+      - Resource Profiles - Permissions
+      summary: Add permission to resource profile
+      operationId: AddProfilePermission
+      parameters:
+      - name: profileId
+        in: path
+        description: Id of profile to add permission
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Permission to add to the profile
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfilePermissionDto'
+      responses:
+        '200':
+          description: permission got added to profile successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfilePermissionDto'
+        '404':
+          description: Not Found
+    get:
+      tags:
+      - Resource Profiles - Permissions
+      summary: List permissions associated to a profile
+      operationId: ListProfilePermissions
+      parameters:
+      - name: profileId
+        in: path
+        description: Id of profile to add permission
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: filter
+        description: Parameter to filter permissions by name
+        required: false
+        schema:
+          type: string
+          example: name eq permission1
+      - in: query
+        name: searchText
+        description: Parameter to filter permission by search text
+        required: false
+        schema:
+          type: string
+          example: test
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: permissions got retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfilePermissionSummary'
+        '404':
+          description: Not Found
+  /api/resource-manager/profiles/{profileId}/permissions/{permissionId}:
+    delete:
+      tags:
+      - Resource Profiles - Permissions
+      summary: Delete permission from resource profile
+      operationId: DeleteProfilePermission
+      parameters:
+      - name: profileId
+        in: path
+        description: Id of profile to remove permission
+        required: true
+        schema:
+          type: string
+      - name: permissionId
+        in: path
+        description: Id of permission to remove from profile
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: permission got removed from the profile successfully
+        '404':
+          description: Not Found
+    patch:
+      tags:
+      - Resource Profiles - Permissions
+      summary: Update permission variable values
+      operationId: UpdateProfilePermission
+      parameters:
+      - name: profileId
+        in: path
+        description: profile id  to which permission got associated
+        required: true
+        schema:
+          type: string
+      - name: permissionId
+        in: path
+        description: permission id to update details
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: update resource profile permission details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfilePermissionDto'
+      responses:
+        '204':
+          description: permission details got updated successfully
+        '404':
+          description: permission id does not exist
+components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: 0
+    PageSize:
+      name: size
+      in: query
+      required: false
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ResourcePermissionDetailsDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        permissionId:
+          type: string
+        name:
+          type: string
+        resourceTypeName:
+          type: string
+        isDraft:
+          type: boolean
+          default: false
+        createdOn:
+          type: string
+        versionCount:
+          type: integer
+        version:
+          type: string
+    SystemDefinedValues:
+      type: array
+      items:
+        type: string
+    ProfilePermissionSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfilePermissionDto'
+    VariableValues:
+      type: object
+      description: 'Variable binding on a profile-permission. Three mutually exclusive runtime resolution states encoded by (isSystemDefined, promptAtCheckout): Static (both false; value is literal); System-defined (isSystemDefined=true; server resolves at runtime); Prompt-at-checkout (promptAtCheckout=true; end user supplies at checkout via Settings.checkoutVariableValues). isSystemDefined=true AND promptAtCheckout=true is rejected (RM-0027).
+
+        '
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+          description: 'Populated only in the Static state. Null for both System-defined and Prompt-at-checkout states; server force-clears when persisting.
+
+            '
+        isSystemDefined:
+          type: boolean
+          default: false
+          description: Marks the System-defined state. Mutually exclusive with promptAtCheckout.
+        promptAtCheckout:
+          type: boolean
+          default: false
+          description: 'Marks the Prompt-at-checkout state. Applies to any type, including String. Mutually exclusive with isSystemDefined. Legacy records (no flag) are interpreted as promptAtCheckout=true iff type=password AND isSystemDefined=false.
+
+            '
+        type:
+          type: string
+          enum:
+          - String
+          - password
+          readOnly: true
+          description: 'Variable type, server-derived (read-only). Set at attach time from the permission''s variable token — `password` when the permission declares the variable as `name:password`, otherwise `String`. Any value sent by the client is ignored and overwritten.
+
+            '
+        regexPattern:
+          type: string
+          description: 'Java-compatible regular expression constraining this variable''s value (syntax-checked at attach time; 400 RM-0023 when invalid). For type=password: required in every state (RM-0022) — governs server-side generation (System-defined) and validation of user-supplied values (Prompt-at-checkout); a password must be system-defined or prompt-at-checkout (static rejected, RM-0028). For type=String: optional, only meaningful with promptAtCheckout=true.
+
+            '
+        description:
+          type: string
+          description: 'Optional human-readable explanation of regexPattern, shown to the end user at checkout so they understand what a valid value looks like. Only meaningful when regexPattern is present (any type); the server clears it whenever regexPattern is absent or cleared, keeping the two in lockstep.
+
+            '
+    ResourcePermissionSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
+    ProfilePermissionDto:
+      type: object
+      properties:
+        permissionId:
+          type: string
+        version:
+          type: string
+        permissionName:
+          type: string
+        description:
+          type: string
+        resourceTypeId:
+          type: string
+        resourceTypeName:
+          type: string
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableValues'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-api-evangelist:
+  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
+  assembled_on: '2026-08-08'
+  fragments: 372
+  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.
