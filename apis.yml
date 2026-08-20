@@ -23,6 +23,17 @@ tags:
 - Identity and Access Management
 - Cloud Security
 - Zero Standing Privileges
+- Just-In-Time Access
+- Non-Human Identity
+- Secrets Management
+- Agentic AI
+- Cybersecurity
+tags_raw:
+- Company
+- Privileged Access Management
+- Identity and Access Management
+- Cloud Security
+- Zero Standing Privileges
 - Just-in-Time Access
 - Non-Human Identity
 - Secrets Management
@@ -291,6 +302,8 @@ apis:
   humanURL: https://docs.britive.com/apidocs
   baseURL: https://demo.britive-app.com/api
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -585,6 +598,8 @@ apis:
   humanURL: https://docs.britive.com/apidocs
   baseURL: https://demo.britive-app.com/api
   tags:
+  - Multi-Factor Authentication
+  tags_raw:
   - Multi Factor Authentication
   properties:
   - type: OpenAPI
@@ -683,6 +698,8 @@ apis:
   humanURL: https://docs.britive.com/apidocs
   baseURL: https://demo.britive-app.com/api
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
