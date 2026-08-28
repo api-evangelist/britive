@@ -11,6 +11,19 @@ description: 'Britive is a runtime privileged access management (PAM) platform t
   provider, SCIM provisioning, Shared Signals Framework (CAEP/RISC/SET) issuers and
   receivers, audit-log webhooks, and a first-party MCP server for AI agents.'
 url: https://raw.githubusercontent.com/api-evangelist/britive/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 image: https://images.prismic.io/britive/ajXRGI1P9HI4UwTa_BritiveRuntimePrivilegedAccessManagementforforAgenticAI%2CNHI%26Humans.png
 x-type: company
 x-source: harvest:secondary-market
