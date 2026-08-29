@@ -1,0 +1,461 @@
+slug: britive
+provider: Britive
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 45
+edges:
+- tag: Identity Providers
+  spec_file: britive-identity-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.95
+  evidence: Create a identity provider ... Enable or disable Multi-factor Authentication (MFA) for users
+    ... Create a token used for SCIM provisioning of users and groups
+  reason: Operations manage identity providers, federation, password policy and SCIM user provisioning
+    — squarely Identity & Access Management.
+- tag: My Resources - Profiles
+  spec_file: britive-my-resources-profiles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: Perform resource profile checkout / Get credentials of checkedout profile / Extend resource
+    session / Check in all active sessions for given user
+  reason: Just-in-time privileged credential checkout, session extension and check-in with approval requests
+    is squarely privileged identity and access management.
+- tag: Application Profiles - Permissions
+  spec_file: britive-application-profiles-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/paps/{papId}/permissions  addOrRemovePapPermissions_1  Add profile permissions to
+    a specified profile
+  reason: Direct administration of permissions assigned to access profiles across cloud applications —
+    core Identity & Access Management.
+- tag: Applications - Managed Permissions
+  spec_file: britive-applications-managed-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/apps/{appId}/britive-managed/permissions — Create a Britive-managed permission
+  reason: Full lifecycle of permissions managed by the PAM platform for a target application (ManagedPermissionDto,
+    ChildPermissionDto). Creating, validating and updating permissions is entitlement administration —
+    squarely Identity & Access Management.
+- tag: Applications - Permissions
+  spec_file: britive-applications-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: Get details of all permissions associated with a given application and environment; Get membership
+    changes for permissions between the last two consecutive scans
+  reason: Read surface over discovered permissions and their memberships per application/environment —
+    entitlement visibility in a privileged access management product, i.e. IAM. No other reading fits.
+- tag: Multi Factor Authentication
+  spec_file: britive-multi-factor-authentication-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: Register current authenticated user for the MFA factor.
+  reason: MFA factor registration lifecycle for users is authentication/identity and access management.
+- tag: My Access
+  spec_file: britive-my-access-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: Checkout profile - console or programmatic ... Create an approval request for profile ...
+    Get programmatic credentials (tokens)
+  reason: Just-in-time privilege checkout/checkin, approval requests and credential issuance — core privileged
+    access management, mapping to Identity & Access Management.
+- tag: Resource Manager - Policies
+  spec_file: britive-resource-manager-policies-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: Add policy to delegate resource access to users
+  reason: Explicitly manages policies that delegate resource access to users/members (ResourcePolicyDto,
+    MemberDto, RoleDto) — access authorisation policy, i.e. identity & access management.
+- tag: Resource Profiles - Permissions
+  spec_file: britive-resource-profiles-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/resource-manager/profiles/{profileId}/permissions  Add permission to resource profile
+  reason: Directly manages permissions attached to access profiles (ResourcePermissionDetailsDto, ProfilePermissionDto)
+    in a PAM product — unambiguously identity & access management.
+- tag: Resource Profiles - Policies
+  spec_file: britive-resource-profiles-policies-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/resource-manager/profiles/{profileId}/policies  Add policy to profile to grant resources
+    to end user
+  reason: Authorisation policy administration governing who is granted access to resources; core identity
+    & access management.
+- tag: SAML Configuration
+  spec_file: britive-saml-configuration-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: Download the SAML metadata required in the SAML SSO configuration with a service provider
+  reason: SAML certificate/metadata/settings for SSO federation — federation is explicitly within Identity
+    & Access Management.
+- tag: Step Up Authentication
+  spec_file: britive-step-up-authentication-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/step-up/authenticate/{factor}  Perform step up authentication using MFA factor
+  reason: Operations perform and configure MFA step-up authentication for tenant users — squarely identity
+    & access management (authentication controls).
+- tag: Tag Access Requests
+  spec_file: britive-tag-access-requests-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/access-requests/tags  submitTagAccessRequest  Submit a tag access request; GET .../approvers  Get
+    approvers for a tag
+  reason: Access request submission, approver lookup, and listing requestable entitlements (profiles,
+    resources, secrets) — core identity & access management request/approval workflow.
+- tag: Users, Service Identities and AI Identities
+  spec_file: britive-users-service-identities-and-ai-identities-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/users  create  Create a new user; POST /api/users/{targetUserId}/disabled-statuses  Disable
+    a specified user; PATCH /api/users/{targetUserId}/resetmfa  Reset user's Multi-factor Authentication
+    (MFA)
+  reason: Create/update/disable/delete of human, service and AI identities plus MFA reset and identity-provider
+    linkage — joiner-mover-leaver identity administration, i.e. identity & access management.
+- tag: Workload Identity Providers
+  spec_file: britive-workload-identity-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: 'POST /api/workload/identity-providers  createIdentityProvider  Add new workload identity
+    provider; schemas: OpenIdConnectProvider, SpiffeProvider, AttributeMap'
+  reason: Operations manage identity provider registrations (OIDC, SPIFFE, AWS) used to authenticate workload/non-human
+    identities on a privileged access platform — squarely Identity & Access Management (federation), not
+    a business-domain capability.
+- tag: Application Profiles
+  spec_file: britive-application-profiles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: 'POST /api/apps/{appContainerId}/paps  createAppContainerPap  Create a profile ... schemas:
+    ApplicationPermission, PapScopeBean, AccessPeriod'
+  reason: Access profiles bundling application permissions, scopes and access periods for just-in-time
+    privilege grants; this is entitlement definition in IAM, not HR or CRM 'profiles'.
+- tag: Application Profiles - Permission Constraint Manager
+  spec_file: britive-application-profiles-permission-constraint-manager-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/paps/{papId}/permissions/{permission-name}/{permission-type}/constraints/{constraint-type}  manageProfilePermissionConstraint_1
+  reason: Managing constraints on permissions granted through an access profile is fine-grained entitlement
+    control in a PAM platform — Identity & Access Management.
+- tag: Application Profiles - Policies
+  spec_file: britive-application-profiles-policies-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: 'POST /api/paps/{papId}/policies  papPolicies_2  Create a policy for a specified profile ...
+    schemas: PolicyDto, RoleDto, MemberDto'
+  reason: Access policies with roles and members governing who may check out a privileged profile; this
+    is access policy administration in IAM, not enterprise policy management.
+- tag: Application Profiles - Sessions
+  spec_file: britive-application-profiles-sessions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /api/paps/sessions  getCheckedOutProfilesForAdmin_1  Get a list of active sessions of
+    all users; DELETE /api/paps/sessions/user/{userId}  checkInAllProfilesForUser
+  reason: Check-out/check-in and monitoring of active privileged access sessions is privileged session
+    management, a sub-discipline of Identity & Access Management.
+- tag: My Devices
+  spec_file: britive-my-devices-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/access/{profileId}/devices/{deviceId}  checkoutProfile  Checkout profile for a device
+  reason: Same access checkout/checkin flow scoped to devices, i.e. granting ephemeral privileged access
+    — Identity & Access Management.
+- tag: Policy Administration
+  spec_file: britive-policy-administration-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/v1/policy-admin/permissions  createPermission / POST /api/v1/policy-admin/policies  createPolicy
+  reason: CRUD over permissions, policies and roles (PermissionDto, PolicyDto, RoleDto, MemberDto) on
+    a PAM platform is authorisation policy administration, i.e. identity & access management. Not enterprise
+    policy management (BC-130.20), which concerns corporate policy documents.
+- tag: Resource Profiles
+  spec_file: britive-resource-profiles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/resource-manager/profiles  Create a resource profile
+  reason: Resource profiles are the constructs through which Britive's PAM platform packages entitlements
+    to target resources; lifecycle management of these profiles is identity & access management.
+- tag: User Identity Attributes
+  spec_file: britive-user-identity-attributes-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/users/attributes  Create an identity attribute in the system; GET /api/users/attributes/data-types  Get
+    data types of identity attribute
+  reason: Defines and manages custom identity attributes used to describe users in the PAM directory —
+    identity & access management (identity data schema), not HR records.
+- tag: User Tag Owner
+  spec_file: britive-user-tag-owner-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/access/user-tags/{tagId}/users/{userId}  addOwnedTagMember  Add a member to an owned
+    tag; GET .../requested-memberships
+  reason: Delegated ownership and membership administration of user tags (identity groups) including attribute
+    criteria and membership requests — identity & access management.
+- tag: User Tags
+  spec_file: britive-user-tags-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/user-tags  userTags_1  Create a user tag; POST /api/user-tags/{userTagId}/attribute-criteria  Add
+    attribute criteria for a specific tag
+  reason: Lifecycle of user tags (identity groups) and rule-based membership criteria tied to identity
+    providers — group/entitlement administration within identity & access management.
+- tag: Workload Service Identity Providers
+  spec_file: britive-workload-service-identity-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/workload/users/{targetUserId}/identity-provider  assignIdentityProvider  Assign
+    service identity's authenticating identity provider
+  reason: Assigning and removing the authenticating IdP for service identities is federation/credential
+    administration within Identity & Access Management.
+- tag: Profile Requests - Managed Permissions
+  spec_file: britive-profile-requests-managed-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.83
+  evidence: Create Britive-managed permission for a profile / ManagedPermissionDto
+  reason: Creating and validating platform-managed cloud permissions attached to access profiles is entitlement/permission
+    administration within identity & access management.
+- tag: Resource Manager - Permissions
+  spec_file: britive-resource-manager-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /api/resource-manager/permissions  saveResourcePerm  Manage resource permissions / Get
+    pre signed urls for checkin - checkout
+  reason: Defines and versions the permissions granted on managed resources during privileged checkout,
+    which is entitlement administration under identity & access management.
+- tag: Workload SCIM Identity Providers
+  spec_file: britive-workload-scim-identity-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /api/workload/scim-user/identity-provider  designateScimUser  Designate user to authenticate
+    as for scim provisioning
+  reason: SCIM provisioning identity designation and IdP association is identity lifecycle/federation
+    administration — Identity & Access Management.
+- tag: Application Environments - Accounts
+  spec_file: britive-application-environments-accounts-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /api/apps/{appContainerId}/environments/{environmentId}/accounts/{accountId}/users  mapUsers_1  Map
+    accounts with users
+  reason: Mapping discovered cloud-application accounts to identities and tracking membership changes
+    between scans is account/entitlement administration within a privileged access management platform
+    — Identity & Access Management.
+- tag: Applications - Access Builder Settings
+  spec_file: britive-applications-access-builder-settings-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: 'POST /api/apps/{appId}/access-request-settings  createAccessRequestSettings  Configure access
+    builder settings ... schemas: AssociationApproversDto, ApproversGroupDto'
+  reason: Configuration of access-request workflows and approver groups for an onboarded application —
+    access request and approval administration within Identity & Access Management.
+- tag: Applications - Approvers Groups
+  spec_file: britive-applications-approvers-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: Delete approval groups for access request settings; Create approvers groups for association
+    approvers
+  reason: 'Defines who approves privileged-access requests for an application in a PAM platform — approval
+    governance within Identity & Access Management. Not a generic workflow tool: the summary explicitly
+    ties the groups to ''access request settings''.'
+- tag: Approvals
+  spec_file: britive-approvals-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: PATCH /api/v1/approvals/{id} — Approve/Reject/Revoke a specified request; POST /api/v1/approvals/revoke
+    — Revoke bulk requests
+  reason: Approval workflow for privileged access / secret access requests in Britive's approval service;
+    approve, reject, revoke and cancel of access requests is access governance under Identity & Access
+    Management, not generic BPM.
+- tag: Secrets Manager
+  spec_file: britive-secrets-manager-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /api/v1/secretmanager/keys/rotate  Rotate vault encryption key; POST /api/v1/secretmanager/pwdpolicies  Create
+    password policy
+  reason: Vault, password policy and secret template administration with rotation settings — enterprise
+    credential/secrets management, which sits under Identity & Access Management in a PAM platform.
+- tag: Tag Access Request Settings
+  spec_file: britive-tag-access-request-settings-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /api/user-tags/access-request-settings  createTagAccessRequestSettings; schemas TagAccessRequestSettingsDto,
+    ManagerApproval
+  reason: Configures the access-request and approval policy for user tags (identity groups) in a PAM platform;
+    this governs how access entitlements are requested and approved — identity & access management.
+- tag: Access Request Tag Membership
+  spec_file: britive-access-request-tag-membership-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: '''Get requested memberships of a tag'', ''Remove a requested membership from a tag'' with
+    schemas UserSummary, UserDto'
+  reason: Handling of user requests to join identity groups (tags) that confer access on a PAM platform
+    — access request and group membership administration, i.e. Identity & Access Management.
+- tag: My Resources
+  spec_file: britive-my-resources-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: GET /api/resource-manager/my-resources  getMyResources  Get All User Accessible Resources
+  reason: Britive is a privileged access management platform; this tag exposes the set of resources a
+    given identity is entitled to access (plus favouriting). That is identity & access management, not
+    a generic catalogue. Favourites are UI convenience, which tempers confidence slightly.
+- tag: Application Profiles - Users and Tags
+  spec_file: britive-application-profiles-users-and-tags-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: GET /api/paps/{papId}/user-tags  papTags_1  Get details of all tags
+  reason: User tags (identity groups) associated with an access profile, with AccessPeriod schema — identity
+    group assignment to entitlements, i.e. IAM.
+- tag: Applications - Association Approvers
+  spec_file: britive-applications-association-approvers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: Get associations and approver groups combination configured for an application
+  reason: Maps application/environment associations to approver groups governing access requests in Britive's
+    just-in-time privilege platform; this is access-request approval configuration, i.e. IAM. Slightly
+    thinner than the Approvers Groups tag hence lower confidence.
+- tag: Resource Profiles - Associations
+  spec_file: britive-resource-profiles-associations-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /api/resource-manager/profiles/{id}/associations  Add associations to resource profile
+  reason: Binds resources/labels to access profiles, scoping which targets a privileged-access profile
+    covers — part of identity and access management.
+- tag: API Tokens
+  spec_file: britive-api-tokens-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: '''Create an API token with full administrator privileges.'', ''Revoke a token for a specific
+    token id'', ''Update API token expiration days'''
+  reason: Issuance, expiry control and revocation of privileged administrative credentials on a privileged
+    access management platform — credential/privileged access administration under Identity & Access Management.
+    Some ambiguity versus developer credential management, hence not higher.
+- tag: Application Profiles - Session Attributes
+  spec_file: britive-application-profiles-session-attributes-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /api/paps/{papId}/session-attributes  papSessionAttributes_6  Add session attributes
+    to profiles
+  reason: Session attributes (e.g. claims passed at federated privileged session establishment) configured
+    on access profiles — IAM configuration.
+- tag: Resource Manager
+  spec_file: britive-resource-manager-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /api/resource-manager/resources  saveResource  Manage resources / Get broker pools by
+    resource ID
+  reason: Registers the target resources (and their access brokers) over which the PAM platform brokers
+    privileged access. Closest honest fit is identity & access management, though the surface itself is
+    inventory/registration, which limits confidence.
+- tag: Secret Rotation
+  spec_file: britive-secret-rotation-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /api/v1/secretmanager/vault/{vaultId}/secrets/{secretId}/rotate/history  List Secret Rotation
+    History
+  reason: Read-only history of credential rotation in the vault; credential/secret rotation is part of
+    privileged credential management under IAM, though this tag is only the audit-history slice.
+- tag: Shared Signals - Issuers
+  spec_file: britive-shared-signals-issuers-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: PUT /api/ssf/admin/issuers/{issuerId}/mappings  Replace event-to-action mappings for a shared
+    signals issuer
+  reason: Configures trusted issuers of security/identity signals and maps incoming events to automated
+    access actions; sits between identity federation and threat-signal response, so only the L1 cybersecurity
+    capability is asserted.
