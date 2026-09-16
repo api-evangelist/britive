@@ -1,15 +1,13 @@
 aid: britive
 name: Britive
-description: 'Britive is a runtime privileged access management (PAM) platform that
-  issues just-in-time, ephemeral privileges to human users, non-human identities and
-  AI agents across AWS, Azure, GCP, Oracle Cloud, Kubernetes, Snowflake, Okta, Salesforce,
-  ServiceNow and on-premises systems, so organizations can operate with zero standing
-  privileges. The platform is API-first and agentless: a tenant-scoped REST API at
-  https://{tenant}.britive-app.com/api covers applications, environments, profiles
-  (PAPs), policies, identities, tags, secrets, approvals, audit logs and reporting,
-  and is complemented by an open-source Python SDK, the PyBritive CLI, a Terraform
-  provider, SCIM provisioning, Shared Signals Framework (CAEP/RISC/SET) issuers and
-  receivers, audit-log webhooks, and a first-party MCP server for AI agents.'
+description: 'Britive is a runtime privileged access management (PAM) platform that issues just-in-time,
+  ephemeral privileges to human users, non-human identities and AI agents across AWS, Azure, GCP, Oracle
+  Cloud, Kubernetes, Snowflake, Okta, Salesforce, ServiceNow and on-premises systems, so organizations
+  can operate with zero standing privileges. The platform is API-first and agentless: a tenant-scoped
+  REST API at https://{tenant}.britive-app.com/api covers applications, environments, profiles (PAPs),
+  policies, identities, tags, secrets, approvals, audit logs and reporting, and is complemented by an
+  open-source Python SDK, the PyBritive CLI, a Terraform provider, SCIM provisioning, Shared Signals Framework
+  (CAEP/RISC/SET) issuers and receivers, audit-log webhooks, and a first-party MCP server for AI agents.'
 url: https://raw.githubusercontent.com/api-evangelist/britive/refs/heads/main/apis.yml
 deliveryModel:
   model: unknown
@@ -43,7 +41,7 @@ x-type: company
 x-source: harvest:secondary-market
 specificationVersion: '0.23'
 created: '2026-08-08'
-modified: '2026-08-08'
+modified: '2026-09-16'
 tags:
 - Company
 - Privileged Access Management
@@ -55,6 +53,7 @@ tags:
 - Secrets Management
 - Agentic AI
 - Cybersecurity
+- Identity Federation
 tags_raw:
 - Company
 - Privileged Access Management
@@ -66,11 +65,11 @@ tags_raw:
 - Secrets Management
 - Agentic AI
 - Cybersecurity
+- Identity Federation
 apis:
 - aid: britive:britive-secrets-manager-api
   name: Britive Secrets Manager API
-  description: >-
-    The Britive Secret Manager API covers the Britive vault and secrets lifecycle — vault initialization,
+  description: The Britive Secret Manager API covers the Britive vault and secrets lifecycle — vault initialization,
     static and file secrets, secret versions, secret metadata, password policies, secret templates and
     secret rotation history — plus the shared policy-administration surface (policies, roles, permissions,
     actions, consumers), the approvals workflow and the notification-medium/notification service.
@@ -92,11 +91,10 @@ apis:
     url: https://docs.britive.com/apidocs
 - aid: britive:britive-mcp-server
   name: Britive MCP Server
-  description: >-
-    Britive's first-party Model Context Protocol server, available both as a remote server on the tenant
-    (https://{tenant}.britive-app.com/mcp, OAuth-protected) and as an open-source local server (github.com/britive/mcp-server).
-    It exposes Britive dynamic access, identity management, reporting, audit-log query and active-session
-    tools to MCP clients such as Claude Desktop and VS Code Copilot.
+  description: Britive's first-party Model Context Protocol server, available both as a remote server
+    on the tenant (https://{tenant}.britive-app.com/mcp, OAuth-protected) and as an open-source local
+    server (github.com/britive/mcp-server). It exposes Britive dynamic access, identity management, reporting,
+    audit-log query and active-session tools to MCP clients such as Claude Desktop and VS Code Copilot.
   humanURL: https://docs.britive.com/docs/setting-up-mcp-server
   baseURL: https://demo.britive-app.com/mcp
   tags:
@@ -198,8 +196,7 @@ apis:
     url: https://docs.britive.com/apidocs
 - aid: britive:britive-application-profiles-permission-constraint-manager-api
   name: Britive Application Profiles - Permission Constraint Manager API
-  description: >-
-    Manage Profile Permission Constraints for the permissions that support to define constraints.
+  description: Manage Profile Permission Constraints for the permissions that support to define constraints.
   humanURL: https://docs.britive.com/apidocs
   baseURL: https://demo.britive-app.com/api
   tags:
