@@ -20,7 +20,7 @@ paths:
     get:
       tags:
       - Audit Log Webhooks
-      summary: Get audit log webhook details for the tenant.
+      summary: Get audit log webhook details for the tenant
       operationId: getAuditLogWebhooks
       responses:
         '200':
@@ -39,7 +39,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AuditLogWebhook'
-        required: true
+        required: 'true'
       responses:
         '200':
           description: Webhook logs updated successfully
@@ -57,7 +57,7 @@ paths:
       - name: notificationMediumId
         in: path
         description: notificationMediumId
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -72,7 +72,7 @@ paths:
       - name: notificationMediumId
         in: path
         description: notificationMediumId
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -97,8 +97,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

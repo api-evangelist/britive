@@ -21,7 +21,6 @@ paths:
       tags:
       - Global Landing Page
       summary: Get global landing page
-      description: Get global landing page
       operationId: getGlobalLandingPage
       responses:
         '200':
@@ -34,11 +33,10 @@ paths:
       tags:
       - Global Landing Page
       summary: Update global landing page
-      description: Update global landing page
       operationId: patchGlobalLandingPage
       requestBody:
         description: Update Global Landing Page
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -64,8 +62,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

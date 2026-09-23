@@ -26,37 +26,37 @@ paths:
       - name: page
         in: query
         description: page number of profile list. Default is 0
-        required: false
+        required: 'false'
         schema:
           type: integer
           format: int32
-          default: 0
+          default: '0'
       - name: size
         in: query
         description: size of the request for profile list. Default is 20.
-        required: false
+        required: 'false'
         schema:
           type: integer
           format: int32
-          default: 20
+          default: '20'
       - name: filter
         in: query
         description: Filters for device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - eq, sw, co
-        required: false
+        required: 'false'
         schema:
           type: string
         example: deviceName eq "Mac-1000"
       - name: sort
         in: query
         description: Sorting of device profiles that can be applied - appName, papName, deviceName, platformName, accountName, deviceId, appType. Operators - asc, desc
-        required: false
+        required: 'false'
         schema:
           type: string
         example: appName,ASC
       - name: searchText
         in: query
         description: Search by all fields.
-        required: false
+        required: 'false'
         schema:
           type: string
         example: searchText=Linux
@@ -72,15 +72,13 @@ paths:
       tags:
       - My Devices
       summary: Check in profile for a device
-      description: 'Check in a previously checked-out profile session. The `transactionId` is returned by the checkout call. Terminates the active session and revokes any issued credentials.
-
-        '
+      description: Check in a previously checked-out profile session. The `transactionId` is returned by the checkout call. Terminates the active session and revokes any issued credentials.
       operationId: checkinProfile
       parameters:
       - name: transactionId
         in: path
         description: Transaction ID returned by the checkout call
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -97,21 +95,19 @@ paths:
       tags:
       - My Devices
       summary: Checkout profile for a device
-      description: 'Checkout a profile for a specific device. Use `accessType=DEVICE` to elevate privileges on the device.
-
-        '
+      description: Checkout a profile for a specific device. Use `accessType=DEVICE` to elevate privileges on the device.
       operationId: checkoutProfile
       parameters:
       - name: profileId
         in: path
         description: Profile (PAP) ID to checkout
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: deviceId
         description: Device ID within the application
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: accessType
@@ -119,7 +115,7 @@ paths:
         description: 'Type of access to checkout. `DEVICE` elevates privileges of the device. This is the only supported type.
 
           '
-        required: false
+        required: 'false'
         schema:
           type: string
           enum:
@@ -127,7 +123,7 @@ paths:
           default: DEVICE
       requestBody:
         description: Optional ITSM ticket details for approval-gated profiles
-        required: false
+        required: 'false'
         content:
           application/json:
             schema:
@@ -150,6 +146,161 @@ paths:
           description: Profile or environment not found
 components:
   schemas:
+    MyAccessDetail:
+      type: object
+      properties:
+        checkOutTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        checkInTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        status:
+          type: string
+          enum:
+          - Allow
+          - Deny
+          - Pending
+          example: Allow
+        approvalValidityTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        accessType:
+          type: string
+          enum:
+          - CONSOLE
+          - PROGRAMMATIC
+          example: CONSOLE
+        favoriteId:
+          type: string
+          nullable: 'true'
+    MyAccess:
+      type: object
+      properties:
+        frequency:
+          type: integer
+          example: '0'
+        countOfProfiles:
+          type: integer
+          example: '100'
+        papId:
+          type: string
+          example: id1
+        environmentId:
+          type: string
+          example: envId1
+        appId:
+          type: string
+          example: appId1
+        myAccessDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccessDetail'
+        application:
+          $ref: '#/components/schemas/MyAccessApplication'
+        environment:
+          $ref: '#/components/schemas/MyAccessEnvironment'
+        profile:
+          $ref: '#/components/schemas/MyAccessProfile'
+    MyAccessProfile:
+      type: object
+      properties:
+        papId:
+          type: string
+          example: id1
+        papName:
+          type: string
+          example: S3Access
+        description:
+          type: string
+          example: ''
+        consoleAccess:
+          type: boolean
+          example: 'true'
+        programmaticAccess:
+          type: boolean
+          example: 'false'
+        sessionAttributes:
+          type: array
+          items:
+            type: object
+          example: []
+        accessCount:
+          type: integer
+          example: '0'
+        expirationDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionLimit:
+          type: integer
+          example: '1'
+        notificationPriorToExpiration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '300000'
+        extendable:
+          type: boolean
+          example: 'false'
+    Settings:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        justification:
+          type: string
+        ticketId:
+          type: string
+        ticketType:
+          type: string
+        userOnCall:
+          type: boolean
+          default: 'false'
+        checkoutVariableValues:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: 'true'
+          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
+
+            '
+    MyAccessSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total count of items
+          example: '100'
+        page:
+          type: integer
+          description: Current page number
+          example: '0'
+        size:
+          type: integer
+          description: Page size
+          example: '20'
+        sort:
+          type: string
+          description: Sort order
+          example: appName,ASC
+        filter:
+          type: string
+          nullable: 'true'
+          description: Applied filter
+          example: appName eq "AWS"
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccess'
     AppAccessStatusResponse:
       type: object
       description: Status of a profile checkout or check-in operation
@@ -206,10 +357,9 @@ components:
           format: date-time
           description: Timestamp when the profile was checked out
         checkedIn:
-          type:
-          - string
-          - 'null'
+          type: string
           format: date-time
+          nullable: 'true'
           description: Timestamp when the profile was checked in; null if still active
         expiration:
           type: string
@@ -220,98 +370,14 @@ components:
           description: Number of times the session has been extended
           example: '0'
         policyConditionEndTime:
-          type:
-          - string
-          - 'null'
+          type: string
           format: date-time
+          nullable: 'true'
           description: End time derived from policy time conditions, if applicable
         errorMessage:
-          type:
-          - string
-          - 'null'
+          type: string
+          nullable: 'true'
           description: Error details if the checkout or check-in operation failed
-    MyAccessDetail:
-      type: object
-      properties:
-        checkOutTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        checkInTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        status:
-          type: string
-          enum:
-          - Allow
-          - Deny
-          - Pending
-          example: Allow
-        approvalValidityTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        accessType:
-          type: string
-          enum:
-          - CONSOLE
-          - PROGRAMMATIC
-          example: CONSOLE
-        favoriteId:
-          type:
-          - string
-          - 'null'
-    MyAccessProfile:
-      type: object
-      properties:
-        papId:
-          type: string
-          example: id1
-        papName:
-          type: string
-          example: S3Access
-        description:
-          type: string
-          example: ''
-        consoleAccess:
-          type: boolean
-          example: 'true'
-        programmaticAccess:
-          type: boolean
-          example: 'false'
-        sessionAttributes:
-          type: array
-          items:
-            type: object
-          example: []
-        accessCount:
-          type: integer
-          example: '0'
-        expirationDuration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '1800000'
-        extensionDuration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '1800000'
-        extensionLimit:
-          type: integer
-          example: '1'
-        notificationPriorToExpiration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '300000'
-        extendable:
-          type: boolean
-          example: 'false'
     MyAccessEnvironment:
       type: object
       properties:
@@ -328,63 +394,12 @@ components:
           type: string
           example: demo
         accountId:
-          type:
-          - string
-          - 'null'
+          type: string
+          nullable: 'true'
         profileEnvironmentProperties:
           type: object
           additionalProperties: 'true'
           example: {}
-    Settings:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        justification:
-          type: string
-        ticketId:
-          type: string
-        ticketType:
-          type: string
-        userOnCall:
-          type: boolean
-          default: false
-        checkoutVariableValues:
-          type: object
-          additionalProperties:
-            type: string
-          writeOnly: true
-          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
-
-            '
-    MyAccessSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total count of items
-          example: '100'
-        page:
-          type: integer
-          description: Current page number
-          example: '0'
-        size:
-          type: integer
-          description: Page size
-          example: '20'
-        sort:
-          type: string
-          description: Sort order
-          example: appName,ASC
-        filter:
-          type:
-          - string
-          - 'null'
-          description: Applied filter
-          example: appName eq "AWS"
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccess'
     MyAccessApplication:
       type: object
       properties:
@@ -398,17 +413,14 @@ components:
           type: string
           example: AWS
         consoleAccessError:
-          type:
-          - string
-          - 'null'
+          type: string
+          nullable: 'true'
         programmaticAccessError:
-          type:
-          - string
-          - 'null'
+          type: string
+          nullable: 'true'
         description:
-          type:
-          - string
-          - 'null'
+          type: string
+          nullable: 'true'
         supportsToken:
           type: boolean
           example: 'false'
@@ -439,40 +451,7 @@ components:
         supportsSharedAccounts:
           type: boolean
           example: 'true'
-    MyAccess:
-      type: object
-      properties:
-        frequency:
-          type: integer
-          example: '0'
-        countOfProfiles:
-          type: integer
-          example: '100'
-        papId:
-          type: string
-          example: id1
-        environmentId:
-          type: string
-          example: envId1
-        appId:
-          type: string
-          example: appId1
-        myAccessDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccessDetail'
-        application:
-          $ref: '#/components/schemas/MyAccessApplication'
-        environment:
-          $ref: '#/components/schemas/MyAccessEnvironment'
-        profile:
-          $ref: '#/components/schemas/MyAccessProfile'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

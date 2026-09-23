@@ -26,7 +26,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NotificationMediumDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -62,7 +62,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -81,7 +81,7 @@ paths:
       - name: id
         in: path
         description: Id of notification medium
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -101,7 +101,7 @@ paths:
       - name: id
         in: path
         description: Id of notification medium
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -110,7 +110,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NotificationMediumDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -128,7 +128,7 @@ paths:
       - name: id
         in: path
         description: Id of notification medium
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -161,7 +161,7 @@ paths:
       - name: id
         in: path
         description: Id of notification medium
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -170,7 +170,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ChannelMembership'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -188,7 +188,7 @@ paths:
       - name: id
         in: path
         description: Id of notification medium
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -199,7 +199,7 @@ paths:
               type: array
               items:
                 type: string
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -217,7 +217,7 @@ paths:
       - name: id
         in: path
         description: Id of notification medium
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -228,7 +228,7 @@ paths:
               type: array
               items:
                 type: string
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -246,14 +246,14 @@ paths:
       - name: id
         in: path
         description: Id of notification medium
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
       - name: channelId
         in: path
         description: Id of slack channel
-        required: true
+        required: 'true'
         schema:
           type: string
         example: C012AB3CD
@@ -286,7 +286,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -298,6 +298,18 @@ paths:
                 type: object
 components:
   schemas:
+    ChannelMembership:
+      type: object
+      properties:
+        userId:
+          type: string
+        emailId:
+          type: string
+        channels:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
     NotificationMediumDto:
       type: object
       properties:
@@ -330,24 +342,7 @@ components:
           minimum: '-1'
           type: integer
           format: int32
-    ChannelMembership:
-      type: object
-      properties:
-        userId:
-          type: string
-        emailId:
-          type: string
-        channels:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 71
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

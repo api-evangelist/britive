@@ -21,7 +21,7 @@ paths:
       tags:
       - Task Scheduler
       operationId: getTasks
-      summary: Get details of the task scheduler service by retrieving the task scheduler service object
+      summary: Get details of the task scheduler service by retrieving the task scheduler…
       parameters:
       - name: name
         in: query
@@ -46,7 +46,7 @@ paths:
       summary: Deletes all the tasks for provided taskServiceId
       parameters:
       - name: taskServiceId
-        required: true
+        required: 'true'
         in: path
         schema:
           type: string
@@ -62,7 +62,7 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -81,7 +81,7 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -100,7 +100,7 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -118,7 +118,7 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -137,7 +137,7 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -157,12 +157,12 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: taskId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -176,12 +176,12 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: taskId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -199,12 +199,12 @@ paths:
       parameters:
       - name: taskServiceId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: taskId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -226,8 +226,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

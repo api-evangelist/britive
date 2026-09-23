@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Application Profiles - Sessions API
+  title: Britive Services API Documentation Application Profiles…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -21,17 +21,17 @@ paths:
       tags:
       - Application Profiles - Sessions
       summary: Get a list of active sessions of all users
-      description: Returns a per-user summary of users with active sessions. Both application profile sessions (any state other than checked in or checkout failed) and checked-out resource profile sessions are counted. Supported filter attributes are `email`, `username`, `name`, `lastLogin` and `userType` (values `User`, `ServiceIdentity`, `AIIdentity`). If `searchText` is provided, it takes precedence over `filter` and is applied as `username co <searchText>`.
+      description: Returns a per-user summary of users with active sessions. Both application profile sessions (any state other than checked in or checkout failed) and checked-out resource profile sessions are counted. Supported filter attributes are `email`, `username`, `name`, `lastLogin` and `userType` (values `User`, `ServiceIdentity`, `AIIdentity`). If `searchText` is provided, it takes precedence over `filter` and is applied as `username co `.
       operationId: getCheckedOutProfilesForAdmin_1
       parameters:
       - name: filter
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - $ref: '#/components/parameters/Page'
@@ -56,7 +56,7 @@ paths:
       parameters:
       - name: userId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -72,7 +72,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         description: The transaction ID of the session to check in
         schema:
           type: string
@@ -85,23 +85,23 @@ paths:
       tags:
       - Application Profiles - Sessions
       summary: Get a list of active sessions for a specific user
-      description: Returns the active sessions (sessions in any state other than checked in or checkout failed) of the specified user. Supported filter attributes are `profileName`, `appName`, `environmentName`, `environmentId`, `accessType` (values `CONSOLE`, `PROGRAMMATIC`) and `appType`; the `in` operator is supported for `appName` and `appType` only. If `searchText` is provided, it takes precedence over `filter` and is applied as `profileName co <searchText>`.
+      description: Returns the active sessions (sessions in any state other than checked in or checkout failed) of the specified user. Supported filter attributes are `profileName`, `appName`, `environmentName`, `environmentId`, `accessType` (values `CONSOLE`, `PROGRAMMATIC`) and `appType`; the `in` operator is supported for `appName` and `appType` only. If `searchText` is provided, it takes precedence over `filter` and is applied as `profileName co `.
       operationId: getCheckedOutProfilesForUser
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         description: The ID of the user whose active sessions are returned
         schema:
           type: string
       - name: filter
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - $ref: '#/components/parameters/Page'
@@ -117,31 +117,50 @@ paths:
         '400':
           description: Invalid filter criteria
 components:
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: 0
-    Size:
-      name: size
-      in: query
-      required: false
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: 20
   schemas:
+    AppAccessStatusUserSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        filter:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAccessStatusUserInfo'
+    AppAccessStatusUserInfo:
+      type: object
+      properties:
+        userId:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        name:
+          type: string
+        countOfProfiles:
+          type: integer
+          format: int32
+        lastLogin:
+          type: string
+          format: date-time
+        userType:
+          type: string
+          enum:
+          - User
+          - Service Identity
+          - AI Identity
     AppAccessStatusSummary:
       type: object
       properties:
@@ -210,55 +229,31 @@ components:
           type: string
         appType:
           type: string
-    AppAccessStatusUserSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        filter:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppAccessStatusUserInfo'
-    AppAccessStatusUserInfo:
-      type: object
-      properties:
-        userId:
-          type: string
-        email:
-          type: string
-        username:
-          type: string
-        name:
-          type: string
-        countOfProfiles:
-          type: integer
-          format: int32
-        lastLogin:
-          type: string
-          format: date-time
-        userType:
-          type: string
-          enum:
-          - User
-          - Service Identity
-          - AI Identity
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

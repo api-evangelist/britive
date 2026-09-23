@@ -59,7 +59,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PermissionDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -101,7 +101,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -120,7 +120,7 @@ paths:
       - name: id
         in: path
         description: Id of permission
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -145,7 +145,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -153,7 +153,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PermissionDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -185,7 +185,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PolicyDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -277,7 +277,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PolicyDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -298,7 +298,7 @@ paths:
               type: array
               items:
                 type: string
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -341,7 +341,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: resource
@@ -372,7 +372,7 @@ paths:
       - name: id
         in: path
         description: Id of policy
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -403,7 +403,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: attach
@@ -429,7 +429,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PolicyDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -447,7 +447,7 @@ paths:
       - name: id
         in: path
         description: Id of policy
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -469,7 +469,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoleDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -517,7 +517,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -536,7 +536,7 @@ paths:
       - name: id
         in: path
         description: Id of role
-        required: true
+        required: 'true'
         schema:
           type: string
         example: a6ed82f6-32b5-46d8-a3a3-c36cc574abd9
@@ -567,7 +567,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -575,7 +575,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoleDto'
-        required: false
+        required: 'false'
       responses:
         '200':
           description: successful operation
@@ -585,29 +585,6 @@ paths:
                 type: object
 components:
   schemas:
-    MemberDto:
-      type: object
-      properties:
-        tags:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        tokens:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        users:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        serviceIdentities:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
     RoleDto:
       type: object
       properties:
@@ -623,12 +600,69 @@ components:
           minLength: '0'
           type: string
         permissions:
-          uniqueItems: true
+          uniqueItems: 'true'
           type: array
           items:
             $ref: '#/components/schemas/PermissionDto'
         isReadOnly:
           type: boolean
+    PermissionDto:
+      required:
+      - actions
+      - resources
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          pattern: \s*[a-zA-Z0-9-_\s]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        consumer:
+          maxLength: '30'
+          minLength: '0'
+          pattern: \s*[a-zA-Z]+\s*
+          type: string
+        actions:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        resources:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
+        isReadOnly:
+          type: boolean
+    MemberDto:
+      type: object
+      properties:
+        tags:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        tokens:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        users:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        serviceIdentities:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
     PolicyDto:
       type: object
       properties:
@@ -653,19 +687,19 @@ components:
           type: object
           properties: {}
         permissions:
-          uniqueItems: true
+          uniqueItems: 'true'
           type: array
           items:
             $ref: '#/components/schemas/PermissionDto'
         members:
           $ref: '#/components/schemas/MemberDto'
         roles:
-          uniqueItems: true
+          uniqueItems: 'true'
           type: array
           items:
             $ref: '#/components/schemas/RoleDto'
         resources:
-          uniqueItems: true
+          uniqueItems: 'true'
           type: array
           items:
             type: string
@@ -684,40 +718,6 @@ components:
             type: array
             items:
               type: string
-    PermissionDto:
-      required:
-      - actions
-      - resources
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          pattern: \s*[a-zA-Z0-9-_\s]+\s*
-          type: string
-        description:
-          maxLength: '255'
-          minLength: '0'
-          type: string
-        consumer:
-          maxLength: '30'
-          minLength: '0'
-          pattern: \s*[a-zA-Z]+\s*
-          type: string
-        actions:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        resources:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-        isInline:
-          type: boolean
-        isReadOnly:
-          type: boolean
     IDNamePair:
       type: object
       properties:
@@ -729,8 +729,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 71
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

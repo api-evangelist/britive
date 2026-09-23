@@ -44,7 +44,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         description: ID of the resource template
         schema:
           type: string
@@ -63,7 +63,7 @@ paths:
       description: Creates a new user resource based on the specified resource template.
       operationId: createResourceUsingTemplate
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -82,12 +82,11 @@ paths:
       tags:
       - User Resources
       summary: Delete user resource by ID
-      description: Delete user resource by ID
       operationId: deleteUserResourceById
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         description: ID of the resource to delete
         schema:
           type: string
@@ -98,50 +97,6 @@ paths:
           description: Not Found
 components:
   schemas:
-    ResourceTemplatesSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceTemplateDto'
-    DynamicParameter:
-      type: object
-      properties:
-        paramName:
-          type: string
-        paramType:
-          type: string
-        paramValue:
-          type: string
-    UserResourceDto:
-      type: object
-      properties:
-        resourceId:
-          type: string
-        resourceName:
-          type: string
-        parentResourceId:
-          type: string
-        resourceParameters:
-          type: object
-          additionalProperties:
-            type: string
-        profileId:
-          type: string
-    DynamicParameters:
-      type: object
-      properties:
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/DynamicParameter'
     ResourceTemplateDto:
       type: object
       properties:
@@ -180,37 +135,76 @@ components:
             type: string
         status:
           type: string
+    DynamicParameters:
+      type: object
+      properties:
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/DynamicParameter'
+    UserResourceDto:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        resourceName:
+          type: string
+        parentResourceId:
+          type: string
+        resourceParameters:
+          type: object
+          additionalProperties:
+            type: string
+        profileId:
+          type: string
+    DynamicParameter:
+      type: object
+      properties:
+        paramName:
+          type: string
+        paramType:
+          type: string
+        paramValue:
+          type: string
+    ResourceTemplatesSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTemplateDto'
   parameters:
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: 0
     searchText:
       in: query
       name: searchText
       description: Parameter to filter resource by search text
-      required: false
+      required: 'false'
       schema:
         type: string
         example: test
     PageSize:
       name: size
       in: query
-      required: false
+      required: 'false'
       description: Parameter to specify the number of records to retrieve per page
       schema:
         type: integer
-        default: 20
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

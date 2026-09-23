@@ -44,7 +44,7 @@ paths:
       operationId: addFavorite
       requestBody:
         description: The favorite resource to add.
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -69,60 +69,53 @@ paths:
           description: Successful operation
 components:
   parameters:
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    type:
-      in: query
-      name: type
-      description: Parameter to filter resource by type i.e.frequently used
-      required: false
-      schema:
-        type: string
-        example: frequentlyUsed
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: 0
-    searchText:
-      in: query
-      name: searchText
-      description: Parameter to filter resource by search text
-      required: false
-      schema:
-        type: string
-        example: test
-    PageSize:
-      name: size
-      in: query
-      required: false
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: 20
     favoriteId:
       name: favoriteId
       in: path
       description: favoriteId of the resource.
-      required: true
+      required: 'true'
       schema:
         type: string
+    searchText:
+      in: query
+      name: searchText
+      description: Parameter to filter resource by search text
+      required: 'false'
+      schema:
+        type: string
+        example: test
+    type:
+      in: query
+      name: type
+      description: Parameter to filter resource by type i.e.frequently used
+      required: 'false'
+      schema:
+        type: string
+        example: frequentlyUsed
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   schemas:
-    FavoriteDto:
-      type: object
-      properties:
-        resourceId:
-          type: string
-        profileId:
-          type: string
     ResourcesSummary:
       type: object
       properties:
@@ -185,20 +178,20 @@ components:
           type: string
         consoleAccess:
           type: boolean
-          default: false
+          default: 'false'
         progAccess:
           type: boolean
-          default: false
+          default: 'false'
         showOrigCreds:
           type: boolean
-          default: false
+          default: 'false'
         exclusiveCheckout:
           type: boolean
-          default: false
+          default: 'false'
           description: True if the underlying profile is configured for exclusive (one-user-at-a-time) checkout. The flag is profile-level; lock enforcement is per (profile, resource).
         locked:
           type: boolean
-          default: false
+          default: 'false'
           description: True when an exclusive-checkout profile is currently held by another user on this specific resource. Computed per (profile, resource) — a hold on a different resource of the same profile does not lock this entry. While true, attempts to check out this (profile, resource) return HTTP 409.
         lockedBy:
           type: string
@@ -209,12 +202,14 @@ components:
         lockExpiry:
           type: string
           description: ISO-8601 timestamp at which the holder's current session on this (profile, resource) expires — i.e. when the exclusive lock is expected to be released and the entry becomes checkout-eligible again. Sourced from the active access expiration time.
+    FavoriteDto:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        profileId:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

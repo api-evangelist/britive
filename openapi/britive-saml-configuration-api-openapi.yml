@@ -20,13 +20,13 @@ paths:
     get:
       tags:
       - SAML Configuration
-      summary: Download the SAML certificate required in the SAML SSO configuration with a service provider
+      summary: Download the SAML certificate required in the SAML SSO configuration with a…
       description: This operation is applicable for applications that do not support importing SAML metadata.
       operationId: samlCertificate
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: integer
           format: int64
@@ -41,13 +41,13 @@ paths:
     get:
       tags:
       - SAML Configuration
-      summary: Download the SAML metadata required in the SAML SSO configuration with a service provider
+      summary: Download the SAML metadata required in the SAML SSO configuration with a…
       description: This operation is supported only in AWS and Oracle Cloud.
       operationId: samlMetadata_1
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: integer
           format: int64
@@ -62,7 +62,7 @@ paths:
     get:
       tags:
       - SAML Configuration
-      summary: Return SAML settings required in the SAML SSO configuration with a service provider
+      summary: Return SAML settings required in the SAML SSO configuration with a service…
       operationId: samlSettings
       responses:
         '200':
@@ -76,8 +76,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

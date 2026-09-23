@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation My Resources - Integration API
+  title: Britive Services API Documentation My Resources…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -20,24 +20,24 @@ paths:
     get:
       tags:
       - My Resources - Integration
-      summary: Search tickets using search text and the ITSM integration setting available for the profile
+      summary: Search tickets using search text and the ITSM integration setting available for…
       operationId: searchITSMTickets
       parameters:
       - name: profileId
         in: path
         description: Profile ID to get the effective ITSM settings
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: ticketType
         in: path
         description: Ticket type for ITSM ticket searching
-        required: true
+        required: 'true'
         schema:
           type: string
       - in: query
         name: searchText
-        required: false
+        required: 'false'
         schema:
           type: string
         description: The text for searching
@@ -54,24 +54,24 @@ paths:
     get:
       tags:
       - My Resources - Integration
-      summary: Validate ITSM ticket using the ITSM integration setting available for the profile
+      summary: Validate ITSM ticket using the ITSM integration setting available for the…
       operationId: validateITSMTicket
       parameters:
       - name: profileId
         in: path
         description: Profile ID to get the effective ITSM settings
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: ticketType
         in: path
         description: Ticket type for the validation
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: ticketId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
         description: Ticket Id for the validation
@@ -94,13 +94,13 @@ paths:
       - name: profileId
         in: path
         description: Profile ID to get Resource Profile Setting
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: resourceId
         in: path
         description: Resource ID to get Resource Profile Setting
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -112,6 +112,34 @@ paths:
                 $ref: '#/components/schemas/ResourceProfileSettings'
 components:
   schemas:
+    SettingsDto:
+      type: object
+      required:
+      - settingsType
+      properties:
+        settingsType:
+          type: string
+        id:
+          type: string
+        entityId:
+          type: string
+        entityType:
+          type: string
+        isInherited:
+          type: boolean
+      discriminator:
+        propertyName: settingsType
+        mapping:
+          ITSM: ItsmSettingsDto
+          JUSTIFICATION: JustificationSettingsDto
+    AutoApprovalSettings:
+      type: object
+      properties:
+        isAutoApproved:
+          type: boolean
+          default: 'false'
+        autoApprovalEndDate:
+          type: string
     ItsmSettingsDto:
       allOf:
       - $ref: '#/components/schemas/SettingsDto'
@@ -135,6 +163,17 @@ components:
             $ref: '#/components/schemas/ItsmFilterCriteriaDto'
         settingsType:
           type: string
+    JustificationSettingsDto:
+      allOf:
+      - $ref: '#/components/schemas/SettingsDto'
+      - type: object
+      properties:
+        isJustificationRequired:
+          type: boolean
+        isJustificationRequiredAtCheckout:
+          type: boolean
+        justificationRegex:
+          type: string
     ApprovalRequestData:
       type: object
       properties:
@@ -147,6 +186,10 @@ components:
         ticketType:
           type: string
           description: Existing Ticket Type
+    ITSMFilter:
+      type: object
+      additionalProperties:
+        type: string
     ITSMTicketSearchResult:
       type: object
       properties:
@@ -159,26 +202,6 @@ components:
         tickets:
           type: object
           description: List of the tickets with the details like id, number, title, assignee, priority, etc.
-    ResourceProfileSettings:
-      type: object
-      properties:
-        profileId:
-          type: string
-        justificationSetting:
-          $ref: '#/components/schemas/JustificationSettingsDto'
-        itsmSetting:
-          $ref: '#/components/schemas/ItsmSettingsDto'
-        onCallSettings:
-          $ref: '#/components/schemas/AutoApprovalSettings'
-        approvalRequestData:
-          $ref: '#/components/schemas/ApprovalRequestData'
-        checkoutVariablePrompts:
-          type: array
-          description: 'Checkout-only — independent of the approval/justification/ITSM settings. For each variable on the resolved profile-permission flagged promptAtCheckout=true, one entry telling the UI to prompt the end user for a value at checkout. Each carries the variable''s type and, when configured, the regexPattern to validate the typed value. Submitted via Settings.checkoutVariableValues on checkout. Not used by the approval-request flow.
-
-            '
-          items:
-            $ref: '#/components/schemas/CheckoutVariablePrompt'
     CheckoutVariablePrompt:
       type: object
       description: 'Signal to the UI that checkout will prompt the end user for the named variable''s value. The variable''s type discriminates the rendered control and the server-side validation rule applied to the submitted value.
@@ -206,6 +229,26 @@ components:
           description: 'Optional human-readable explanation of regexPattern, surfaced next to the input so the end user understands what a valid value looks like. Present iff a description is configured on the profile-permission binding (which itself requires regexPattern).
 
             '
+    ResourceProfileSettings:
+      type: object
+      properties:
+        profileId:
+          type: string
+        justificationSetting:
+          $ref: '#/components/schemas/JustificationSettingsDto'
+        itsmSetting:
+          $ref: '#/components/schemas/ItsmSettingsDto'
+        onCallSettings:
+          $ref: '#/components/schemas/AutoApprovalSettings'
+        approvalRequestData:
+          $ref: '#/components/schemas/ApprovalRequestData'
+        checkoutVariablePrompts:
+          type: array
+          description: 'Checkout-only — independent of the approval/justification/ITSM settings. For each variable on the resolved profile-permission flagged promptAtCheckout=true, one entry telling the UI to prompt the end user for a value at checkout. Each carries the variable''s type and, when configured, the regexPattern to validate the typed value. Submitted via Settings.checkoutVariableValues on checkout. Not used by the approval-request flow.
+
+            '
+          items:
+            $ref: '#/components/schemas/CheckoutVariablePrompt'
     ItsmFilterCriteriaDto:
       type: object
       properties:
@@ -225,55 +268,7 @@ components:
         ticketDetails:
           type: object
           description: Ticket details like id, number, title, assignee, priority, etc.
-    SettingsDto:
-      type: object
-      required:
-      - settingsType
-      properties:
-        settingsType:
-          type: string
-        id:
-          type: string
-        entityId:
-          type: string
-        entityType:
-          type: string
-        isInherited:
-          type: boolean
-      discriminator:
-        propertyName: settingsType
-        mapping:
-          ITSM: ItsmSettingsDto
-          JUSTIFICATION: JustificationSettingsDto
-    JustificationSettingsDto:
-      allOf:
-      - $ref: '#/components/schemas/SettingsDto'
-      - type: object
-      properties:
-        isJustificationRequired:
-          type: boolean
-        isJustificationRequiredAtCheckout:
-          type: boolean
-        justificationRegex:
-          type: string
-    AutoApprovalSettings:
-      type: object
-      properties:
-        isAutoApproved:
-          type: boolean
-          default: false
-        autoApprovalEndDate:
-          type: string
-    ITSMFilter:
-      type: object
-      additionalProperties:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

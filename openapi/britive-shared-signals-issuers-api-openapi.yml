@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Shared Signals - Issuers API
+  title: Britive Services API Documentation Shared Signals - Issuers…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -23,7 +23,7 @@ paths:
       summary: Create a shared signals issuer
       operationId: createSsfIssuer
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -51,7 +51,7 @@ paths:
     parameters:
     - in: path
       name: issuerId
-      required: true
+      required: 'true'
       schema:
         type: string
     delete:
@@ -80,7 +80,7 @@ paths:
       summary: Update a shared signals issuer
       operationId: updateSsfIssuer
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -96,7 +96,7 @@ paths:
     parameters:
     - in: path
       name: issuerId
-      required: true
+      required: 'true'
       schema:
         type: string
     get:
@@ -117,7 +117,7 @@ paths:
       summary: Replace event-to-action mappings for a shared signals issuer
       operationId: putIssuerMappings
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -131,6 +131,60 @@ paths:
                 $ref: '#/components/schemas/IssuerMappings'
 components:
   schemas:
+    UpdateIssuerRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+    EventActionMapping:
+      type: object
+      required:
+      - eventUri
+      - action
+      properties:
+        eventUri:
+          type: string
+          format: uri
+        action:
+          type: string
+          description: Must be one of the actions returned by /api/ssf/admin/catalog
+    CreateIssuerRequest:
+      type: object
+      required:
+      - issuerUrl
+      properties:
+        issuerUrl:
+          type: string
+          format: uri
+          description: 'Trusted issuer URL that matches the incoming SET `iss` claim.
+
+            JWKS location is derived from this issuer via OIDC discovery when available
+
+            (e.g., `/.well-known/openid-configuration` -> `jwks_uri`). Future versions may
+
+            allow explicit JWKS configuration.
+
+            '
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+          default: 'true'
+    PutIssuerMappingsRequest:
+      type: object
+      required:
+      - mappings
+      properties:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActionMapping'
     Issuer:
       type: object
       required:
@@ -157,42 +211,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    CreateIssuerRequest:
+    ListIssuersResponse:
       type: object
       required:
-      - issuerUrl
+      - items
       properties:
-        issuerUrl:
-          type: string
-          format: uri
-          description: 'Trusted issuer URL that matches the incoming SET `iss` claim.
-
-            JWKS location is derived from this issuer via OIDC discovery when available
-
-            (e.g., `/.well-known/openid-configuration` -> `jwks_uri`). Future versions may
-
-            allow explicit JWKS configuration.
-
-            '
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-          default: true
-    EventActionMapping:
-      type: object
-      required:
-      - eventUri
-      - action
-      properties:
-        eventUri:
-          type: string
-          format: uri
-        action:
-          type: string
-          description: Must be one of the actions returned by /api/ssf/admin/catalog
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issuer'
     IssuerMappings:
       type: object
       required:
@@ -209,39 +236,7 @@ components:
         updatedAt:
           type: string
           format: date-time
-    PutIssuerMappingsRequest:
-      type: object
-      required:
-      - mappings
-      properties:
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventActionMapping'
-    UpdateIssuerRequest:
-      type: object
-      properties:
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-    ListIssuersResponse:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issuer'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

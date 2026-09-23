@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Applications - Association Approvers API
+  title: Britive Services API Documentation Applications…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -26,7 +26,7 @@ paths:
       - name: appId
         in: path
         description: id of the application.
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -34,7 +34,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AssociationApproversDto'
-        required: true
+        required: 'true'
       responses:
         '200':
           description: Successfully created Association Approvers
@@ -51,7 +51,7 @@ paths:
       - name: appId
         in: path
         description: id of the application.
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -71,13 +71,13 @@ paths:
       - name: appId
         in: path
         description: id of the application.
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: id
         in: path
         description: id of the association approvers.
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -94,13 +94,13 @@ paths:
       - name: appId
         in: path
         description: id of the application.
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: id
         in: path
         description: id of the association approvers.
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -125,13 +125,13 @@ paths:
       - name: appId
         in: path
         description: id of the application.
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: id
         in: path
         description: id of the association approvers.
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -139,7 +139,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AssociationApproversDto'
-        required: true
+        required: 'true'
       responses:
         '204':
           description: Association & Approvers combination updated
@@ -147,6 +147,17 @@ paths:
           description: Association Approvers set for a given id not found
 components:
   schemas:
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
     MemberDto:
       type: object
       properties:
@@ -159,6 +170,21 @@ components:
           enum:
           - User
           - Tag
+    AssociationApproversDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationDto'
+        approversGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApproversGroupDto'
     ApproversGroupDto:
       type: object
       properties:
@@ -182,38 +208,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AssociationApproversDto'
-    AssociationDto:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          description: Association type
-          enum:
-          - '0'
-          - '1'
-    AssociationApproversDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociationDto'
-        approversGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApproversGroupDto'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -20,7 +20,7 @@ paths:
     parameters:
     - in: path
       name: userTagId
-      required: true
+      required: 'true'
       schema:
         type: string
       description: ID of the user tag
@@ -28,18 +28,16 @@ paths:
       tags:
       - User Tags
       summary: Get members of a user tag
-      description: 'Returns all users who are members of the specified user tag. Optionally includes dynamically assigned users when `fetchDynamicallyAssignedUsers` is set to `true`.
-
-        '
+      description: Returns all users who are members of the specified user tag. Optionally includes dynamically assigned users when `fetchDynamicallyAssignedUsers` is set to `true`.
       operationId: getAccessUserTagMembers
       parameters:
       - name: fetchDynamicallyAssignedUsers
         in: query
-        required: false
+        required: 'false'
         description: When true, also includes users assigned via dynamic attribute criteria
         schema:
           type: boolean
-          default: false
+          default: 'false'
       responses:
         '200':
           description: List of tag members
@@ -84,12 +82,12 @@ paths:
       parameters:
       - name: filter
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - $ref: '#/components/parameters/Page'
@@ -132,12 +130,12 @@ paths:
       parameters:
       - name: filter
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - $ref: '#/components/parameters/Page'
@@ -166,7 +164,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -184,7 +182,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -202,7 +200,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -226,7 +224,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -255,7 +253,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -273,7 +271,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -299,7 +297,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -318,7 +316,7 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -338,18 +336,18 @@ paths:
       - name: userTagId
         description: ID of the tag page
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: filter
         description: Filter the list of all users assigned to a tag (tag members) based on name or status. The supported operators are 'eq' and 'co'. An example format is given here, name co "Smith"
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - $ref: '#/components/parameters/Page'
@@ -372,32 +370,32 @@ paths:
       - name: userTagId
         description: ID of the user tag
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: filter
         description: The filter that can filter the list of all users assigned to a tag (tag members) based on name or status. The supported operators are 'eq' and 'co'. An example format is given here- name co "Smith"
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: forceRemoveAnyDirectUserProfileAssociation
         in: query
-        required: false
+        required: 'false'
         schema:
           type: boolean
-          default: false
+          default: 'false'
       - name: fetchDynamicallyAssignedUsers
         in: query
-        required: false
+        required: 'false'
         schema:
           type: boolean
-          default: false
+          default: 'false'
       - $ref: '#/components/parameters/Page'
       - $ref: '#/components/parameters/Size'
       - $ref: '#/components/parameters/Sort'
@@ -417,12 +415,12 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: userId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -440,36 +438,36 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: filter
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: userId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: forceRemoveAnyDirectUserProfileAssociation
         in: query
-        required: false
+        required: 'false'
         schema:
           type: boolean
-          default: false
+          default: 'false'
       - name: fetchDynamicallyAssignedUsers
         in: query
-        required: false
+        required: 'false'
         schema:
           type: boolean
-          default: false
+          default: 'false'
       - $ref: '#/components/parameters/Page'
       - $ref: '#/components/parameters/Size'
       - $ref: '#/components/parameters/Sort'
@@ -488,43 +486,31 @@ paths:
       parameters:
       - name: userTagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: userId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
         '200':
           description: OK
 components:
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: 0
-    Size:
-      name: size
-      in: query
-      required: false
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: 20
   schemas:
+    IdentityProviderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SAML
     UserView:
       type: object
       x-exclude-from-codegen: 'true'
@@ -542,15 +528,6 @@ components:
         type:
           type: string
         status:
-          type: string
-    UserTagAttributeCriteria:
-      type: object
-      properties:
-        value:
-          type: string
-        attributeId:
-          type: string
-        operator:
           type: string
     UserTagDto:
       type: object
@@ -587,6 +564,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserTagAttributeCriteria'
+    UserTagAttributeCriteria:
+      type: object
+      properties:
+        value:
+          type: string
+        attributeId:
+          type: string
+        operator:
+          type: string
     UserTagIdentityProvider:
       type: object
       properties:
@@ -607,24 +593,31 @@ components:
           type: string
         value:
           type: string
-    IdentityProviderDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - DEFAULT
-          - SAML
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

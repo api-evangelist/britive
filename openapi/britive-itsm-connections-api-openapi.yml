@@ -24,7 +24,7 @@ paths:
       operationId: createItsmConnection
       requestBody:
         description: ITSM Connection Data
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -45,7 +45,7 @@ paths:
       - name: type
         in: query
         description: ITSM filter by type.
-        required: false
+        required: 'false'
         schema:
           type: string
         example: Jira
@@ -68,7 +68,7 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an ITSM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -85,7 +85,7 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an ITSM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -106,12 +106,12 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an ITSM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
         description: ITSM Connection Data
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -131,7 +131,7 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an ITSM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -155,7 +155,7 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an ITSM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -165,19 +165,6 @@ paths:
           description: ITSM Connection not found.
 components:
   schemas:
-    ItsmConnectionReference:
-      type: object
-      properties:
-        id:
-          type: string
-        consumer:
-          type: string
-        entityType:
-          type: string
-        url:
-          type: string
-        entityData:
-          type: object
     ItsmConnection:
       type: object
       properties:
@@ -191,6 +178,19 @@ components:
           type: string
         description:
           type: string
+    ItsmConnectionReference:
+      type: object
+      properties:
+        id:
+          type: string
+        consumer:
+          type: string
+        entityType:
+          type: string
+        url:
+          type: string
+        entityData:
+          type: object
     ItsmConnectionDetails:
       type: object
       properties:
@@ -210,8 +210,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

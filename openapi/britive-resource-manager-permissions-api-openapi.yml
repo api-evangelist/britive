@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Resource Manager - Permissions API
+  title: Britive Services API Documentation Resource Manager…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -24,7 +24,7 @@ paths:
       operationId: saveResourcePerm
       requestBody:
         description: Information to save resource permission
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -46,7 +46,7 @@ paths:
       - name: id
         in: path
         description: ID of the resource permission to get urls for
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -68,7 +68,7 @@ paths:
       - name: id
         in: path
         description: ID of the resource permission to delete
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -85,7 +85,7 @@ paths:
       - name: id
         in: path
         description: ID of the resource permission to retrieve
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -108,12 +108,12 @@ paths:
       - name: id
         in: path
         description: ID of the resource permission to partially update
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
         description: Information to update resource permission
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -137,13 +137,13 @@ paths:
       - name: id
         in: path
         description: ID and version of the resource permission to delete
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: version
         in: path
         description: ID and version  id of the resource permission to deleted
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -160,13 +160,13 @@ paths:
       - name: id
         in: path
         description: ID of the resource permission to get urls for
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: version
         in: path
         description: version id of the resource permission to get
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -188,13 +188,13 @@ paths:
       - name: resourceTypeId
         in: path
         description: ID of the resource type of permissions
-        required: true
+        required: 'true'
         schema:
           type: string
       - in: query
         name: searchText
         description: Parameter to filter resource types by search text
-        required: false
+        required: 'false'
         schema:
           type: string
           example: test
@@ -209,49 +209,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResourcePermissionSummary'
 components:
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: 0
-    PageSize:
-      name: size
-      in: query
-      required: false
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: 20
   schemas:
-    ResourcePermissionDetailsDto:
+    ResponseTemplate:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
       properties:
-        permissionId:
+        templateId:
           type: string
         name:
-          type: string
-        resourceTypeName:
-          type: string
-        isDraft:
-          type: boolean
-          default: false
-        createdOn:
-          type: string
-        versionCount:
-          type: integer
-        version:
           type: string
     ResourcePermissionVersionDto:
       type: object
@@ -269,30 +234,28 @@ components:
           type: string
         isDraft:
           type: boolean
-          default: false
-    ResponseTemplate:
+          default: 'false'
+          nullable: 'false'
+    ResourcePermissionDetailsDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
       properties:
-        templateId:
+        permissionId:
           type: string
         name:
           type: string
-    ResourcePermissionSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        sort:
+        resourceTypeName:
           type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
+        isDraft:
+          type: boolean
+          default: 'false'
+          nullable: 'false'
+        createdOn:
+          type: string
+        versionCount:
+          type: integer
+        version:
+          type: string
     ResourcePermissionDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -317,18 +280,20 @@ components:
           type: string
         checkinTimeLimit:
           type: integer
-          default: 0
+          default: '0'
         checkoutTimeLimit:
           type: integer
-          default: 0
+          default: '0'
         checkoutFileName:
           type: string
         isDraft:
           type: boolean
-          default: false
+          default: 'false'
+          nullable: 'false'
         inlineFileExists:
           type: boolean
-          default: false
+          default: 'false'
+          nullable: 'false'
         editorType:
           type: string
         variables:
@@ -344,7 +309,8 @@ components:
             $ref: '#/components/schemas/ResponseTemplate'
         showOrigCreds:
           type: boolean
-          default: false
+          default: 'false'
+          nullable: 'false'
         createdBy:
           type: string
         updatedBy:
@@ -353,12 +319,46 @@ components:
           type: string
         updatedOn:
           type: string
+    ResourcePermissionSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

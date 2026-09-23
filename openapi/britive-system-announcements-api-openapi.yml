@@ -60,7 +60,7 @@ paths:
                 startDate: '2024-02-20 20:00:00'
                 endDate: '2024-02-21 20:00:00'
                 timeZone: Asia/Kolkata
-        required: true
+        required: 'true'
       responses:
         '201':
           description: Banner updated successfully
@@ -70,18 +70,6 @@ paths:
                 $ref: '#/components/schemas/BannerSettingsDto'
 components:
   schemas:
-    MessageSchedule:
-      type: object
-      properties:
-        startDate:
-          type: string
-          description: Expected date format is 'yyyy-MM-dd HH:mm:ss'
-        endDate:
-          type: string
-          description: Expected date format is 'yyyy-MM-dd HH:mm:ss'
-        timeZone:
-          type: string
-          description: Valid time zone values according to standards.
     BannerSettingsDto:
       required:
       - status
@@ -108,12 +96,19 @@ components:
           description: Allowed values are 'INFO', 'WARNING' and 'CAUTION'
         message:
           type: string
+    MessageSchedule:
+      type: object
+      properties:
+        startDate:
+          type: string
+          description: Expected date format is 'yyyy-MM-dd HH:mm:ss'
+        endDate:
+          type: string
+          description: Expected date format is 'yyyy-MM-dd HH:mm:ss'
+        timeZone:
+          type: string
+          description: Valid time zone values according to standards.
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

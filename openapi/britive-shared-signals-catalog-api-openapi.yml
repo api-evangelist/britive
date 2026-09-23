@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Shared Signals - Catalog API
+  title: Britive Services API Documentation Shared Signals - Catalog…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -31,25 +31,16 @@ paths:
                 $ref: '#/components/schemas/SsfCatalogResponse'
 components:
   schemas:
-    SsfCatalogResponse:
+    BritiveActionDefinition:
       type: object
       required:
-      - events
-      - actions
+      - action
       properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/SsfEventDefinition'
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/BritiveActionDefinition'
-        britiveEventTypes:
-          type: array
-          description: Britive audit event types available for receiver mappings
-          items:
-            $ref: '#/components/schemas/BritiveEventTypeDefinition'
+        action:
+          type: string
+          description: Britive action identifier
+        description:
+          type: string
     SsfEventDefinition:
       type: object
       required:
@@ -70,16 +61,6 @@ components:
           type: string
         description:
           type: string
-    BritiveActionDefinition:
-      type: object
-      required:
-      - action
-      properties:
-        action:
-          type: string
-          description: Britive action identifier
-        description:
-          type: string
     BritiveEventTypeDefinition:
       type: object
       required:
@@ -94,12 +75,26 @@ components:
           description: Human-readable name (e.g., "Disable User")
         description:
           type: string
+    SsfCatalogResponse:
+      type: object
+      required:
+      - events
+      - actions
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SsfEventDefinition'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BritiveActionDefinition'
+        britiveEventTypes:
+          type: array
+          description: Britive audit event types available for receiver mappings
+          items:
+            $ref: '#/components/schemas/BritiveEventTypeDefinition'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

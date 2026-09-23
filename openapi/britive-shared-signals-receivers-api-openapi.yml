@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Shared Signals - Receivers API
+  title: Britive Services API Documentation Shared Signals…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -23,7 +23,7 @@ paths:
       summary: Create a shared signals receiver
       operationId: createSsfReceiver
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -51,7 +51,7 @@ paths:
     parameters:
     - in: path
       name: receiverId
-      required: true
+      required: 'true'
       schema:
         type: string
     delete:
@@ -80,7 +80,7 @@ paths:
       summary: Update a shared signals receiver
       operationId: updateSsfReceiver
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -96,7 +96,7 @@ paths:
     parameters:
     - in: path
       name: receiverId
-      required: true
+      required: 'true'
       schema:
         type: string
     get:
@@ -117,7 +117,7 @@ paths:
       summary: Replace event mappings for a shared signals receiver
       operationId: putReceiverMappings
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -131,6 +131,34 @@ paths:
                 $ref: '#/components/schemas/ReceiverMappings'
 components:
   schemas:
+    ListReceiversResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receiver'
+    UpdateReceiverRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        receiverUrl:
+          type: string
+          format: uri
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Replaces all headers. All values are encrypted before storage.
+
+            '
     CreateReceiverRequest:
       type: object
       required:
@@ -146,7 +174,7 @@ components:
           type: string
         enabled:
           type: boolean
-          default: true
+          default: 'true'
         headers:
           type: object
           additionalProperties:
@@ -179,6 +207,22 @@ components:
             (e.g., "https://schemas.openid.net/secevent/risc/event-type/account-disabled").
 
             '
+    ReceiverMappings:
+      type: object
+      required:
+      - receiverId
+      - mappings
+      - updatedAt
+      properties:
+        receiverId:
+          type: string
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiverEventMapping'
+        updatedAt:
+          type: string
+          format: date-time
     Receiver:
       type: object
       required:
@@ -216,41 +260,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ReceiverMappings:
-      type: object
-      required:
-      - receiverId
-      - mappings
-      - updatedAt
-      properties:
-        receiverId:
-          type: string
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiverEventMapping'
-        updatedAt:
-          type: string
-          format: date-time
-    UpdateReceiverRequest:
-      type: object
-      properties:
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-        receiverUrl:
-          type: string
-          format: uri
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-          description: 'Replaces all headers. All values are encrypted before storage.
-
-            '
     PutReceiverMappingsRequest:
       type: object
       required:
@@ -260,21 +269,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReceiverEventMapping'
-    ListReceiversResponse:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Receiver'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

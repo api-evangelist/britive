@@ -76,7 +76,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RevokeData'
-        required: true
+        required: 'true'
       responses:
         '202':
           description: successful operation
@@ -93,7 +93,7 @@ paths:
       parameters:
       - name: approveRequest
         in: query
-        required: true
+        required: 'true'
         schema:
           pattern: \s*(yes|no|revoke)\s*
           type: string
@@ -103,15 +103,15 @@ paths:
           - revoke
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: killSession
         in: query
-        required: false
+        required: 'false'
         schema:
           type: boolean
-          default: true
+          default: 'true'
       responses:
         '200':
           description: successful operation
@@ -127,7 +127,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -145,7 +145,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: requestType
@@ -179,8 +179,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 71
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

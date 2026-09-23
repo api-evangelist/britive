@@ -41,7 +41,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FirewallRulesRequest'
-        required: true
+        required: 'true'
       responses:
         '201':
           description: Firewall rules updated successfully
@@ -89,7 +89,7 @@ paths:
                   info: 'The IP address(es) in CIDR notation. Example: 120.121.122.0/24, 180.179.178.176/32.'
                   operators:
                   - contains
-        required: true
+        required: 'true'
       responses:
         '201':
           description: Firewall rules updated successfully
@@ -99,6 +99,13 @@ paths:
                 $ref: '#/components/schemas/FirewallFields'
 components:
   schemas:
+    FirewallFields:
+      type: object
+      properties:
+        fields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Field'
     FirewallRulesDto:
       type: object
       properties:
@@ -117,13 +124,6 @@ components:
           type: array
           items:
             type: string
-    FirewallFields:
-      type: object
-      properties:
-        fields:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Field'
     FirewallRulesRequest:
       type: object
       properties:
@@ -153,8 +153,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -27,7 +27,7 @@ paths:
       - name: connectionId
         in: path
         description: Connection ID of an IM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: searchText
@@ -40,13 +40,13 @@ paths:
         description: Page number (0-based index)
         schema:
           type: integer
-          default: 0
+          default: '0'
       - name: size
         in: query
         description: Number of records per page
         schema:
           type: integer
-          default: 25
+          default: '25'
       responses:
         '200':
           description: Successful operation
@@ -67,11 +67,11 @@ paths:
       - name: connectionId
         in: path
         description: Connection ID of an IM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -113,11 +113,11 @@ paths:
       - name: connectionId
         in: path
         description: Connection ID of an IM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -137,24 +137,6 @@ paths:
                 $ref: '#/components/schemas/EscalationPoliciesByNamesResponse'
 components:
   schemas:
-    EscalationPoliciesByNamesResponse:
-      type: object
-      properties:
-        policies_not_found:
-          type: array
-          items:
-            type: string
-          description: List of policy names that were not found
-          example:
-          - test-1
-        policies_found:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of policy name to policy ID
-          example:
-            policy-A: C06T5C8UT08
-            policy-B: X09Z8K4PQ12
     PaginatedEscalationPolicyDetails:
       type: object
       properties:
@@ -174,6 +156,33 @@ components:
         more:
           type: boolean
           description: Whether there are more records available
+    EscalationPoliciesByNamesResponse:
+      type: object
+      properties:
+        policies_not_found:
+          type: array
+          items:
+            type: string
+          description: List of policy names that were not found
+          example:
+          - test-1
+        policies_found:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of policy name to policy ID
+          example:
+            policy-A: C06T5C8UT08
+            policy-B: X09Z8K4PQ12
+    EscalationPoliciesValidationResult:
+      type: object
+      properties:
+        escalationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EscalationPolicy'
+        errorMsg:
+          type: string
     EscalationPolicy:
       type: object
       x-exclude-from-codegen: 'true'
@@ -184,21 +193,7 @@ components:
           type: string
         summary:
           type: string
-    EscalationPoliciesValidationResult:
-      type: object
-      properties:
-        escalationPolicies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EscalationPolicy'
-        errorMsg:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

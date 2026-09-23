@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation User Identity Attributes API
+  title: Britive Services API Documentation User Identity Attributes…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -21,9 +21,7 @@ paths:
       tags:
       - User Identity Attributes
       summary: Get user identity attributes (Access API)
-      description: 'Returns all user identity attributes defined in the system. This access-scoped endpoint mirrors `GET /api/users/attributes` but is accessible via the access API path.
-
-        '
+      description: Returns all user identity attributes defined in the system. This access-scoped endpoint mirrors `GET /api/users/attributes` but is accessible via the access API path.
       operationId: getAccessUserAttributes
       responses:
         '200':
@@ -73,7 +71,7 @@ paths:
       parameters:
       - name: type
         in: query
-        required: false
+        required: 'false'
         schema:
           type: string
       responses:
@@ -105,7 +103,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -123,12 +121,12 @@ paths:
       parameters:
       - name: userAttribute
         in: query
-        required: true
+        required: 'true'
         schema:
           $ref: '#/components/schemas/UserAttributeSchemaBean'
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -146,7 +144,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -191,8 +189,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

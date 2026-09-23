@@ -1,0 +1,31 @@
+# Front Door AI Index — britive — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: britive
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.britive.com
+  final_host: www.britive.com
+  ownership: own
+  owner: britive
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 70
+  host_score: 70
+  density: 29.66
+  words: 2360
+  tiers:
+    agentic: 32
+    core: 38
+    model: 0
+  ambiguous: 23
+  top_terms:
+    AI: 37
+    agent: 23
+    agentic: 18
+    AI agent: 11
+    MCP: 2
+    ML: 1
+    prompts: 1

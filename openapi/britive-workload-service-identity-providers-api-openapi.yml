@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Workload Service Identity Providers API
+  title: Britive Services API Documentation Workload Service…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -26,7 +26,7 @@ paths:
       - name: targetUserId
         in: path
         description: The random 20 alphanumeric string id of the service identity user.
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -34,7 +34,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DesignateIdpRequest'
-        required: true
+        required: 'true'
       responses:
         '200':
           description: Successfully assigned identity provider to service identity.
@@ -52,7 +52,7 @@ paths:
       - name: targetUserId
         in: path
         description: The random 20 alphanumeric string id of the service identity user.
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -67,7 +67,7 @@ paths:
       - name: targetUserId
         in: path
         description: The random 20 alphanumeric string id of the service identity user.
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -79,16 +79,6 @@ paths:
                 $ref: '#/components/schemas/UserDesignatedIdp'
 components:
   schemas:
-    MappingAttribute:
-      type: object
-      properties:
-        attrId:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-      description: mapped custom attribute value.
     UserDesignatedIdp:
       required:
       - idp
@@ -108,6 +98,27 @@ components:
           items:
             $ref: '#/components/schemas/MappingAttribute'
       description: model of the workload identity provider currently assigned to a service identity
+    MappingAttribute:
+      type: object
+      properties:
+        attrId:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+      description: mapped custom attribute value.
+    AttributeMap:
+      required:
+      - idpAttr
+      - userAttr
+      type: object
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
     DesignateIdpRequest:
       required:
       - idpId
@@ -155,23 +166,7 @@ components:
           type: string
       discriminator:
         propertyName: idpType
-    AttributeMap:
-      required:
-      - idpAttr
-      - userAttr
-      type: object
-      properties:
-        idpAttr:
-          type: string
-        userAttr:
-          type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

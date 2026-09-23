@@ -135,7 +135,7 @@ paths:
       parameters:
       - name: notificationId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -154,7 +154,7 @@ paths:
       - name: notificationId
         description: Notification ID
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -166,18 +166,20 @@ paths:
                 type: object
 components:
   schemas:
-    JsonNode:
-      type: object
-    WorkflowMemberRuleDto:
+    ApplicationSummary:
       type: object
       properties:
-        id:
+        appContainerId:
           type: string
-        memberType:
+        catalogAppDisplayName:
+          type: string
+        description:
+          type: string
+        status:
           type: string
           enum:
-          - User
-          - Tag
+          - active
+          - inactive
     NotificationBean:
       type: object
       properties:
@@ -197,7 +199,7 @@ components:
         notificationMedium:
           $ref: '#/components/schemas/JsonNode'
         rules:
-          uniqueItems: true
+          uniqueItems: 'true'
           type: array
           items:
             $ref: '#/components/schemas/RuleBean'
@@ -207,23 +209,11 @@ components:
             $ref: '#/components/schemas/WorkflowMemberRuleDto'
         applications:
           type: array
-          readOnly: true
+          readOnly: 'true'
           items:
             $ref: '#/components/schemas/ApplicationSummary'
-    ApplicationSummary:
+    JsonNode:
       type: object
-      properties:
-        appContainerId:
-          type: string
-        catalogAppDisplayName:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
     RuleBean:
       type: object
       properties:
@@ -244,12 +234,17 @@ components:
           - OR
         description:
           type: string
+    WorkflowMemberRuleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

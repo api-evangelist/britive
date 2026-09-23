@@ -21,7 +21,7 @@ paths:
       tags:
       - API Tokens
       operationId: apiToken_7
-      summary: Create an API token with full administrator privileges.
+      summary: Create an API token with full administrator privileges
       description: The API token is returned only once. Copy and keep it in a secure location. If you lose the token you will have to generate a new token again.
       requestBody:
         content:
@@ -62,7 +62,7 @@ paths:
       - name: tokenId
         description: Token ID
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -82,7 +82,7 @@ paths:
       - name: tokenId
         description: Token ID
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -97,7 +97,7 @@ paths:
       - name: tokenId
         in: path
         description: Token ID
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -120,7 +120,7 @@ paths:
       - name: tokenId
         description: Token ID
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -177,8 +177,3 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

@@ -55,7 +55,7 @@ paths:
       parameters:
       - name: taskId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -75,12 +75,12 @@ paths:
       parameters:
       - name: appContainerId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: envGroupId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -100,7 +100,7 @@ paths:
       - name: id
         description: Application ID
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -118,7 +118,7 @@ paths:
       parameters:
       - name: id
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -142,7 +142,7 @@ paths:
       - name: id
         in: path
         description: Application ID
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -161,7 +161,7 @@ paths:
       - name: id
         description: Application ID
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -178,75 +178,52 @@ paths:
                 type: object
 components:
   schemas:
-    AuditStamp:
+    SecurityScannerMetadata:
       type: object
       properties:
-        user:
+        className:
           type: string
-        date:
-          type: string
-          format: date-time
-        action:
-          type: string
-    JsonNode:
-      type: object
-    AppContainerBean:
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
+    PapExpirationSettings:
       type: object
       properties:
-        tenantId:
+        minimumSessionTime:
           type: integer
           format: int32
-        catalogAppId:
+        maximumSessionTime:
           type: integer
-          format: int64
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-        hasValidPaps:
+          format: int32
+        supportsSessionExtension:
           type: boolean
-        allowAccessRequests:
-          type: boolean
-        catalogAppDisplayName:
-          type: string
-        deleted:
-          type: string
-          format: date-time
-        deletedBy:
-          type: string
-        rootEnvironmentGroup:
-          $ref: '#/components/schemas/RootEnvironmentGroup'
-        iconUrl:
-          type: string
-        catalogAppName:
-          type: string
-        catalogApplication:
-          $ref: '#/components/schemas/CatalogApplication'
-        allEnvironmentGroupMap:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/EnvironmentGroup'
-        defaultAppUrl:
-          type: string
-        catalogAppVersion:
-          type: string
-        appContainerId:
-          type: string
-        userAccountMappings:
-          $ref: '#/components/schemas/JsonNode'
-    PropertyType:
+        numberOfSessionExtensionsAllowed:
+          type: integer
+          format: int32
+        sessionTimeDuringExtension:
+          type: integer
+          format: int32
+    RootEnvironmentGroup:
       type: object
       properties:
-        name:
+        environmentGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentGroup'
+        environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+    SsoHandlerMetadata:
+      type: object
+      properties:
+        className:
           type: string
-        type:
-          type: string
-        description:
-          type: string
-        propertyTypeId:
-          type: integer
-          format: int64
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
     Environment:
       type: object
       properties:
@@ -271,18 +248,7 @@ components:
           type: string
         parentGroupId:
           type: string
-    RootEnvironmentGroup:
-      type: object
-      properties:
-        environmentGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentGroup'
-        environments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Environment'
-    SsoHandlerMetadata:
+    ProvisionHandlerMetadata:
       type: object
       properties:
         className:
@@ -349,62 +315,6 @@ components:
           $ref: '#/components/schemas/SsoHandlerMetadata'
         securityScannerMetadata:
           $ref: '#/components/schemas/SecurityScannerMetadata'
-    SecurityScannerMetadata:
-      type: object
-      properties:
-        className:
-          type: string
-        propertyTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultPropertyType'
-    EnvironmentGroup:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-        internalParentId:
-          type: string
-        parentId:
-          type: string
-        description:
-          type: string
-        created:
-          $ref: '#/components/schemas/AuditStamp'
-        nativeId:
-          type: string
-        nativeParentId:
-          type: string
-    ProvisionHandlerMetadata:
-      type: object
-      properties:
-        className:
-          type: string
-        propertyTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultPropertyType'
-    PapExpirationSettings:
-      type: object
-      properties:
-        minimumSessionTime:
-          type: integer
-          format: int32
-        maximumSessionTime:
-          type: integer
-          format: int32
-        supportsSessionExtension:
-          type: boolean
-        numberOfSessionExtensionsAllowed:
-          type: integer
-          format: int32
-        sessionTimeDuringExtension:
-          type: integer
-          format: int32
     DefaultPropertyType:
       type: object
       properties:
@@ -438,12 +348,97 @@ components:
           type: boolean
         generatorClass:
           type: string
+    AppContainerBean:
+      type: object
+      properties:
+        tenantId:
+          type: integer
+          format: int32
+        catalogAppId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        hasValidPaps:
+          type: boolean
+        allowAccessRequests:
+          type: boolean
+        catalogAppDisplayName:
+          type: string
+        deleted:
+          type: string
+          format: date-time
+        deletedBy:
+          type: string
+        rootEnvironmentGroup:
+          $ref: '#/components/schemas/RootEnvironmentGroup'
+        iconUrl:
+          type: string
+        catalogAppName:
+          type: string
+        catalogApplication:
+          $ref: '#/components/schemas/CatalogApplication'
+        allEnvironmentGroupMap:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EnvironmentGroup'
+        defaultAppUrl:
+          type: string
+        catalogAppVersion:
+          type: string
+        appContainerId:
+          type: string
+        userAccountMappings:
+          $ref: '#/components/schemas/JsonNode'
+    JsonNode:
+      type: object
+    PropertyType:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        propertyTypeId:
+          type: integer
+          format: int64
+    EnvironmentGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        internalParentId:
+          type: string
+        parentId:
+          type: string
+        description:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+        nativeId:
+          type: string
+        nativeParentId:
+          type: string
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

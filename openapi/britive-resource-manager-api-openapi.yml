@@ -26,14 +26,14 @@ paths:
       - in: query
         name: filter
         description: Parameter to filter resources by name
-        required: false
+        required: 'false'
         schema:
           type: string
           example: name eq profile1
       - in: query
         name: searchText
         description: Parameter to filter profiles by search text
-        required: false
+        required: 'false'
         schema:
           type: string
           example: test
@@ -54,7 +54,7 @@ paths:
       operationId: saveResource
       requestBody:
         description: Information to save resource
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -76,7 +76,7 @@ paths:
       - name: id
         in: path
         description: ID of the resource to delete
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -93,7 +93,7 @@ paths:
       - name: id
         in: path
         description: ID of the resource to retrieve
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -114,12 +114,12 @@ paths:
       - name: id
         in: path
         description: ID of the resource to partially update
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
         description: Information to save resource
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -141,13 +141,13 @@ paths:
       - name: id
         in: path
         description: ID of the resource mapped to broker pools
-        required: true
+        required: 'true'
         schema:
           type: string
       - in: query
         name: searchText
         description: Parameter to filter broker pools by search text
-        required: false
+        required: 'false'
         schema:
           type: string
           example: test
@@ -174,12 +174,12 @@ paths:
       - name: id
         in: path
         description: ID of the resource mapped to broker pools
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
         description: Map broker pools to resource
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -205,13 +205,13 @@ paths:
       - name: id
         in: path
         description: ID of the resource mapped to broker pools
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: brokerPoolId
         in: path
         description: brokerPoolId to be deleted.
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -220,41 +220,17 @@ paths:
         '404':
           description: Not Found
 components:
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: 0
-    PageSize:
-      name: size
-      in: query
-      required: false
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: 20
   schemas:
-    ResourceParamValue:
-      type: object
-      additionalProperties:
-        type: string
     LabelAssociation:
       type: object
       additionalProperties:
         type: array
         items:
           type: string
+    ResourceParamValue:
+      type: object
+      additionalProperties:
+        type: string
     BrokerPoolDetailsDto:
       type: object
       properties:
@@ -282,13 +258,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceInfo'
-    ResourceType:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
     ResourceInfo:
       type: object
       properties:
@@ -332,12 +301,38 @@ components:
           $ref: '#/components/schemas/ResourceParamValue'
         resourceLabels:
           $ref: '#/components/schemas/LabelAssociation'
+    ResourceType:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

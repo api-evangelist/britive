@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Workload Identity Providers API
+  title: Britive Services API Documentation Workload Identity…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -31,7 +31,7 @@ paths:
               - $ref: '#/components/schemas/AwsProvider'
               - $ref: '#/components/schemas/OpenIdConnectProvider'
               - $ref: '#/components/schemas/SpiffeProvider'
-        required: true
+        required: 'true'
       responses:
         '200':
           description: Identity provider successfully created.
@@ -51,7 +51,7 @@ paths:
       - name: type
         in: query
         description: the type of identity provider.
-        required: false
+        required: 'false'
         schema:
           type: string
           enum:
@@ -62,29 +62,29 @@ paths:
       - name: name
         in: query
         description: filter resource that starts with name
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: page
         in: query
         description: Zero-based page index (0..N)
-        required: false
+        required: 'false'
         schema:
           minimum: '0'
           type: integer
-          default: 0
+          default: '0'
       - name: size
         in: query
         description: The size of the page to be returned
-        required: false
+        required: 'false'
         schema:
           minimum: '1'
           type: integer
-          default: 20
+          default: '20'
       - name: sort
         in: query
         description: 'Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.'
-        required: false
+        required: 'false'
         schema:
           type: array
           items:
@@ -115,7 +115,7 @@ paths:
               - $ref: '#/components/schemas/AwsProvider'
               - $ref: '#/components/schemas/OpenIdConnectProvider'
               - $ref: '#/components/schemas/SpiffeProvider'
-        required: true
+        required: 'true'
       responses:
         '200':
           description: identity provider updated
@@ -140,7 +140,7 @@ paths:
       - name: idpId
         in: path
         description: id of the identity provider.
-        required: true
+        required: 'true'
         schema:
           type: integer
           format: int32
@@ -156,7 +156,7 @@ paths:
       - name: idpId
         in: path
         description: Id of the identity provider.
-        required: true
+        required: 'true'
         schema:
           type: integer
           format: int32
@@ -180,6 +180,74 @@ components:
       enum:
       - https_web
       - https_spiffe
+    OpenIdConnectProvider:
+      required:
+      - idpType
+      - issuerUrl
+      - name
+      type: object
+      description: model of an OpenID Connect Provider
+      discriminator:
+        propertyName: idpType
+      allOf:
+      - $ref: '#/components/schemas/IdentityProvider'
+      - type: object
+        properties:
+          issuerUrl:
+            type: string
+          allowedAudiences:
+            type: array
+            items:
+              type: string
+          idpType:
+            type: string
+    AttributeMap:
+      required:
+      - idpAttr
+      - userAttr
+      type: object
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
+    AwsProvider:
+      required:
+      - idpType
+      - name
+      type: object
+      description: model of a AWS Provider
+      discriminator:
+        propertyName: idpType
+      allOf:
+      - $ref: '#/components/schemas/IdentityProvider'
+      - type: object
+        properties:
+          maxDuration:
+            type: integer
+            description: The maximum number of hours the client can request the AWS token be valid.
+            format: int32
+          idpType:
+            type: string
+    SpiffeProvider:
+      description: model of a SPIFFE Workload Identity Provider
+      allOf:
+      - $ref: '#/components/schemas/IdentityProvider'
+      - type: object
+        properties:
+          bundleEndpoint:
+            type: string
+            format: uri
+          bundleProfile:
+            $ref: '#/components/schemas/SpiffeBundleProfile'
+          trustDomain:
+            type: string
+      required:
+      - bundleEndpoint
+      - bundleProfile
+      - trustDomain
+      - attributesMap
     IdentityProvider:
       required:
       - idpType
@@ -206,80 +274,7 @@ components:
           type: string
       discriminator:
         propertyName: idpType
-    AttributeMap:
-      required:
-      - idpAttr
-      - userAttr
-      type: object
-      properties:
-        idpAttr:
-          type: string
-        userAttr:
-          type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
-    SpiffeProvider:
-      description: model of a SPIFFE Workload Identity Provider
-      allOf:
-      - $ref: '#/components/schemas/IdentityProvider'
-      - type: object
-        properties:
-          bundleEndpoint:
-            type: string
-            format: uri
-          bundleProfile:
-            $ref: '#/components/schemas/SpiffeBundleProfile'
-          trustDomain:
-            type: string
-      required:
-      - bundleEndpoint
-      - bundleProfile
-      - trustDomain
-      - attributesMap
-    OpenIdConnectProvider:
-      required:
-      - idpType
-      - issuerUrl
-      - name
-      type: object
-      description: model of an OpenID Connect Provider
-      discriminator:
-        propertyName: idpType
-      allOf:
-      - $ref: '#/components/schemas/IdentityProvider'
-      - type: object
-        properties:
-          issuerUrl:
-            type: string
-          allowedAudiences:
-            type: array
-            items:
-              type: string
-          idpType:
-            type: string
-    AwsProvider:
-      required:
-      - idpType
-      - name
-      type: object
-      description: model of a AWS Provider
-      discriminator:
-        propertyName: idpType
-      allOf:
-      - $ref: '#/components/schemas/IdentityProvider'
-      - type: object
-        properties:
-          maxDuration:
-            type: integer
-            description: The maximum number of hours the client can request the AWS token be valid.
-            format: int32
-          idpType:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

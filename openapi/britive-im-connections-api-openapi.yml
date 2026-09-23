@@ -24,7 +24,7 @@ paths:
       operationId: createImConnection
       requestBody:
         description: IM Connection Data
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -55,11 +55,10 @@ paths:
       tags:
       - IM Connections
       summary: Validate an IM Connection
-      description: Validate an IM Connection
       operationId: validateImConnectionDetails
       requestBody:
         description: IM Connection Data
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -83,7 +82,7 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an IM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -100,7 +99,7 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an IM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -121,12 +120,12 @@ paths:
       - name: connectionId
         in: path
         description: connectionId of an IM Connection
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
         description: IM Connection Data
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -138,6 +137,19 @@ paths:
           description: IM Connection not found.
 components:
   schemas:
+    ImConnection:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        authType:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
     ImConnectionDetails:
       type: object
       properties:
@@ -153,25 +165,7 @@ components:
           type: string
         data:
           type: object
-    ImConnection:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        authType:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

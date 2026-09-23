@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Shared Signals - Results API
+  title: Britive Services API Documentation Shared Signals - Results…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -23,24 +23,22 @@ paths:
       summary: Query processed shared signals event results
       description: 'Results are returned in descending order by `receivedAt` (newest first).
 
-        Ordering is fixed to ensure stable pagination with `nextToken`.
-
-        '
+        Ordering is fixed to ensure stable pagination with `nextToken`.'
       operationId: querySsfResults
       parameters:
       - in: query
         name: subjectValue
         schema:
           type: string
-        required: false
+        required: 'false'
         description: Filter by subject identifier value (e.g. email address).
       - in: query
         name: limit
-        required: false
+        required: 'false'
         description: Maximum number of results per page. Default 20, max 100.
         schema:
           type: integer
-          default: 20
+          default: '20'
       - in: query
         name: nextToken
         schema:
@@ -49,7 +47,7 @@ paths:
         name: direction
         schema:
           $ref: '#/components/schemas/Direction'
-        required: false
+        required: 'false'
         description: Filter by event direction. Omit to return all.
       responses:
         '200':
@@ -60,38 +58,6 @@ paths:
                 $ref: '#/components/schemas/QueryResultsResponse'
 components:
   schemas:
-    ActionOutcome:
-      type: object
-      properties:
-        success:
-          type: boolean
-        code:
-          type: string
-          description: Optional machine-readable code (e.g., USER_NOT_FOUND)
-        message:
-          type: string
-          description: Optional human-readable message
-        details:
-          type: object
-          additionalProperties: 'true'
-    SubjectIdentifier:
-      type: object
-      required:
-      - type
-      - value
-      properties:
-        type:
-          type: string
-          description: v1 supports email only (aligns with current design)
-          enum:
-          - email
-        value:
-          type: string
-    Direction:
-      type: string
-      enum:
-      - RECEIVED
-      - TRANSMITTED
     QueryResultsResponse:
       type: object
       required:
@@ -102,14 +68,8 @@ components:
           items:
             $ref: '#/components/schemas/SsfProcessingResult'
         nextToken:
-          type:
-          - string
-          - 'null'
-    ProcessingStatus:
-      type: string
-      enum:
-      - ACCEPTED
-      - FAILED
+          type: string
+          nullable: 'true'
     SsfProcessingResult:
       type: object
       required:
@@ -134,12 +94,12 @@ components:
           format: uri
         direction:
           $ref: '#/components/schemas/Direction'
+          nullable: 'true'
           description: RECEIVED = inbound from external IdP, TRANSMITTED = outbound to receiver. Absent on records written before this field was introduced; treat as RECEIVED.
         receiverUrl:
-          type:
-          - string
-          - 'null'
+          type: string
           format: uri
+          nullable: 'true'
           description: Receiver endpoint URL. Only present for TRANSMITTED events; null for RECEIVED.
         subject:
           $ref: '#/components/schemas/SubjectIdentifier'
@@ -151,21 +111,52 @@ components:
           type: string
           format: date-time
         processedAt:
-          type:
-          - string
-          - 'null'
+          type: string
           format: date-time
+          nullable: 'true'
         outcome:
           $ref: '#/components/schemas/ActionOutcome'
         rawSsfEvent:
+          type: object
+          additionalProperties: 'true'
+    ProcessingStatus:
+      type: string
+      enum:
+      - ACCEPTED
+      - FAILED
+    SubjectIdentifier:
+      type: object
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: v1 supports email only (aligns with current design)
+          enum:
+          - email
+        value:
+          type: string
+    Direction:
+      type: string
+      enum:
+      - RECEIVED
+      - TRANSMITTED
+    ActionOutcome:
+      type: object
+      properties:
+        success:
+          type: boolean
+        code:
+          type: string
+          description: Optional machine-readable code (e.g., USER_NOT_FOUND)
+        message:
+          type: string
+          description: Optional human-readable message
+        details:
           type: object
           additionalProperties: 'true'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

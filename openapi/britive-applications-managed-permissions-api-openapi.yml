@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Britive Services API Documentation Applications - Managed Permissions API
+  title: Britive Services API Documentation Applications - Managed…
   version: v1
   description: API documentation for Users, Tags, Identity providers, Applications, Reporting, Audit logs, Tenants, SSO, Profiles, Password policies, MFA, Access Builder Settings, etc.
 servers:
@@ -26,7 +26,7 @@ paths:
       - name: appId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -45,7 +45,7 @@ paths:
               - name: DevAdminPolicy
                 type: inlinePolicy
                 permissionDefinition: {}
-        required: true
+        required: 'true'
       responses:
         '200':
           description: Permission successfully created.
@@ -62,39 +62,39 @@ paths:
       - name: appId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: filter
         in: query
         description: Parameter to filter permissions by name
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: searchText
         in: query
         description: Parameter to filter permissions by search text
-        required: false
+        required: 'false'
         schema:
           type: string
       - name: page
         in: query
         description: Parameter to specify the page number of the records to retrieve
-        required: false
+        required: 'false'
         schema:
           type: integer
           format: int32
       - name: size
         in: query
         description: Parameter to specify the number of records to retrieve per page
-        required: false
+        required: 'false'
         schema:
           type: integer
           format: int32
       - name: sort
         in: query
         description: Parameter to specify the sort parameter and direction
-        required: false
+        required: 'false'
         schema:
           type: string
       responses:
@@ -114,7 +114,7 @@ paths:
       - name: appId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -134,7 +134,7 @@ paths:
                 Action: s3:*
                 Effect: Allow
                 Resource: '*'
-        required: true
+        required: 'true'
       responses:
         '200':
           description: success
@@ -152,13 +152,13 @@ paths:
       - name: appId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: permissionId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -175,13 +175,13 @@ paths:
       - name: appId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: permissionId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -202,13 +202,13 @@ paths:
       - name: appId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: permissionId
         in: path
         description: Id of the application
-        required: true
+        required: 'true'
         schema:
           type: string
       requestBody:
@@ -216,7 +216,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ManagedPermissionDto'
-        required: true
+        required: 'true'
       responses:
         '204':
           description: Managed permission updated
@@ -224,19 +224,47 @@ paths:
           description: Permission id not found
 components:
   schemas:
-    ChildPermissionDto:
+    Findings:
       type: object
       properties:
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingsInfo'
+    ManagedPermissionDto:
+      type: object
+      properties:
+        id:
+          type: string
         name:
           type: string
-          example: DevAdminPolicy
+          example: DevAccessPermission
+        description:
+          type: string
+          example: Permission to access develop environment
         type:
           type: string
-          example: inlinePolicy
-        permissionDefinition:
-          type: object
+          example: role
         isPrivileged:
           type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        permissionDefinition:
+          type: object
+        createdDate:
+          type: string
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+        updatedBy:
+          type: string
+        childPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildPermissionDto'
     ManagedPermissionInfo:
       type: object
       properties:
@@ -273,13 +301,13 @@ components:
           type: string
         isPrivileged:
           type: boolean
-    Findings:
+    Tag:
       type: object
       properties:
-        findings:
-          type: array
-          items:
-            $ref: '#/components/schemas/FindingsInfo'
+        key:
+          type: string
+        value:
+          type: string
     ManagedPermissionsSummary:
       type: object
       properties:
@@ -298,40 +326,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ManagedPermissionInfo'
-    ManagedPermissionDto:
+    ChildPermissionDto:
       type: object
       properties:
-        id:
-          type: string
         name:
           type: string
-          example: DevAccessPermission
-        description:
-          type: string
-          example: Permission to access develop environment
+          example: DevAdminPolicy
         type:
           type: string
-          example: role
-        isPrivileged:
-          type: boolean
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
+          example: inlinePolicy
         permissionDefinition:
           type: object
-        createdDate:
-          type: string
-        createdBy:
-          type: string
-        updatedDate:
-          type: string
-        updatedBy:
-          type: string
-        childPermissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChildPermissionDto'
+        isPrivileged:
+          type: boolean
     FindingsInfo:
       type: object
       properties:
@@ -341,19 +348,7 @@ components:
           type: array
           items:
             type: string
-    Tag:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.

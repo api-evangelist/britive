@@ -26,13 +26,13 @@ paths:
       parameters:
       - name: filter
         in: query
-        required: false
+        required: 'false'
         description: SCIM-style filter string (e.g. `name co "foo"`)
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         description: Free-text search on tag name
         schema:
           type: string
@@ -52,7 +52,7 @@ paths:
       summary: Submit a tag access request
       operationId: submitTagAccessRequest
       requestBody:
-        required: true
+        required: 'true'
         content:
           application/json:
             schema:
@@ -72,18 +72,18 @@ paths:
       parameters:
       - name: tagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: filter
         in: query
-        required: false
+        required: 'false'
         description: SCIM-style filter string (e.g. `name co "foo"`)
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         description: Free-text search on profile name
         schema:
           type: string
@@ -108,7 +108,7 @@ paths:
       parameters:
       - name: tagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       responses:
@@ -130,18 +130,18 @@ paths:
       parameters:
       - name: tagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: filter
         in: query
-        required: false
+        required: 'false'
         description: SCIM-style filter string (e.g. `name co "foo"`)
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         description: Free-text search on resource name
         schema:
           type: string
@@ -167,18 +167,18 @@ paths:
       parameters:
       - name: tagId
         in: path
-        required: true
+        required: 'true'
         schema:
           type: string
       - name: filter
         in: query
-        required: false
+        required: 'false'
         description: SCIM-style filter string (e.g. `name co "foo"`)
         schema:
           type: string
       - name: searchText
         in: query
-        required: false
+        required: 'false'
         description: Free-text search on secret name
         schema:
           type: string
@@ -195,31 +195,70 @@ paths:
         '404':
           description: Tag not found
 components:
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: 0
-    PageSize:
-      name: size
-      in: query
-      required: false
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: 20
   schemas:
+    RequestableTagSummaryDto:
+      type: object
+      properties:
+        tagId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        summary:
+          type: string
+          description: 'Count summary: e.g. ''3 Application profiles, 2 Resources, 1 Secret'''
+        external:
+          type: boolean
+          description: Whether the tag is externally managed (e.g. synced from an identity provider)
+    TagAppProfilePageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagAppProfileSummaryDto'
+    TagAccessRequest:
+      type: object
+      required:
+      - tagId
+      - justification
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        tagId:
+          type: string
+          description: Unique identifier of the tag
+        justification:
+          type: string
+          description: Reason for requesting access
+        context:
+          type: object
+          additionalProperties:
+            type: string
+    RequestableTagPageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestableTagSummaryDto'
     TagResourceSummaryDto:
       type: object
       properties:
@@ -248,6 +287,31 @@ components:
         resourceTypeIconUrl:
           type: string
           description: Icon URL for the resource type
+    TagSecretPageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagSecretSummaryDto'
+    TagSecretSummaryDto:
+      type: object
+      properties:
+        secretId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        path:
+          type: string
     TagAppProfileSummaryDto:
       type: object
       properties:
@@ -273,60 +337,6 @@ components:
         permissionsCount:
           type: integer
           description: Number of permissions assigned to this profile
-    TagSecretSummaryDto:
-      type: object
-      properties:
-        secretId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        path:
-          type: string
-    RequestableTagSummaryDto:
-      type: object
-      properties:
-        tagId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        summary:
-          type: string
-          description: 'Count summary: e.g. ''3 Application profiles, 2 Resources, 1 Secret'''
-        external:
-          type: boolean
-          description: Whether the tag is externally managed (e.g. synced from an identity provider)
-    TagSecretPageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagSecretSummaryDto'
-    TagAppProfilePageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagAppProfileSummaryDto'
     TagResourcePageDto:
       type: object
       properties:
@@ -341,46 +351,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagResourceSummaryDto'
-    RequestableTagPageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RequestableTagSummaryDto'
-    TagAccessRequest:
-      type: object
-      required:
-      - tagId
-      - justification
-      properties:
-        tenantId:
-          type: string
-        userId:
-          type: string
-        tagId:
-          type: string
-          description: Unique identifier of the tag
-        justification:
-          type: string
-          description: Reason for requesting access
-        context:
-          type: object
-          additionalProperties:
-            type: string
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-x-api-evangelist:
-  assembled_from: https://docs.britive.com/apidocs/ (one OpenAPI fragment per operation page, .md variant)
-  assembled_on: '2026-08-08'
-  fragments: 372
-  note: Britive publishes this contract only as per-operation fragments inside its Document360 API reference. This file is the faithful union of those fragments; the verbatim assembly is in openapi/_original/.
