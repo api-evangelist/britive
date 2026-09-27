@@ -212,8 +212,6 @@ components:
           readOnly: 'true'
           items:
             $ref: '#/components/schemas/ApplicationSummary'
-    JsonNode:
-      type: object
     RuleBean:
       type: object
       properties:
@@ -234,6 +232,8 @@ components:
           - OR
         description:
           type: string
+    JsonNode:
+      type: object
     WorkflowMemberRuleDto:
       type: object
       properties:

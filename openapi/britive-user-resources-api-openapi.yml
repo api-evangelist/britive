@@ -142,6 +142,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DynamicParameter'
+    DynamicParameter:
+      type: object
+      properties:
+        paramName:
+          type: string
+        paramType:
+          type: string
+        paramValue:
+          type: string
     UserResourceDto:
       type: object
       properties:
@@ -157,15 +166,6 @@ components:
             type: string
         profileId:
           type: string
-    DynamicParameter:
-      type: object
-      properties:
-        paramName:
-          type: string
-        paramType:
-          type: string
-        paramValue:
-          type: string
     ResourceTemplatesSummary:
       type: object
       properties:
@@ -180,14 +180,6 @@ components:
           items:
             $ref: '#/components/schemas/ResourceTemplateDto'
   parameters:
-    searchText:
-      in: query
-      name: searchText
-      description: Parameter to filter resource by search text
-      required: 'false'
-      schema:
-        type: string
-        example: test
     PageSize:
       name: size
       in: query
@@ -196,6 +188,14 @@ components:
       schema:
         type: integer
         default: '20'
+    searchText:
+      in: query
+      name: searchText
+      description: Parameter to filter resource by search text
+      required: 'false'
+      schema:
+        type: string
+        example: test
     Page:
       name: page
       in: query

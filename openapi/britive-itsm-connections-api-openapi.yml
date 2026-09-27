@@ -165,6 +165,21 @@ paths:
           description: ITSM Connection not found.
 components:
   schemas:
+    ItsmConnectionDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        authType:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
     ItsmConnection:
       type: object
       properties:
@@ -190,21 +205,6 @@ components:
         url:
           type: string
         entityData:
-          type: object
-    ItsmConnectionDetails:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        authType:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        data:
           type: object
   securitySchemes:
     bearerAuth:

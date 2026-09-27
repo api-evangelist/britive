@@ -279,6 +279,14 @@ paths:
           description: No content
 components:
   schemas:
+    PasswordExpirationPolicy:
+      type: object
+      properties:
+        days:
+          type: integer
+          format: int32
+        enabled:
+          type: boolean
     IdentityProviderBeanPatchRequest:
       type: object
       properties:
@@ -297,6 +305,44 @@ components:
           enum:
           - Generic
           - Azure
+    PasswordPolicyBean:
+      type: object
+      properties:
+        minLength:
+          type: integer
+          format: int32
+        requiredUpperCase:
+          type: boolean
+        requiredLowerCase:
+          type: boolean
+        requiredNumbers:
+          type: boolean
+        requiredSymbols:
+          type: boolean
+        passwordExpirationPolicy:
+          $ref: '#/components/schemas/PasswordExpirationPolicy'
+        accountLockoutPolicy:
+          $ref: '#/components/schemas/AccountLockoutPolicy'
+    AccountLockoutPolicy:
+      type: object
+      properties:
+        minAttempts:
+          type: integer
+          format: int32
+        lockoutDurationInMinutes:
+          type: integer
+          format: int32
+    AttributeMap:
+      required:
+      - idpAttr
+      - userAttr
+      type: object
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
     ApiTokenBean:
       type: object
       properties:
@@ -334,54 +380,25 @@ components:
           type: string
         createdBy:
           type: string
-    UserAttributeScimMapping:
+    IdentityProviderBeanMFA:
       type: object
       properties:
-        attributeId:
+        mfaEnabled:
+          type: boolean
+        mfaRootUserEnabled:
+          type: boolean
+    CustomUserAttribute:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attributeValue:
           type: string
-        scimAttributeName:
+        attributeId:
           type: string
         attributeName:
           type: string
-        identityProviderId:
-          type: string
-        builtIn:
-          type: boolean
-    UserTag:
-      type: object
-      properties:
-        name:
-          type: string
-        external:
-          type: boolean
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        description:
-          type: string
-        userTagId:
-          type: string
-        created:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - Inactive
-          - Active
-        modified:
-          type: string
-          format: date-time
-        userCount:
-          type: integer
-          format: int32
-        identityProviderId:
-          type: string
-        identityProvider:
-          $ref: '#/components/schemas/IdentityProvider'
-        membershipRule:
-          type: boolean
     Tenant:
       type: object
       properties:
@@ -412,39 +429,7 @@ components:
           $ref: '#/components/schemas/AuditStamp'
         verified:
           $ref: '#/components/schemas/AuditStamp'
-    AuditStamp:
-      type: object
-      properties:
-        user:
-          type: string
-        date:
-          type: string
-          format: date-time
-        action:
-          type: string
-    UserAttributeScimMappingHelper:
-      type: object
-      properties:
-        op:
-          type: string
-          enum:
-          - add
-          - remove
-        attributeId:
-          type: string
-        scimAttributeName:
-          type: string
-        attributeName:
-          type: string
-    PasswordExpirationPolicy:
-      type: object
-      properties:
-        days:
-          type: integer
-          format: int32
-        enabled:
-          type: boolean
-    IdentityProviderBean:
+    IdentityProviderBeanResponse:
       type: object
       properties:
         id:
@@ -484,56 +469,71 @@ components:
         mfaRootUserEnabled:
           type: boolean
         apiToken:
-          $ref: '#/components/schemas/ApiToken'
+          type: object
+          example: null
         userAttributeScimMappings:
           type: array
           items:
             $ref: '#/components/schemas/UserAttributeScimMapping'
-    ApiToken:
+    UserTag:
       type: object
       properties:
         name:
           type: string
-        id:
+        external:
+          type: boolean
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        description:
           type: string
-        type:
+        userTagId:
           type: string
-          enum:
-          - DEFAULT
-          - SCIM
-          - ServiceIdentity
+        created:
+          type: string
+          format: date-time
         status:
           type: string
           enum:
-          - Active
           - Inactive
-        token:
-          type: string
-        createdOn:
-          type: string
-          format: date-time
-        assignedTo:
-          $ref: '#/components/schemas/User'
-        expiresOn:
+          - Active
+        modified:
           type: string
           format: date-time
-        tokenExpirationDays:
+        userCount:
           type: integer
           format: int32
-        clearTextToken:
+        identityProviderId:
           type: string
-        createdBy:
-          $ref: '#/components/schemas/User'
-        lastAccessed:
-          type: string
-          format: date-time
-    IdentityProviderBeanMFA:
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProvider'
+        membershipRule:
+          type: boolean
+    UserAttributeScimMappingHelper:
       type: object
       properties:
-        mfaEnabled:
-          type: boolean
-        mfaRootUserEnabled:
-          type: boolean
+        op:
+          type: string
+          enum:
+          - add
+          - remove
+        attributeId:
+          type: string
+        scimAttributeName:
+          type: string
+        attributeName:
+          type: string
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
     User:
       type: object
       properties:
@@ -621,46 +621,7 @@ components:
           format: date-time
         canChangeOrResetPassword:
           type: boolean
-    PasswordPolicyBean:
-      type: object
-      properties:
-        minLength:
-          type: integer
-          format: int32
-        requiredUpperCase:
-          type: boolean
-        requiredLowerCase:
-          type: boolean
-        requiredNumbers:
-          type: boolean
-        requiredSymbols:
-          type: boolean
-        passwordExpirationPolicy:
-          $ref: '#/components/schemas/PasswordExpirationPolicy'
-        accountLockoutPolicy:
-          $ref: '#/components/schemas/AccountLockoutPolicy'
-    AccountLockoutPolicy:
-      type: object
-      properties:
-        minAttempts:
-          type: integer
-          format: int32
-        lockoutDurationInMinutes:
-          type: integer
-          format: int32
-    CustomUserAttribute:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        attributeValue:
-          type: string
-        attributeId:
-          type: string
-        attributeName:
-          type: string
-    IdentityProviderBeanResponse:
+    IdentityProviderBean:
       type: object
       properties:
         id:
@@ -700,46 +661,11 @@ components:
         mfaRootUserEnabled:
           type: boolean
         apiToken:
-          type: object
-          example: null
+          $ref: '#/components/schemas/ApiToken'
         userAttributeScimMappings:
           type: array
           items:
             $ref: '#/components/schemas/UserAttributeScimMapping'
-    IdentityProviderBeanRequest:
-      type: object
-      properties:
-        name:
-          pattern: ^((?!\-\-).)*$
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - DEFAULT
-          - SAML
-    AttributeMap:
-      required:
-      - idpAttr
-      - userAttr
-      type: object
-      properties:
-        idpAttr:
-          type: string
-        userAttr:
-          type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
-    AdminRole:
-      type: object
-      properties:
-        name:
-          type: string
-        adminRoleId:
-          type: integer
-          format: int32
-        authority:
-          type: string
     IdentityProvider:
       required:
       - idpType
@@ -766,6 +692,80 @@ components:
           type: string
       discriminator:
         propertyName: idpType
+    AdminRole:
+      type: object
+      properties:
+        name:
+          type: string
+        adminRoleId:
+          type: integer
+          format: int32
+        authority:
+          type: string
+    ApiToken:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SCIM
+          - ServiceIdentity
+        status:
+          type: string
+          enum:
+          - Active
+          - Inactive
+        token:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        assignedTo:
+          $ref: '#/components/schemas/User'
+        expiresOn:
+          type: string
+          format: date-time
+        tokenExpirationDays:
+          type: integer
+          format: int32
+        clearTextToken:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/User'
+        lastAccessed:
+          type: string
+          format: date-time
+    IdentityProviderBeanRequest:
+      type: object
+      properties:
+        name:
+          pattern: ^((?!\-\-).)*$
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SAML
+    UserAttributeScimMapping:
+      type: object
+      properties:
+        attributeId:
+          type: string
+        scimAttributeName:
+          type: string
+        attributeName:
+          type: string
+        identityProviderId:
+          type: string
+        builtIn:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

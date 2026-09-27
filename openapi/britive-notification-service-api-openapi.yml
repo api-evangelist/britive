@@ -298,18 +298,6 @@ paths:
                 type: object
 components:
   schemas:
-    ChannelMembership:
-      type: object
-      properties:
-        userId:
-          type: string
-        emailId:
-          type: string
-        channels:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
     NotificationMediumDto:
       type: object
       properties:
@@ -342,6 +330,18 @@ components:
           minimum: '-1'
           type: integer
           format: int32
+    ChannelMembership:
+      type: object
+      properties:
+        userId:
+          type: string
+        emailId:
+          type: string
+        channels:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http

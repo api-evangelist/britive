@@ -221,56 +221,6 @@ paths:
           description: Not Found
 components:
   schemas:
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    ResourceParamValue:
-      type: object
-      additionalProperties:
-        type: string
-    BrokerPoolDetailsDto:
-      type: object
-      properties:
-        brokerPoolId:
-          type: string
-        brokerPoolName:
-          type: string
-        brokerPoolDesc:
-          type: string
-        brokerCount:
-          type: integer
-    ResourceSummary:
-      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        sort:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceInfo'
-    ResourceInfo:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        origin:
-          type: string
-        resourceLabels:
-          $ref: '#/components/schemas/LabelAssociation'
     ResourceDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -301,6 +251,40 @@ components:
           $ref: '#/components/schemas/ResourceParamValue'
         resourceLabels:
           $ref: '#/components/schemas/LabelAssociation'
+    ResourceInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        origin:
+          type: string
+        resourceLabels:
+          $ref: '#/components/schemas/LabelAssociation'
+    BrokerPoolDetailsDto:
+      type: object
+      properties:
+        brokerPoolId:
+          type: string
+        brokerPoolName:
+          type: string
+        brokerPoolDesc:
+          type: string
+        brokerCount:
+          type: integer
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    ResourceParamValue:
+      type: object
+      additionalProperties:
+        type: string
     ResourceType:
       type: object
       properties:
@@ -308,7 +292,30 @@ components:
           type: string
         name:
           type: string
+    ResourceSummary:
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceInfo'
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
     PageSize:
       name: size
       in: query
@@ -317,13 +324,6 @@ components:
       schema:
         type: integer
         default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     Page:
       name: page
       in: query

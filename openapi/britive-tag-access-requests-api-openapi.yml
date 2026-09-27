@@ -196,35 +196,6 @@ paths:
           description: Tag not found
 components:
   schemas:
-    RequestableTagSummaryDto:
-      type: object
-      properties:
-        tagId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        summary:
-          type: string
-          description: 'Count summary: e.g. ''3 Application profiles, 2 Resources, 1 Secret'''
-        external:
-          type: boolean
-          description: Whether the tag is externally managed (e.g. synced from an identity provider)
-    TagAppProfilePageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagAppProfileSummaryDto'
     TagAccessRequest:
       type: object
       required:
@@ -245,7 +216,7 @@ components:
           type: object
           additionalProperties:
             type: string
-    RequestableTagPageDto:
+    TagResourcePageDto:
       type: object
       properties:
         count:
@@ -258,7 +229,60 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/RequestableTagSummaryDto'
+            $ref: '#/components/schemas/TagResourceSummaryDto'
+    TagSecretPageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagSecretSummaryDto'
+    TagAppProfileSummaryDto:
+      type: object
+      properties:
+        profileId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        associations:
+          type: integer
+          format: int64
+          description: Total number of identity associations (users/tags) for this profile
+        application:
+          type: string
+          description: Application instance name
+        applicationId:
+          type: string
+          description: Application instance ID
+        applicationType:
+          type: string
+          description: Catalog application type (e.g. AWS, GCP)
+        permissionsCount:
+          type: integer
+          description: Number of permissions assigned to this profile
+    TagAppProfilePageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagAppProfileSummaryDto'
     TagResourceSummaryDto:
       type: object
       properties:
@@ -287,7 +311,22 @@ components:
         resourceTypeIconUrl:
           type: string
           description: Icon URL for the resource type
-    TagSecretPageDto:
+    RequestableTagSummaryDto:
+      type: object
+      properties:
+        tagId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        summary:
+          type: string
+          description: 'Count summary: e.g. ''3 Application profiles, 2 Resources, 1 Secret'''
+        external:
+          type: boolean
+          description: Whether the tag is externally managed (e.g. synced from an identity provider)
+    RequestableTagPageDto:
       type: object
       properties:
         count:
@@ -300,7 +339,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/TagSecretSummaryDto'
+            $ref: '#/components/schemas/RequestableTagSummaryDto'
     TagSecretSummaryDto:
       type: object
       properties:
@@ -312,45 +351,6 @@ components:
           type: string
         path:
           type: string
-    TagAppProfileSummaryDto:
-      type: object
-      properties:
-        profileId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        associations:
-          type: integer
-          format: int64
-          description: Total number of identity associations (users/tags) for this profile
-        application:
-          type: string
-          description: Application instance name
-        applicationId:
-          type: string
-          description: Application instance ID
-        applicationType:
-          type: string
-          description: Catalog application type (e.g. AWS, GCP)
-        permissionsCount:
-          type: integer
-          description: Number of permissions assigned to this profile
-    TagResourcePageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResourceSummaryDto'
   parameters:
     Sort:
       name: sort

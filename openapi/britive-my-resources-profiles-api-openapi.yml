@@ -233,6 +233,46 @@ paths:
           description: Not Found
 components:
   schemas:
+    Settings:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        justification:
+          type: string
+        ticketId:
+          type: string
+        ticketType:
+          type: string
+        userOnCall:
+          type: boolean
+          default: 'false'
+        checkoutVariableValues:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: 'true'
+          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
+
+            '
+    ResourceEvent:
+      type: object
+      properties:
+        requestId:
+          type: string
+        tenantId:
+          type: string
+        userId:
+          type: string
+        status:
+          type: string
+        statusText:
+          type: string
+    PolicyEvalResponse:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
     Credentials:
       type: string
     ResourceAccessStatus:
@@ -271,46 +311,6 @@ components:
           type: string
         currentExtensionIndex:
           type: integer
-    Settings:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        justification:
-          type: string
-        ticketId:
-          type: string
-        ticketType:
-          type: string
-        userOnCall:
-          type: boolean
-          default: 'false'
-        checkoutVariableValues:
-          type: object
-          additionalProperties:
-            type: string
-          writeOnly: 'true'
-          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
-
-            '
-    PolicyEvalResponse:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    ResourceEvent:
-      type: object
-      properties:
-        requestId:
-          type: string
-        tenantId:
-          type: string
-        userId:
-          type: string
-        status:
-          type: string
-        statusText:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

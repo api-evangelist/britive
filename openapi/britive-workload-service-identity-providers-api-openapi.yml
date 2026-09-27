@@ -79,67 +79,6 @@ paths:
                 $ref: '#/components/schemas/UserDesignatedIdp'
 components:
   schemas:
-    UserDesignatedIdp:
-      required:
-      - idp
-      - mappingAttributes
-      - tokenDuration
-      type: object
-      properties:
-        idp:
-          $ref: '#/components/schemas/IdentityProvider'
-        tokenDuration:
-          type: integer
-          description: duration in seconds the identity provider tokens issued for the service identity is valid for after initial token verification.
-          format: int32
-        mappingAttributes:
-          type: array
-          description: mapped custom attribute values.
-          items:
-            $ref: '#/components/schemas/MappingAttribute'
-      description: model of the workload identity provider currently assigned to a service identity
-    MappingAttribute:
-      type: object
-      properties:
-        attrId:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-      description: mapped custom attribute value.
-    AttributeMap:
-      required:
-      - idpAttr
-      - userAttr
-      type: object
-      properties:
-        idpAttr:
-          type: string
-        userAttr:
-          type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
-    DesignateIdpRequest:
-      required:
-      - idpId
-      - mappingAttributes
-      - tokenDuration
-      type: object
-      properties:
-        idpId:
-          type: integer
-          description: the identifier of the identity provider to assign to the service identity
-          format: int32
-        tokenDuration:
-          type: integer
-          description: duration in seconds the identity provider tokens issued for the service identity is valid for after initial token verification.
-          format: int32
-        mappingAttributes:
-          type: array
-          description: mapped custom attribute values.
-          items:
-            $ref: '#/components/schemas/MappingAttribute'
-      description: The existing identity provider to update.
     IdentityProvider:
       required:
       - idpType
@@ -166,6 +105,67 @@ components:
           type: string
       discriminator:
         propertyName: idpType
+    MappingAttribute:
+      type: object
+      properties:
+        attrId:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+      description: mapped custom attribute value.
+    AttributeMap:
+      required:
+      - idpAttr
+      - userAttr
+      type: object
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
+    UserDesignatedIdp:
+      required:
+      - idp
+      - mappingAttributes
+      - tokenDuration
+      type: object
+      properties:
+        idp:
+          $ref: '#/components/schemas/IdentityProvider'
+        tokenDuration:
+          type: integer
+          description: duration in seconds the identity provider tokens issued for the service identity is valid for after initial token verification.
+          format: int32
+        mappingAttributes:
+          type: array
+          description: mapped custom attribute values.
+          items:
+            $ref: '#/components/schemas/MappingAttribute'
+      description: model of the workload identity provider currently assigned to a service identity
+    DesignateIdpRequest:
+      required:
+      - idpId
+      - mappingAttributes
+      - tokenDuration
+      type: object
+      properties:
+        idpId:
+          type: integer
+          description: the identifier of the identity provider to assign to the service identity
+          format: int32
+        tokenDuration:
+          type: integer
+          description: duration in seconds the identity provider tokens issued for the service identity is valid for after initial token verification.
+          format: int32
+        mappingAttributes:
+          type: array
+          description: mapped custom attribute values.
+          items:
+            $ref: '#/components/schemas/MappingAttribute'
+      description: The existing identity provider to update.
   securitySchemes:
     bearerAuth:
       type: http

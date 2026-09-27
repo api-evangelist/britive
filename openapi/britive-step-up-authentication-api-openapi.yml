@@ -93,6 +93,19 @@ paths:
           description: authenticated user does not have administrator access.
 components:
   schemas:
+    MfaAuthResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+          - SUCCEEDED
+          - CHALLENGE
+          - FAILED
+        additionalDetails:
+          type: object
+          additionalProperties:
+            type: object
     TotpConfiguration:
       required:
       - digits
@@ -137,19 +150,6 @@ components:
           format: int32
         totpConfiguration:
           $ref: '#/components/schemas/TotpConfiguration'
-    MfaAuthResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          enum:
-          - SUCCEEDED
-          - CHALLENGE
-          - FAILED
-        additionalDetails:
-          type: object
-          additionalProperties:
-            type: object
   securitySchemes:
     bearerAuth:
       type: http

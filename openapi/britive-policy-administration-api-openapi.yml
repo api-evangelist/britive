@@ -585,27 +585,13 @@ paths:
                 type: object
 components:
   schemas:
-    RoleDto:
+    IDNamePair:
       type: object
       properties:
         id:
           type: string
         name:
-          maxLength: '64'
-          minLength: '1'
-          pattern: \s*[a-zA-Z0-9-_\s]+\s*
           type: string
-        description:
-          maxLength: '255'
-          minLength: '0'
-          type: string
-        permissions:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDto'
-        isReadOnly:
-          type: boolean
     PermissionDto:
       required:
       - actions
@@ -640,29 +626,27 @@ components:
           type: boolean
         isReadOnly:
           type: boolean
-    MemberDto:
+    RoleDto:
       type: object
       properties:
-        tags:
+        id:
+          type: string
+        name:
+          maxLength: '64'
+          minLength: '1'
+          pattern: \s*[a-zA-Z0-9-_\s]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        permissions:
           uniqueItems: 'true'
           type: array
           items:
-            $ref: '#/components/schemas/IDNamePair'
-        tokens:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        users:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        serviceIdentities:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
+            $ref: '#/components/schemas/PermissionDto'
+        isReadOnly:
+          type: boolean
     PolicyDto:
       type: object
       properties:
@@ -718,13 +702,29 @@ components:
             type: array
             items:
               type: string
-    IDNamePair:
+    MemberDto:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
+        tags:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        tokens:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        users:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        serviceIdentities:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
   securitySchemes:
     bearerAuth:
       type: http

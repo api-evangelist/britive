@@ -147,6 +147,44 @@ paths:
           description: Association Approvers set for a given id not found
 components:
   schemas:
+    AssociationApproversSummary:
+      type: object
+      properties:
+        associationApproversSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationApproversDto'
+    ApproversGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        condition:
+          type: string
+          enum:
+          - All
+          - Any
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberDto'
+    AssociationApproversDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationDto'
+        approversGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApproversGroupDto'
     AssociationDto:
       type: object
       properties:
@@ -170,44 +208,6 @@ components:
           enum:
           - User
           - Tag
-    AssociationApproversDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociationDto'
-        approversGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApproversGroupDto'
-    ApproversGroupDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        condition:
-          type: string
-          enum:
-          - All
-          - Any
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberDto'
-    AssociationApproversSummary:
-      type: object
-      properties:
-        associationApproversSummary:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociationApproversDto'
   securitySchemes:
     bearerAuth:
       type: http

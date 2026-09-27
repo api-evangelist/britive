@@ -383,6 +383,43 @@ paths:
           description: User not found in tag
 components:
   schemas:
+    UserSummary:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+    UserTagAttributeCriteria:
+      type: object
+      properties:
+        value:
+          type: string
+        attributeId:
+          type: string
+        operator:
+          type: string
+    UserTagAttributeCriteriaDto:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: integer
+          format: int64
+        attributeId:
+          type: string
+        operator:
+          type: string
+        value:
+          type: string
     UserTagSummary:
       type: object
       x-exclude-from-codegen: 'true'
@@ -402,33 +439,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserTagDto'
-    UserSummary:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDto'
-    IdentityProviderDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - DEFAULT
-          - SAML
     UserTagDto:
       type: object
       properties:
@@ -464,6 +474,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserTagAttributeCriteria'
+    IdentityProviderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SAML
     UserDto:
       type: object
       x-exclude-from-codegen: 'true'
@@ -485,29 +507,14 @@ components:
           $ref: '#/components/schemas/IdentityProviderDto'
         externalId:
           type: string
-    UserTagAttributeCriteria:
-      type: object
-      properties:
-        value:
-          type: string
-        attributeId:
-          type: string
-        operator:
-          type: string
-    UserTagAttributeCriteriaDto:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        id:
-          type: integer
-          format: int64
-        attributeId:
-          type: string
-        operator:
-          type: string
-        value:
-          type: string
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
     PageSize:
       name: size
       in: query
@@ -516,13 +523,6 @@ components:
       schema:
         type: integer
         default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     Page:
       name: page
       in: query

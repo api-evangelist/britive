@@ -58,18 +58,30 @@ paths:
                 $ref: '#/components/schemas/QueryResultsResponse'
 components:
   schemas:
-    QueryResultsResponse:
+    ProcessingStatus:
+      type: string
+      enum:
+      - ACCEPTED
+      - FAILED
+    ActionOutcome:
       type: object
-      required:
-      - items
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SsfProcessingResult'
-        nextToken:
+        success:
+          type: boolean
+        code:
           type: string
-          nullable: 'true'
+          description: Optional machine-readable code (e.g., USER_NOT_FOUND)
+        message:
+          type: string
+          description: Optional human-readable message
+        details:
+          type: object
+          additionalProperties: 'true'
+    Direction:
+      type: string
+      enum:
+      - RECEIVED
+      - TRANSMITTED
     SsfProcessingResult:
       type: object
       required:
@@ -119,11 +131,18 @@ components:
         rawSsfEvent:
           type: object
           additionalProperties: 'true'
-    ProcessingStatus:
-      type: string
-      enum:
-      - ACCEPTED
-      - FAILED
+    QueryResultsResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SsfProcessingResult'
+        nextToken:
+          type: string
+          nullable: 'true'
     SubjectIdentifier:
       type: object
       required:
@@ -137,25 +156,6 @@ components:
           - email
         value:
           type: string
-    Direction:
-      type: string
-      enum:
-      - RECEIVED
-      - TRANSMITTED
-    ActionOutcome:
-      type: object
-      properties:
-        success:
-          type: boolean
-        code:
-          type: string
-          description: Optional machine-readable code (e.g., USER_NOT_FOUND)
-        message:
-          type: string
-          description: Optional human-readable message
-        details:
-          type: object
-          additionalProperties: 'true'
   securitySchemes:
     bearerAuth:
       type: http

@@ -140,6 +140,48 @@ components:
           type: string
         enabled:
           type: boolean
+    IssuerMappings:
+      type: object
+      required:
+      - issuerId
+      - mappings
+      - updatedAt
+      properties:
+        issuerId:
+          type: string
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActionMapping'
+        updatedAt:
+          type: string
+          format: date-time
+    Issuer:
+      type: object
+      required:
+      - issuerId
+      - issuerUrl
+      - enabled
+      - createdAt
+      - updatedAt
+      properties:
+        issuerId:
+          type: string
+        issuerUrl:
+          type: string
+          format: uri
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     EventActionMapping:
       type: object
       required:
@@ -176,41 +218,6 @@ components:
         enabled:
           type: boolean
           default: 'true'
-    PutIssuerMappingsRequest:
-      type: object
-      required:
-      - mappings
-      properties:
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventActionMapping'
-    Issuer:
-      type: object
-      required:
-      - issuerId
-      - issuerUrl
-      - enabled
-      - createdAt
-      - updatedAt
-      properties:
-        issuerId:
-          type: string
-        issuerUrl:
-          type: string
-          format: uri
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     ListIssuersResponse:
       type: object
       required:
@@ -220,22 +227,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Issuer'
-    IssuerMappings:
+    PutIssuerMappingsRequest:
       type: object
       required:
-      - issuerId
       - mappings
-      - updatedAt
       properties:
-        issuerId:
-          type: string
         mappings:
           type: array
           items:
             $ref: '#/components/schemas/EventActionMapping'
-        updatedAt:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

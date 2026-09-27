@@ -98,17 +98,21 @@ paths:
           description: application id not found
 components:
   schemas:
-    AssociationDto:
+    NotificationMediumDto:
       type: object
       properties:
         id:
           type: string
-        type:
+        name:
           type: string
-          description: Association type
-          enum:
-          - '0'
-          - '1'
+        description:
+          type: string
+        application:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
     MemberRuleDto:
       type: object
       properties:
@@ -126,49 +130,6 @@ components:
           enum:
           - Include
           - Exclude
-    MemberDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        memberType:
-          type: string
-          enum:
-          - User
-          - Tag
-    AssociationApproversDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociationDto'
-        approversGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApproversGroupDto'
-    ApproversGroupDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        condition:
-          type: string
-          enum:
-          - All
-          - Any
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberDto'
     AccessRequestSettingsDto:
       type: object
       properties:
@@ -192,21 +153,60 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MemberRuleDto'
-    NotificationMediumDto:
+    ApproversGroupDto:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        description:
+        condition:
           type: string
-        application:
-          type: string
-        channels:
+          enum:
+          - All
+          - Any
+        members:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/MemberDto'
+    AssociationApproversDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationDto'
+        approversGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApproversGroupDto'
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
   securitySchemes:
     bearerAuth:
       type: http

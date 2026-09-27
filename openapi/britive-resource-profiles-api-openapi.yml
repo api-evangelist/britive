@@ -206,27 +206,27 @@ paths:
           description: Profile id does not exist
 components:
   schemas:
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    ResourceProfileSummary:
+    ResourceProfileInfo:
       type: object
       properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        sort:
+        id:
           type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceProfileInfo'
+        name:
+          type: string
+        description:
+          type: string
+        associations:
+          $ref: '#/components/schemas/LabelAssociation'
+        status:
+          type: string
+        expiration:
+          type: string
+        lastAccessed:
+          type: string
+        lastModifiedBy:
+          type: string
+        policyOrderingEnabled:
+          type: boolean
     ResourceProfileDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -261,28 +261,35 @@ components:
         exclusiveCheckout:
           type: boolean
           description: 'When true, the profile maps to a single shared account and only one user may have the profile checked out at a time. Other users will see the profile as locked until the holder checks in (which also triggers the configured rotation script). No `default` is declared deliberately: on a PATCH an omitted value must deserialize to null (leave the flag unchanged), not false.'
-    ResourceProfileInfo:
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    ResourceProfileSummary:
       type: object
       properties:
-        id:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
           type: string
-        name:
-          type: string
-        description:
-          type: string
-        associations:
-          $ref: '#/components/schemas/LabelAssociation'
-        status:
-          type: string
-        expiration:
-          type: string
-        lastAccessed:
-          type: string
-        lastModifiedBy:
-          type: string
-        policyOrderingEnabled:
-          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceProfileInfo'
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
     PageSize:
       name: size
       in: query
@@ -291,13 +298,6 @@ components:
       schema:
         type: integer
         default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     Page:
       name: page
       in: query

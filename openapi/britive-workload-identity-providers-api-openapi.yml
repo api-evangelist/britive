@@ -174,6 +174,50 @@ paths:
           description: identity provider not found
 components:
   schemas:
+    IdentityProvider:
+      required:
+      - idpType
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        attributesMap:
+          type: array
+          description: Provider's identity attributes mapped to Britive service identity custom attributes.
+          items:
+            $ref: '#/components/schemas/AttributeMap'
+        validationWindow:
+          type: integer
+          description: The amount of time in seconds, after the token has been issued/signed, Britive will attempt to validate the unverified token.  Outside this window, token validation will fail.
+          format: int32
+        idpType:
+          type: string
+      discriminator:
+        propertyName: idpType
+    SpiffeProvider:
+      description: model of a SPIFFE Workload Identity Provider
+      allOf:
+      - $ref: '#/components/schemas/IdentityProvider'
+      - type: object
+        properties:
+          bundleEndpoint:
+            type: string
+            format: uri
+          bundleProfile:
+            $ref: '#/components/schemas/SpiffeBundleProfile'
+          trustDomain:
+            type: string
+      required:
+      - bundleEndpoint
+      - bundleProfile
+      - trustDomain
+      - attributesMap
     SpiffeBundleProfile:
       description: the SPIFFE bundle endpoint profile
       type: string
@@ -201,17 +245,6 @@ components:
               type: string
           idpType:
             type: string
-    AttributeMap:
-      required:
-      - idpAttr
-      - userAttr
-      type: object
-      properties:
-        idpAttr:
-          type: string
-        userAttr:
-          type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
     AwsProvider:
       required:
       - idpType
@@ -230,50 +263,17 @@ components:
             format: int32
           idpType:
             type: string
-    SpiffeProvider:
-      description: model of a SPIFFE Workload Identity Provider
-      allOf:
-      - $ref: '#/components/schemas/IdentityProvider'
-      - type: object
-        properties:
-          bundleEndpoint:
-            type: string
-            format: uri
-          bundleProfile:
-            $ref: '#/components/schemas/SpiffeBundleProfile'
-          trustDomain:
-            type: string
+    AttributeMap:
       required:
-      - bundleEndpoint
-      - bundleProfile
-      - trustDomain
-      - attributesMap
-    IdentityProvider:
-      required:
-      - idpType
-      - name
+      - idpAttr
+      - userAttr
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
-        name:
+        idpAttr:
           type: string
-        description:
+        userAttr:
           type: string
-        attributesMap:
-          type: array
-          description: Provider's identity attributes mapped to Britive service identity custom attributes.
-          items:
-            $ref: '#/components/schemas/AttributeMap'
-        validationWindow:
-          type: integer
-          description: The amount of time in seconds, after the token has been issued/signed, Britive will attempt to validate the unverified token.  Outside this window, token validation will fail.
-          format: int32
-        idpType:
-          type: string
-      discriminator:
-        propertyName: idpType
+      description: Single identity provider attribute mapped to service identity custom attribute
   securitySchemes:
     bearerAuth:
       type: http

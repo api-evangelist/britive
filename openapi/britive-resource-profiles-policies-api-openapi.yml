@@ -196,25 +196,24 @@ paths:
           description: Not found
 components:
   schemas:
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
     LabelAssociation:
       type: object
       additionalProperties:
         type: array
         items:
           type: string
-    PolicyOrderingDto:
-      type: object
-      required:
-      - id
-      - order
-      properties:
-        id:
-          type: string
-          description: Unique ID of the policy
-        order:
-          type: integer
-          description: Order value for the policy
-          example: '1'
     ResourcePolicyDto:
       type: object
       x-exclude-from-codegen: 'true'
@@ -243,18 +242,19 @@ components:
             $ref: '#/components/schemas/MemberDto'
         resourceLabels:
           $ref: '#/components/schemas/LabelAssociation'
-    MemberDto:
+    PolicyOrderingDto:
       type: object
+      required:
+      - id
+      - order
       properties:
         id:
           type: string
-        name:
-          type: string
-        memberType:
-          type: string
-          enum:
-          - User
-          - Tag
+          description: Unique ID of the policy
+        order:
+          type: integer
+          description: Order value for the policy
+          example: '1'
   securitySchemes:
     bearerAuth:
       type: http

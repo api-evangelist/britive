@@ -112,26 +112,10 @@ paths:
                 $ref: '#/components/schemas/ResourceProfileSettings'
 components:
   schemas:
-    SettingsDto:
+    ITSMFilter:
       type: object
-      required:
-      - settingsType
-      properties:
-        settingsType:
-          type: string
-        id:
-          type: string
-        entityId:
-          type: string
-        entityType:
-          type: string
-        isInherited:
-          type: boolean
-      discriminator:
-        propertyName: settingsType
-        mapping:
-          ITSM: ItsmSettingsDto
-          JUSTIFICATION: JustificationSettingsDto
+      additionalProperties:
+        type: string
     AutoApprovalSettings:
       type: object
       properties:
@@ -140,6 +124,18 @@ components:
           default: 'false'
         autoApprovalEndDate:
           type: string
+    ITSMTicketValidationResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Validation result
+        message:
+          type: string
+          description: Validation message
+        ticketDetails:
+          type: object
+          description: Ticket details like id, number, title, assignee, priority, etc.
     ItsmSettingsDto:
       allOf:
       - $ref: '#/components/schemas/SettingsDto'
@@ -163,45 +159,26 @@ components:
             $ref: '#/components/schemas/ItsmFilterCriteriaDto'
         settingsType:
           type: string
-    JustificationSettingsDto:
-      allOf:
-      - $ref: '#/components/schemas/SettingsDto'
-      - type: object
+    SettingsDto:
+      type: object
+      required:
+      - settingsType
       properties:
-        isJustificationRequired:
+        settingsType:
+          type: string
+        id:
+          type: string
+        entityId:
+          type: string
+        entityType:
+          type: string
+        isInherited:
           type: boolean
-        isJustificationRequiredAtCheckout:
-          type: boolean
-        justificationRegex:
-          type: string
-    ApprovalRequestData:
-      type: object
-      properties:
-        justification:
-          type: string
-          description: Existing Justification
-        ticketId:
-          type: string
-          description: Existing Ticket ID
-        ticketType:
-          type: string
-          description: Existing Ticket Type
-    ITSMFilter:
-      type: object
-      additionalProperties:
-        type: string
-    ITSMTicketSearchResult:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total count of search result
-        maxResults:
-          type: integer
-          description: Maximum result count
-        tickets:
-          type: object
-          description: List of the tickets with the details like id, number, title, assignee, priority, etc.
+      discriminator:
+        propertyName: settingsType
+        mapping:
+          ITSM: ItsmSettingsDto
+          JUSTIFICATION: JustificationSettingsDto
     CheckoutVariablePrompt:
       type: object
       description: 'Signal to the UI that checkout will prompt the end user for the named variable''s value. The variable''s type discriminates the rendered control and the server-side validation rule applied to the submitted value.
@@ -229,6 +206,37 @@ components:
           description: 'Optional human-readable explanation of regexPattern, surfaced next to the input so the end user understands what a valid value looks like. Present iff a description is configured on the profile-permission binding (which itself requires regexPattern).
 
             '
+    ITSMTicketSearchResult:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total count of search result
+        maxResults:
+          type: integer
+          description: Maximum result count
+        tickets:
+          type: object
+          description: List of the tickets with the details like id, number, title, assignee, priority, etc.
+    ApprovalRequestData:
+      type: object
+      properties:
+        justification:
+          type: string
+          description: Existing Justification
+        ticketId:
+          type: string
+          description: Existing Ticket ID
+        ticketType:
+          type: string
+          description: Existing Ticket Type
+    ItsmFilterCriteriaDto:
+      type: object
+      properties:
+        supportedTicketType:
+          type: string
+        filter:
+          $ref: '#/components/schemas/ITSMFilter'
     ResourceProfileSettings:
       type: object
       properties:
@@ -249,25 +257,17 @@ components:
             '
           items:
             $ref: '#/components/schemas/CheckoutVariablePrompt'
-    ItsmFilterCriteriaDto:
-      type: object
+    JustificationSettingsDto:
+      allOf:
+      - $ref: '#/components/schemas/SettingsDto'
+      - type: object
       properties:
-        supportedTicketType:
-          type: string
-        filter:
-          $ref: '#/components/schemas/ITSMFilter'
-    ITSMTicketValidationResult:
-      type: object
-      properties:
-        success:
+        isJustificationRequired:
           type: boolean
-          description: Validation result
-        message:
+        isJustificationRequiredAtCheckout:
+          type: boolean
+        justificationRegex:
           type: string
-          description: Validation message
-        ticketDetails:
-          type: object
-          description: Ticket details like id, number, title, assignee, priority, etc.
   securitySchemes:
     bearerAuth:
       type: http

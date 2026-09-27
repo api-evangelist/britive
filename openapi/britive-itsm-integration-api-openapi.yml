@@ -70,6 +70,21 @@ paths:
                 $ref: '#/components/schemas/FilterValidationResult'
 components:
   schemas:
+    FilterValidationResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Validation result
+        message:
+          type: string
+          description: Validation message
+        ticketDetails:
+          type: object
+          description: Ticket details like id, number, title, assignee, priority, etc.
+    ItsmTicketDetails:
+      type: object
+      description: Ticket details like id, number, title, assignee, priority, etc.
     ItsmFilterDetails:
       type: object
       properties:
@@ -92,21 +107,6 @@ components:
           description: Map to provide the variable values for the validation. These value will be loaded to filter at runtime.
           additionalProperties:
             type: string
-    FilterValidationResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Validation result
-        message:
-          type: string
-          description: Validation message
-        ticketDetails:
-          type: object
-          description: Ticket details like id, number, title, assignee, priority, etc.
-    ItsmTicketDetails:
-      type: object
-      description: Ticket details like id, number, title, assignee, priority, etc.
   securitySchemes:
     bearerAuth:
       type: http

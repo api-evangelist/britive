@@ -88,11 +88,6 @@ paths:
               example: public, max-age=0
 components:
   schemas:
-    CreateGenericAppResponse:
-      type: object
-      properties:
-        appContainerId:
-          type: string
     CreateGenericAppRequest:
       type: object
       properties:
@@ -105,12 +100,11 @@ components:
       required:
       - templateName
       - catalogAppDisplayName
-    ProvisionedStatus:
-      type: string
-      enum:
-      - PENDING
-      - SUCCESS
-      - FAILED
+    CreateGenericAppResponse:
+      type: object
+      properties:
+        appContainerId:
+          type: string
     AppTemplateListItem:
       type: object
       properties:
@@ -128,6 +122,12 @@ components:
           type: string
         provisioned:
           $ref: '#/components/schemas/ProvisionedStatus'
+    ProvisionedStatus:
+      type: string
+      enum:
+      - PENDING
+      - SUCCESS
+      - FAILED
   securitySchemes:
     bearerAuth:
       type: http

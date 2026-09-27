@@ -140,22 +140,6 @@ components:
         type: array
         items:
           type: string
-    RoleDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        permissions:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDto'
-        isReadOnly:
-          type: boolean
     PermissionDto:
       type: object
       properties:
@@ -181,18 +165,22 @@ components:
           type: boolean
         isReadOnly:
           type: boolean
-    MemberDto:
+    RoleDto:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        memberType:
+        description:
           type: string
-          enum:
-          - User
-          - Tag
+        permissions:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        isReadOnly:
+          type: boolean
     PolicyDto:
       type: object
       properties:
@@ -241,6 +229,18 @@ components:
             type: array
             items:
               type: string
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
     ResourcePolicyDto:
       type: object
       x-exclude-from-codegen: 'true'

@@ -224,6 +224,15 @@ paths:
           description: Permission id not found
 components:
   schemas:
+    FindingsInfo:
+      type: object
+      properties:
+        type:
+          type: string
+        messages:
+          type: array
+          items:
+            type: string
     Findings:
       type: object
       properties:
@@ -231,40 +240,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FindingsInfo'
-    ManagedPermissionDto:
+    ChildPermissionDto:
       type: object
       properties:
-        id:
-          type: string
         name:
           type: string
-          example: DevAccessPermission
-        description:
-          type: string
-          example: Permission to access develop environment
+          example: DevAdminPolicy
         type:
           type: string
-          example: role
-        isPrivileged:
-          type: boolean
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
+          example: inlinePolicy
         permissionDefinition:
           type: object
-        createdDate:
+        isPrivileged:
+          type: boolean
+    Tag:
+      type: object
+      properties:
+        key:
           type: string
-        createdBy:
+        value:
           type: string
-        updatedDate:
-          type: string
-        updatedBy:
-          type: string
-        childPermissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChildPermissionDto'
     ManagedPermissionInfo:
       type: object
       properties:
@@ -301,13 +296,6 @@ components:
           type: string
         isPrivileged:
           type: boolean
-    Tag:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
     ManagedPermissionsSummary:
       type: object
       properties:
@@ -326,28 +314,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ManagedPermissionInfo'
-    ChildPermissionDto:
+    ManagedPermissionDto:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
-          example: DevAdminPolicy
+          example: DevAccessPermission
+        description:
+          type: string
+          example: Permission to access develop environment
         type:
           type: string
-          example: inlinePolicy
-        permissionDefinition:
-          type: object
+          example: role
         isPrivileged:
           type: boolean
-    FindingsInfo:
-      type: object
-      properties:
-        type:
-          type: string
-        messages:
+        tags:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Tag'
+        permissionDefinition:
+          type: object
+        createdDate:
+          type: string
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+        updatedBy:
+          type: string
+        childPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildPermissionDto'
   securitySchemes:
     bearerAuth:
       type: http

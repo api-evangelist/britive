@@ -68,17 +68,17 @@ paths:
           description: Not Found
 components:
   schemas:
+    ProfileAssociationDto:
+      type: object
+      properties:
+        associations:
+          $ref: '#/components/schemas/LabelAssociation'
     LabelAssociation:
       type: object
       additionalProperties:
         type: array
         items:
           type: string
-    ProfileAssociationDto:
-      type: object
-      properties:
-        associations:
-          $ref: '#/components/schemas/LabelAssociation'
   securitySchemes:
     bearerAuth:
       type: http

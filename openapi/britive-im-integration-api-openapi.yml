@@ -137,6 +137,43 @@ paths:
                 $ref: '#/components/schemas/EscalationPoliciesByNamesResponse'
 components:
   schemas:
+    EscalationPoliciesByNamesResponse:
+      type: object
+      properties:
+        policies_not_found:
+          type: array
+          items:
+            type: string
+          description: List of policy names that were not found
+          example:
+          - test-1
+        policies_found:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of policy name to policy ID
+          example:
+            policy-A: C06T5C8UT08
+            policy-B: X09Z8K4PQ12
+    EscalationPolicy:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        summary:
+          type: string
+    EscalationPoliciesValidationResult:
+      type: object
+      properties:
+        escalationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EscalationPolicy'
+        errorMsg:
+          type: string
     PaginatedEscalationPolicyDetails:
       type: object
       properties:
@@ -156,43 +193,6 @@ components:
         more:
           type: boolean
           description: Whether there are more records available
-    EscalationPoliciesByNamesResponse:
-      type: object
-      properties:
-        policies_not_found:
-          type: array
-          items:
-            type: string
-          description: List of policy names that were not found
-          example:
-          - test-1
-        policies_found:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of policy name to policy ID
-          example:
-            policy-A: C06T5C8UT08
-            policy-B: X09Z8K4PQ12
-    EscalationPoliciesValidationResult:
-      type: object
-      properties:
-        escalationPolicies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EscalationPolicy'
-        errorMsg:
-          type: string
-    EscalationPolicy:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        summary:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

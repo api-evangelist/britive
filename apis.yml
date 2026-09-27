@@ -10,17 +10,20 @@ description: 'Britive is a runtime privileged access management (PAM) platform t
   (CAEP/RISC/SET) issuers and receivers, audit-log webhooks, and a first-party MCP server for AI agents.'
 url: https://raw.githubusercontent.com/api-evangelist/britive/refs/heads/main/apis.yml
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - britive/mcp-server
   open_source: unknown
   commercial: true
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -51,7 +54,7 @@ tags:
 - Just-In-Time Access
 - Non-Human Identity
 - Secrets Management
-- Agentic AI
+- AI Agents
 - Cybersecurity
 - Identity Federation
 tags_raw:
@@ -98,6 +101,10 @@ apis:
   humanURL: https://docs.britive.com/docs/setting-up-mcp-server
   baseURL: https://demo.britive-app.com/mcp
   tags:
+  - MCP
+  - AI Agents
+  - Access Control
+  tags_raw:
   - MCP
   - Agentic AI
   - Access Control

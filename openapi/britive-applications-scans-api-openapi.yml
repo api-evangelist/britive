@@ -113,13 +113,6 @@ components:
         message:
           type: string
   parameters:
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     Size:
       name: size
       in: query
@@ -128,6 +121,13 @@ components:
       schema:
         type: integer
         default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
     Page:
       name: page
       in: query

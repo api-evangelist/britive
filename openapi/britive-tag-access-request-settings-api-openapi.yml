@@ -68,19 +68,6 @@ paths:
           description: Tag access request settings updated successfully
 components:
   schemas:
-    ManagerApproval:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        required:
-          type: boolean
-          default: 'false'
-        condition:
-          type: string
-          enum:
-          - Any
-          - All
-          - Manager
     TagAccessRequestSettingsDto:
       type: object
       properties:
@@ -95,6 +82,19 @@ components:
             $ref: '#/components/schemas/NotificationMediumDto'
         managerApproval:
           $ref: '#/components/schemas/ManagerApproval'
+    ManagerApproval:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        required:
+          type: boolean
+          default: 'false'
+        condition:
+          type: string
+          enum:
+          - Any
+          - All
+          - Manager
     NotificationMediumDto:
       type: object
       properties:

@@ -85,17 +85,6 @@ components:
           type: string
         messageSchedule:
           $ref: '#/components/schemas/MessageSchedule'
-    BannerDto:
-      required:
-      - message
-      - messageType
-      type: object
-      properties:
-        messageType:
-          type: string
-          description: Allowed values are 'INFO', 'WARNING' and 'CAUTION'
-        message:
-          type: string
     MessageSchedule:
       type: object
       properties:
@@ -108,6 +97,17 @@ components:
         timeZone:
           type: string
           description: Valid time zone values according to standards.
+    BannerDto:
+      required:
+      - message
+      - messageType
+      type: object
+      properties:
+        messageType:
+          type: string
+          description: Allowed values are 'INFO', 'WARNING' and 'CAUTION'
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
