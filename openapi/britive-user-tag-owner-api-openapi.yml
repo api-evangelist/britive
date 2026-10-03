@@ -382,30 +382,63 @@ paths:
         '404':
           description: User not found in tag
 components:
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   schemas:
-    UserSummary:
+    UserDto:
       type: object
       x-exclude-from-codegen: 'true'
       properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDto'
-    UserTagAttributeCriteria:
+        id:
+          type: string
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    IdentityProviderDto:
       type: object
       properties:
-        value:
+        id:
           type: string
-        attributeId:
+        name:
           type: string
-        operator:
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SAML
+    UserTagIdentityProvider:
+      type: object
+      properties:
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProviderDto'
+        externalId:
           type: string
     UserTagAttributeCriteriaDto:
       type: object
@@ -420,25 +453,6 @@ components:
           type: string
         value:
           type: string
-    UserTagSummary:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        filter:
-          type: string
-        sort:
-          type: string
-        userTags:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserTagDto'
     UserTagDto:
       type: object
       properties:
@@ -474,63 +488,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserTagAttributeCriteria'
-    IdentityProviderDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - DEFAULT
-          - SAML
-    UserDto:
+    UserSummary:
       type: object
       x-exclude-from-codegen: 'true'
       properties:
-        id:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+    UserTagSummary:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        filter:
           type: string
-        userName:
+        sort:
           type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-    UserTagIdentityProvider:
+        userTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagDto'
+    UserTagAttributeCriteria:
       type: object
       properties:
-        identityProvider:
-          $ref: '#/components/schemas/IdentityProviderDto'
-        externalId:
+        value:
           type: string
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
+        attributeId:
+          type: string
+        operator:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

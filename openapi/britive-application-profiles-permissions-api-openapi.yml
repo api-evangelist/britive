@@ -85,21 +85,6 @@ paths:
                 type: object
 components:
   parameters:
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -108,7 +93,32 @@ components:
       schema:
         type: integer
         default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
   schemas:
+    AppContainerPapPermissionActionHelper:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - add
+          - remove
+        permission:
+          $ref: '#/components/schemas/AppContainerPapPermission'
     PermissionScope:
       type: object
       properties:
@@ -147,16 +157,6 @@ components:
           type: boolean
         source:
           type: string
-    AppContainerPapPermissionActionHelper:
-      type: object
-      properties:
-        op:
-          type: string
-          enum:
-          - add
-          - remove
-        permission:
-          $ref: '#/components/schemas/AppContainerPapPermission'
   securitySchemes:
     bearerAuth:
       type: http

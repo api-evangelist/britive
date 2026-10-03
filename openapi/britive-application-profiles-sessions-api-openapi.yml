@@ -118,21 +118,6 @@ paths:
           description: Invalid filter criteria
 components:
   parameters:
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -141,30 +126,42 @@ components:
       schema:
         type: integer
         default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
   schemas:
-    AppAccessStatusUserInfo:
+    AppAccessStatusSummary:
       type: object
       properties:
-        userId:
-          type: string
-        email:
-          type: string
-        username:
-          type: string
-        name:
-          type: string
-        countOfProfiles:
+        count:
+          type: integer
+          format: int64
+        page:
           type: integer
           format: int32
-        lastLogin:
+        size:
+          type: integer
+          format: int32
+        sort:
           type: string
-          format: date-time
-        userType:
+        filter:
           type: string
-          enum:
-          - User
-          - Service Identity
-          - AI Identity
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAccessStatusInfo'
     AppAccessStatusInfo:
       type: object
       properties:
@@ -213,6 +210,29 @@ components:
           type: string
         appType:
           type: string
+    AppAccessStatusUserInfo:
+      type: object
+      properties:
+        userId:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        name:
+          type: string
+        countOfProfiles:
+          type: integer
+          format: int32
+        lastLogin:
+          type: string
+          format: date-time
+        userType:
+          type: string
+          enum:
+          - User
+          - Service Identity
+          - AI Identity
     AppAccessStatusUserSummary:
       type: object
       properties:
@@ -233,26 +253,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppAccessStatusUserInfo'
-    AppAccessStatusSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        filter:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppAccessStatusInfo'
   securitySchemes:
     bearerAuth:
       type: http

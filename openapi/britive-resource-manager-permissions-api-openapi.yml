@@ -209,6 +209,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResourcePermissionSummary'
 components:
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   schemas:
     ResponseTemplate:
       type: object
@@ -301,21 +325,6 @@ components:
           type: string
         updatedOn:
           type: string
-    ResourcePermissionSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        sort:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
     ResourcePermissionVersionDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -334,30 +343,21 @@ components:
           type: boolean
           default: 'false'
           nullable: 'false'
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
+    ResourcePermissionSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
   securitySchemes:
     bearerAuth:
       type: http

@@ -143,18 +143,6 @@ paths:
           description: Approvers group id not found
 components:
   schemas:
-    MemberDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        memberType:
-          type: string
-          enum:
-          - User
-          - Tag
     ApproversGroupDto:
       type: object
       properties:
@@ -178,6 +166,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApproversGroupDto'
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
   securitySchemes:
     bearerAuth:
       type: http

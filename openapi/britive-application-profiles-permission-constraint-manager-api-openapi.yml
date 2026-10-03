@@ -179,13 +179,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JsonNode:
+      type: object
     JsonNodeWrapper:
       type: object
       properties:
         realNode:
           $ref: '#/components/schemas/JsonNode'
-    JsonNode:
-      type: object
   securitySchemes:
     bearerAuth:
       type: http

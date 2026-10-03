@@ -124,6 +124,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseTemplateDto'
 components:
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   schemas:
     ResponseTemplateDetailsDto:
       type: object
@@ -143,6 +167,22 @@ components:
           type: boolean
           default: 'false'
           nullable: 'false'
+    ResponseTemplatesSummary:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseTemplateDetailsDto'
     ResponseTemplateDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -171,46 +211,6 @@ components:
           type: string
         updatedOn:
           type: string
-    ResponseTemplatesSummary:
-      type: object
-      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        sort:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseTemplateDetailsDto'
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
   securitySchemes:
     bearerAuth:
       type: http

@@ -70,6 +70,19 @@ paths:
           description: IM Connection Template not found
 components:
   schemas:
+    ImSupportedAuthType:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        isDefault:
+          type: boolean
+        connAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImConnectionAttribute'
     ImConnectionAttribute:
       type: object
       properties:
@@ -94,19 +107,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ImSupportedAuthType'
-    ImSupportedAuthType:
-      type: object
-      properties:
-        name:
-          type: string
-        displayName:
-          type: string
-        isDefault:
-          type: boolean
-        connAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImConnectionAttribute'
   securitySchemes:
     bearerAuth:
       type: http

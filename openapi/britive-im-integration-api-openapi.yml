@@ -137,6 +137,25 @@ paths:
                 $ref: '#/components/schemas/EscalationPoliciesByNamesResponse'
 components:
   schemas:
+    EscalationPoliciesValidationResult:
+      type: object
+      properties:
+        escalationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EscalationPolicy'
+        errorMsg:
+          type: string
+    EscalationPolicy:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        summary:
+          type: string
     EscalationPoliciesByNamesResponse:
       type: object
       properties:
@@ -155,25 +174,6 @@ components:
           example:
             policy-A: C06T5C8UT08
             policy-B: X09Z8K4PQ12
-    EscalationPolicy:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        summary:
-          type: string
-    EscalationPoliciesValidationResult:
-      type: object
-      properties:
-        escalationPolicies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EscalationPolicy'
-        errorMsg:
-          type: string
     PaginatedEscalationPolicyDetails:
       type: object
       properties:

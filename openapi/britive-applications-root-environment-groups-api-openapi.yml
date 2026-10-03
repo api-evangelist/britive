@@ -94,16 +94,6 @@ paths:
                 type: object
 components:
   schemas:
-    AuditStamp:
-      type: object
-      properties:
-        user:
-          type: string
-        date:
-          type: string
-          format: date-time
-        action:
-          type: string
     DefaultEnvironment:
       type: object
       properties:
@@ -128,6 +118,16 @@ components:
           - inactive
         created:
           $ref: '#/components/schemas/AuditStamp'
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
     DefaultEnvironmentGroup:
       type: object
       properties:

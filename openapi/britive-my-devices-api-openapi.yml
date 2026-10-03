@@ -146,27 +146,162 @@ paths:
           description: Profile or environment not found
 components:
   schemas:
-    Settings:
+    MyAccess:
       type: object
-      x-exclude-from-codegen: 'true'
       properties:
-        justification:
+        frequency:
+          type: integer
+          example: '0'
+        countOfProfiles:
+          type: integer
+          example: '100'
+        papId:
           type: string
-        ticketId:
+          example: id1
+        environmentId:
           type: string
-        ticketType:
+          example: envId1
+        appId:
           type: string
-        userOnCall:
-          type: boolean
-          default: 'false'
-        checkoutVariableValues:
+          example: appId1
+        myAccessDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccessDetail'
+        application:
+          $ref: '#/components/schemas/MyAccessApplication'
+        environment:
+          $ref: '#/components/schemas/MyAccessEnvironment'
+        profile:
+          $ref: '#/components/schemas/MyAccessProfile'
+    MyAccessDetail:
+      type: object
+      properties:
+        checkOutTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        checkInTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        status:
+          type: string
+          enum:
+          - Allow
+          - Deny
+          - Pending
+          example: Allow
+        approvalValidityTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        accessType:
+          type: string
+          enum:
+          - CONSOLE
+          - PROGRAMMATIC
+          example: CONSOLE
+        favoriteId:
+          type: string
+          nullable: 'true'
+    MyAccessEnvironment:
+      type: object
+      properties:
+        environmentId:
+          type: string
+          example: envId1
+        environmentName:
+          type: string
+          example: demo
+        environmentDescription:
+          type: string
+          example: ''
+        alternateEnvironmentName:
+          type: string
+          example: demo
+        accountId:
+          type: string
+          nullable: 'true'
+        profileEnvironmentProperties:
           type: object
-          additionalProperties:
-            type: string
-          writeOnly: 'true'
-          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
-
-            '
+          additionalProperties: 'true'
+          example: {}
+    MyAccessSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total count of items
+          example: '100'
+        page:
+          type: integer
+          description: Current page number
+          example: '0'
+        size:
+          type: integer
+          description: Page size
+          example: '20'
+        sort:
+          type: string
+          description: Sort order
+          example: appName,ASC
+        filter:
+          type: string
+          nullable: 'true'
+          description: Applied filter
+          example: appName eq "AWS"
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccess'
+    MyAccessProfile:
+      type: object
+      properties:
+        papId:
+          type: string
+          example: id1
+        papName:
+          type: string
+          example: S3Access
+        description:
+          type: string
+          example: ''
+        consoleAccess:
+          type: boolean
+          example: 'true'
+        programmaticAccess:
+          type: boolean
+          example: 'false'
+        sessionAttributes:
+          type: array
+          items:
+            type: object
+          example: []
+        accessCount:
+          type: integer
+          example: '0'
+        expirationDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionLimit:
+          type: integer
+          example: '1'
+        notificationPriorToExpiration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '300000'
+        extendable:
+          type: boolean
+          example: 'false'
     MyAccessApplication:
       type: object
       properties:
@@ -218,28 +353,6 @@ components:
         supportsSharedAccounts:
           type: boolean
           example: 'true'
-    MyAccessEnvironment:
-      type: object
-      properties:
-        environmentId:
-          type: string
-          example: envId1
-        environmentName:
-          type: string
-          example: demo
-        environmentDescription:
-          type: string
-          example: ''
-        alternateEnvironmentName:
-          type: string
-          example: demo
-        accountId:
-          type: string
-          nullable: 'true'
-        profileEnvironmentProperties:
-          type: object
-          additionalProperties: 'true'
-          example: {}
     AppAccessStatusResponse:
       type: object
       description: Status of a profile checkout or check-in operation
@@ -317,140 +430,27 @@ components:
           type: string
           nullable: 'true'
           description: Error details if the checkout or check-in operation failed
-    MyAccess:
+    Settings:
       type: object
+      x-exclude-from-codegen: 'true'
       properties:
-        frequency:
-          type: integer
-          example: '0'
-        countOfProfiles:
-          type: integer
-          example: '100'
-        papId:
+        justification:
           type: string
-          example: id1
-        environmentId:
+        ticketId:
           type: string
-          example: envId1
-        appId:
+        ticketType:
           type: string
-          example: appId1
-        myAccessDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccessDetail'
-        application:
-          $ref: '#/components/schemas/MyAccessApplication'
-        environment:
-          $ref: '#/components/schemas/MyAccessEnvironment'
-        profile:
-          $ref: '#/components/schemas/MyAccessProfile'
-    MyAccessSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total count of items
-          example: '100'
-        page:
-          type: integer
-          description: Current page number
-          example: '0'
-        size:
-          type: integer
-          description: Page size
-          example: '20'
-        sort:
-          type: string
-          description: Sort order
-          example: appName,ASC
-        filter:
-          type: string
-          nullable: 'true'
-          description: Applied filter
-          example: appName eq "AWS"
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccess'
-    MyAccessDetail:
-      type: object
-      properties:
-        checkOutTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        checkInTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        status:
-          type: string
-          enum:
-          - Allow
-          - Deny
-          - Pending
-          example: Allow
-        approvalValidityTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        accessType:
-          type: string
-          enum:
-          - CONSOLE
-          - PROGRAMMATIC
-          example: CONSOLE
-        favoriteId:
-          type: string
-          nullable: 'true'
-    MyAccessProfile:
-      type: object
-      properties:
-        papId:
-          type: string
-          example: id1
-        papName:
-          type: string
-          example: S3Access
-        description:
-          type: string
-          example: ''
-        consoleAccess:
+        userOnCall:
           type: boolean
-          example: 'true'
-        programmaticAccess:
-          type: boolean
-          example: 'false'
-        sessionAttributes:
-          type: array
-          items:
-            type: object
-          example: []
-        accessCount:
-          type: integer
-          example: '0'
-        expirationDuration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '1800000'
-        extensionDuration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '1800000'
-        extensionLimit:
-          type: integer
-          example: '1'
-        notificationPriorToExpiration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '300000'
-        extendable:
-          type: boolean
-          example: 'false'
+          default: 'false'
+        checkoutVariableValues:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: 'true'
+          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
+
+            '
   securitySchemes:
     bearerAuth:
       type: http

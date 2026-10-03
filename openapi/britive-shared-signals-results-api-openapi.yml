@@ -63,6 +63,23 @@ components:
       enum:
       - ACCEPTED
       - FAILED
+    Direction:
+      type: string
+      enum:
+      - RECEIVED
+      - TRANSMITTED
+    QueryResultsResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SsfProcessingResult'
+        nextToken:
+          type: string
+          nullable: 'true'
     ActionOutcome:
       type: object
       properties:
@@ -77,11 +94,6 @@ components:
         details:
           type: object
           additionalProperties: 'true'
-    Direction:
-      type: string
-      enum:
-      - RECEIVED
-      - TRANSMITTED
     SsfProcessingResult:
       type: object
       required:
@@ -131,18 +143,6 @@ components:
         rawSsfEvent:
           type: object
           additionalProperties: 'true'
-    QueryResultsResponse:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SsfProcessingResult'
-        nextToken:
-          type: string
-          nullable: 'true'
     SubjectIdentifier:
       type: object
       required:

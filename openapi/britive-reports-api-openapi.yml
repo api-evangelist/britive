@@ -77,14 +77,6 @@ paths:
           description: OK
 components:
   parameters:
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
     Page:
       name: page
       in: query
@@ -100,6 +92,14 @@ components:
       description: parameter to specify the sort parameter and direction
       schema:
         type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
   securitySchemes:
     bearerAuth:
       type: http

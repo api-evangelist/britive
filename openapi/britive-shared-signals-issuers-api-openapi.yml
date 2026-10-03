@@ -131,31 +131,51 @@ paths:
                 $ref: '#/components/schemas/IssuerMappings'
 components:
   schemas:
-    UpdateIssuerRequest:
+    EventActionMapping:
       type: object
+      required:
+      - eventUri
+      - action
       properties:
+        eventUri:
+          type: string
+          format: uri
+        action:
+          type: string
+          description: Must be one of the actions returned by /api/ssf/admin/catalog
+    ListIssuersResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issuer'
+    CreateIssuerRequest:
+      type: object
+      required:
+      - issuerUrl
+      properties:
+        issuerUrl:
+          type: string
+          format: uri
+          description: 'Trusted issuer URL that matches the incoming SET `iss` claim.
+
+            JWKS location is derived from this issuer via OIDC discovery when available
+
+            (e.g., `/.well-known/openid-configuration` -> `jwks_uri`). Future versions may
+
+            allow explicit JWKS configuration.
+
+            '
         displayName:
           type: string
         description:
           type: string
         enabled:
           type: boolean
-    IssuerMappings:
-      type: object
-      required:
-      - issuerId
-      - mappings
-      - updatedAt
-      properties:
-        issuerId:
-          type: string
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventActionMapping'
-        updatedAt:
-          type: string
-          format: date-time
+          default: 'true'
     Issuer:
       type: object
       required:
@@ -182,51 +202,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    EventActionMapping:
+    UpdateIssuerRequest:
       type: object
-      required:
-      - eventUri
-      - action
       properties:
-        eventUri:
-          type: string
-          format: uri
-        action:
-          type: string
-          description: Must be one of the actions returned by /api/ssf/admin/catalog
-    CreateIssuerRequest:
-      type: object
-      required:
-      - issuerUrl
-      properties:
-        issuerUrl:
-          type: string
-          format: uri
-          description: 'Trusted issuer URL that matches the incoming SET `iss` claim.
-
-            JWKS location is derived from this issuer via OIDC discovery when available
-
-            (e.g., `/.well-known/openid-configuration` -> `jwks_uri`). Future versions may
-
-            allow explicit JWKS configuration.
-
-            '
         displayName:
           type: string
         description:
           type: string
         enabled:
           type: boolean
-          default: 'true'
-    ListIssuersResponse:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issuer'
     PutIssuerMappingsRequest:
       type: object
       required:
@@ -236,6 +220,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventActionMapping'
+    IssuerMappings:
+      type: object
+      required:
+      - issuerId
+      - mappings
+      - updatedAt
+      properties:
+        issuerId:
+          type: string
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActionMapping'
+        updatedAt:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

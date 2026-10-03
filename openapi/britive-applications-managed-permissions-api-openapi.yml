@@ -224,15 +224,6 @@ paths:
           description: Permission id not found
 components:
   schemas:
-    FindingsInfo:
-      type: object
-      properties:
-        type:
-          type: string
-        messages:
-          type: array
-          items:
-            type: string
     Findings:
       type: object
       properties:
@@ -240,62 +231,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FindingsInfo'
-    ChildPermissionDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: DevAdminPolicy
-        type:
-          type: string
-          example: inlinePolicy
-        permissionDefinition:
-          type: object
-        isPrivileged:
-          type: boolean
-    Tag:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    ManagedPermissionInfo:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          example: DevAccessPermission
-        description:
-          type: string
-          example: Permission to access develop environment
-        profileCount:
-          type: integer
-          format: int32
-        associatedEnvironments:
-          type: array
-          items:
-            type: string
-        provisionedEnvironments:
-          type: array
-          items:
-            type: string
-        outOfSyncEnvironments:
-          type: array
-          items:
-            type: string
-        createdDate:
-          type: string
-        createdBy:
-          type: string
-        updatedDate:
-          type: string
-        updatedBy:
-          type: string
-        isPrivileged:
-          type: boolean
     ManagedPermissionsSummary:
       type: object
       properties:
@@ -348,6 +283,71 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChildPermissionDto'
+    ManagedPermissionInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: DevAccessPermission
+        description:
+          type: string
+          example: Permission to access develop environment
+        profileCount:
+          type: integer
+          format: int32
+        associatedEnvironments:
+          type: array
+          items:
+            type: string
+        provisionedEnvironments:
+          type: array
+          items:
+            type: string
+        outOfSyncEnvironments:
+          type: array
+          items:
+            type: string
+        createdDate:
+          type: string
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+        updatedBy:
+          type: string
+        isPrivileged:
+          type: boolean
+    FindingsInfo:
+      type: object
+      properties:
+        type:
+          type: string
+        messages:
+          type: array
+          items:
+            type: string
+    Tag:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    ChildPermissionDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: DevAdminPolicy
+        type:
+          type: string
+          example: inlinePolicy
+        permissionDefinition:
+          type: object
+        isPrivileged:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

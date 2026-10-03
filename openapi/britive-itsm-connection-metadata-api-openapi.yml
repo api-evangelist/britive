@@ -70,19 +70,6 @@ paths:
           description: ITSM Connection Template not found
 components:
   schemas:
-    ItsmConnectionTemplate:
-      type: object
-      properties:
-        type:
-          type: string
-        supportedAuthTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ItsmSupportedAuthType'
-        supportedTicketTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ItsmSupportedTicketType'
     ItsmConnectionAttribute:
       type: object
       properties:
@@ -98,6 +85,30 @@ components:
           type: boolean
         privy:
           type: boolean
+    ItsmSupportedTicketType:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        defaultFilter:
+          type: object
+          additionalProperties:
+            type: string
+    ItsmConnectionTemplate:
+      type: object
+      properties:
+        type:
+          type: string
+        supportedAuthTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmSupportedAuthType'
+        supportedTicketTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmSupportedTicketType'
     ItsmSupportedAuthType:
       type: object
       properties:
@@ -111,17 +122,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ItsmConnectionAttribute'
-    ItsmSupportedTicketType:
-      type: object
-      properties:
-        name:
-          type: string
-        displayName:
-          type: string
-        defaultFilter:
-          type: object
-          additionalProperties:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http

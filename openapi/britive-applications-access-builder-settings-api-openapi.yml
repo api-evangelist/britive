@@ -98,21 +98,22 @@ paths:
           description: application id not found
 components:
   schemas:
-    NotificationMediumDto:
+    ApproversGroupDto:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        description:
+        condition:
           type: string
-        application:
-          type: string
-        channels:
+          enum:
+          - All
+          - Any
+        members:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/MemberDto'
     MemberRuleDto:
       type: object
       properties:
@@ -130,6 +131,32 @@ components:
           enum:
           - Include
           - Exclude
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
+    NotificationMediumDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        application:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
     AccessRequestSettingsDto:
       type: object
       properties:
@@ -153,22 +180,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MemberRuleDto'
-    ApproversGroupDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        condition:
-          type: string
-          enum:
-          - All
-          - Any
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberDto'
     AssociationApproversDto:
       type: object
       properties:
@@ -184,17 +195,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApproversGroupDto'
-    AssociationDto:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          description: Association type
-          enum:
-          - '0'
-          - '1'
     MemberDto:
       type: object
       properties:

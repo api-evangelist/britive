@@ -95,7 +95,38 @@ paths:
               schema:
                 type: object
 components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
   schemas:
+    FullScanEnvironment:
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
     FullScanResponse:
       type: object
       properties:
@@ -105,37 +136,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FullScanEnvironment'
-    FullScanEnvironment:
-      type: object
-      properties:
-        name:
-          type: string
-        message:
-          type: string
-  parameters:
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
   securitySchemes:
     bearerAuth:
       type: http

@@ -247,6 +247,14 @@ paths:
           description: No Content
 components:
   parameters:
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
     Size:
       name: size
       in: query
@@ -262,40 +270,7 @@ components:
       description: parameter to specify the sort parameter and direction
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
   schemas:
-    PermissionDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        consumer:
-          type: string
-        actions:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        resources:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        isInline:
-          type: boolean
-        isReadOnly:
-          type: boolean
     RoleDto:
       type: object
       properties:
@@ -373,6 +348,31 @@ components:
           type: integer
           description: Order value for the policy
           example: '1'
+    PermissionDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        consumer:
+          type: string
+        actions:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        resources:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
+        isReadOnly:
+          type: boolean
     MemberDto:
       type: object
       properties:

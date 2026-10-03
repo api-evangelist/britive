@@ -196,6 +196,12 @@ paths:
           description: Not found
 components:
   schemas:
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
     MemberDto:
       type: object
       properties:
@@ -208,12 +214,6 @@ components:
           enum:
           - User
           - Tag
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
     ResourcePolicyDto:
       type: object
       x-exclude-from-codegen: 'true'

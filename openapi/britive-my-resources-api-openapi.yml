@@ -69,13 +69,6 @@ paths:
           description: Successful operation
 components:
   parameters:
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     PageSize:
       name: size
       in: query
@@ -84,22 +77,6 @@ components:
       schema:
         type: integer
         default: '20'
-    searchText:
-      in: query
-      name: searchText
-      description: Parameter to filter resource by search text
-      required: 'false'
-      schema:
-        type: string
-        example: test
-    type:
-      in: query
-      name: type
-      description: Parameter to filter resource by type i.e.frequently used
-      required: 'false'
-      schema:
-        type: string
-        example: frequentlyUsed
     Page:
       name: page
       in: query
@@ -108,6 +85,29 @@ components:
       schema:
         type: integer
         default: '0'
+    searchText:
+      in: query
+      name: searchText
+      description: Parameter to filter resource by search text
+      required: 'false'
+      schema:
+        type: string
+        example: test
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    type:
+      in: query
+      name: type
+      description: Parameter to filter resource by type i.e.frequently used
+      required: 'false'
+      schema:
+        type: string
+        example: frequentlyUsed
     favoriteId:
       name: favoriteId
       in: path
@@ -131,6 +131,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MyResourcesDto'
+    FavoriteDto:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        profileId:
+          type: string
     MyResourcesDto:
       type: object
       properties:
@@ -202,13 +209,6 @@ components:
         lockExpiry:
           type: string
           description: ISO-8601 timestamp at which the holder's current session on this (profile, resource) expires — i.e. when the exclusive lock is expected to be released and the entry becomes checkout-eligible again. Sourced from the active access expiration time.
-    FavoriteDto:
-      type: object
-      properties:
-        resourceId:
-          type: string
-        profileId:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

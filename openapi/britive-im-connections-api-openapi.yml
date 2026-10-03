@@ -137,19 +137,6 @@ paths:
           description: IM Connection not found.
 components:
   schemas:
-    ImConnection:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        authType:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
     ImConnectionDetails:
       type: object
       properties:
@@ -165,6 +152,19 @@ components:
           type: string
         data:
           type: object
+    ImConnection:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        authType:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

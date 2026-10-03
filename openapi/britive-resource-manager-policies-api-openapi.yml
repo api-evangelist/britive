@@ -134,37 +134,6 @@ paths:
           description: Not Found
 components:
   schemas:
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    PermissionDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        consumer:
-          type: string
-        actions:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        resources:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        isInline:
-          type: boolean
-        isReadOnly:
-          type: boolean
     RoleDto:
       type: object
       properties:
@@ -229,18 +198,6 @@ components:
             type: array
             items:
               type: string
-    MemberDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        memberType:
-          type: string
-          enum:
-          - User
-          - Tag
     ResourcePolicyDto:
       type: object
       x-exclude-from-codegen: 'true'
@@ -269,6 +226,49 @@ components:
             $ref: '#/components/schemas/MemberDto'
         resourceLabels:
           $ref: '#/components/schemas/LabelAssociation'
+    PermissionDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        consumer:
+          type: string
+        actions:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        resources:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
+        isReadOnly:
+          type: boolean
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
   securitySchemes:
     bearerAuth:
       type: http

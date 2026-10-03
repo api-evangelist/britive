@@ -131,6 +131,57 @@ paths:
                 $ref: '#/components/schemas/ReceiverMappings'
 components:
   schemas:
+    ReceiverEventMapping:
+      type: object
+      required:
+      - britiveEventType
+      - eventUri
+      properties:
+        britiveEventType:
+          type: string
+          description: 'Britive audit event type identifier (e.g., "user.disable",
+
+            "admin.access.checkin.all"). Must match a type returned by
+
+            /api/ssf/admin/catalog britiveEventTypes.
+
+            '
+        eventUri:
+          type: string
+          format: uri
+          description: 'CAEP or RISC event URI to include in the outbound SET
+
+            (e.g., "https://schemas.openid.net/secevent/risc/event-type/account-disabled").
+
+            '
+    PutReceiverMappingsRequest:
+      type: object
+      required:
+      - mappings
+      properties:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiverEventMapping'
+    UpdateReceiverRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        receiverUrl:
+          type: string
+          format: uri
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Replaces all headers. All values are encrypted before storage.
+
+            '
     Receiver:
       type: object
       required:
@@ -168,6 +219,22 @@ components:
         updatedAt:
           type: string
           format: date-time
+    ReceiverMappings:
+      type: object
+      required:
+      - receiverId
+      - mappings
+      - updatedAt
+      properties:
+        receiverId:
+          type: string
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiverEventMapping'
+        updatedAt:
+          type: string
+          format: date-time
     ListReceiversResponse:
       type: object
       required:
@@ -177,29 +244,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Receiver'
-    ReceiverEventMapping:
-      type: object
-      required:
-      - britiveEventType
-      - eventUri
-      properties:
-        britiveEventType:
-          type: string
-          description: 'Britive audit event type identifier (e.g., "user.disable",
-
-            "admin.access.checkin.all"). Must match a type returned by
-
-            /api/ssf/admin/catalog britiveEventTypes.
-
-            '
-        eventUri:
-          type: string
-          format: uri
-          description: 'CAEP or RISC event URI to include in the outbound SET
-
-            (e.g., "https://schemas.openid.net/secevent/risc/event-type/account-disabled").
-
-            '
     CreateReceiverRequest:
       type: object
       required:
@@ -223,50 +267,6 @@ components:
           description: 'Custom HTTP headers to include in outbound requests.
 
             All values are encrypted before storage.
-
-            '
-    PutReceiverMappingsRequest:
-      type: object
-      required:
-      - mappings
-      properties:
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiverEventMapping'
-    ReceiverMappings:
-      type: object
-      required:
-      - receiverId
-      - mappings
-      - updatedAt
-      properties:
-        receiverId:
-          type: string
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiverEventMapping'
-        updatedAt:
-          type: string
-          format: date-time
-    UpdateReceiverRequest:
-      type: object
-      properties:
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-        receiverUrl:
-          type: string
-          format: uri
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-          description: 'Replaces all headers. All values are encrypted before storage.
 
             '
   securitySchemes:

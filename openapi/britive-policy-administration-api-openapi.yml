@@ -585,47 +585,6 @@ paths:
                 type: object
 components:
   schemas:
-    IDNamePair:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    PermissionDto:
-      required:
-      - actions
-      - resources
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          pattern: \s*[a-zA-Z0-9-_\s]+\s*
-          type: string
-        description:
-          maxLength: '255'
-          minLength: '0'
-          type: string
-        consumer:
-          maxLength: '30'
-          minLength: '0'
-          pattern: \s*[a-zA-Z]+\s*
-          type: string
-        actions:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        resources:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        isInline:
-          type: boolean
-        isReadOnly:
-          type: boolean
     RoleDto:
       type: object
       properties:
@@ -702,6 +661,47 @@ components:
             type: array
             items:
               type: string
+    IDNamePair:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    PermissionDto:
+      required:
+      - actions
+      - resources
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          pattern: \s*[a-zA-Z0-9-_\s]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        consumer:
+          maxLength: '30'
+          minLength: '0'
+          pattern: \s*[a-zA-Z]+\s*
+          type: string
+        actions:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        resources:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
+        isReadOnly:
+          type: boolean
     MemberDto:
       type: object
       properties:

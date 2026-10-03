@@ -31,16 +31,6 @@ paths:
                 $ref: '#/components/schemas/SsfCatalogResponse'
 components:
   schemas:
-    BritiveActionDefinition:
-      type: object
-      required:
-      - action
-      properties:
-        action:
-          type: string
-          description: Britive action identifier
-        description:
-          type: string
     SsfEventDefinition:
       type: object
       required:
@@ -73,6 +63,16 @@ components:
         displayName:
           type: string
           description: Human-readable name (e.g., "Disable User")
+        description:
+          type: string
+    BritiveActionDefinition:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          description: Britive action identifier
         description:
           type: string
     SsfCatalogResponse:

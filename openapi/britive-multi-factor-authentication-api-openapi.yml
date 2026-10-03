@@ -153,6 +153,13 @@ paths:
                 $ref: '#/components/schemas/Register409Response'
 components:
   schemas:
+    Register409Response:
+      type: object
+      properties:
+        message:
+          type: string
+        errorCode:
+          type: string
     MfaRegistration:
       type: object
       properties:
@@ -171,13 +178,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    Register409Response:
-      type: object
-      properties:
-        message:
-          type: string
-        errorCode:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

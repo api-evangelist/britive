@@ -147,13 +147,6 @@ paths:
           description: Association Approvers set for a given id not found
 components:
   schemas:
-    AssociationApproversSummary:
-      type: object
-      properties:
-        associationApproversSummary:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociationApproversDto'
     ApproversGroupDto:
       type: object
       properties:
@@ -170,6 +163,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MemberDto'
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
+    AssociationApproversSummary:
+      type: object
+      properties:
+        associationApproversSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationApproversDto'
     AssociationApproversDto:
       type: object
       properties:
@@ -185,17 +196,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApproversGroupDto'
-    AssociationDto:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          description: Association type
-          enum:
-          - '0'
-          - '1'
     MemberDto:
       type: object
       properties:

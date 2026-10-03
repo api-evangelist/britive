@@ -174,6 +174,51 @@ paths:
           description: identity provider not found
 components:
   schemas:
+    SpiffeProvider:
+      description: model of a SPIFFE Workload Identity Provider
+      allOf:
+      - $ref: '#/components/schemas/IdentityProvider'
+      - type: object
+        properties:
+          bundleEndpoint:
+            type: string
+            format: uri
+          bundleProfile:
+            $ref: '#/components/schemas/SpiffeBundleProfile'
+          trustDomain:
+            type: string
+      required:
+      - bundleEndpoint
+      - bundleProfile
+      - trustDomain
+      - attributesMap
+    OpenIdConnectProvider:
+      required:
+      - idpType
+      - issuerUrl
+      - name
+      type: object
+      description: model of an OpenID Connect Provider
+      discriminator:
+        propertyName: idpType
+      allOf:
+      - $ref: '#/components/schemas/IdentityProvider'
+      - type: object
+        properties:
+          issuerUrl:
+            type: string
+          allowedAudiences:
+            type: array
+            items:
+              type: string
+          idpType:
+            type: string
+    SpiffeBundleProfile:
+      description: the SPIFFE bundle endpoint profile
+      type: string
+      enum:
+      - https_web
+      - https_spiffe
     IdentityProvider:
       required:
       - idpType
@@ -200,51 +245,17 @@ components:
           type: string
       discriminator:
         propertyName: idpType
-    SpiffeProvider:
-      description: model of a SPIFFE Workload Identity Provider
-      allOf:
-      - $ref: '#/components/schemas/IdentityProvider'
-      - type: object
-        properties:
-          bundleEndpoint:
-            type: string
-            format: uri
-          bundleProfile:
-            $ref: '#/components/schemas/SpiffeBundleProfile'
-          trustDomain:
-            type: string
+    AttributeMap:
       required:
-      - bundleEndpoint
-      - bundleProfile
-      - trustDomain
-      - attributesMap
-    SpiffeBundleProfile:
-      description: the SPIFFE bundle endpoint profile
-      type: string
-      enum:
-      - https_web
-      - https_spiffe
-    OpenIdConnectProvider:
-      required:
-      - idpType
-      - issuerUrl
-      - name
+      - idpAttr
+      - userAttr
       type: object
-      description: model of an OpenID Connect Provider
-      discriminator:
-        propertyName: idpType
-      allOf:
-      - $ref: '#/components/schemas/IdentityProvider'
-      - type: object
-        properties:
-          issuerUrl:
-            type: string
-          allowedAudiences:
-            type: array
-            items:
-              type: string
-          idpType:
-            type: string
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
     AwsProvider:
       required:
       - idpType
@@ -263,17 +274,6 @@ components:
             format: int32
           idpType:
             type: string
-    AttributeMap:
-      required:
-      - idpAttr
-      - userAttr
-      type: object
-      properties:
-        idpAttr:
-          type: string
-        userAttr:
-          type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
   securitySchemes:
     bearerAuth:
       type: http

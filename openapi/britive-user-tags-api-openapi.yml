@@ -499,21 +499,6 @@ paths:
           description: OK
 components:
   parameters:
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -522,33 +507,40 @@ components:
       schema:
         type: integer
         default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
   schemas:
-    UserTagAttributeCriteria:
+    IdentityProviderDto:
       type: object
-      properties:
-        value:
-          type: string
-        attributeId:
-          type: string
-        operator:
-          type: string
-    UserView:
-      type: object
-      x-exclude-from-codegen: 'true'
       properties:
         id:
           type: string
-        userName:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
+        name:
           type: string
         type:
           type: string
-        status:
+          enum:
+          - DEFAULT
+          - SAML
+    UserTagIdentityProvider:
+      type: object
+      properties:
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProviderDto'
+        externalId:
           type: string
     UserTagAttributeCriteriaDto:
       type: object
@@ -598,24 +590,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserTagAttributeCriteria'
-    IdentityProviderDto:
+    UserView:
       type: object
+      x-exclude-from-codegen: 'true'
       properties:
         id:
           type: string
-        name:
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
           type: string
         type:
           type: string
-          enum:
-          - DEFAULT
-          - SAML
-    UserTagIdentityProvider:
+        status:
+          type: string
+    UserTagAttributeCriteria:
       type: object
       properties:
-        identityProvider:
-          $ref: '#/components/schemas/IdentityProviderDto'
-        externalId:
+        value:
+          type: string
+        attributeId:
+          type: string
+        operator:
           type: string
   securitySchemes:
     bearerAuth:

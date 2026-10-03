@@ -178,51 +178,85 @@ paths:
                 type: object
 components:
   schemas:
-    AppContainerBean:
+    RootEnvironmentGroup:
       type: object
       properties:
-        tenantId:
+        environmentGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentGroup'
+        environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+    PapExpirationSettings:
+      type: object
+      properties:
+        minimumSessionTime:
           type: integer
           format: int32
-        catalogAppId:
+        maximumSessionTime:
           type: integer
-          format: int64
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-        hasValidPaps:
+          format: int32
+        supportsSessionExtension:
           type: boolean
-        allowAccessRequests:
+        numberOfSessionExtensionsAllowed:
+          type: integer
+          format: int32
+        sessionTimeDuringExtension:
+          type: integer
+          format: int32
+    SsoHandlerMetadata:
+      type: object
+      properties:
+        className:
+          type: string
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
+    DefaultPropertyType:
+      type: object
+      properties:
+        type:
+          type: string
+        enumType:
+          type: string
+        enumValues:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        description:
+          type: string
+        required:
           type: boolean
-        catalogAppDisplayName:
-          type: string
-        deleted:
-          type: string
-          format: date-time
-        deletedBy:
-          type: string
-        rootEnvironmentGroup:
-          $ref: '#/components/schemas/RootEnvironmentGroup'
-        iconUrl:
-          type: string
-        catalogAppName:
-          type: string
-        catalogApplication:
-          $ref: '#/components/schemas/CatalogApplication'
-        allEnvironmentGroupMap:
+        value:
+          type: object
+        global:
+          type: boolean
+        privy:
+          type: boolean
+        enumNameMap:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/EnvironmentGroup'
-        defaultAppUrl:
+            type: string
+        readOnly:
+          type: boolean
+        includeEnvPropsOnGetAccess:
+          type: boolean
+        generatorClass:
           type: string
-        catalogAppVersion:
+    SecurityScannerMetadata:
+      type: object
+      properties:
+        className:
           type: string
-        appContainerId:
-          type: string
-        userAccountMappings:
-          $ref: '#/components/schemas/JsonNode'
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
     CatalogApplication:
       type: object
       properties:
@@ -281,15 +315,6 @@ components:
           $ref: '#/components/schemas/SsoHandlerMetadata'
         securityScannerMetadata:
           $ref: '#/components/schemas/SecurityScannerMetadata'
-    SsoHandlerMetadata:
-      type: object
-      properties:
-        className:
-          type: string
-        propertyTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultPropertyType'
     ProvisionHandlerMetadata:
       type: object
       properties:
@@ -299,53 +324,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DefaultPropertyType'
-    SecurityScannerMetadata:
-      type: object
-      properties:
-        className:
-          type: string
-        propertyTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultPropertyType'
-    EnvironmentGroup:
+    PropertyType:
       type: object
       properties:
         name:
           type: string
-        id:
-          type: string
         type:
-          type: string
-        internalParentId:
-          type: string
-        parentId:
           type: string
         description:
           type: string
-        created:
-          $ref: '#/components/schemas/AuditStamp'
-        nativeId:
-          type: string
-        nativeParentId:
-          type: string
-    PapExpirationSettings:
+        propertyTypeId:
+          type: integer
+          format: int64
+    AuditStamp:
       type: object
       properties:
-        minimumSessionTime:
-          type: integer
-          format: int32
-        maximumSessionTime:
-          type: integer
-          format: int32
-        supportsSessionExtension:
-          type: boolean
-        numberOfSessionExtensionsAllowed:
-          type: integer
-          format: int32
-        sessionTimeDuringExtension:
-          type: integer
-          format: int32
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
     Environment:
       type: object
       properties:
@@ -370,74 +370,74 @@ components:
           type: string
         parentGroupId:
           type: string
-    RootEnvironmentGroup:
-      type: object
-      properties:
-        environmentGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentGroup'
-        environments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Environment'
-    PropertyType:
+    EnvironmentGroup:
       type: object
       properties:
         name:
           type: string
+        id:
+          type: string
         type:
+          type: string
+        internalParentId:
+          type: string
+        parentId:
           type: string
         description:
           type: string
-        propertyTypeId:
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+        nativeId:
+          type: string
+        nativeParentId:
+          type: string
+    AppContainerBean:
+      type: object
+      properties:
+        tenantId:
+          type: integer
+          format: int32
+        catalogAppId:
           type: integer
           format: int64
-    JsonNode:
-      type: object
-    AuditStamp:
-      type: object
-      properties:
-        user:
+        status:
           type: string
-        date:
+          enum:
+          - active
+          - inactive
+        hasValidPaps:
+          type: boolean
+        allowAccessRequests:
+          type: boolean
+        catalogAppDisplayName:
+          type: string
+        deleted:
           type: string
           format: date-time
-        action:
+        deletedBy:
           type: string
-    DefaultPropertyType:
-      type: object
-      properties:
-        type:
+        rootEnvironmentGroup:
+          $ref: '#/components/schemas/RootEnvironmentGroup'
+        iconUrl:
           type: string
-        enumType:
+        catalogAppName:
           type: string
-        enumValues:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        description:
-          type: string
-        required:
-          type: boolean
-        value:
-          type: object
-        global:
-          type: boolean
-        privy:
-          type: boolean
-        enumNameMap:
+        catalogApplication:
+          $ref: '#/components/schemas/CatalogApplication'
+        allEnvironmentGroupMap:
           type: object
           additionalProperties:
-            type: string
-        readOnly:
-          type: boolean
-        includeEnvPropsOnGetAccess:
-          type: boolean
-        generatorClass:
+            $ref: '#/components/schemas/EnvironmentGroup'
+        defaultAppUrl:
           type: string
+        catalogAppVersion:
+          type: string
+        appContainerId:
+          type: string
+        userAccountMappings:
+          $ref: '#/components/schemas/JsonNode'
+    JsonNode:
+      type: object
   securitySchemes:
     bearerAuth:
       type: http

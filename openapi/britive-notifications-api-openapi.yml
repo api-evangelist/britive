@@ -166,20 +166,26 @@ paths:
                 type: object
 components:
   schemas:
-    ApplicationSummary:
+    RuleBean:
       type: object
       properties:
-        appContainerId:
+        predicate:
           type: string
-        catalogAppDisplayName:
-          type: string
-        description:
-          type: string
-        status:
+        predicateType:
           type: string
           enum:
-          - active
-          - inactive
+          - SCANNER
+          - ACCESS_BUILDER
+          - API_TOKEN
+          - USER
+          - PROFILE
+          - RESOURCE_SCANNER
+        operator:
+          type: string
+          enum:
+          - OR
+        description:
+          type: string
     NotificationBean:
       type: object
       properties:
@@ -212,28 +218,6 @@ components:
           readOnly: 'true'
           items:
             $ref: '#/components/schemas/ApplicationSummary'
-    RuleBean:
-      type: object
-      properties:
-        predicate:
-          type: string
-        predicateType:
-          type: string
-          enum:
-          - SCANNER
-          - ACCESS_BUILDER
-          - API_TOKEN
-          - USER
-          - PROFILE
-          - RESOURCE_SCANNER
-        operator:
-          type: string
-          enum:
-          - OR
-        description:
-          type: string
-    JsonNode:
-      type: object
     WorkflowMemberRuleDto:
       type: object
       properties:
@@ -244,6 +228,22 @@ components:
           enum:
           - User
           - Tag
+    JsonNode:
+      type: object
+    ApplicationSummary:
+      type: object
+      properties:
+        appContainerId:
+          type: string
+        catalogAppDisplayName:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
   securitySchemes:
     bearerAuth:
       type: http

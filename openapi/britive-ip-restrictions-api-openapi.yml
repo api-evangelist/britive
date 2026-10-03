@@ -99,20 +99,6 @@ paths:
                 $ref: '#/components/schemas/FirewallFields'
 components:
   schemas:
-    Field:
-      type: object
-      properties:
-        header:
-          type: string
-        field_type:
-          type: string
-          description: Allowed values are 'ip', 'string'
-        info:
-          type: string
-        operators:
-          type: array
-          items:
-            type: string
     FirewallRulesDto:
       type: object
       properties:
@@ -131,13 +117,20 @@ components:
           type: array
           items:
             type: string
-    FirewallFields:
+    Field:
       type: object
       properties:
-        fields:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Field'
+        header:
+          type: string
+        field_type:
+          type: string
+          description: Allowed values are 'ip', 'string'
+        info:
+          type: string
+        operators:
+          type: array
+          items:
+            type: string
     FirewallRulesRequest:
       type: object
       properties:
@@ -149,6 +142,13 @@ components:
           type: string
         antilockout:
           type: boolean
+    FirewallFields:
+      type: object
+      properties:
+        fields:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Field'
   securitySchemes:
     bearerAuth:
       type: http

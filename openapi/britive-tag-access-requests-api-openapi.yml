@@ -196,54 +196,6 @@ paths:
           description: Tag not found
 components:
   schemas:
-    TagAccessRequest:
-      type: object
-      required:
-      - tagId
-      - justification
-      properties:
-        tenantId:
-          type: string
-        userId:
-          type: string
-        tagId:
-          type: string
-          description: Unique identifier of the tag
-        justification:
-          type: string
-          description: Reason for requesting access
-        context:
-          type: object
-          additionalProperties:
-            type: string
-    TagResourcePageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResourceSummaryDto'
-    TagSecretPageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagSecretSummaryDto'
     TagAppProfileSummaryDto:
       type: object
       properties:
@@ -269,7 +221,38 @@ components:
         permissionsCount:
           type: integer
           description: Number of permissions assigned to this profile
-    TagAppProfilePageDto:
+    TagAccessRequest:
+      type: object
+      required:
+      - tagId
+      - justification
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        tagId:
+          type: string
+          description: Unique identifier of the tag
+        justification:
+          type: string
+          description: Reason for requesting access
+        context:
+          type: object
+          additionalProperties:
+            type: string
+    TagSecretSummaryDto:
+      type: object
+      properties:
+        secretId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        path:
+          type: string
+    RequestableTagPageDto:
       type: object
       properties:
         count:
@@ -282,7 +265,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/TagAppProfileSummaryDto'
+            $ref: '#/components/schemas/RequestableTagSummaryDto'
     TagResourceSummaryDto:
       type: object
       properties:
@@ -326,7 +309,7 @@ components:
         external:
           type: boolean
           description: Whether the tag is externally managed (e.g. synced from an identity provider)
-    RequestableTagPageDto:
+    TagAppProfilePageDto:
       type: object
       properties:
         count:
@@ -339,26 +322,36 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/RequestableTagSummaryDto'
-    TagSecretSummaryDto:
+            $ref: '#/components/schemas/TagAppProfileSummaryDto'
+    TagResourcePageDto:
       type: object
       properties:
-        secretId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        path:
-          type: string
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagResourceSummaryDto'
+    TagSecretPageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagSecretSummaryDto'
   parameters:
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
     PageSize:
       name: size
       in: query
@@ -375,6 +368,13 @@ components:
       schema:
         type: integer
         default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

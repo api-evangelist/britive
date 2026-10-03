@@ -70,21 +70,6 @@ paths:
                 $ref: '#/components/schemas/BannerSettingsDto'
 components:
   schemas:
-    BannerSettingsDto:
-      required:
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          description: Allowed values are 'ON' and 'OFF'
-        messageType:
-          type: string
-          description: Allowed values are 'INFO', 'WARNING' and 'CAUTION'
-        message:
-          type: string
-        messageSchedule:
-          $ref: '#/components/schemas/MessageSchedule'
     MessageSchedule:
       type: object
       properties:
@@ -108,6 +93,21 @@ components:
           description: Allowed values are 'INFO', 'WARNING' and 'CAUTION'
         message:
           type: string
+    BannerSettingsDto:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: Allowed values are 'ON' and 'OFF'
+        messageType:
+          type: string
+          description: Allowed values are 'INFO', 'WARNING' and 'CAUTION'
+        message:
+          type: string
+        messageSchedule:
+          $ref: '#/components/schemas/MessageSchedule'
   securitySchemes:
     bearerAuth:
       type: http
