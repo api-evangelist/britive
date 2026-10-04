@@ -117,32 +117,8 @@ paths:
         '400':
           description: Invalid filter criteria
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
   schemas:
-    AppAccessStatusSummary:
+    AppAccessStatusUserSummary:
       type: object
       properties:
         count:
@@ -161,7 +137,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/AppAccessStatusInfo'
+            $ref: '#/components/schemas/AppAccessStatusUserInfo'
     AppAccessStatusInfo:
       type: object
       properties:
@@ -233,7 +209,7 @@ components:
           - User
           - Service Identity
           - AI Identity
-    AppAccessStatusUserSummary:
+    AppAccessStatusSummary:
       type: object
       properties:
         count:
@@ -252,7 +228,31 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/AppAccessStatusUserInfo'
+            $ref: '#/components/schemas/AppAccessStatusInfo'
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

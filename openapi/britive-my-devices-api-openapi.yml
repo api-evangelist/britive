@@ -146,213 +146,6 @@ paths:
           description: Profile or environment not found
 components:
   schemas:
-    MyAccess:
-      type: object
-      properties:
-        frequency:
-          type: integer
-          example: '0'
-        countOfProfiles:
-          type: integer
-          example: '100'
-        papId:
-          type: string
-          example: id1
-        environmentId:
-          type: string
-          example: envId1
-        appId:
-          type: string
-          example: appId1
-        myAccessDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccessDetail'
-        application:
-          $ref: '#/components/schemas/MyAccessApplication'
-        environment:
-          $ref: '#/components/schemas/MyAccessEnvironment'
-        profile:
-          $ref: '#/components/schemas/MyAccessProfile'
-    MyAccessDetail:
-      type: object
-      properties:
-        checkOutTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        checkInTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        status:
-          type: string
-          enum:
-          - Allow
-          - Deny
-          - Pending
-          example: Allow
-        approvalValidityTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        accessType:
-          type: string
-          enum:
-          - CONSOLE
-          - PROGRAMMATIC
-          example: CONSOLE
-        favoriteId:
-          type: string
-          nullable: 'true'
-    MyAccessEnvironment:
-      type: object
-      properties:
-        environmentId:
-          type: string
-          example: envId1
-        environmentName:
-          type: string
-          example: demo
-        environmentDescription:
-          type: string
-          example: ''
-        alternateEnvironmentName:
-          type: string
-          example: demo
-        accountId:
-          type: string
-          nullable: 'true'
-        profileEnvironmentProperties:
-          type: object
-          additionalProperties: 'true'
-          example: {}
-    MyAccessSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total count of items
-          example: '100'
-        page:
-          type: integer
-          description: Current page number
-          example: '0'
-        size:
-          type: integer
-          description: Page size
-          example: '20'
-        sort:
-          type: string
-          description: Sort order
-          example: appName,ASC
-        filter:
-          type: string
-          nullable: 'true'
-          description: Applied filter
-          example: appName eq "AWS"
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccess'
-    MyAccessProfile:
-      type: object
-      properties:
-        papId:
-          type: string
-          example: id1
-        papName:
-          type: string
-          example: S3Access
-        description:
-          type: string
-          example: ''
-        consoleAccess:
-          type: boolean
-          example: 'true'
-        programmaticAccess:
-          type: boolean
-          example: 'false'
-        sessionAttributes:
-          type: array
-          items:
-            type: object
-          example: []
-        accessCount:
-          type: integer
-          example: '0'
-        expirationDuration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '1800000'
-        extensionDuration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '1800000'
-        extensionLimit:
-          type: integer
-          example: '1'
-        notificationPriorToExpiration:
-          type: integer
-          format: int64
-          description: Duration in milliseconds
-          example: '300000'
-        extendable:
-          type: boolean
-          example: 'false'
-    MyAccessApplication:
-      type: object
-      properties:
-        appId:
-          type: string
-          example: appId1
-        appName:
-          type: string
-          example: AWS
-        applicationType:
-          type: string
-          example: AWS
-        consoleAccessError:
-          type: string
-          nullable: 'true'
-        programmaticAccessError:
-          type: string
-          nullable: 'true'
-        description:
-          type: string
-          nullable: 'true'
-        supportsToken:
-          type: boolean
-          example: 'false'
-        showAwsAccountNumber:
-          type: boolean
-          example: 'false'
-        supportsMultipleProfilesCheckoutCli:
-          type: boolean
-          example: 'false'
-        supportsMultipleProfilesCheckoutConsole:
-          type: boolean
-          example: 'false'
-        allowCopyingConsoleUrl:
-          type: boolean
-          example: 'false'
-        displayProgrammaticKeys:
-          type: boolean
-          example: 'true'
-        requiresHierarchicalModel:
-          type: boolean
-          example: 'false'
-        consoleAccess:
-          type: boolean
-          example: 'true'
-        programmaticAccess:
-          type: boolean
-          example: 'false'
-        supportsSharedAccounts:
-          type: boolean
-          example: 'true'
     AppAccessStatusResponse:
       type: object
       description: Status of a profile checkout or check-in operation
@@ -430,6 +223,213 @@ components:
           type: string
           nullable: 'true'
           description: Error details if the checkout or check-in operation failed
+    MyAccessEnvironment:
+      type: object
+      properties:
+        environmentId:
+          type: string
+          example: envId1
+        environmentName:
+          type: string
+          example: demo
+        environmentDescription:
+          type: string
+          example: ''
+        alternateEnvironmentName:
+          type: string
+          example: demo
+        accountId:
+          type: string
+          nullable: 'true'
+        profileEnvironmentProperties:
+          type: object
+          additionalProperties: 'true'
+          example: {}
+    MyAccessApplication:
+      type: object
+      properties:
+        appId:
+          type: string
+          example: appId1
+        appName:
+          type: string
+          example: AWS
+        applicationType:
+          type: string
+          example: AWS
+        consoleAccessError:
+          type: string
+          nullable: 'true'
+        programmaticAccessError:
+          type: string
+          nullable: 'true'
+        description:
+          type: string
+          nullable: 'true'
+        supportsToken:
+          type: boolean
+          example: 'false'
+        showAwsAccountNumber:
+          type: boolean
+          example: 'false'
+        supportsMultipleProfilesCheckoutCli:
+          type: boolean
+          example: 'false'
+        supportsMultipleProfilesCheckoutConsole:
+          type: boolean
+          example: 'false'
+        allowCopyingConsoleUrl:
+          type: boolean
+          example: 'false'
+        displayProgrammaticKeys:
+          type: boolean
+          example: 'true'
+        requiresHierarchicalModel:
+          type: boolean
+          example: 'false'
+        consoleAccess:
+          type: boolean
+          example: 'true'
+        programmaticAccess:
+          type: boolean
+          example: 'false'
+        supportsSharedAccounts:
+          type: boolean
+          example: 'true'
+    MyAccessDetail:
+      type: object
+      properties:
+        checkOutTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        checkInTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        status:
+          type: string
+          enum:
+          - Allow
+          - Deny
+          - Pending
+          example: Allow
+        approvalValidityTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        accessType:
+          type: string
+          enum:
+          - CONSOLE
+          - PROGRAMMATIC
+          example: CONSOLE
+        favoriteId:
+          type: string
+          nullable: 'true'
+    MyAccessSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total count of items
+          example: '100'
+        page:
+          type: integer
+          description: Current page number
+          example: '0'
+        size:
+          type: integer
+          description: Page size
+          example: '20'
+        sort:
+          type: string
+          description: Sort order
+          example: appName,ASC
+        filter:
+          type: string
+          nullable: 'true'
+          description: Applied filter
+          example: appName eq "AWS"
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccess'
+    MyAccessProfile:
+      type: object
+      properties:
+        papId:
+          type: string
+          example: id1
+        papName:
+          type: string
+          example: S3Access
+        description:
+          type: string
+          example: ''
+        consoleAccess:
+          type: boolean
+          example: 'true'
+        programmaticAccess:
+          type: boolean
+          example: 'false'
+        sessionAttributes:
+          type: array
+          items:
+            type: object
+          example: []
+        accessCount:
+          type: integer
+          example: '0'
+        expirationDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionDuration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '1800000'
+        extensionLimit:
+          type: integer
+          example: '1'
+        notificationPriorToExpiration:
+          type: integer
+          format: int64
+          description: Duration in milliseconds
+          example: '300000'
+        extendable:
+          type: boolean
+          example: 'false'
+    MyAccess:
+      type: object
+      properties:
+        frequency:
+          type: integer
+          example: '0'
+        countOfProfiles:
+          type: integer
+          example: '100'
+        papId:
+          type: string
+          example: id1
+        environmentId:
+          type: string
+          example: envId1
+        appId:
+          type: string
+          example: appId1
+        myAccessDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccessDetail'
+        application:
+          $ref: '#/components/schemas/MyAccessApplication'
+        environment:
+          $ref: '#/components/schemas/MyAccessEnvironment'
+        profile:
+          $ref: '#/components/schemas/MyAccessProfile'
     Settings:
       type: object
       x-exclude-from-codegen: 'true'

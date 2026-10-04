@@ -93,6 +93,19 @@ paths:
           description: authenticated user does not have administrator access.
 components:
   schemas:
+    MfaAuthResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+          - SUCCEEDED
+          - CHALLENGE
+          - FAILED
+        additionalDetails:
+          type: object
+          additionalProperties:
+            type: object
     TotpConfiguration:
       required:
       - digits
@@ -116,19 +129,6 @@ components:
           minimum: '30'
           type: integer
           format: int32
-    MfaAuthResponse:
-      type: object
-      properties:
-        result:
-          type: string
-          enum:
-          - SUCCEEDED
-          - CHALLENGE
-          - FAILED
-        additionalDetails:
-          type: object
-          additionalProperties:
-            type: object
     StepUpConfiguration:
       required:
       - completedCookieMaxAge

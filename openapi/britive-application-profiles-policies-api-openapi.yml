@@ -246,32 +246,8 @@ paths:
         '204':
           description: No Content
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
   schemas:
-    RoleDto:
+    PermissionDto:
       type: object
       properties:
         id:
@@ -280,11 +256,20 @@ components:
           type: string
         description:
           type: string
-        permissions:
+        consumer:
+          type: string
+        actions:
           uniqueItems: 'true'
           type: array
           items:
-            $ref: '#/components/schemas/PermissionDto'
+            type: string
+        resources:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
         isReadOnly:
           type: boolean
     PolicyDto:
@@ -335,6 +320,34 @@ components:
             type: array
             items:
               type: string
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        permissions:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        isReadOnly:
+          type: boolean
     PolicyOrderingDto:
       type: object
       required:
@@ -348,43 +361,30 @@ components:
           type: integer
           description: Order value for the policy
           example: '1'
-    PermissionDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        consumer:
-          type: string
-        actions:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        resources:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        isInline:
-          type: boolean
-        isReadOnly:
-          type: boolean
-    MemberDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        memberType:
-          type: string
-          enum:
-          - User
-          - Tag
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

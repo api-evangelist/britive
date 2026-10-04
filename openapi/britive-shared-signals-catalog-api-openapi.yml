@@ -31,6 +31,16 @@ paths:
                 $ref: '#/components/schemas/SsfCatalogResponse'
 components:
   schemas:
+    BritiveActionDefinition:
+      type: object
+      required:
+      - action
+      properties:
+        action:
+          type: string
+          description: Britive action identifier
+        description:
+          type: string
     SsfEventDefinition:
       type: object
       required:
@@ -49,30 +59,6 @@ components:
           format: uri
         name:
           type: string
-        description:
-          type: string
-    BritiveEventTypeDefinition:
-      type: object
-      required:
-      - type
-      - displayName
-      properties:
-        type:
-          type: string
-          description: EventType.type value (e.g., "user.disable")
-        displayName:
-          type: string
-          description: Human-readable name (e.g., "Disable User")
-        description:
-          type: string
-    BritiveActionDefinition:
-      type: object
-      required:
-      - action
-      properties:
-        action:
-          type: string
-          description: Britive action identifier
         description:
           type: string
     SsfCatalogResponse:
@@ -94,6 +80,20 @@ components:
           description: Britive audit event types available for receiver mappings
           items:
             $ref: '#/components/schemas/BritiveEventTypeDefinition'
+    BritiveEventTypeDefinition:
+      type: object
+      required:
+      - type
+      - displayName
+      properties:
+        type:
+          type: string
+          description: EventType.type value (e.g., "user.disable")
+        displayName:
+          type: string
+          description: Human-readable name (e.g., "Disable User")
+        description:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

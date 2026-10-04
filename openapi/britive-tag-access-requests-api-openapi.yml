@@ -196,76 +196,6 @@ paths:
           description: Tag not found
 components:
   schemas:
-    TagAppProfileSummaryDto:
-      type: object
-      properties:
-        profileId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        associations:
-          type: integer
-          format: int64
-          description: Total number of identity associations (users/tags) for this profile
-        application:
-          type: string
-          description: Application instance name
-        applicationId:
-          type: string
-          description: Application instance ID
-        applicationType:
-          type: string
-          description: Catalog application type (e.g. AWS, GCP)
-        permissionsCount:
-          type: integer
-          description: Number of permissions assigned to this profile
-    TagAccessRequest:
-      type: object
-      required:
-      - tagId
-      - justification
-      properties:
-        tenantId:
-          type: string
-        userId:
-          type: string
-        tagId:
-          type: string
-          description: Unique identifier of the tag
-        justification:
-          type: string
-          description: Reason for requesting access
-        context:
-          type: object
-          additionalProperties:
-            type: string
-    TagSecretSummaryDto:
-      type: object
-      properties:
-        secretId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        path:
-          type: string
-    RequestableTagPageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RequestableTagSummaryDto'
     TagResourceSummaryDto:
       type: object
       properties:
@@ -294,6 +224,59 @@ components:
         resourceTypeIconUrl:
           type: string
           description: Icon URL for the resource type
+    RequestableTagPageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestableTagSummaryDto'
+    TagAppProfileSummaryDto:
+      type: object
+      properties:
+        profileId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        associations:
+          type: integer
+          format: int64
+          description: Total number of identity associations (users/tags) for this profile
+        application:
+          type: string
+          description: Application instance name
+        applicationId:
+          type: string
+          description: Application instance ID
+        applicationType:
+          type: string
+          description: Catalog application type (e.g. AWS, GCP)
+        permissionsCount:
+          type: integer
+          description: Number of permissions assigned to this profile
+    TagAppProfilePageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagAppProfileSummaryDto'
     RequestableTagSummaryDto:
       type: object
       properties:
@@ -309,20 +292,37 @@ components:
         external:
           type: boolean
           description: Whether the tag is externally managed (e.g. synced from an identity provider)
-    TagAppProfilePageDto:
+    TagSecretSummaryDto:
       type: object
       properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagAppProfileSummaryDto'
+        secretId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        path:
+          type: string
+    TagAccessRequest:
+      type: object
+      required:
+      - tagId
+      - justification
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        tagId:
+          type: string
+          description: Unique identifier of the tag
+        justification:
+          type: string
+          description: Reason for requesting access
+        context:
+          type: object
+          additionalProperties:
+            type: string
     TagResourcePageDto:
       type: object
       properties:

@@ -382,31 +382,26 @@ paths:
         '404':
           description: User not found in tag
 components:
-  parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
   schemas:
+    UserTagSummary:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        filter:
+          type: string
+        sort:
+          type: string
+        userTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTagDto'
     UserDto:
       type: object
       x-exclude-from-codegen: 'true'
@@ -420,25 +415,6 @@ components:
         lastName:
           type: string
         email:
-          type: string
-    IdentityProviderDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - DEFAULT
-          - SAML
-    UserTagIdentityProvider:
-      type: object
-      properties:
-        identityProvider:
-          $ref: '#/components/schemas/IdentityProviderDto'
-        externalId:
           type: string
     UserTagAttributeCriteriaDto:
       type: object
@@ -488,6 +464,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserTagAttributeCriteria'
+    UserTagAttributeCriteria:
+      type: object
+      properties:
+        value:
+          type: string
+        attributeId:
+          type: string
+        operator:
+          type: string
+    IdentityProviderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SAML
+    UserTagIdentityProvider:
+      type: object
+      properties:
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProviderDto'
+        externalId:
+          type: string
     UserSummary:
       type: object
       x-exclude-from-codegen: 'true'
@@ -503,34 +507,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserDto'
-    UserTagSummary:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        filter:
-          type: string
-        sort:
-          type: string
-        userTags:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserTagDto'
-    UserTagAttributeCriteria:
-      type: object
-      properties:
-        value:
-          type: string
-        attributeId:
-          type: string
-        operator:
-          type: string
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -192,55 +192,22 @@ paths:
         '404':
           description: permission id does not exist
 components:
-  parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
   schemas:
-    ResourcePermissionDetailsDto:
+    ProfilePermissionSummary:
       type: object
-      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
       properties:
-        permissionId:
-          type: string
-        name:
-          type: string
-        resourceTypeName:
-          type: string
-        isDraft:
-          type: boolean
-          default: 'false'
-          nullable: 'false'
-        createdOn:
-          type: string
-        versionCount:
+        count:
           type: integer
-        version:
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
           type: string
-    SystemDefinedValues:
-      type: array
-      items:
-        type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfilePermissionDto'
     ProfilePermissionDto:
       type: object
       properties:
@@ -260,21 +227,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VariableValues'
-    ResourcePermissionSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        sort:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
     VariableValues:
       type: object
       description: 'Variable binding on a profile-permission. Three mutually exclusive runtime resolution states encoded by (isSystemDefined, promptAtCheckout): Static (both false; value is literal); System-defined (isSystemDefined=true; server resolves at runtime); Prompt-at-checkout (promptAtCheckout=true; end user supplies at checkout via Settings.checkoutVariableValues). isSystemDefined=true AND promptAtCheckout=true is rejected (RM-0027).
@@ -317,7 +269,7 @@ components:
           description: 'Optional human-readable explanation of regexPattern, shown to the end user at checkout so they understand what a valid value looks like. Only meaningful when regexPattern is present (any type); the server clears it whenever regexPattern is absent or cleared, keeping the two in lockstep.
 
             '
-    ProfilePermissionSummary:
+    ResourcePermissionSummary:
       type: object
       properties:
         count:
@@ -331,7 +283,55 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ProfilePermissionDto'
+            $ref: '#/components/schemas/ResourcePermissionDetailsDto'
+    SystemDefinedValues:
+      type: array
+      items:
+        type: string
+    ResourcePermissionDetailsDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        permissionId:
+          type: string
+        name:
+          type: string
+        resourceTypeName:
+          type: string
+        isDraft:
+          type: boolean
+          default: 'false'
+          nullable: 'false'
+        createdOn:
+          type: string
+        versionCount:
+          type: integer
+        version:
+          type: string
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

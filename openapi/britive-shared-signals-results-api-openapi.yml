@@ -58,16 +58,6 @@ paths:
                 $ref: '#/components/schemas/QueryResultsResponse'
 components:
   schemas:
-    ProcessingStatus:
-      type: string
-      enum:
-      - ACCEPTED
-      - FAILED
-    Direction:
-      type: string
-      enum:
-      - RECEIVED
-      - TRANSMITTED
     QueryResultsResponse:
       type: object
       required:
@@ -80,6 +70,11 @@ components:
         nextToken:
           type: string
           nullable: 'true'
+    Direction:
+      type: string
+      enum:
+      - RECEIVED
+      - TRANSMITTED
     ActionOutcome:
       type: object
       properties:
@@ -94,6 +89,24 @@ components:
         details:
           type: object
           additionalProperties: 'true'
+    ProcessingStatus:
+      type: string
+      enum:
+      - ACCEPTED
+      - FAILED
+    SubjectIdentifier:
+      type: object
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: v1 supports email only (aligns with current design)
+          enum:
+          - email
+        value:
+          type: string
     SsfProcessingResult:
       type: object
       required:
@@ -143,19 +156,6 @@ components:
         rawSsfEvent:
           type: object
           additionalProperties: 'true'
-    SubjectIdentifier:
-      type: object
-      required:
-      - type
-      - value
-      properties:
-        type:
-          type: string
-          description: v1 supports email only (aligns with current design)
-          enum:
-          - email
-        value:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

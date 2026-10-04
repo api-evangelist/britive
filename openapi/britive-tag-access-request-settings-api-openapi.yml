@@ -68,6 +68,33 @@ paths:
           description: Tag access request settings updated successfully
 components:
   schemas:
+    TagAccessRequestSettingsDto:
+      type: object
+      properties:
+        allowAccessRequest:
+          type: boolean
+        approvalTimeOut:
+          type: string
+          description: Approval timeout value in days, hours and minutes format
+        notificationMediums:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationMediumDto'
+        managerApproval:
+          $ref: '#/components/schemas/ManagerApproval'
+    ManagerApproval:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        required:
+          type: boolean
+          default: 'false'
+        condition:
+          type: string
+          enum:
+          - Any
+          - All
+          - Manager
     NotificationMediumDto:
       type: object
       properties:
@@ -83,33 +110,6 @@ components:
           type: array
           items:
             type: string
-    ManagerApproval:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        required:
-          type: boolean
-          default: 'false'
-        condition:
-          type: string
-          enum:
-          - Any
-          - All
-          - Manager
-    TagAccessRequestSettingsDto:
-      type: object
-      properties:
-        allowAccessRequest:
-          type: boolean
-        approvalTimeOut:
-          type: string
-          description: Approval timeout value in days, hours and minutes format
-        notificationMediums:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationMediumDto'
-        managerApproval:
-          $ref: '#/components/schemas/ManagerApproval'
   securitySchemes:
     bearerAuth:
       type: http

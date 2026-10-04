@@ -131,18 +131,57 @@ paths:
                 $ref: '#/components/schemas/IssuerMappings'
 components:
   schemas:
-    EventActionMapping:
+    PutIssuerMappingsRequest:
       type: object
       required:
-      - eventUri
-      - action
+      - mappings
       properties:
-        eventUri:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActionMapping'
+    Issuer:
+      type: object
+      required:
+      - issuerId
+      - issuerUrl
+      - enabled
+      - createdAt
+      - updatedAt
+      properties:
+        issuerId:
+          type: string
+        issuerUrl:
           type: string
           format: uri
-        action:
+        displayName:
           type: string
-          description: Must be one of the actions returned by /api/ssf/admin/catalog
+        description:
+          type: string
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    IssuerMappings:
+      type: object
+      required:
+      - issuerId
+      - mappings
+      - updatedAt
+      properties:
+        issuerId:
+          type: string
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActionMapping'
+        updatedAt:
+          type: string
+          format: date-time
     ListIssuersResponse:
       type: object
       required:
@@ -176,32 +215,6 @@ components:
         enabled:
           type: boolean
           default: 'true'
-    Issuer:
-      type: object
-      required:
-      - issuerId
-      - issuerUrl
-      - enabled
-      - createdAt
-      - updatedAt
-      properties:
-        issuerId:
-          type: string
-        issuerUrl:
-          type: string
-          format: uri
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     UpdateIssuerRequest:
       type: object
       properties:
@@ -211,31 +224,18 @@ components:
           type: string
         enabled:
           type: boolean
-    PutIssuerMappingsRequest:
+    EventActionMapping:
       type: object
       required:
-      - mappings
+      - eventUri
+      - action
       properties:
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventActionMapping'
-    IssuerMappings:
-      type: object
-      required:
-      - issuerId
-      - mappings
-      - updatedAt
-      properties:
-        issuerId:
+        eventUri:
           type: string
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventActionMapping'
-        updatedAt:
+          format: uri
+        action:
           type: string
-          format: date-time
+          description: Must be one of the actions returned by /api/ssf/admin/catalog
   securitySchemes:
     bearerAuth:
       type: http

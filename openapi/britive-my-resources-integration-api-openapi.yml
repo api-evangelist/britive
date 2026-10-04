@@ -112,52 +112,6 @@ paths:
                 $ref: '#/components/schemas/ResourceProfileSettings'
 components:
   schemas:
-    ITSMFilter:
-      type: object
-      additionalProperties:
-        type: string
-    ItsmFilterCriteriaDto:
-      type: object
-      properties:
-        supportedTicketType:
-          type: string
-        filter:
-          $ref: '#/components/schemas/ITSMFilter'
-    ApprovalRequestData:
-      type: object
-      properties:
-        justification:
-          type: string
-          description: Existing Justification
-        ticketId:
-          type: string
-          description: Existing Ticket ID
-        ticketType:
-          type: string
-          description: Existing Ticket Type
-    ITSMTicketSearchResult:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total count of search result
-        maxResults:
-          type: integer
-          description: Maximum result count
-        tickets:
-          type: object
-          description: List of the tickets with the details like id, number, title, assignee, priority, etc.
-    JustificationSettingsDto:
-      allOf:
-      - $ref: '#/components/schemas/SettingsDto'
-      - type: object
-      properties:
-        isJustificationRequired:
-          type: boolean
-        isJustificationRequiredAtCheckout:
-          type: boolean
-        justificationRegex:
-          type: string
     ITSMTicketValidationResult:
       type: object
       properties:
@@ -170,6 +124,64 @@ components:
         ticketDetails:
           type: object
           description: Ticket details like id, number, title, assignee, priority, etc.
+    ITSMTicketSearchResult:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total count of search result
+        maxResults:
+          type: integer
+          description: Maximum result count
+        tickets:
+          type: object
+          description: List of the tickets with the details like id, number, title, assignee, priority, etc.
+    ApprovalRequestData:
+      type: object
+      properties:
+        justification:
+          type: string
+          description: Existing Justification
+        ticketId:
+          type: string
+          description: Existing Ticket ID
+        ticketType:
+          type: string
+          description: Existing Ticket Type
+    ITSMFilter:
+      type: object
+      additionalProperties:
+        type: string
+    ItsmFilterCriteriaDto:
+      type: object
+      properties:
+        supportedTicketType:
+          type: string
+        filter:
+          $ref: '#/components/schemas/ITSMFilter'
+    ItsmSettingsDto:
+      allOf:
+      - $ref: '#/components/schemas/SettingsDto'
+      - type: object
+      properties:
+        connectionId:
+          type: string
+        connectionType:
+          type: string
+        isCommentRequired:
+          type: boolean
+        isITSMEnabled:
+          type: boolean
+        supportedTicketTypes:
+          type: array
+          items:
+            type: string
+        itsmFilterCriteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmFilterCriteriaDto'
+        settingsType:
+          type: string
     ResourceProfileSettings:
       type: object
       properties:
@@ -218,28 +230,16 @@ components:
         mapping:
           ITSM: ItsmSettingsDto
           JUSTIFICATION: JustificationSettingsDto
-    ItsmSettingsDto:
+    JustificationSettingsDto:
       allOf:
       - $ref: '#/components/schemas/SettingsDto'
       - type: object
       properties:
-        connectionId:
-          type: string
-        connectionType:
-          type: string
-        isCommentRequired:
+        isJustificationRequired:
           type: boolean
-        isITSMEnabled:
+        isJustificationRequiredAtCheckout:
           type: boolean
-        supportedTicketTypes:
-          type: array
-          items:
-            type: string
-        itsmFilterCriteria:
-          type: array
-          items:
-            $ref: '#/components/schemas/ItsmFilterCriteriaDto'
-        settingsType:
+        justificationRegex:
           type: string
     CheckoutVariablePrompt:
       type: object

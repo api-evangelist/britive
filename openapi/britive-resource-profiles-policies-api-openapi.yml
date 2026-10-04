@@ -196,24 +196,6 @@ paths:
           description: Not found
 components:
   schemas:
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    MemberDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        memberType:
-          type: string
-          enum:
-          - User
-          - Tag
     ResourcePolicyDto:
       type: object
       x-exclude-from-codegen: 'true'
@@ -255,6 +237,24 @@ components:
           type: integer
           description: Order value for the policy
           example: '1'
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
   securitySchemes:
     bearerAuth:
       type: http

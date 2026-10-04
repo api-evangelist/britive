@@ -84,55 +84,7 @@ paths:
               schema:
                 type: object
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
   schemas:
-    AppContainerPapPermissionActionHelper:
-      type: object
-      properties:
-        op:
-          type: string
-          enum:
-          - add
-          - remove
-        permission:
-          $ref: '#/components/schemas/AppContainerPapPermission'
-    PermissionScope:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        scopeId:
-          type: integer
-          format: int64
-        parentId:
-          type: string
-        nativeId:
-          type: string
     AppContainerPapPermission:
       type: object
       properties:
@@ -157,6 +109,54 @@ components:
           type: boolean
         source:
           type: string
+    AppContainerPapPermissionActionHelper:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - add
+          - remove
+        permission:
+          $ref: '#/components/schemas/AppContainerPapPermission'
+    PermissionScope:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        scopeId:
+          type: integer
+          format: int64
+        parentId:
+          type: string
+        nativeId:
+          type: string
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

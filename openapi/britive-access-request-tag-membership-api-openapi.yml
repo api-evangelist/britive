@@ -81,6 +81,36 @@ paths:
         '404':
           description: Tag not found
 components:
+  schemas:
+    UserDto:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        id:
+          type: string
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    UserSummary:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
   parameters:
     PageSize:
       name: size
@@ -105,36 +135,6 @@ components:
       description: parameter to specify the sort parameter and direction
       schema:
         type: string
-  schemas:
-    UserSummary:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDto'
-    UserDto:
-      type: object
-      x-exclude-from-codegen: 'true'
-      properties:
-        id:
-          type: string
-        userName:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

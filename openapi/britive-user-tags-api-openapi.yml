@@ -498,50 +498,7 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
   schemas:
-    IdentityProviderDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - DEFAULT
-          - SAML
-    UserTagIdentityProvider:
-      type: object
-      properties:
-        identityProvider:
-          $ref: '#/components/schemas/IdentityProviderDto'
-        externalId:
-          type: string
     UserTagAttributeCriteriaDto:
       type: object
       x-exclude-from-codegen: 'true'
@@ -590,6 +547,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserTagAttributeCriteria'
+    UserTagAttributeCriteria:
+      type: object
+      properties:
+        value:
+          type: string
+        attributeId:
+          type: string
+        operator:
+          type: string
     UserView:
       type: object
       x-exclude-from-codegen: 'true'
@@ -608,15 +574,49 @@ components:
           type: string
         status:
           type: string
-    UserTagAttributeCriteria:
+    IdentityProviderDto:
       type: object
       properties:
-        value:
+        id:
           type: string
-        attributeId:
+        name:
           type: string
-        operator:
+        type:
           type: string
+          enum:
+          - DEFAULT
+          - SAML
+    UserTagIdentityProvider:
+      type: object
+      properties:
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProviderDto'
+        externalId:
+          type: string
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

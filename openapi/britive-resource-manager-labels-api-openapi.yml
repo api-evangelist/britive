@@ -147,30 +147,6 @@ paths:
         '404':
           description: Not Found
 components:
-  parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
   schemas:
     ResourceLabelValueDto:
       type: object
@@ -193,6 +169,12 @@ components:
         createdOn:
           type: string
         updatedOn:
+          type: string
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
           type: string
     ResourceLabelDto:
       type: object
@@ -226,12 +208,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceLabelDto'
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

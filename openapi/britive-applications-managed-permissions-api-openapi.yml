@@ -231,58 +231,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FindingsInfo'
-    ManagedPermissionsSummary:
+    FindingsInfo:
       type: object
       properties:
-        count:
-          type: integer
-          format: int32
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedPermissionInfo'
-    ManagedPermissionDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          example: DevAccessPermission
-        description:
-          type: string
-          example: Permission to access develop environment
         type:
           type: string
-          example: role
-        isPrivileged:
-          type: boolean
-        tags:
+        messages:
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            type: string
+    Tag:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    ChildPermissionDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: DevAdminPolicy
+        type:
+          type: string
+          example: inlinePolicy
         permissionDefinition:
           type: object
-        createdDate:
-          type: string
-        createdBy:
-          type: string
-        updatedDate:
-          type: string
-        updatedBy:
-          type: string
-        childPermissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChildPermissionDto'
+        isPrivileged:
+          type: boolean
     ManagedPermissionInfo:
       type: object
       properties:
@@ -319,35 +296,58 @@ components:
           type: string
         isPrivileged:
           type: boolean
-    FindingsInfo:
+    ManagedPermissionDto:
       type: object
       properties:
-        type:
+        id:
           type: string
-        messages:
-          type: array
-          items:
-            type: string
-    Tag:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    ChildPermissionDto:
-      type: object
-      properties:
         name:
           type: string
-          example: DevAdminPolicy
+          example: DevAccessPermission
+        description:
+          type: string
+          example: Permission to access develop environment
         type:
           type: string
-          example: inlinePolicy
-        permissionDefinition:
-          type: object
+          example: role
         isPrivileged:
           type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        permissionDefinition:
+          type: object
+        createdDate:
+          type: string
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+        updatedBy:
+          type: string
+        childPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildPermissionDto'
+    ManagedPermissionsSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedPermissionInfo'
   securitySchemes:
     bearerAuth:
       type: http

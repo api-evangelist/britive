@@ -178,35 +178,7 @@ paths:
                 type: object
 components:
   schemas:
-    RootEnvironmentGroup:
-      type: object
-      properties:
-        environmentGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentGroup'
-        environments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Environment'
-    PapExpirationSettings:
-      type: object
-      properties:
-        minimumSessionTime:
-          type: integer
-          format: int32
-        maximumSessionTime:
-          type: integer
-          format: int32
-        supportsSessionExtension:
-          type: boolean
-        numberOfSessionExtensionsAllowed:
-          type: integer
-          format: int32
-        sessionTimeDuringExtension:
-          type: integer
-          format: int32
-    SsoHandlerMetadata:
+    SecurityScannerMetadata:
       type: object
       properties:
         className:
@@ -248,15 +220,49 @@ components:
           type: boolean
         generatorClass:
           type: string
-    SecurityScannerMetadata:
+    AuditStamp:
       type: object
       properties:
-        className:
+        user:
           type: string
-        propertyTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultPropertyType'
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
+    PropertyType:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        propertyTypeId:
+          type: integer
+          format: int64
+    EnvironmentGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        internalParentId:
+          type: string
+        parentId:
+          type: string
+        description:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+        nativeId:
+          type: string
+        nativeParentId:
+          type: string
     CatalogApplication:
       type: object
       properties:
@@ -315,37 +321,8 @@ components:
           $ref: '#/components/schemas/SsoHandlerMetadata'
         securityScannerMetadata:
           $ref: '#/components/schemas/SecurityScannerMetadata'
-    ProvisionHandlerMetadata:
+    JsonNode:
       type: object
-      properties:
-        className:
-          type: string
-        propertyTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultPropertyType'
-    PropertyType:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        description:
-          type: string
-        propertyTypeId:
-          type: integer
-          format: int64
-    AuditStamp:
-      type: object
-      properties:
-        user:
-          type: string
-        date:
-          type: string
-          format: date-time
-        action:
-          type: string
     Environment:
       type: object
       properties:
@@ -369,27 +346,6 @@ components:
         nativeGroupParentId:
           type: string
         parentGroupId:
-          type: string
-    EnvironmentGroup:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-        internalParentId:
-          type: string
-        parentId:
-          type: string
-        description:
-          type: string
-        created:
-          $ref: '#/components/schemas/AuditStamp'
-        nativeId:
-          type: string
-        nativeParentId:
           type: string
     AppContainerBean:
       type: object
@@ -436,8 +392,52 @@ components:
           type: string
         userAccountMappings:
           $ref: '#/components/schemas/JsonNode'
-    JsonNode:
+    ProvisionHandlerMetadata:
       type: object
+      properties:
+        className:
+          type: string
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
+    PapExpirationSettings:
+      type: object
+      properties:
+        minimumSessionTime:
+          type: integer
+          format: int32
+        maximumSessionTime:
+          type: integer
+          format: int32
+        supportsSessionExtension:
+          type: boolean
+        numberOfSessionExtensionsAllowed:
+          type: integer
+          format: int32
+        sessionTimeDuringExtension:
+          type: integer
+          format: int32
+    RootEnvironmentGroup:
+      type: object
+      properties:
+        environmentGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentGroup'
+        environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+    SsoHandlerMetadata:
+      type: object
+      properties:
+        className:
+          type: string
+        propertyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultPropertyType'
   securitySchemes:
     bearerAuth:
       type: http

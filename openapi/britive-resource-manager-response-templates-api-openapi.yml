@@ -149,40 +149,6 @@ components:
       schema:
         type: string
   schemas:
-    ResponseTemplateDetailsDto:
-      type: object
-      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
-      properties:
-        templateId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        show_on_ui:
-          type: boolean
-          default: 'false'
-          nullable: 'false'
-        isConsoleAccessEnabled:
-          type: boolean
-          default: 'false'
-          nullable: 'false'
-    ResponseTemplatesSummary:
-      type: object
-      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        size:
-          type: integer
-        sort:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseTemplateDetailsDto'
     ResponseTemplateDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -211,6 +177,40 @@ components:
           type: string
         updatedOn:
           type: string
+    ResponseTemplatesSummary:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseTemplateDetailsDto'
+    ResponseTemplateDetailsDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        templateId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        show_on_ui:
+          type: boolean
+          default: 'false'
+          nullable: 'false'
+        isConsoleAccessEnabled:
+          type: boolean
+          default: 'false'
+          nullable: 'false'
   securitySchemes:
     bearerAuth:
       type: http

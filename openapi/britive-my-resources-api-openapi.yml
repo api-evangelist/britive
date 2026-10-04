@@ -68,53 +68,6 @@ paths:
         '204':
           description: Successful operation
 components:
-  parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    searchText:
-      in: query
-      name: searchText
-      description: Parameter to filter resource by search text
-      required: 'false'
-      schema:
-        type: string
-        example: test
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    type:
-      in: query
-      name: type
-      description: Parameter to filter resource by type i.e.frequently used
-      required: 'false'
-      schema:
-        type: string
-        example: frequentlyUsed
-    favoriteId:
-      name: favoriteId
-      in: path
-      description: favoriteId of the resource.
-      required: 'true'
-      schema:
-        type: string
   schemas:
     ResourcesSummary:
       type: object
@@ -209,6 +162,53 @@ components:
         lockExpiry:
           type: string
           description: ISO-8601 timestamp at which the holder's current session on this (profile, resource) expires — i.e. when the exclusive lock is expected to be released and the entry becomes checkout-eligible again. Sourced from the active access expiration time.
+  parameters:
+    type:
+      in: query
+      name: type
+      description: Parameter to filter resource by type i.e.frequently used
+      required: 'false'
+      schema:
+        type: string
+        example: frequentlyUsed
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    searchText:
+      in: query
+      name: searchText
+      description: Parameter to filter resource by search text
+      required: 'false'
+      schema:
+        type: string
+        example: test
+    favoriteId:
+      name: favoriteId
+      in: path
+      description: favoriteId of the resource.
+      required: 'true'
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

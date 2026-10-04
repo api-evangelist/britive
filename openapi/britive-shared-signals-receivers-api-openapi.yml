@@ -131,6 +131,49 @@ paths:
                 $ref: '#/components/schemas/ReceiverMappings'
 components:
   schemas:
+    PutReceiverMappingsRequest:
+      type: object
+      required:
+      - mappings
+      properties:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiverEventMapping'
+    CreateReceiverRequest:
+      type: object
+      required:
+      - receiverUrl
+      properties:
+        receiverUrl:
+          type: string
+          format: uri
+          description: URL of the external receiver that will receive outbound SET events.
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+          default: 'true'
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Custom HTTP headers to include in outbound requests.
+
+            All values are encrypted before storage.
+
+            '
+    ListReceiversResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Receiver'
     ReceiverEventMapping:
       type: object
       required:
@@ -152,34 +195,6 @@ components:
           description: 'CAEP or RISC event URI to include in the outbound SET
 
             (e.g., "https://schemas.openid.net/secevent/risc/event-type/account-disabled").
-
-            '
-    PutReceiverMappingsRequest:
-      type: object
-      required:
-      - mappings
-      properties:
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReceiverEventMapping'
-    UpdateReceiverRequest:
-      type: object
-      properties:
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-        receiverUrl:
-          type: string
-          format: uri
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-          description: 'Replaces all headers. All values are encrypted before storage.
 
             '
     Receiver:
@@ -235,38 +250,23 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ListReceiversResponse:
+    UpdateReceiverRequest:
       type: object
-      required:
-      - items
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Receiver'
-    CreateReceiverRequest:
-      type: object
-      required:
-      - receiverUrl
-      properties:
-        receiverUrl:
-          type: string
-          format: uri
-          description: URL of the external receiver that will receive outbound SET events.
         displayName:
           type: string
         description:
           type: string
         enabled:
           type: boolean
-          default: 'true'
+        receiverUrl:
+          type: string
+          format: uri
         headers:
           type: object
           additionalProperties:
             type: string
-          description: 'Custom HTTP headers to include in outbound requests.
-
-            All values are encrypted before storage.
+          description: 'Replaces all headers. All values are encrypted before storage.
 
             '
   securitySchemes:

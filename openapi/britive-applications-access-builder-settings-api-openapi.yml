@@ -98,6 +98,44 @@ paths:
           description: application id not found
 components:
   schemas:
+    NotificationMediumDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        application:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        memberType:
+          type: string
+          enum:
+          - User
+          - Tag
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
     ApproversGroupDto:
       type: object
       properties:
@@ -114,49 +152,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MemberDto'
-    MemberRuleDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        memberType:
-          type: string
-          enum:
-          - User
-          - Tag
-        condition:
-          type: string
-          enum:
-          - Include
-          - Exclude
-    AssociationDto:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          description: Association type
-          enum:
-          - '0'
-          - '1'
-    NotificationMediumDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        application:
-          type: string
-        channels:
-          type: array
-          items:
-            type: string
     AccessRequestSettingsDto:
       type: object
       properties:
@@ -195,7 +190,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApproversGroupDto'
-    MemberDto:
+    MemberRuleDto:
       type: object
       properties:
         id:
@@ -207,6 +202,11 @@ components:
           enum:
           - User
           - Tag
+        condition:
+          type: string
+          enum:
+          - Include
+          - Exclude
   securitySchemes:
     bearerAuth:
       type: http

@@ -96,39 +96,7 @@ paths:
         '404':
           description: Not Found
 components:
-  parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    searchText:
-      in: query
-      name: searchText
-      description: Parameter to filter resource by search text
-      required: 'false'
-      schema:
-        type: string
-        example: test
   schemas:
-    DynamicParameters:
-      type: object
-      properties:
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/DynamicParameter'
     UserResourceDto:
       type: object
       properties:
@@ -144,15 +112,6 @@ components:
             type: string
         profileId:
           type: string
-    DynamicParameter:
-      type: object
-      properties:
-        paramName:
-          type: string
-        paramType:
-          type: string
-        paramValue:
-          type: string
     ResourceTemplatesSummary:
       type: object
       properties:
@@ -166,6 +125,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceTemplateDto'
+    DynamicParameter:
+      type: object
+      properties:
+        paramName:
+          type: string
+        paramType:
+          type: string
+        paramValue:
+          type: string
+    DynamicParameters:
+      type: object
+      properties:
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/DynamicParameter'
     ResourceTemplateDto:
       type: object
       properties:
@@ -204,6 +179,31 @@ components:
             type: string
         status:
           type: string
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    searchText:
+      in: query
+      name: searchText
+      description: Parameter to filter resource by search text
+      required: 'false'
+      schema:
+        type: string
+        example: test
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
   securitySchemes:
     bearerAuth:
       type: http

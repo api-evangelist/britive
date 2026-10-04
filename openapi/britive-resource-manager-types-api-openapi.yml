@@ -267,58 +267,7 @@ paths:
         '400':
           description: Bad Request
 components:
-  parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
   schemas:
-    ParamType:
-      type: string
-      description: Allowed values are 'string', 'password', 'ip-cidr', 'regex-pattern', 'list(comma-separated string)'
-    ResourceTypeDto:
-      type: object
-      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
-      properties:
-        resourceTypeId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdBy:
-          type: integer
-        updatedBy:
-          type: integer
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceTypeParam'
-        resourceCount:
-          type: integer
-        createdOn:
-          type: string
-        updatedOn:
-          type: string
     ResourceTypeParam:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -347,6 +296,57 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceTypeDto'
+    ParamType:
+      type: string
+      description: Allowed values are 'string', 'password', 'ip-cidr', 'regex-pattern', 'list(comma-separated string)'
+    ResourceTypeDto:
+      type: object
+      x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
+      properties:
+        resourceTypeId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdBy:
+          type: integer
+        updatedBy:
+          type: integer
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTypeParam'
+        resourceCount:
+          type: integer
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+  parameters:
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

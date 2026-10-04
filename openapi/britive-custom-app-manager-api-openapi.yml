@@ -88,6 +88,18 @@ paths:
               example: public, max-age=0
 components:
   schemas:
+    CreateGenericAppRequest:
+      type: object
+      properties:
+        templateName:
+          description: The template name of the custom app template previously uploaded
+          type: string
+        catalogAppDisplayName:
+          description: The application display name.
+          type: string
+      required:
+      - templateName
+      - catalogAppDisplayName
     CreateGenericAppResponse:
       type: object
       properties:
@@ -116,18 +128,6 @@ components:
           type: string
         provisioned:
           $ref: '#/components/schemas/ProvisionedStatus'
-    CreateGenericAppRequest:
-      type: object
-      properties:
-        templateName:
-          description: The template name of the custom app template previously uploaded
-          type: string
-        catalogAppDisplayName:
-          description: The application display name.
-          type: string
-      required:
-      - templateName
-      - catalogAppDisplayName
   securitySchemes:
     bearerAuth:
       type: http

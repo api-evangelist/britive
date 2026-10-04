@@ -397,67 +397,124 @@ paths:
               schema:
                 type: object
 components:
-  parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
   schemas:
-    UserBeanResult:
+    Tenant:
       type: object
       properties:
-        count:
+        type:
+          type: string
+        billingAddress:
+          type: string
+        businessContactNo:
+          type: string
+        technicalContactNo:
+          type: string
+        pricingTier:
+          type: string
+        rootUserId:
+          type: string
+        namespace:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
+        status:
+          type: string
+        tenantId:
           type: integer
-        page:
-          type: integer
-        size:
+          format: int32
+        companyName:
           type: string
-        sort:
+        modified:
+          $ref: '#/components/schemas/AuditStamp'
+        verified:
+          $ref: '#/components/schemas/AuditStamp'
+    UserBeanRequest:
+      type: object
+      properties:
+        username:
           type: string
-        filter:
+        status:
           type: string
-        data:
+          enum:
+          - inactive
+          - active
+        lastName:
+          type: string
+        firstName:
+          type: string
+        email:
+          type: string
+        emailList:
           type: array
           items:
-            $ref: '#/components/schemas/UserBeanResponse'
-    AttributeMap:
-      required:
-      - idpAttr
-      - userAttr
+            type: string
+        sharePasswordToUser:
+          type: boolean
+        password:
+          type: string
+        identityProvider:
+          type: string
+          example:
+          - id: 1HhvrKWjoFPXvOcbJSDx
+        businessUse:
+          type: string
+        jobFunction:
+          type: string
+        category:
+          type: string
+        relationships:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/IdentityRelationship'
+    AdminRole:
       type: object
       properties:
-        idpAttr:
+        name:
           type: string
-        userAttr:
+        adminRoleId:
+          type: integer
+          format: int32
+        authority:
           type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
+    ApiTokenBean:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        expiresOn:
+          type: string
+          format: date-time
+        createdOn:
+          type: string
+          format: date-time
+        type:
+          type: string
+          enum:
+          - DEFAULT
+          - SCIM
+          - ServiceIdentity
+        tokenExpirationDays:
+          type: integer
+          description: Any value between 1 and 90 days.
+          format: int32
+        status:
+          type: string
+          enum:
+          - Active
+          - Inactive
+        lastAccessed:
+          type: string
+          format: date-time
+        assignedTo:
+          type: string
+        token:
+          type: string
+        createdBy:
+          type: string
     UserView:
       type: object
       x-exclude-from-codegen: 'true'
@@ -476,20 +533,141 @@ components:
           type: string
         status:
           type: string
-    TagMembersResponse:
+    JsonNodeWrapper:
+      type: object
+      properties:
+        realNode:
+          $ref: '#/components/schemas/JsonNode'
+    CustomUserAttribute:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attributeValue:
+          type: string
+        attributeId:
+          type: string
+        attributeName:
+          type: string
+    IdentityRelationship:
+      type: object
+      properties:
+        relatedEntityId:
+          type: string
+        relatedEntityName:
+          type: string
+        relatedEntityType:
+          type: string
+        relationType:
+          type: string
+    UserBeanResult:
+      type: object
       properties:
         count:
           type: integer
-          format: int64
         page:
           type: integer
         size:
-          type: integer
-          default: '20'
+          type: string
+        sort:
+          type: string
+        filter:
+          type: string
         data:
           type: array
           items:
-            $ref: '#/components/schemas/UserView'
+            $ref: '#/components/schemas/UserBeanResponse'
+    UserBeanResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        username:
+          type: string
+        status:
+          type: string
+          enum:
+          - inactive
+          - active
+        lastName:
+          type: string
+        firstName:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        phone:
+          type: string
+        mobile:
+          type: string
+        email:
+          type: string
+        type:
+          type: string
+          enum:
+          - User
+          - ServiceIdentity
+          - AIIdentity
+        externalId:
+          type: string
+        name:
+          type: string
+        userTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTag'
+        lastLogin:
+          type: string
+          format: date-time
+        external:
+          type: boolean
+        adminRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminRole'
+        canChangeOrResetPassword:
+          type: boolean
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProvider'
+    UserTag:
+      type: object
+      properties:
+        name:
+          type: string
+        external:
+          type: boolean
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        description:
+          type: string
+        userTagId:
+          type: string
+        created:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - Inactive
+          - Active
+        modified:
+          type: string
+          format: date-time
+        userCount:
+          type: integer
+          format: int32
+        identityProviderId:
+          type: string
+        identityProvider:
+          $ref: '#/components/schemas/IdentityProvider'
+        membershipRule:
+          type: boolean
     IdentityProvider:
       required:
       - idpType
@@ -516,6 +694,32 @@ components:
           type: string
       discriminator:
         propertyName: idpType
+    AuditStamp:
+      type: object
+      properties:
+        user:
+          type: string
+        date:
+          type: string
+          format: date-time
+        action:
+          type: string
+    TagMembersResponse:
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+          default: '20'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserView'
+    JsonNode:
+      type: object
     User:
       type: object
       properties:
@@ -603,253 +807,49 @@ components:
           format: date-time
         canChangeOrResetPassword:
           type: boolean
-    AuditStamp:
+    AttributeMap:
+      required:
+      - idpAttr
+      - userAttr
       type: object
       properties:
-        user:
+        idpAttr:
           type: string
-        date:
+        userAttr:
           type: string
-          format: date-time
-        action:
-          type: string
-    AdminRole:
-      type: object
-      properties:
-        name:
-          type: string
-        adminRoleId:
-          type: integer
-          format: int32
-        authority:
-          type: string
-    UserTag:
-      type: object
-      properties:
-        name:
-          type: string
-        external:
-          type: boolean
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        description:
-          type: string
-        userTagId:
-          type: string
-        created:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - Inactive
-          - Active
-        modified:
-          type: string
-          format: date-time
-        userCount:
-          type: integer
-          format: int32
-        identityProviderId:
-          type: string
-        identityProvider:
-          $ref: '#/components/schemas/IdentityProvider'
-        membershipRule:
-          type: boolean
-    JsonNodeWrapper:
-      type: object
-      properties:
-        realNode:
-          $ref: '#/components/schemas/JsonNode'
-    CustomUserAttribute:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        attributeValue:
-          type: string
-        attributeId:
-          type: string
-        attributeName:
-          type: string
-    ApiTokenBean:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        expiresOn:
-          type: string
-          format: date-time
-        createdOn:
-          type: string
-          format: date-time
-        type:
-          type: string
-          enum:
-          - DEFAULT
-          - SCIM
-          - ServiceIdentity
-        tokenExpirationDays:
-          type: integer
-          description: Any value between 1 and 90 days.
-          format: int32
-        status:
-          type: string
-          enum:
-          - Active
-          - Inactive
-        lastAccessed:
-          type: string
-          format: date-time
-        assignedTo:
-          type: string
-        token:
-          type: string
-        createdBy:
-          type: string
-    UserBeanResponse:
-      type: object
-      properties:
-        userId:
-          type: string
-        username:
-          type: string
-        status:
-          type: string
-          enum:
-          - inactive
-          - active
-        lastName:
-          type: string
-        firstName:
-          type: string
-        created:
-          type: string
-          format: date-time
-        modified:
-          type: string
-          format: date-time
-        phone:
-          type: string
-        mobile:
-          type: string
-        email:
-          type: string
-        type:
-          type: string
-          enum:
-          - User
-          - ServiceIdentity
-          - AIIdentity
-        externalId:
-          type: string
-        name:
-          type: string
-        userTags:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserTag'
-        lastLogin:
-          type: string
-          format: date-time
-        external:
-          type: boolean
-        adminRoles:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminRole'
-        canChangeOrResetPassword:
-          type: boolean
-        identityProvider:
-          $ref: '#/components/schemas/IdentityProvider'
-    JsonNode:
-      type: object
-    UserBeanRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        status:
-          type: string
-          enum:
-          - inactive
-          - active
-        lastName:
-          type: string
-        firstName:
-          type: string
-        email:
-          type: string
-        emailList:
-          type: array
-          items:
-            type: string
-        sharePasswordToUser:
-          type: boolean
-        password:
-          type: string
-        identityProvider:
-          type: string
-          example:
-          - id: 1HhvrKWjoFPXvOcbJSDx
-        businessUse:
-          type: string
-        jobFunction:
-          type: string
-        category:
-          type: string
-        relationships:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/IdentityRelationship'
-    IdentityRelationship:
-      type: object
-      properties:
-        relatedEntityId:
-          type: string
-        relatedEntityName:
-          type: string
-        relatedEntityType:
-          type: string
-        relationType:
-          type: string
-    Tenant:
-      type: object
-      properties:
-        type:
-          type: string
-        billingAddress:
-          type: string
-        businessContactNo:
-          type: string
-        technicalContactNo:
-          type: string
-        pricingTier:
-          type: string
-        rootUserId:
-          type: string
-        namespace:
-          type: string
-        created:
-          $ref: '#/components/schemas/AuditStamp'
-        status:
-          type: string
-        tenantId:
-          type: integer
-          format: int32
-        companyName:
-          type: string
-        modified:
-          $ref: '#/components/schemas/AuditStamp'
-        verified:
-          $ref: '#/components/schemas/AuditStamp'
+      description: Single identity provider attribute mapped to service identity custom attribute
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
   securitySchemes:
     bearerAuth:
       type: http

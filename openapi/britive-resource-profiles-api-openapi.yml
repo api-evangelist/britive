@@ -230,6 +230,33 @@ components:
       schema:
         type: string
   schemas:
+    ResourceProfileInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        associations:
+          $ref: '#/components/schemas/LabelAssociation'
+        status:
+          type: string
+        expiration:
+          type: string
+        lastAccessed:
+          type: string
+        lastModifiedBy:
+          type: string
+        policyOrderingEnabled:
+          type: boolean
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
     ResourceProfileDto:
       type: object
       x-class-extra-annotation: '@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)'
@@ -279,33 +306,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceProfileInfo'
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    ResourceProfileInfo:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        associations:
-          $ref: '#/components/schemas/LabelAssociation'
-        status:
-          type: string
-        expiration:
-          type: string
-        lastAccessed:
-          type: string
-        lastModifiedBy:
-          type: string
-        policyOrderingEnabled:
-          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

@@ -233,8 +233,6 @@ paths:
           description: Not Found
 components:
   schemas:
-    Credentials:
-      type: string
     ResourceAccessStatus:
       type: object
       properties:
@@ -277,6 +275,8 @@ components:
         type: array
         items:
           type: string
+    Credentials:
+      type: string
     ResourceEvent:
       type: object
       properties:

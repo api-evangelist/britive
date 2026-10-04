@@ -471,24 +471,6 @@ paths:
           description: Error
 components:
   schemas:
-    ITSMFilter:
-      type: object
-      additionalProperties:
-        type: string
-    ItsmFilterCriteriaDto:
-      type: object
-      properties:
-        supportedTicketType:
-          type: string
-        filter:
-          $ref: '#/components/schemas/ITSMFilter'
-    TokensResponse:
-      type: object
-      description: 'Short-lived programmatic credentials. The keys and values are application-type-specific. Only available for `CLI` and `PROGRAMMATIC` checkout types; requires the application to have `supportsTokens=true`.
-
-        '
-      additionalProperties:
-        type: string
     ITSMTicketSearchResult:
       type: object
       properties:
@@ -501,18 +483,29 @@ components:
         tickets:
           type: object
           description: List of the tickets with the details like id, number, title, assignee, priority, etc.
-    ConsoleUrlResponse:
-      type: object
-      description: Console sign-in URL for a checked-out profile
+    ItsmSettingsDto:
+      allOf:
+      - $ref: '#/components/schemas/SettingsDto'
+      - type: object
       properties:
-        url:
+        connectionId:
           type: string
-          description: The console sign-in URL
-          example: https://signin.aws.amazon.com/federation?Action=login&...
-        idpName:
+        connectionType:
           type: string
-          nullable: 'true'
-          description: Identity provider name, present for some application types (e.g. OpenShift)
+        isCommentRequired:
+          type: boolean
+        isITSMEnabled:
+          type: boolean
+        supportedTicketTypes:
+          type: array
+          items:
+            type: string
+        itsmFilterCriteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItsmFilterCriteriaDto'
+        settingsType:
+          type: string
     MyAccessProfile:
       type: object
       properties:
@@ -560,239 +553,6 @@ components:
         extendable:
           type: boolean
           example: 'false'
-    MyAccess:
-      type: object
-      properties:
-        frequency:
-          type: integer
-          example: '0'
-        countOfProfiles:
-          type: integer
-          example: '100'
-        papId:
-          type: string
-          example: id1
-        environmentId:
-          type: string
-          example: envId1
-        appId:
-          type: string
-          example: appId1
-        myAccessDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccessDetail'
-        application:
-          $ref: '#/components/schemas/MyAccessApplication'
-        environment:
-          $ref: '#/components/schemas/MyAccessEnvironment'
-        profile:
-          $ref: '#/components/schemas/MyAccessProfile'
-    MyAccessDetail:
-      type: object
-      properties:
-        checkOutTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        checkInTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        status:
-          type: string
-          enum:
-          - Allow
-          - Deny
-          - Pending
-          example: Allow
-        approvalValidityTime:
-          type: string
-          format: date-time
-          nullable: 'true'
-        accessType:
-          type: string
-          enum:
-          - CONSOLE
-          - PROGRAMMATIC
-          example: CONSOLE
-        favoriteId:
-          type: string
-          nullable: 'true'
-    MyAccessApplication:
-      type: object
-      properties:
-        appId:
-          type: string
-          example: appId1
-        appName:
-          type: string
-          example: AWS
-        applicationType:
-          type: string
-          example: AWS
-        consoleAccessError:
-          type: string
-          nullable: 'true'
-        programmaticAccessError:
-          type: string
-          nullable: 'true'
-        description:
-          type: string
-          nullable: 'true'
-        supportsToken:
-          type: boolean
-          example: 'false'
-        showAwsAccountNumber:
-          type: boolean
-          example: 'false'
-        supportsMultipleProfilesCheckoutCli:
-          type: boolean
-          example: 'false'
-        supportsMultipleProfilesCheckoutConsole:
-          type: boolean
-          example: 'false'
-        allowCopyingConsoleUrl:
-          type: boolean
-          example: 'false'
-        displayProgrammaticKeys:
-          type: boolean
-          example: 'true'
-        requiresHierarchicalModel:
-          type: boolean
-          example: 'false'
-        consoleAccess:
-          type: boolean
-          example: 'true'
-        programmaticAccess:
-          type: boolean
-          example: 'false'
-        supportsSharedAccounts:
-          type: boolean
-          example: 'true'
-    AutoApprovalSettings:
-      type: object
-      properties:
-        isAutoApproved:
-          type: boolean
-          default: 'false'
-        autoApprovalEndDate:
-          type: string
-    ItsmSettingsDto:
-      allOf:
-      - $ref: '#/components/schemas/SettingsDto'
-      - type: object
-      properties:
-        connectionId:
-          type: string
-        connectionType:
-          type: string
-        isCommentRequired:
-          type: boolean
-        isITSMEnabled:
-          type: boolean
-        supportedTicketTypes:
-          type: array
-          items:
-            type: string
-        itsmFilterCriteria:
-          type: array
-          items:
-            $ref: '#/components/schemas/ItsmFilterCriteriaDto'
-        settingsType:
-          type: string
-    ApprovalRequestData:
-      type: object
-      properties:
-        justification:
-          type: string
-          description: Existing Justification
-        ticketId:
-          type: string
-          description: Existing Ticket ID
-        ticketType:
-          type: string
-          description: Existing Ticket Type
-    JustificationSettingsDto:
-      allOf:
-      - $ref: '#/components/schemas/SettingsDto'
-      - type: object
-      properties:
-        isJustificationRequired:
-          type: boolean
-        isJustificationRequiredAtCheckout:
-          type: boolean
-        justificationRegex:
-          type: string
-    ITSMTicketValidationResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Validation result
-        message:
-          type: string
-          description: Validation message
-        ticketDetails:
-          type: object
-          description: Ticket details like id, number, title, assignee, priority, etc.
-    MyAccessSummary:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total count of items
-          example: '100'
-        page:
-          type: integer
-          description: Current page number
-          example: '0'
-        size:
-          type: integer
-          description: Page size
-          example: '20'
-        sort:
-          type: string
-          description: Sort order
-          example: appName,ASC
-        filter:
-          type: string
-          nullable: 'true'
-          description: Applied filter
-          example: appName eq "AWS"
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MyAccess'
-    UserFiltersDTO:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        filter:
-          $ref: '#/components/schemas/Filter'
-    SettingsDto:
-      type: object
-      required:
-      - settingsType
-      properties:
-        settingsType:
-          type: string
-        id:
-          type: string
-        entityId:
-          type: string
-        entityType:
-          type: string
-        isInherited:
-          type: boolean
-      discriminator:
-        propertyName: settingsType
-        mapping:
-          ITSM: ItsmSettingsDto
-          JUSTIFICATION: JustificationSettingsDto
     AppAccessStatusResponse:
       type: object
       description: Status of a profile checkout or check-in operation
@@ -870,27 +630,60 @@ components:
           type: string
           nullable: 'true'
           description: Error details if the checkout or check-in operation failed
-    Settings:
+    AccessProfileSettings:
       type: object
-      x-exclude-from-codegen: 'true'
       properties:
-        justification:
+        profileId:
           type: string
-        ticketId:
+        environmentId:
           type: string
-        ticketType:
-          type: string
-        userOnCall:
-          type: boolean
-          default: 'false'
-        checkoutVariableValues:
-          type: object
-          additionalProperties:
-            type: string
-          writeOnly: 'true'
-          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
+        justificationSetting:
+          $ref: '#/components/schemas/JustificationSettingsDto'
+        itsmSetting:
+          $ref: '#/components/schemas/ItsmSettingsDto'
+        onCallSettings:
+          $ref: '#/components/schemas/AutoApprovalSettings'
+        approvalRequestData:
+          $ref: '#/components/schemas/ApprovalRequestData'
+    ITSMFilter:
+      type: object
+      additionalProperties:
+        type: string
+    TokensResponse:
+      type: object
+      description: 'Short-lived programmatic credentials. The keys and values are application-type-specific. Only available for `CLI` and `PROGRAMMATIC` checkout types; requires the application to have `supportsTokens=true`.
 
-            '
+        '
+      additionalProperties:
+        type: string
+    MyAccessSummary:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total count of items
+          example: '100'
+        page:
+          type: integer
+          description: Current page number
+          example: '0'
+        size:
+          type: integer
+          description: Page size
+          example: '20'
+        sort:
+          type: string
+          description: Sort order
+          example: appName,ASC
+        filter:
+          type: string
+          nullable: 'true'
+          description: Applied filter
+          example: appName eq "AWS"
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccess'
     Filter:
       type: object
       properties:
@@ -914,21 +707,78 @@ components:
           type: array
           items:
             type: string
-    AccessProfileSettings:
+    JustificationSettingsDto:
+      allOf:
+      - $ref: '#/components/schemas/SettingsDto'
+      - type: object
+      properties:
+        isJustificationRequired:
+          type: boolean
+        isJustificationRequiredAtCheckout:
+          type: boolean
+        justificationRegex:
+          type: string
+    MyAccess:
       type: object
       properties:
-        profileId:
+        frequency:
+          type: integer
+          example: '0'
+        countOfProfiles:
+          type: integer
+          example: '100'
+        papId:
           type: string
+          example: id1
         environmentId:
           type: string
-        justificationSetting:
-          $ref: '#/components/schemas/JustificationSettingsDto'
-        itsmSetting:
-          $ref: '#/components/schemas/ItsmSettingsDto'
-        onCallSettings:
-          $ref: '#/components/schemas/AutoApprovalSettings'
-        approvalRequestData:
-          $ref: '#/components/schemas/ApprovalRequestData'
+          example: envId1
+        appId:
+          type: string
+          example: appId1
+        myAccessDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyAccessDetail'
+        application:
+          $ref: '#/components/schemas/MyAccessApplication'
+        environment:
+          $ref: '#/components/schemas/MyAccessEnvironment'
+        profile:
+          $ref: '#/components/schemas/MyAccessProfile'
+    Settings:
+      type: object
+      x-exclude-from-codegen: 'true'
+      properties:
+        justification:
+          type: string
+        ticketId:
+          type: string
+        ticketType:
+          type: string
+        userOnCall:
+          type: boolean
+          default: 'false'
+        checkoutVariableValues:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: 'true'
+          description: 'Per-checkout map of variableName -> value for every variable on the resolved profile-permission flagged with promptAtCheckout=true. UI populates from ResourceProfileSettings.checkoutVariablePrompts returned by GET /api/resource-manager/my-resources/{profileId}/resources/{resourceId}/settings. Server validates each supplied value against the variable''s regexPattern when one is configured (any type); values for variables without a pattern are taken literally. Missing/blank for a required variable produces 400 RM-0024; regex validation failure produces 400 RM-0025; entries for variables not flagged promptAtCheckout are silently ignored.
+
+            '
+    ApprovalRequestData:
+      type: object
+      properties:
+        justification:
+          type: string
+          description: Existing Justification
+        ticketId:
+          type: string
+          description: Existing Ticket ID
+        ticketType:
+          type: string
+          description: Existing Ticket Type
     MyAccessEnvironment:
       type: object
       properties:
@@ -951,6 +801,156 @@ components:
           type: object
           additionalProperties: 'true'
           example: {}
+    MyAccessDetail:
+      type: object
+      properties:
+        checkOutTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        checkInTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        status:
+          type: string
+          enum:
+          - Allow
+          - Deny
+          - Pending
+          example: Allow
+        approvalValidityTime:
+          type: string
+          format: date-time
+          nullable: 'true'
+        accessType:
+          type: string
+          enum:
+          - CONSOLE
+          - PROGRAMMATIC
+          example: CONSOLE
+        favoriteId:
+          type: string
+          nullable: 'true'
+    ITSMTicketValidationResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Validation result
+        message:
+          type: string
+          description: Validation message
+        ticketDetails:
+          type: object
+          description: Ticket details like id, number, title, assignee, priority, etc.
+    MyAccessApplication:
+      type: object
+      properties:
+        appId:
+          type: string
+          example: appId1
+        appName:
+          type: string
+          example: AWS
+        applicationType:
+          type: string
+          example: AWS
+        consoleAccessError:
+          type: string
+          nullable: 'true'
+        programmaticAccessError:
+          type: string
+          nullable: 'true'
+        description:
+          type: string
+          nullable: 'true'
+        supportsToken:
+          type: boolean
+          example: 'false'
+        showAwsAccountNumber:
+          type: boolean
+          example: 'false'
+        supportsMultipleProfilesCheckoutCli:
+          type: boolean
+          example: 'false'
+        supportsMultipleProfilesCheckoutConsole:
+          type: boolean
+          example: 'false'
+        allowCopyingConsoleUrl:
+          type: boolean
+          example: 'false'
+        displayProgrammaticKeys:
+          type: boolean
+          example: 'true'
+        requiresHierarchicalModel:
+          type: boolean
+          example: 'false'
+        consoleAccess:
+          type: boolean
+          example: 'true'
+        programmaticAccess:
+          type: boolean
+          example: 'false'
+        supportsSharedAccounts:
+          type: boolean
+          example: 'true'
+    ItsmFilterCriteriaDto:
+      type: object
+      properties:
+        supportedTicketType:
+          type: string
+        filter:
+          $ref: '#/components/schemas/ITSMFilter'
+    UserFiltersDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        filter:
+          $ref: '#/components/schemas/Filter'
+    AutoApprovalSettings:
+      type: object
+      properties:
+        isAutoApproved:
+          type: boolean
+          default: 'false'
+        autoApprovalEndDate:
+          type: string
+    SettingsDto:
+      type: object
+      required:
+      - settingsType
+      properties:
+        settingsType:
+          type: string
+        id:
+          type: string
+        entityId:
+          type: string
+        entityType:
+          type: string
+        isInherited:
+          type: boolean
+      discriminator:
+        propertyName: settingsType
+        mapping:
+          ITSM: ItsmSettingsDto
+          JUSTIFICATION: JustificationSettingsDto
+    ConsoleUrlResponse:
+      type: object
+      description: Console sign-in URL for a checked-out profile
+      properties:
+        url:
+          type: string
+          description: The console sign-in URL
+          example: https://signin.aws.amazon.com/federation?Action=login&...
+        idpName:
+          type: string
+          nullable: 'true'
+          description: Identity provider name, present for some application types (e.g. OpenShift)
   securitySchemes:
     bearerAuth:
       type: http
