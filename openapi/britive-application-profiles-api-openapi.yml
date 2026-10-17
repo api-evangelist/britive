@@ -179,27 +179,31 @@ paths:
               schema:
                 type: object
 components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: 'false'
+      description: Parameter to specify the page number of the records to retrieve
+      schema:
+        type: integer
+        default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      required: 'false'
+      description: parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
   schemas:
-    CloneOptionsDto:
-      required:
-      - cloneOptions
-      - cloneProfileId
-      type: object
-      properties:
-        cloneProfileId:
-          type: string
-        cloneOptions:
-          type: string
-        cloneProfileDetails:
-          type: boolean
-        clonePermissions:
-          type: boolean
-        cloneAssociations:
-          type: boolean
-        clonePolicies:
-          type: boolean
-        cloneSessionAttributes:
-          type: boolean
     ApplicationPermission:
       type: object
       properties:
@@ -256,6 +260,55 @@ components:
         appPermissionId:
           type: integer
           format: int64
+    PapAccountIntegrityCheck:
+      type: object
+      properties:
+        message:
+          type: string
+        appContainerId:
+          type: integer
+          format: int64
+        papId:
+          type: integer
+          format: int64
+        userId:
+          type: string
+        accountId:
+          type: integer
+          format: int64
+        succeeded:
+          type: boolean
+        environmentId:
+          type: string
+        tenantAppId:
+          type: integer
+          format: int64
+        integrityCheckId:
+          type: integer
+          format: int64
+        nativeUsername:
+          type: string
+    JsonNode:
+      type: object
+    PapScopeBean:
+      type: object
+      properties:
+        papScopeId:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+          - Environment
+          - EnvironmentGroup
+          - ApplicationResource
+        appContainerId:
+          type: integer
+          format: int64
+        value:
+          type: string
+        papId:
+          type: string
     UserTagIntegrityCheck:
       type: object
       properties:
@@ -274,6 +327,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PapAccountIntegrityCheck'
+    Environment:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        parentGroup:
+          $ref: '#/components/schemas/EnvironmentGroup'
+        internalParentId:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        nativeId:
+          type: string
+        nativeGroupParentId:
+          type: string
+        parentGroupId:
+          type: string
+    AccessPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
     PapBeanToClone:
       type: object
       properties:
@@ -311,65 +397,47 @@ components:
           type: string
         useDefaultProjectIdForServiceAccount:
           type: boolean
-    PapAccountIntegrityCheck:
-      type: object
-      properties:
-        message:
-          type: string
-        appContainerId:
-          type: integer
-          format: int64
-        papId:
-          type: integer
-          format: int64
-        userId:
-          type: string
-        accountId:
-          type: integer
-          format: int64
-        succeeded:
-          type: boolean
-        environmentId:
-          type: string
-        tenantAppId:
-          type: integer
-          format: int64
-        integrityCheckId:
-          type: integer
-          format: int64
-        nativeUsername:
-          type: string
-    AccessPeriod:
-      type: object
-      properties:
-        start:
-          type: string
-          format: date-time
-        end:
-          type: string
-          format: date-time
-    PapAccountIntegrityCheckBean:
+    PapPermIntegrityCheckBean:
       type: object
       properties:
         integrityCheckId:
           type: integer
           format: int64
-        appContainerId:
-          type: integer
-          format: int64
-        environmentId:
+        permissionName:
           type: string
-        tenantAppId:
-          type: integer
-          format: int64
-        userId:
-          type: string
-        nativeUsername:
+        permissionType:
           type: string
         succeeded:
           type: boolean
+        environmentId:
+          type: string
+        scope:
+          type: string
         message:
           type: string
+        permissionId:
+          type: integer
+          format: int64
+        appContainerId:
+          type: integer
+          format: int64
+        tenantAppId:
+          type: integer
+          format: int64
+    ApplicationPermissionDefinition:
+      type: object
+      properties:
+        tags:
+          $ref: '#/components/schemas/JsonNode'
+        oldPermissionDefinition:
+          $ref: '#/components/schemas/JsonNode'
+        permissionDefinition:
+          $ref: '#/components/schemas/JsonNode'
+        appPermissionId:
+          type: integer
+          format: int64
+        oldTags:
+          $ref: '#/components/schemas/JsonNode'
     PapUserBean:
       type: object
       properties:
@@ -413,44 +481,6 @@ components:
           type: string
         username:
           type: string
-    Environment:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-        parentGroup:
-          $ref: '#/components/schemas/EnvironmentGroup'
-        internalParentId:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-        nativeId:
-          type: string
-        nativeGroupParentId:
-          type: string
-        parentGroupId:
-          type: string
-    ApplicationPermissionDefinition:
-      type: object
-      properties:
-        tags:
-          $ref: '#/components/schemas/JsonNode'
-        oldPermissionDefinition:
-          $ref: '#/components/schemas/JsonNode'
-        permissionDefinition:
-          $ref: '#/components/schemas/JsonNode'
-        appPermissionId:
-          type: integer
-          format: int64
-        oldTags:
-          $ref: '#/components/schemas/JsonNode'
     PapBean:
       type: object
       properties:
@@ -555,38 +585,48 @@ components:
           type: boolean
         delegationEnabled:
           type: boolean
-    PermissionScope:
+    EnvironmentGroup:
       type: object
       properties:
         name:
           type: string
+        id:
+          type: string
         type:
           type: string
-        scopeId:
-          type: integer
-          format: int64
+        internalParentId:
+          type: string
         parentId:
           type: string
+        description:
+          type: string
+        created:
+          $ref: '#/components/schemas/AuditStamp'
         nativeId:
           type: string
-    PapScopeBean:
+        nativeParentId:
+          type: string
+    PapAccountIntegrityCheckBean:
       type: object
       properties:
-        papScopeId:
+        integrityCheckId:
           type: integer
           format: int64
-        type:
-          type: string
-          enum:
-          - Environment
-          - EnvironmentGroup
-          - ApplicationResource
         appContainerId:
           type: integer
           format: int64
-        value:
+        environmentId:
           type: string
-        papId:
+        tenantAppId:
+          type: integer
+          format: int64
+        userId:
+          type: string
+        nativeUsername:
+          type: string
+        succeeded:
+          type: boolean
+        message:
           type: string
     AppContainerPapPermission:
       type: object
@@ -612,33 +652,50 @@ components:
           type: boolean
         source:
           type: string
-    PapPermIntegrityCheckBean:
+    AuditStamp:
       type: object
       properties:
-        integrityCheckId:
-          type: integer
-          format: int64
-        permissionName:
+        user:
           type: string
-        permissionType:
+        date:
           type: string
-        succeeded:
+          format: date-time
+        action:
+          type: string
+    CloneOptionsDto:
+      required:
+      - cloneOptions
+      - cloneProfileId
+      type: object
+      properties:
+        cloneProfileId:
+          type: string
+        cloneOptions:
+          type: string
+        cloneProfileDetails:
           type: boolean
-        environmentId:
+        clonePermissions:
+          type: boolean
+        cloneAssociations:
+          type: boolean
+        clonePolicies:
+          type: boolean
+        cloneSessionAttributes:
+          type: boolean
+    PermissionScope:
+      type: object
+      properties:
+        name:
           type: string
-        scope:
+        type:
           type: string
-        message:
-          type: string
-        permissionId:
+        scopeId:
           type: integer
           format: int64
-        appContainerId:
-          type: integer
-          format: int64
-        tenantAppId:
-          type: integer
-          format: int64
+        parentId:
+          type: string
+        nativeId:
+          type: string
     PapUserTagBean:
       type: object
       properties:
@@ -668,63 +725,6 @@ components:
           type: string
         membershipRule:
           type: boolean
-    AuditStamp:
-      type: object
-      properties:
-        user:
-          type: string
-        date:
-          type: string
-          format: date-time
-        action:
-          type: string
-    EnvironmentGroup:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-        internalParentId:
-          type: string
-        parentId:
-          type: string
-        description:
-          type: string
-        created:
-          $ref: '#/components/schemas/AuditStamp'
-        nativeId:
-          type: string
-        nativeParentId:
-          type: string
-    JsonNode:
-      type: object
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: 'false'
-      description: Parameter to specify the page number of the records to retrieve
-      schema:
-        type: integer
-        default: '0'
-    Size:
-      name: size
-      in: query
-      required: 'false'
-      description: parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
   securitySchemes:
     bearerAuth:
       type: http

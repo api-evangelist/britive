@@ -174,12 +174,6 @@ paths:
           description: identity provider not found
 components:
   schemas:
-    SpiffeBundleProfile:
-      description: the SPIFFE bundle endpoint profile
-      type: string
-      enum:
-      - https_web
-      - https_spiffe
     SpiffeProvider:
       description: model of a SPIFFE Workload Identity Provider
       allOf:
@@ -198,24 +192,23 @@ components:
       - bundleProfile
       - trustDomain
       - attributesMap
-    AwsProvider:
+    AttributeMap:
       required:
-      - idpType
-      - name
+      - idpAttr
+      - userAttr
       type: object
-      description: model of a AWS Provider
-      discriminator:
-        propertyName: idpType
-      allOf:
-      - $ref: '#/components/schemas/IdentityProvider'
-      - type: object
-        properties:
-          maxDuration:
-            type: integer
-            description: The maximum number of hours the client can request the AWS token be valid.
-            format: int32
-          idpType:
-            type: string
+      properties:
+        idpAttr:
+          type: string
+        userAttr:
+          type: string
+      description: Single identity provider attribute mapped to service identity custom attribute
+    SpiffeBundleProfile:
+      description: the SPIFFE bundle endpoint profile
+      type: string
+      enum:
+      - https_web
+      - https_spiffe
     OpenIdConnectProvider:
       required:
       - idpType
@@ -237,17 +230,24 @@ components:
               type: string
           idpType:
             type: string
-    AttributeMap:
+    AwsProvider:
       required:
-      - idpAttr
-      - userAttr
+      - idpType
+      - name
       type: object
-      properties:
-        idpAttr:
-          type: string
-        userAttr:
-          type: string
-      description: Single identity provider attribute mapped to service identity custom attribute
+      description: model of a AWS Provider
+      discriminator:
+        propertyName: idpType
+      allOf:
+      - $ref: '#/components/schemas/IdentityProvider'
+      - type: object
+        properties:
+          maxDuration:
+            type: integer
+            description: The maximum number of hours the client can request the AWS token be valid.
+            format: int32
+          idpType:
+            type: string
     IdentityProvider:
       required:
       - idpType

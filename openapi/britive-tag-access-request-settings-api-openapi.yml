@@ -68,6 +68,21 @@ paths:
           description: Tag access request settings updated successfully
 components:
   schemas:
+    NotificationMediumDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        application:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
     TagAccessRequestSettingsDto:
       type: object
       properties:
@@ -95,21 +110,6 @@ components:
           - Any
           - All
           - Manager
-    NotificationMediumDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        application:
-          type: string
-        channels:
-          type: array
-          items:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http

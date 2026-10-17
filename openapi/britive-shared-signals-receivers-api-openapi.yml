@@ -131,15 +131,15 @@ paths:
                 $ref: '#/components/schemas/ReceiverMappings'
 components:
   schemas:
-    PutReceiverMappingsRequest:
+    ListReceiversResponse:
       type: object
       required:
-      - mappings
+      - items
       properties:
-        mappings:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/ReceiverEventMapping'
+            $ref: '#/components/schemas/Receiver'
     CreateReceiverRequest:
       type: object
       required:
@@ -165,15 +165,6 @@ components:
             All values are encrypted before storage.
 
             '
-    ListReceiversResponse:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Receiver'
     ReceiverEventMapping:
       type: object
       required:
@@ -195,6 +186,34 @@ components:
           description: 'CAEP or RISC event URI to include in the outbound SET
 
             (e.g., "https://schemas.openid.net/secevent/risc/event-type/account-disabled").
+
+            '
+    PutReceiverMappingsRequest:
+      type: object
+      required:
+      - mappings
+      properties:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiverEventMapping'
+    UpdateReceiverRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        receiverUrl:
+          type: string
+          format: uri
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Replaces all headers. All values are encrypted before storage.
 
             '
     Receiver:
@@ -250,25 +269,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    UpdateReceiverRequest:
-      type: object
-      properties:
-        displayName:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-        receiverUrl:
-          type: string
-          format: uri
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-          description: 'Replaces all headers. All values are encrypted before storage.
-
-            '
   securitySchemes:
     bearerAuth:
       type: http

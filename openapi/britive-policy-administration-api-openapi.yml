@@ -585,6 +585,50 @@ paths:
                 type: object
 components:
   schemas:
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          maxLength: '64'
+          minLength: '1'
+          pattern: \s*[a-zA-Z0-9-_\s]+\s*
+          type: string
+        description:
+          maxLength: '255'
+          minLength: '0'
+          type: string
+        permissions:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        isReadOnly:
+          type: boolean
+    MemberDto:
+      type: object
+      properties:
+        tags:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        tokens:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        users:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
+        serviceIdentities:
+          uniqueItems: 'true'
+          type: array
+          items:
+            $ref: '#/components/schemas/IDNamePair'
     IDNamePair:
       type: object
       properties:
@@ -592,40 +636,6 @@ components:
           type: string
         name:
           type: string
-    PermissionDto:
-      required:
-      - actions
-      - resources
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          pattern: \s*[a-zA-Z0-9-_\s]+\s*
-          type: string
-        description:
-          maxLength: '255'
-          minLength: '0'
-          type: string
-        consumer:
-          maxLength: '30'
-          minLength: '0'
-          pattern: \s*[a-zA-Z]+\s*
-          type: string
-        actions:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        resources:
-          uniqueItems: 'true'
-          type: array
-          items:
-            type: string
-        isInline:
-          type: boolean
-        isReadOnly:
-          type: boolean
     PolicyDto:
       type: object
       properties:
@@ -681,48 +691,38 @@ components:
             type: array
             items:
               type: string
-    MemberDto:
-      type: object
-      properties:
-        tags:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        tokens:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        users:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-        serviceIdentities:
-          uniqueItems: 'true'
-          type: array
-          items:
-            $ref: '#/components/schemas/IDNamePair'
-    RoleDto:
+    PermissionDto:
+      required:
+      - actions
+      - resources
       type: object
       properties:
         id:
           type: string
         name:
-          maxLength: '64'
-          minLength: '1'
           pattern: \s*[a-zA-Z0-9-_\s]+\s*
           type: string
         description:
           maxLength: '255'
           minLength: '0'
           type: string
-        permissions:
+        consumer:
+          maxLength: '30'
+          minLength: '0'
+          pattern: \s*[a-zA-Z]+\s*
+          type: string
+        actions:
           uniqueItems: 'true'
           type: array
           items:
-            $ref: '#/components/schemas/PermissionDto'
+            type: string
+        resources:
+          uniqueItems: 'true'
+          type: array
+          items:
+            type: string
+        isInline:
+          type: boolean
         isReadOnly:
           type: boolean
   securitySchemes:

@@ -71,6 +71,16 @@ paths:
               schema:
                 type: object
 components:
+  schemas:
+    AccessPeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
   parameters:
     Size:
       name: size
@@ -95,16 +105,6 @@ components:
       schema:
         type: integer
         default: '0'
-  schemas:
-    AccessPeriod:
-      type: object
-      properties:
-        start:
-          type: string
-          format: date-time
-        end:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

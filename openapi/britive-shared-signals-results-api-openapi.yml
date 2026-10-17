@@ -58,23 +58,6 @@ paths:
                 $ref: '#/components/schemas/QueryResultsResponse'
 components:
   schemas:
-    QueryResultsResponse:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SsfProcessingResult'
-        nextToken:
-          type: string
-          nullable: 'true'
-    Direction:
-      type: string
-      enum:
-      - RECEIVED
-      - TRANSMITTED
     ActionOutcome:
       type: object
       properties:
@@ -94,19 +77,6 @@ components:
       enum:
       - ACCEPTED
       - FAILED
-    SubjectIdentifier:
-      type: object
-      required:
-      - type
-      - value
-      properties:
-        type:
-          type: string
-          description: v1 supports email only (aligns with current design)
-          enum:
-          - email
-        value:
-          type: string
     SsfProcessingResult:
       type: object
       required:
@@ -156,6 +126,36 @@ components:
         rawSsfEvent:
           type: object
           additionalProperties: 'true'
+    QueryResultsResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SsfProcessingResult'
+        nextToken:
+          type: string
+          nullable: 'true'
+    SubjectIdentifier:
+      type: object
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: v1 supports email only (aligns with current design)
+          enum:
+          - email
+        value:
+          type: string
+    Direction:
+      type: string
+      enum:
+      - RECEIVED
+      - TRANSMITTED
   securitySchemes:
     bearerAuth:
       type: http

@@ -95,23 +95,6 @@ paths:
               schema:
                 type: object
 components:
-  schemas:
-    FullScanResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        environments:
-          type: array
-          items:
-            $ref: '#/components/schemas/FullScanEnvironment'
-    FullScanEnvironment:
-      type: object
-      properties:
-        name:
-          type: string
-        message:
-          type: string
   parameters:
     Page:
       name: page
@@ -121,6 +104,13 @@ components:
       schema:
         type: integer
         default: '0'
+    Sort:
+      name: sort
+      in: query
+      required: 'false'
+      description: parameter to specify the sort parameter and direction
+      schema:
+        type: string
     Size:
       name: size
       in: query
@@ -129,13 +119,23 @@ components:
       schema:
         type: integer
         default: '20'
-    Sort:
-      name: sort
-      in: query
-      required: 'false'
-      description: parameter to specify the sort parameter and direction
-      schema:
-        type: string
+  schemas:
+    FullScanEnvironment:
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+    FullScanResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        environments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FullScanEnvironment'
   securitySchemes:
     bearerAuth:
       type: http

@@ -176,20 +176,8 @@ components:
           enum:
           - User
           - Tag
-    ApplicationSummary:
+    JsonNode:
       type: object
-      properties:
-        appContainerId:
-          type: string
-        catalogAppDisplayName:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
     RuleBean:
       type: object
       properties:
@@ -210,8 +198,6 @@ components:
           - OR
         description:
           type: string
-    JsonNode:
-      type: object
     NotificationBean:
       type: object
       properties:
@@ -244,6 +230,20 @@ components:
           readOnly: 'true'
           items:
             $ref: '#/components/schemas/ApplicationSummary'
+    ApplicationSummary:
+      type: object
+      properties:
+        appContainerId:
+          type: string
+        catalogAppDisplayName:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
   securitySchemes:
     bearerAuth:
       type: http

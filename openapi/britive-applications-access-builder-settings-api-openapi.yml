@@ -98,21 +98,6 @@ paths:
           description: application id not found
 components:
   schemas:
-    NotificationMediumDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        application:
-          type: string
-        channels:
-          type: array
-          items:
-            type: string
     MemberDto:
       type: object
       properties:
@@ -136,22 +121,6 @@ components:
           enum:
           - '0'
           - '1'
-    ApproversGroupDto:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        condition:
-          type: string
-          enum:
-          - All
-          - Any
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberDto'
     AccessRequestSettingsDto:
       type: object
       properties:
@@ -175,21 +144,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MemberRuleDto'
-    AssociationApproversDto:
+    ApproversGroupDto:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        associations:
+        condition:
+          type: string
+          enum:
+          - All
+          - Any
+        members:
           type: array
           items:
-            $ref: '#/components/schemas/AssociationDto'
-        approversGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApproversGroupDto'
+            $ref: '#/components/schemas/MemberDto'
     MemberRuleDto:
       type: object
       properties:
@@ -207,6 +177,36 @@ components:
           enum:
           - Include
           - Exclude
+    NotificationMediumDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        application:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+    AssociationApproversDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationDto'
+        approversGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApproversGroupDto'
   securitySchemes:
     bearerAuth:
       type: http

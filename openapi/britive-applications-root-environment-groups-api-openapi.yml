@@ -94,6 +94,30 @@ paths:
                 type: object
 components:
   schemas:
+    DefaultEnvironment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        nativeId:
+          type: string
+        parentGroupId:
+          type: string
+        type:
+          type: string
+        internalParentId:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        created:
+          $ref: '#/components/schemas/AuditStamp'
     AuditStamp:
       type: object
       properties:
@@ -131,30 +155,6 @@ components:
           type: string
         internalParentId:
           type: string
-        created:
-          $ref: '#/components/schemas/AuditStamp'
-    DefaultEnvironment:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        nativeId:
-          type: string
-        parentGroupId:
-          type: string
-        type:
-          type: string
-        internalParentId:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
         created:
           $ref: '#/components/schemas/AuditStamp'
   securitySchemes:

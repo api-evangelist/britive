@@ -93,6 +93,27 @@ paths:
           description: authenticated user does not have administrator access.
 components:
   schemas:
+    StepUpConfiguration:
+      required:
+      - completedCookieMaxAge
+      - totpConfiguration
+      - validationWindow
+      type: object
+      properties:
+        validationWindow:
+          maximum: '60'
+          minimum: '15'
+          type: integer
+          description: How long in minutes the last step up authentication completion is valid before prompting for step up again.
+          format: int32
+        completedCookieMaxAge:
+          maximum: '30'
+          minimum: '2'
+          type: integer
+          description: How long in seconds the completion id cookie is valid for step up policy conditions enabled for always prompt for step up.
+          format: int32
+        totpConfiguration:
+          $ref: '#/components/schemas/TotpConfiguration'
     MfaAuthResponse:
       type: object
       properties:
@@ -129,27 +150,6 @@ components:
           minimum: '30'
           type: integer
           format: int32
-    StepUpConfiguration:
-      required:
-      - completedCookieMaxAge
-      - totpConfiguration
-      - validationWindow
-      type: object
-      properties:
-        validationWindow:
-          maximum: '60'
-          minimum: '15'
-          type: integer
-          description: How long in minutes the last step up authentication completion is valid before prompting for step up again.
-          format: int32
-        completedCookieMaxAge:
-          maximum: '30'
-          minimum: '2'
-          type: integer
-          description: How long in seconds the completion id cookie is valid for step up policy conditions enabled for always prompt for step up.
-          format: int32
-        totpConfiguration:
-          $ref: '#/components/schemas/TotpConfiguration'
   securitySchemes:
     bearerAuth:
       type: http

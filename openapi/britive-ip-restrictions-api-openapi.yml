@@ -106,17 +106,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Field'
-    FirewallRulesRequest:
-      type: object
-      properties:
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/FirewallRulesDto'
-        default_action:
-          type: string
-        antilockout:
-          type: boolean
     FirewallRulesDto:
       type: object
       properties:
@@ -135,6 +124,17 @@ components:
           type: array
           items:
             type: string
+    FirewallRulesRequest:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FirewallRulesDto'
+        default_action:
+          type: string
+        antilockout:
+          type: boolean
     Field:
       type: object
       properties:

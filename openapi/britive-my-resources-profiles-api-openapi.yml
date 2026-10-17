@@ -233,6 +233,14 @@ paths:
           description: Not Found
 components:
   schemas:
+    Credentials:
+      type: string
+    PolicyEvalResponse:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
     ResourceAccessStatus:
       type: object
       properties:
@@ -269,14 +277,6 @@ components:
           type: string
         currentExtensionIndex:
           type: integer
-    PolicyEvalResponse:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    Credentials:
-      type: string
     ResourceEvent:
       type: object
       properties:

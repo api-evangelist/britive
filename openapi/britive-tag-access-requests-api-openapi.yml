@@ -224,6 +224,31 @@ components:
         resourceTypeIconUrl:
           type: string
           description: Icon URL for the resource type
+    TagSecretSummaryDto:
+      type: object
+      properties:
+        secretId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        path:
+          type: string
+    TagResourcePageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagResourceSummaryDto'
     RequestableTagPageDto:
       type: object
       properties:
@@ -238,6 +263,69 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RequestableTagSummaryDto'
+    RequestableTagSummaryDto:
+      type: object
+      properties:
+        tagId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        summary:
+          type: string
+          description: 'Count summary: e.g. ''3 Application profiles, 2 Resources, 1 Secret'''
+        external:
+          type: boolean
+          description: Whether the tag is externally managed (e.g. synced from an identity provider)
+    TagAppProfilePageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagAppProfileSummaryDto'
+    TagSecretPageDto:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        page:
+          type: integer
+        size:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagSecretSummaryDto'
+    TagAccessRequest:
+      type: object
+      required:
+      - tagId
+      - justification
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        tagId:
+          type: string
+          description: Unique identifier of the tag
+        justification:
+          type: string
+          description: Reason for requesting access
+        context:
+          type: object
+          additionalProperties:
+            type: string
     TagAppProfileSummaryDto:
       type: object
       properties:
@@ -263,103 +351,7 @@ components:
         permissionsCount:
           type: integer
           description: Number of permissions assigned to this profile
-    TagAppProfilePageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagAppProfileSummaryDto'
-    RequestableTagSummaryDto:
-      type: object
-      properties:
-        tagId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        summary:
-          type: string
-          description: 'Count summary: e.g. ''3 Application profiles, 2 Resources, 1 Secret'''
-        external:
-          type: boolean
-          description: Whether the tag is externally managed (e.g. synced from an identity provider)
-    TagSecretSummaryDto:
-      type: object
-      properties:
-        secretId:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        path:
-          type: string
-    TagAccessRequest:
-      type: object
-      required:
-      - tagId
-      - justification
-      properties:
-        tenantId:
-          type: string
-        userId:
-          type: string
-        tagId:
-          type: string
-          description: Unique identifier of the tag
-        justification:
-          type: string
-          description: Reason for requesting access
-        context:
-          type: object
-          additionalProperties:
-            type: string
-    TagResourcePageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagResourceSummaryDto'
-    TagSecretPageDto:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-        page:
-          type: integer
-        size:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagSecretSummaryDto'
   parameters:
-    PageSize:
-      name: size
-      in: query
-      required: 'false'
-      description: Parameter to specify the number of records to retrieve per page
-      schema:
-        type: integer
-        default: '20'
     Page:
       name: page
       in: query
@@ -368,6 +360,14 @@ components:
       schema:
         type: integer
         default: '0'
+    PageSize:
+      name: size
+      in: query
+      required: 'false'
+      description: Parameter to specify the number of records to retrieve per page
+      schema:
+        type: integer
+        default: '20'
     Sort:
       name: sort
       in: query

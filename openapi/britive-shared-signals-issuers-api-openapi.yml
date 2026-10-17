@@ -131,15 +131,6 @@ paths:
                 $ref: '#/components/schemas/IssuerMappings'
 components:
   schemas:
-    PutIssuerMappingsRequest:
-      type: object
-      required:
-      - mappings
-      properties:
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventActionMapping'
     Issuer:
       type: object
       required:
@@ -166,22 +157,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    IssuerMappings:
-      type: object
-      required:
-      - issuerId
-      - mappings
-      - updatedAt
-      properties:
-        issuerId:
-          type: string
-        mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventActionMapping'
-        updatedAt:
-          type: string
-          format: date-time
     ListIssuersResponse:
       type: object
       required:
@@ -191,6 +166,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Issuer'
+    PutIssuerMappingsRequest:
+      type: object
+      required:
+      - mappings
+      properties:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActionMapping'
+    UpdateIssuerRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
     CreateIssuerRequest:
       type: object
       required:
@@ -215,15 +208,22 @@ components:
         enabled:
           type: boolean
           default: 'true'
-    UpdateIssuerRequest:
+    IssuerMappings:
       type: object
+      required:
+      - issuerId
+      - mappings
+      - updatedAt
       properties:
-        displayName:
+        issuerId:
           type: string
-        description:
+        mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActionMapping'
+        updatedAt:
           type: string
-        enabled:
-          type: boolean
+          format: date-time
     EventActionMapping:
       type: object
       required:

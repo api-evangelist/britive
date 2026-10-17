@@ -147,17 +147,6 @@ paths:
           description: Association Approvers set for a given id not found
 components:
   schemas:
-    AssociationDto:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          description: Association type
-          enum:
-          - '0'
-          - '1'
     MemberDto:
       type: object
       properties:
@@ -170,6 +159,17 @@ components:
           enum:
           - User
           - Tag
+    AssociationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Association type
+          enum:
+          - '0'
+          - '1'
     ApproversGroupDto:
       type: object
       properties:

@@ -224,6 +224,12 @@ components:
             $ref: '#/components/schemas/MemberDto'
         resourceLabels:
           $ref: '#/components/schemas/LabelAssociation'
+    LabelAssociation:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
     PolicyOrderingDto:
       type: object
       required:
@@ -237,12 +243,6 @@ components:
           type: integer
           description: Order value for the policy
           example: '1'
-    LabelAssociation:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
     MemberDto:
       type: object
       properties:
