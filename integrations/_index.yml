@@ -15,19 +15,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: britive-okta-own
-  label: Okta (own)
-  partner: okta
-  partner_name: Okta (own)
-  category: Single Sign-On
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.okta.com/integrations/britive/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: britive-pypi
   label: PyPI
   partner: pypi
@@ -96,5 +83,44 @@
       = every instance marked (Deprecated) by the registry; service counts never recorded
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: britive-okta-own
+  label: Okta (own)
+  partner: okta
+  partner_name: Okta (own)
+  category: Single Sign-On
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.okta.com/integrations/britive/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: britive-opentofu-opentofu-registry
+  label: OpenTofu (opentofu-registry)
+  partner: opentofu
+  partner_name: OpenTofu (opentofu-registry)
+  category: infrastructure-as-code provider registry listing
+  type: marketplace
+  marketplace: opentofu-registry
+  channel: partner-built
+  evidence: https://search.opentofu.org/provider/britive/britive
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: britive-terraform-terraform-registry
+  label: Terraform (terraform-registry)
+  partner: terraform
+  partner_name: Terraform (terraform-registry)
+  category: infrastructure-as-code provider registry listing
+  type: marketplace
+  marketplace: terraform-registry
+  channel: partner-built
+  evidence: https://registry.terraform.io/providers/britive/britive
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
